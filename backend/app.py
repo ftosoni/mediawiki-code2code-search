@@ -57,16 +57,24 @@ def search_code(req: SearchQuery):
 
     results = []
     for i, idx in enumerate(indices[0]):
-        if idx < len(metadata) and idx != -1:
+        if idx != -1 and idx < len(metadata):
             item = metadata[idx]
+            # Convert L2 distance to confidence (0-1 range roughly)
+            # Heuristic: 1 / (1 + dist)
+            dist = float(distances[0][i])
+            confidence = 1.0 / (1.0 + dist)
+            
             results.append({
-                "score": float(distances[0][i]),
-                "id": item.get("id"),
+                "score": confidence,
                 "swhid": item.get("swhid"),
                 "name": item.get("name"),
                 "filepath": item.get("filepath"),
                 "code": item.get("code")
             })
+    
+    # Sort by decreasing confidence (most relevant first)
+    results.sort(key=lambda x: x["score"], reverse=True)
+    return {"results": results}
 
     return {"results": results}
 
