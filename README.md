@@ -27,7 +27,12 @@ Event Horizon is a next-generation, high-fidelity code-to-code search engine spe
 2. Create and activate a virtual environment:
    ```bash
    python -m venv venv
-   source venv/bin/activate  # On Windows use `.\venv\Scripts\Activate.ps1`
+   source venv/bin/activate
+   ```
+   ```powershell
+   # Windows PowerShell
+   python -m venv venv
+   .\venv\Scripts\Activate.ps1
    ```
 3. Install dependencies:
    ```bash
@@ -46,7 +51,8 @@ This will generate `functions.json` (metadata) and `event_horizon.index` (vector
 ### Starting the Search Engine
 Launch the FastAPI server:
 ```bash
-uvicorn app:app --reload
+cd backend
+python -m uvicorn app:app --reload
 ```
 Navigate to **`http://127.0.0.1:8000`** in your browser to start exploring the Event Horizon.
 
@@ -58,4 +64,4 @@ Navigate to **`http://127.0.0.1:8000`** in your browser to start exploring the E
 - **SWH ID Gen**: `swh.model` (Software Heritage identification logic)
 
 ## 📄 License
-MIT License. Created as a prototype for advanced code-to-code retrieval.
+Apache 2.0 License. Created as a prototype for advanced code-to-code retrieval.
