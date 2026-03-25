@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+faiss-cpu
+transformers
+tree-sitter
+tree-sitter-c
+tree-sitter-cpp
+tree-sitter-python
+gitpython
+pydantic
+swh.model
+numpy
+--index-url https://download.pytorch.org/whl/cpu
+torch

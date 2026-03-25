@@ -6,7 +6,13 @@ import faiss
 import numpy as np
 import json
 import os
-from sentence_transformers import SentenceTransformer
+import torch
+from transformers import AutoModel, AutoTokenizer
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+HF_TOKEN = os.getenv("HF_TOKEN")
 
 app = FastAPI(title="Event Horizon: Semantic Code Search")
 
@@ -21,16 +27,19 @@ app.add_middleware(
 FAISS_INDEX_PATH = "event_horizon.index"
 METADATA_PATH = "functions.json"
 
-# Initialize singletons
+# Initialise singletons
+tokenizer = None
 model = None
 index = None
 metadata = []
 
 @app.on_event("startup")
 def startup_event():
-    global model, index, metadata
-    print("Loading embedding model...")
-    model = SentenceTransformer('all-MiniLM-L6-v2')
+    global tokenizer, model, index, metadata
+    print("Initialising local UniXcoder model (CPU)...")
+    tokenizer = AutoTokenizer.from_pretrained("microsoft/unixcoder-base")
+    model = AutoModel.from_pretrained("microsoft/unixcoder-base").to("cpu")
+    model.eval()
     
     if os.path.exists(FAISS_INDEX_PATH) and os.path.exists(METADATA_PATH):
         print("Loading FAISS index and metadata...")
@@ -47,10 +56,13 @@ class SearchQuery(BaseModel):
 @app.post("/search")
 def search_code(req: SearchQuery):
     if model is None or index is None:
-        return {"error": "Server not fully initialized or index missing"}
+        return {"error": "Server not fully initialised or index missing"}
 
-    # Embed query
-    xq = model.encode([req.query]).astype('float32')
+    # Vectorise query
+    with torch.no_grad():
+        inputs = tokenizer(req.query, padding=True, truncation=True, return_tensors='pt', max_length=512)
+        outputs = model(**inputs)
+        xq = outputs.last_hidden_state[:, 0, :].cpu().numpy().astype('float32')
 
     # Search in FAISS
     distances, indices = index.search(xq, req.top_k)
@@ -60,7 +72,6 @@ def search_code(req: SearchQuery):
         if idx != -1 and idx < len(metadata):
             item = metadata[idx]
             # Convert L2 distance to confidence (0-1 range roughly)
-            # Heuristic: 1 / (1 + dist)
             dist = float(distances[0][i])
             confidence = 1.0 / (1.0 + dist)
             
@@ -76,10 +87,7 @@ def search_code(req: SearchQuery):
     results.sort(key=lambda x: x["score"], reverse=True)
     return {"results": results}
 
-    return {"results": results}
-
 # Mount the static frontend directory
-# Note: In a production app, the frontend path might be different
 frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../frontend"))
 if os.path.exists(frontend_path):
     app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
@@ -87,3 +95,4 @@ if os.path.exists(frontend_path):
 @app.get("/health")
 def health():
     return {"status": "ok", "index_size": index.ntotal if index else 0}
+

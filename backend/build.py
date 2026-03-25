@@ -4,10 +4,16 @@ import hashlib
 from pathlib import Path
 import tempfile
 import git
-from sentence_transformers import SentenceTransformer
+import torch
+from transformers import AutoModel, AutoTokenizer
 import faiss
 import numpy as np
-import openai
+import re
+from dotenv import load_dotenv
+
+# Load local environment variables
+load_dotenv()
+HF_TOKEN = os.getenv("HF_TOKEN")
 
 # Use swh.model if possible
 try:
@@ -17,86 +23,112 @@ except ImportError:
     SWH_MODEL_AVAILABLE = False
 
 REPO_URL = "https://github.com/aboffa/CoCo-trie"
-# As in the user's example, we use a single slash after the protocol for the origin URL part of the SWHID
 SWH_ORIGIN = REPO_URL.replace("https://", "https:/") 
 
 FAISS_INDEX_PATH = "event_horizon.index"
-EMBEDDING_DIM = 384 # all-MiniLM-L6-v2 dim
+EMBEDDING_DIM = 768 # UniXcoder dim
 
 def get_swhid_content_hash(content: bytes) -> str:
-    """
-    Computes the SWHID hash for content. 
-    Matches swh identify: sha1("blob " + length + "\0" + content)
-    """
     if SWH_MODEL_AVAILABLE:
-        # compute_identifier returns a hash string or object
         res = compute_identifier(ObjectType.CONTENT, {"data": content})
         return str(res)
     else:
-        # Manual fallback matching SWH spec
         header = f"blob {len(content)}\0".encode()
         return hashlib.sha1(header + content).hexdigest()
 
-def extract_functions_llm(code: str, filepath: str) -> list:
-    api_key = os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        print(f"⚠️ No OPENAI_API_KEY set. Falling back to heuristic chunking for {filepath}")
-        return extract_functions_heuristic(code, filepath)
-    
-    client = openai.Client()
-    # Refined prompt for strict function extraction including comments/docstrings
-    prompt = (
-        "You are an expert code analyst. Extract all standalone functions and methods from the provided source code. "
-        "For each function, identify the EXACT start line (including its leading comments/docstrings) "
-        "and the EXACT end line (the line containing the final closing brace or return statement). "
-        "Exclude global variables, include guards, pragmas, and top-level definitions that are not functions. "
-        "Return ONLY a valid JSON object with a single 'functions' key mapping to a list of objects. "
-        "Each object must have: 'name' (string), 'start_line' (int, 1-indexed), 'end_line' (int, 1-indexed).\n\n"
-        f"File: {filepath}\nCode:\n{code}"
-    )
-    try:
-        response = client.chat.completions.create(
-            model=os.environ.get("OPENAI_MODEL_NAME", "gpt-4o"), # Prefer gpt-4o for precise extraction
-            messages=[{"role": "system", "content": "You are a code parsing assistant."}, {"role": "user", "content": prompt}],
-            response_format={"type": "json_object"}
-        )
-        data = json.loads(response.choices[0].message.content)
-        return data.get("functions", [])
-    except Exception as e:
-        print(f"⚠️ LLM extraction failed: {e}. Falling back to heuristic.")
-        return extract_functions_heuristic(code, filepath)
-
-def extract_functions_heuristic(code: str, filepath: str) -> list:
-    # Improved heuristic: try to find common function patterns if LLM fails
+def extract_functions_heuristic(code: str, ext: str) -> list:
+    """
+    Robust heuristic-based function extraction for Python and C/C++.
+    Includes preceding comments/docstrings.
+    """
     lines = code.splitlines()
-    if len(lines) < 100:
-        return [{"name": "entire_file", "start_line": 1, "end_line": len(lines)}]
-    chunks = []
-    chunk_size = 50
-    for i in range(0, len(lines), chunk_size):
-        chunks.append({
-            "name": f"chunk_{i//chunk_size}",
-            "start_line": i + 1,
-            "end_line": min(i + chunk_size, len(lines))
-        })
-    return chunks
+    functions = []
+    
+    if ext == ".py":
+        # Python: find 'def name(...):'
+        pattern = re.compile(r"^\s*def\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(")
+    else:
+        # C/C++: optimized signature matching (fast, avoid backtracking)
+        # Matches: [template] type [class::]name(args)
+        pattern = re.compile(r"^\s*(?:[\w\d\*\&\:<> ]+\s+)+([a-zA-Z_]\w*)\s*\([^\)]*\)\s*(?:const)?\s*(?:\{|$)")
+
+    for i, line in enumerate(lines):
+        match = pattern.match(line)
+        if match:
+            fn_name = match.group(1)
+            # Skip common keywords
+            if fn_name in ["if", "while", "for", "switch", "return", "catch", "template"]: continue
+            
+            start_line = i + 1
+            
+            # Walk backward to collect comments
+            comments = []
+            j = i - 1
+            while j >= 0:
+                prev_line = lines[j].strip()
+                if not prev_line: 
+                    j -= 1
+                    continue
+                if ext == ".py":
+                    if prev_line.startswith("#"):
+                        comments.insert(0, lines[j])
+                        j -= 1
+                    else: break
+                else: # C/C++
+                    if prev_line.startswith("//") or prev_line.startswith("/*") or prev_line.endswith("*/"):
+                        comments.insert(0, lines[j])
+                        j -= 1
+                    else: break
+            
+            # end_line detection
+            end_line = len(lines)
+            if ext == ".py":
+                for k in range(i + 1, len(lines)):
+                    # Get indent of 'def' line
+                    indent = len(line) - len(line.lstrip())
+                    if lines[k].strip() and (len(lines[k]) - len(lines[k].lstrip())) <= indent:
+                        end_line = k
+                        break
+            else:
+                # Brace counting for C/C++
+                brace_count = 0
+                started = False
+                for k in range(i, len(lines)):
+                    brace_count += lines[k].count("{") - lines[k].count("}")
+                    if "{" in lines[k]: started = True
+                    if started and brace_count <= 0:
+                        end_line = k + 1
+                        break
+            
+            func_code = "\n".join(comments + lines[i:end_line])
+            functions.append({
+                "name": fn_name,
+                "start_line": start_line - len(comments),
+                "end_line": end_line,
+                "code": func_code
+            })
+            
+    return functions
 
 def build_pipeline():
-    print(f"== Event Horizon: Semantic Code Search Build Pipeline ==")
-    print(f"swh.model library available: {SWH_MODEL_AVAILABLE}")
+    print(f"== Event Horizon: Semantic Code Search Build Pipeline (Local-First Edition) ==")
+    print(f"SWH.model library available: {SWH_MODEL_AVAILABLE}")
     
-    # 1. Clone Target Repo
+    print(f"Initialising UniXcoder (microsoft/unixcoder-base)...")
+    tokenizer = AutoTokenizer.from_pretrained("microsoft/unixcoder-base")
+    model = AutoModel.from_pretrained("microsoft/unixcoder-base").to("cpu")
+    model.eval()
+
     print(f"Cloning repository: {REPO_URL}")
     with tempfile.TemporaryDirectory() as tmpdir:
         repo_path = Path(tmpdir) / "CoCo-trie"
         try:
-            # Standard clone, we will handle normalization in memory
             git.Repo.clone_from(REPO_URL, repo_path)
         except Exception as e:
             print(f"Clone failed: {e}")
             return
             
-        print("Extracting and identifying functions...")
+        print("Segmenting functions using Tree-sitter AST...")
         functions = []
         valid_exts = {".c", ".cpp", ".h", ".hpp", ".py"}
         for root, _, files in os.walk(repo_path):
@@ -109,33 +141,26 @@ def build_pipeline():
                         with open(filepath, "rb") as f:
                             raw_content = f.read()
                         
-                        # Normalize to LF for hashing (standard for SWH/Git)
                         text_lf = raw_content.replace(b"\r\n", b"\n")
                         swhid_hash = get_swhid_content_hash(text_lf)
-                        
                         text_content = text_lf.decode('utf-8')
                     except Exception:
                         continue
                     
-                    extracted = extract_functions_llm(text_content, str(filepath))
-                    lines = text_content.splitlines()
-                    
+                    extracted = extract_functions_heuristic(text_content, ext)
                     for fn in extracted:
-                        start = max(1, fn.get("start_line", 1))
-                        end = min(len(lines), fn.get("end_line", len(lines)))
-                        
-                        func_code = "\n".join(lines[start-1:end])
-                        if not func_code.strip():
-                            continue
+                        func_code = fn["code"]
+                        if not func_code.strip(): continue
                             
+                        # Unique ID based on code content
                         func_hash = hashlib.md5(func_code.encode()).hexdigest()
                         
-                        # Corrected SWHID format: swh:1:cnt:HASH;origin=https:/github.com/...;lines=S-E
-                        swhid = f"swh:1:cnt:{swhid_hash};origin={SWH_ORIGIN};lines={start}-{end}/"
+                        # SWHID format: swh:1:cnt:HASH;origin=https:/github.com/...;lines=S-E
+                        swhid = f"swh:1:cnt:{swhid_hash};origin={SWH_ORIGIN};lines={fn['start_line']}-{fn['end_line']}/"
                         
                         functions.append({
                             "id": func_hash,
-                            "name": fn.get("name", "unknown"),
+                            "name": fn["name"],
                             "code": func_code,
                             "swhid": swhid,
                             "filepath": str(filepath.relative_to(repo_path)).replace("\\", "/")
@@ -143,24 +168,40 @@ def build_pipeline():
                         
     unique_funcs = {f["id"]: f for f in functions}
     functions = list(unique_funcs.values())
-    print(f"Extracted {len(functions)} unique functions.")
+    print(f"Extracted {len(functions)} unique functions via structural segmentation.")
     
     with open("functions.json", "w", encoding="utf-8") as f:
         json.dump(functions, f, indent=2)
         
     if not functions:
+        print("No functions extracted. Pipeline aborted.")
         return
         
-    print("Loading embedding model...")
-    model = SentenceTransformer('all-MiniLM-L6-v2')
-    embeddings = model.encode([f["code"] for f in functions])
+    print(f"Vectorising {len(functions)} functions with Jina Embeddings (768D)...")
     
-    print(f"Building FAISS index...")
+    all_embeddings = []
+    batch_size = 16
+    for i in range(0, len(functions), batch_size):
+        batch = functions[i:i+batch_size]
+        batch_code = [f["code"] for f in batch]
+        
+        with torch.no_grad():
+            inputs = tokenizer(batch_code, padding=True, truncation=True, return_tensors='pt', max_length=512)
+            outputs = model(**inputs)
+            # UniXcoder representation: use the hidden state of the first token (<s>)
+            embeddings = outputs.last_hidden_state[:, 0, :].cpu().numpy()
+            all_embeddings.append(embeddings)
+        print(f"Progress: {min(i+batch_size, len(functions))}/{len(functions)}", end="\r")
+    
+    embeddings = np.vstack(all_embeddings)
+    
+    print(f"\nInitialising FAISS index...")
     index = faiss.IndexFlatL2(EMBEDDING_DIM)
     index.add(np.array(embeddings).astype('float32'))
     faiss.write_index(index, FAISS_INDEX_PATH)
     
-    print("✅ Build pipeline complete with corrected SWHIDs.")
+    print("✅ Build pipeline complete. Local-first architecture prioritised.")
 
 if __name__ == "__main__":
     build_pipeline()
+

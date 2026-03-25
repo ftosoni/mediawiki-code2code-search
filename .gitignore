@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Event Horizon Indexing
+backend/event_horizon.index
+backend/functions.json
+backend/test_repo/
+backend/CoCo-trie/
+
+# OS
+.DS_Store
+Thumbs.db
