@@ -58,11 +58,13 @@ def search_code(req: SearchQuery):
     if model is None or index is None:
         return {"error": "Server not fully initialised or index missing"}
 
-    # Vectorise query
+    # Vectorise query with normalization
     with torch.no_grad():
         inputs = tokenizer(req.query, padding=True, truncation=True, return_tensors='pt', max_length=512)
         outputs = model(**inputs)
-        xq = outputs.last_hidden_state[:, 0, :].cpu().numpy().astype('float32')
+        xq = outputs.last_hidden_state[:, 0, :]
+        xq = torch.nn.functional.normalize(xq, p=2, dim=1)
+        xq = xq.cpu().numpy().astype('float32')
 
     # Search in FAISS
     distances, indices = index.search(xq, req.top_k)

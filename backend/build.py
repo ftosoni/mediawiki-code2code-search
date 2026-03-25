@@ -11,6 +11,17 @@ import numpy as np
 import re
 from dotenv import load_dotenv
 
+# Tree-sitter imports (0.23+ API)
+import tree_sitter
+import tree_sitter_python
+import tree_sitter_cpp
+import tree_sitter_c
+
+# Initialize Languages
+PY_LANGUAGE = tree_sitter.Language(tree_sitter_python.language())
+CPP_LANGUAGE = tree_sitter.Language(tree_sitter_cpp.language())
+C_LANGUAGE = tree_sitter.Language(tree_sitter_c.language())
+
 # Load local environment variables
 load_dotenv()
 HF_TOKEN = os.getenv("HF_TOKEN")
@@ -36,118 +47,134 @@ def get_swhid_content_hash(content: bytes) -> str:
         header = f"blob {len(content)}\0".encode()
         return hashlib.sha1(header + content).hexdigest()
 
-def extract_functions_heuristic(code: str, ext: str) -> list:
+def extract_functions_treesitter(code_bytes: bytes, ext: str) -> list:
     """
-    Robust heuristic-based function extraction for Python and C/C++.
-    Includes preceding comments/docstrings.
+    High-precision AST-based function extraction using Tree-sitter.
+    Includes preceding comments/docstrings by traversing siblings.
     """
-    lines = code.splitlines()
-    functions = []
-    
     if ext == ".py":
-        # Python: find 'def name(...):'
-        pattern = re.compile(r"^\s*def\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\(")
+        lang = PY_LANGUAGE
+        query_scm = "(function_definition) @function"
+    elif ext in [".cpp", ".hpp", ".h"]:
+        lang = CPP_LANGUAGE
+        # Comprehensive C++ patterns
+        query_scm = "(function_definition) @function (template_declaration) @function"
+    elif ext == ".c":
+        lang = C_LANGUAGE
+        query_scm = "(function_definition) @function"
     else:
-        # C/C++: optimized signature matching (fast, avoid backtracking)
-        # Matches: [template] type [class::]name(args)
-        pattern = re.compile(r"^\s*(?:[\w\d\*\&\:<> ]+\s+)+([a-zA-Z_]\w*)\s*\([^\)]*\)\s*(?:const)?\s*(?:\{|$)")
+        return []
 
-    for i, line in enumerate(lines):
-        match = pattern.match(line)
-        if match:
-            fn_name = match.group(1)
-            # Skip common keywords
-            if fn_name in ["if", "while", "for", "switch", "return", "catch", "template"]: continue
+    try:
+        parser = tree_sitter.Parser(lang)
+        tree = parser.parse(code_bytes)
+        query = lang.query(query_scm)
+        captures = query.captures(tree.root_node)
+    except Exception as e:
+        # Fallback for headers that might be C or C++
+        if ext == ".h":
+             try:
+                 lang = C_LANGUAGE
+                 parser = tree_sitter.Parser(lang)
+                 tree = parser.parse(code_bytes)
+                 query = lang.query("(function_definition) @function")
+                 captures = query.captures(tree.root_node)
+             except Exception:
+                 return []
+        else:
+            raise e
+    
+    # Normalize captures to a list of nodes
+    if isinstance(captures, dict):
+        all_nodes = []
+        for nodes in captures.values():
+            all_nodes.extend(nodes)
+        captures = all_nodes
+
+    functions = []
+    seen_nodes = set()
+    
+    for capture in captures:
+        # Robustly extract Node from capture (can be Node or (Node, tag))
+        if isinstance(capture, tuple) and len(capture) > 0:
+            node = capture[0]
+        elif hasattr(capture, 'start_byte'):
+            node = capture
+        else:
+            continue
             
-            start_line = i + 1
+        node_key = (node.start_byte, node.end_byte)
+        if node_key in seen_nodes: continue
+        seen_nodes.add(node_key)
+        
+        # Start/End points
+        start_byte = node.start_byte
+        end_byte = node.end_byte
+        start_line = node.start_point[0] + 1
+        
+        # Walk backward to include comments/docstrings
+        current_start = start_byte
+        actual_start_line = start_line
+        
+        prev = node.prev_sibling
+        while prev and prev.type in ["comment", "line_comment", "block_comment"]:
+            current_start = prev.start_byte
+            actual_start_line = prev.start_point[0] + 1
+            prev = prev.prev_sibling
             
-            # Walk backward to collect comments
-            comments = []
-            j = i - 1
-            while j >= 0:
-                prev_line = lines[j].strip()
-                if not prev_line: 
-                    j -= 1
-                    continue
-                if ext == ".py":
-                    if prev_line.startswith("#"):
-                        comments.insert(0, lines[j])
-                        j -= 1
-                    else: break
-                else: # C/C++
-                    if prev_line.startswith("//") or prev_line.startswith("/*") or prev_line.endswith("*/"):
-                        comments.insert(0, lines[j])
-                        j -= 1
-                    else: break
-            
-            # end_line detection
-            end_line = len(lines)
-            if ext == ".py":
-                for k in range(i + 1, len(lines)):
-                    # Get indent of 'def' line
-                    indent = len(line) - len(line.lstrip())
-                    if lines[k].strip() and (len(lines[k]) - len(lines[k].lstrip())) <= indent:
-                        end_line = k
-                        break
-            else:
-                # Brace counting for C/C++
-                brace_count = 0
-                started = False
-                for k in range(i, len(lines)):
-                    brace_count += lines[k].count("{") - lines[k].count("}")
-                    if "{" in lines[k]: started = True
-                    if started and brace_count <= 0:
-                        end_line = k + 1
-                        break
-            
-            func_code = "\n".join(comments + lines[i:end_line])
-            functions.append({
-                "name": fn_name,
-                "start_line": start_line - len(comments),
-                "end_line": end_line,
-                "code": func_code
-            })
-            
+        func_code = code_bytes[current_start:end_byte].decode('utf-8', errors='ignore')
+        
+        # Extract function name (heuristic within node)
+        name = "unknown"
+        for child in node.children:
+            if child.type in ["identifier", "field_identifier"]:
+                name = code_bytes[child.start_byte:child.end_byte].decode('utf-8', errors='ignore')
+                break
+        
+        functions.append({
+            "name": name,
+            "start_line": actual_start_line,
+            "end_line": node.end_point[0] + 1,
+            "code": func_code
+        })
+        
     return functions
 
 def build_pipeline():
     print(f"== Event Horizon: Semantic Code Search Build Pipeline (Local-First Edition) ==")
-    print(f"SWH.model library available: {SWH_MODEL_AVAILABLE}")
     
     print(f"Initialising UniXcoder (microsoft/unixcoder-base)...")
     tokenizer = AutoTokenizer.from_pretrained("microsoft/unixcoder-base")
     model = AutoModel.from_pretrained("microsoft/unixcoder-base").to("cpu")
     model.eval()
 
-    print(f"Cloning repository: {REPO_URL}")
-    with tempfile.TemporaryDirectory() as tmpdir:
-        repo_path = Path(tmpdir) / "CoCo-trie"
-        try:
-            git.Repo.clone_from(REPO_URL, repo_path)
-        except Exception as e:
-            print(f"Clone failed: {e}")
-            return
+    repo_path = Path("CoCo-trie")
+    if not repo_path.exists():
+        print(f"Cloning {REPO_URL}...")
+        git.Repo.clone_from(REPO_URL, repo_path)
+    else:
+        print(f"Using local repository: {repo_path}")
             
-        print("Segmenting functions using Tree-sitter AST...")
-        functions = []
-        valid_exts = {".c", ".cpp", ".h", ".hpp", ".py"}
-        for root, _, files in os.walk(repo_path):
-            if ".git" in root: continue
-            for file in files:
-                ext = Path(file).suffix
-                if ext in valid_exts:
-                    filepath = Path(root) / file
-                    try:
-                        with open(filepath, "rb") as f:
-                            raw_content = f.read()
-                        
-                        text_lf = raw_content.replace(b"\r\n", b"\n")
-                        swhid_hash = get_swhid_content_hash(text_lf)
-                        text_content = text_lf.decode('utf-8')
-                    except Exception:
-                        continue
+    print("Segmenting functions using Tree-sitter AST...")
+    functions = []
+    valid_exts = {".c", ".cpp", ".h", ".hpp", ".py"}
+    for root, _, files in os.walk(repo_path):
+        if ".git" in root: continue
+        for file in files:
+            ext = Path(file).suffix
+            if ext in valid_exts:
+                filepath = Path(root) / file
+                print(f"Processing {filepath}...")
+                try:
+                    with open(filepath, "rb") as f:
+                        raw_content = f.read()
                     
-                    extracted = extract_functions_heuristic(text_content, ext)
+                    text_lf = raw_content.replace(b"\r\n", b"\n")
+                    swhid_hash = get_swhid_content_hash(text_lf)
+                    
+                    extracted = extract_functions_treesitter(text_lf, ext)
+                    print(f"  Extracted {len(extracted)} functions.")
+                    
                     for fn in extracted:
                         func_code = fn["code"]
                         if not func_code.strip(): continue
@@ -155,7 +182,7 @@ def build_pipeline():
                         # Unique ID based on code content
                         func_hash = hashlib.md5(func_code.encode()).hexdigest()
                         
-                        # SWHID format: swh:1:cnt:HASH;origin=https:/github.com/...;lines=S-E
+                        # SWHID format: swh:1:cnt:HASH;origin=URL;lines=S-E
                         swhid = f"swh:1:cnt:{swhid_hash};origin={SWH_ORIGIN};lines={fn['start_line']}-{fn['end_line']}/"
                         
                         functions.append({
@@ -165,19 +192,21 @@ def build_pipeline():
                             "swhid": swhid,
                             "filepath": str(filepath.relative_to(repo_path)).replace("\\", "/")
                         })
+                except Exception as e:
+                    print(f"  Failed to process {file}: {e}")
                         
     unique_funcs = {f["id"]: f for f in functions}
     functions = list(unique_funcs.values())
     print(f"Extracted {len(functions)} unique functions via structural segmentation.")
     
-    with open("functions.json", "w", encoding="utf-8") as f:
-        json.dump(functions, f, indent=2)
-        
     if not functions:
         print("No functions extracted. Pipeline aborted.")
         return
         
-    print(f"Vectorising {len(functions)} functions with Jina Embeddings (768D)...")
+    with open("functions.json", "w", encoding="utf-8") as f:
+        json.dump(functions, f, indent=2)
+        
+    print(f"Vectorising {len(functions)} functions with UniXcoder (768D)...")
     
     all_embeddings = []
     batch_size = 16
@@ -188,9 +217,10 @@ def build_pipeline():
         with torch.no_grad():
             inputs = tokenizer(batch_code, padding=True, truncation=True, return_tensors='pt', max_length=512)
             outputs = model(**inputs)
-            # UniXcoder representation: use the hidden state of the first token (<s>)
-            embeddings = outputs.last_hidden_state[:, 0, :].cpu().numpy()
-            all_embeddings.append(embeddings)
+            # Use CLS token and normalize
+            embeddings = outputs.last_hidden_state[:, 0, :]
+            embeddings = torch.nn.functional.normalize(embeddings, p=2, dim=1)
+            all_embeddings.append(embeddings.cpu().numpy())
         print(f"Progress: {min(i+batch_size, len(functions))}/{len(functions)}", end="\r")
     
     embeddings = np.vstack(all_embeddings)
@@ -204,4 +234,3 @@ def build_pipeline():
 
 if __name__ == "__main__":
     build_pipeline()
-
