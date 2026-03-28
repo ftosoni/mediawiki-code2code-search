@@ -1,0 +1,17 @@
+{
+    "search_title": "SWH কোড অন্বেষণ",
+    "main_title": "MediaWiki Code2Code Search",
+    "subtitle": "সিমেন্টিক নিউরাল রিট্রিভাল ইঞ্জিন",
+    "placeholder": "// সিমেন্টিক আর্কাইভ অতিক্রম করতে কোড লজিক লিখুন...",
+    "indexed": "ইনডেক্স করা হয়েছে: CoCo-trie · ফাংশন স্কেল",
+    "btn_search": "অনুসন্ধান শুরু করুন",
+    "btn_loading": "অনুসন্ধান চলছে...",
+    "rerank_score": "রি-র‍্যাঙ্ক স্কোর",
+    "recall_score": "রিকল স্কোর",
+    "no_results": "এই অনুসন্ধানের জন্য কোনো ফলাফল পাওয়া যায়নি।",
+    "created_by": "তৈরি করেছেন:",
+    "licence": "লাইসেন্স:",
+    "view_source": "উৎস দেখুন",
+    "view_swhid": "SWHID দেখুন",
+    "last_updated": "সর্বশেষ আপডেট: ২৮ মার্চ ২০২৬"
+}

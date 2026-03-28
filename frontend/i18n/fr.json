@@ -1,0 +1,17 @@
+{
+    "search_title": "Exploration du Code SWH",
+    "main_title": "MediaWiki Code2Code Search",
+    "subtitle": "Moteur de Recherche Neurale Sémantique",
+    "placeholder": "// Entrez la logique du code pour traverser l'archive sémantique...",
+    "indexed": "INDEXÉ : CoCo-trie · ÉCHELLE DE FONCTION",
+    "btn_search": "LANCER LA RECHERCHE",
+    "btn_loading": "TRAVERSÉE...",
+    "rerank_score": "SCORE RERANK",
+    "recall_score": "SCORE RECALL",
+    "no_results": "La singularité n'a retourné aucun résultat pour cette requête.",
+    "created_by": "Créé par :",
+    "licence": "Licence :",
+    "view_source": "Voir la source",
+    "view_swhid": "Voir SWHID",
+    "last_updated": "Dernière mise à jour : 28 Mars 2026"
+}

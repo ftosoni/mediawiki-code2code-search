@@ -1,0 +1,17 @@
+{
+    "search_title": "SWH కోడ్ అన్వేషణ",
+    "main_title": "MediaWiki Code2Code Search",
+    "subtitle": "సిమాంటిక్ న్యూరల్ రిట్రీవల్ ఇంజిన్",
+    "placeholder": "// సిమాంటిక్ ఆర్కైవ్‌ను అన్వేషించడానికి కోడ్ లాజిక్‌ను నమోదు చేయండి...",
+    "indexed": "ఇండెక్స్ చేయబడింది: CoCo-trie · ఫంక్షన్ స్కేల్",
+    "btn_search": "శోధన ప్రారంభించండి",
+    "btn_loading": "శోధిస్తోంది...",
+    "rerank_score": "రీర్యాంక్ స్కోర్",
+    "recall_score": "రీకాల్ స్కోర్",
+    "no_results": "ఈ శోధనకు ఫలితాలు లేవు।",
+    "created_by": "రూపకర్త:",
+    "licence": "లైసెన్స్:",
+    "view_source": "మూలాన్ని చూడండి",
+    "view_swhid": "SWHID చూడండి",
+    "last_updated": "చివరి అప్‌డేట్: 28 మార్చి 2026"
+}

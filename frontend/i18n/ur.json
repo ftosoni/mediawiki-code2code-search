@@ -1,0 +1,17 @@
+{
+    "search_title": "SWH کوڈ کی تلاش",
+    "main_title": "MediaWiki Code2Code Search",
+    "subtitle": "سیمنٹک نیورل ریٹریول انجن",
+    "placeholder": "// سیمنٹک آرکائیو کو تلاش کرنے کے لئے کوڈ کی منطق درج کریں...",
+    "indexed": "فہرست شدہ: CoCo-trie · فنکشن اسکیل",
+    "btn_search": "تلاش شروع کریں",
+    "btn_loading": "تلاش جاری ہے...",
+    "rerank_score": "ری رینک اسکور",
+    "recall_score": "ریکال اسکور",
+    "no_results": "اس سوال کے لئے کوئی نتیجہ نہیں ملا۔",
+    "created_by": "تخلیق کار:",
+    "licence": "لائسنس:",
+    "view_source": "سورس دیکھیں",
+    "view_swhid": "SWHID دیکھیں",
+    "last_updated": "آخری اپ ڈیٹ: 28 مارچ 2026"
+}

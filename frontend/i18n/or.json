@@ -1,0 +1,17 @@
+{
+    "search_title": "SWH କୋଡ୍ ଅନ୍ୱେଷଣ",
+    "main_title": "MediaWiki Code2Code Search",
+    "subtitle": "ସିମାଣ୍ଟିକ୍ ନ୍ୟୁରାଲ୍ ରିଟ୍ରିଭାଲ୍ ଇଞ୍ଜିନ୍",
+    "placeholder": "// ସିମାଣ୍ଟିକ୍ ଆର୍କାଇଭ୍ ପାର କରିବା ପାଇଁ କୋଡ୍ ଲଜିକ୍ ପ୍ରବେଶ କରନ୍ତୁ...",
+    "indexed": "ସୂଚୀବଦ୍ଧ: CoCo-trie · ଫଙ୍କସନ୍ ସ୍କେଲ୍",
+    "btn_search": "ଖୋଜିବା ଆରମ୍ଭ କରନ୍ତୁ",
+    "btn_loading": "ଖୋଜୁଛି...",
+    "rerank_score": "ରିର୍ୟାଙ୍କ ସ୍କୋର",
+    "recall_score": "ରିକଲ୍ ସ୍କୋର",
+    "no_results": "ଏହି ପ୍ରଶ୍ନ ପାଇଁ କୌଣସି ଫଳାଫଳ ମିଳିଲା ନାହିଁ।",
+    "created_by": "ଦ୍ୱାରା ନିର୍ମିତ:",
+    "licence": "ଲାଇସେନ୍ସ:",
+    "view_source": "ଉତ୍ସ ଦେଖନ୍ତୁ",
+    "view_swhid": "SWHID ଦେଖନ୍ତୁ",
+    "last_updated": "ଶେଷ ଅପଡେଟ୍: ୨୮ ମାର୍ଚ୍ଚ ୨୦୨୬"
+}

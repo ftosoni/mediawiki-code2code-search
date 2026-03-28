@@ -1,0 +1,17 @@
+{
+    "search_title": "SWH Code Exploration",
+    "main_title": "MediaWiki Code2Code Search",
+    "subtitle": "Semantic Neural Retrieval Engine",
+    "placeholder": "// Enter code logic to traverse the semantic archive...",
+    "indexed": "INDEXED: CoCo-trie · FUNCTION SCALE",
+    "btn_search": "INITIATE SEARCH",
+    "btn_loading": "TRAVERSING...",
+    "rerank_score": "RERANK-STAGE SCORE",
+    "recall_score": "RECALL-STAGE SCORE",
+    "no_results": "The singularity returned no results for this query.",
+    "created_by": "Created by:",
+    "licence": "Licence:",
+    "view_source": "View source",
+    "view_swhid": "View SWHID",
+    "last_updated": "Last updated on: 28th March 2026"
+}

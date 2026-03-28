@@ -1,0 +1,17 @@
+{
+    "search_title": "SWH कोड अन्वेषण",
+    "main_title": "MediaWiki Code2Code Search",
+    "subtitle": "सिमेंटिक न्यूरल रिट्रीवल इंजन",
+    "placeholder": "// सिमेंटिक आर्काइव को पार करने के लिए कोड लॉजिक दर्ज करें...",
+    "indexed": "अनुक्रमित: CoCo-trie · फंक्शन स्केल",
+    "btn_search": "खोज शुरू करें",
+    "btn_loading": "पार कर रहा है...",
+    "rerank_score": "रीरैंक स्कोर",
+    "recall_score": "रिकॉल स्कोर",
+    "no_results": "इस क्वेरी के लिए कोई परिणाम नहीं मिला।",
+    "created_by": "द्वारा बनाया गया:",
+    "licence": "लाइसेंस:",
+    "view_source": "स्रोत देखें",
+    "view_swhid": "SWHID देखें",
+    "last_updated": "अंतिम अपडेट: 28 मार्च 2026"
+}

@@ -1,0 +1,17 @@
+{
+    "search_title": "SWH കോഡ് പര്യവേക്ഷണം",
+    "main_title": "MediaWiki Code2Code Search",
+    "subtitle": "സെമാന്റിക് ന്യൂറൽ റിട്രീവൽ എഞ്ചിൻ",
+    "placeholder": "// സെമാന്റിക് ആർക്കൈവ് തിരയാൻ കോഡ് ലോജിക് നൽകുക...",
+    "indexed": "ഇൻഡക്സ് ചെയ്തു: CoCo-trie · ഫംഗ്‌ഷൻ സ്കെയിൽ",
+    "btn_search": "തിരച്ചിൽ തുടങ്ങുക",
+    "btn_loading": "തിരയുന്നു...",
+    "rerank_score": "റീറാങ്ക് സ്കോർ",
+    "recall_score": "റീകോൾ സ്കോർ",
+    "no_results": "ഈ ക്വറിക്ക് ഫലങ്ങളൊന്നും ലഭ്യമല്ല.",
+    "created_by": "നിർമ്മിച്ചത്:",
+    "licence": "ലൈസൻസ്:",
+    "view_source": "ഉറവിടം കാണുക",
+    "view_swhid": "SWHID കാണുക",
+    "last_updated": "അവസാന അപ്ഡേറ്റ്: 28 മാർച്ച് 2026"
+}

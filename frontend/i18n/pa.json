@@ -1,0 +1,17 @@
+{
+    "search_title": "SWH ਕੋਡ ਖੋਜ",
+    "main_title": "MediaWiki Code2Code Search",
+    "subtitle": "ਸਿਮੈਂਟਿਕ ਨਿਊਰਲ ਰੀਟਰੀਵਲ ਇੰਜਨ",
+    "placeholder": "// ਸਿਮੈਂਟਿਕ ਆਰਕਾਈਵ ਦੀ ਖੋਜ ਕਰਨ ਲਈ ਕੋਡ ਲਾਜ਼ੀਕ ਦਰਜ ਕਰੋ...",
+    "indexed": "ਇੰਡੈਕਸ ਕੀਤਾ ਗਿਆ: CoCo-trie · ਫੰਕਸ਼ਨ ਸਕੇਲ",
+    "btn_search": "ਖੋਜ ਸ਼ੁਰੂ ਕਰੋ",
+    "btn_loading": "ਖੋਜ ਜਾਰੀ ਹੈ...",
+    "rerank_score": "ਰੀਰੈਂਕ ਸਕੋਰ",
+    "recall_score": "ਰੀਕਾਲ ਸਕੋਰ",
+    "no_results": "ਇਸ ਕੁਐਰੀ ਲਈ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।",
+    "created_by": "ਦੁਆਰਾ ਬਣਾਇਆ ਗਿਆ:",
+    "licence": "ਲਾਇਸੈਂਸ:",
+    "view_source": "ਸਰੋਤ ਦੇਖੋ",
+    "view_swhid": "SWHID ਦੇਖੋ",
+    "last_updated": "ਆਖਰੀ ਅਪਡੇਟ: 28 ਮਾਰਚ 2026"
+}
