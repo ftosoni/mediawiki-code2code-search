@@ -1,7 +1,11 @@
 fastapi
 uvicorn
 faiss-cpu
-transformers
+transformers==4.47.1
+sentence-transformers
+einops
+bitsandbytes
+accelerate
 tree-sitter
 tree-sitter-c
 tree-sitter-cpp

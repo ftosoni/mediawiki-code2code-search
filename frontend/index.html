@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,8 @@
     <!-- Three.js for the particle vortex -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <!-- Google Fonts: Outfit & Inter for modern tech feel -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-dark: #050505;
@@ -90,7 +92,7 @@
             border: 1px solid var(--glass-border);
             border-radius: 28px;
             padding: 2rem;
-            box-shadow: 0 12px 80px rgba(0,0,0,0.7);
+            box-shadow: 0 12px 80px rgba(0, 0, 0, 0.7);
             transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
@@ -123,7 +125,7 @@
         .info-pill {
             font-size: 0.7rem;
             color: #aaa;
-            background: rgba(255,255,255,0.06);
+            background: rgba(255, 255, 255, 0.06);
             padding: 5px 14px;
             border-radius: 20px;
             letter-spacing: 1px;
@@ -219,7 +221,7 @@
             display: inline-block;
             margin-top: 0.8rem;
             padding: 6px 12px;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 8px;
         }
 
@@ -231,28 +233,42 @@
         .score-box {
             text-align: right;
             background: rgba(255, 255, 255, 0.05);
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 16px;
             border: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 140px;
+        }
+
+        .score-item {
+            display: flex;
+            flex-direction: column;
         }
 
         .score-label {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             color: #888;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 4px;
+            letter-spacing: 1.5px;
+            margin-bottom: 2px;
         }
 
         .score-value {
-            font-size: 1.6rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: #fff;
             font-family: 'Outfit', sans-serif;
         }
 
+        .score-value.rank {
+            color: var(--accent-orange);
+            font-size: 1.3rem;
+        }
+
         pre {
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             padding: 1.8rem;
             border-radius: 20px;
             font-family: 'JetBrains Mono', monospace;
@@ -260,265 +276,300 @@
             overflow-x: auto;
             color: #cbd5e1;
             line-height: 1.6;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         .loader {
             width: 70px;
             height: 70px;
-            border: 5px solid rgba(255,255,255,0.05);
+            border: 5px solid rgba(255, 255, 255, 0.05);
             border-bottom-color: var(--accent-orange);
             border-radius: 50%;
             display: inline-block;
             animation: rotation 1s linear infinite;
         }
 
-        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
+
 <body>
 
-<div id="canvas-container"></div>
+    <div id="canvas-container"></div>
 
-<div id="root"></div>
+    <div id="root"></div>
 
-<script type="text/babel">
-    const { useState, useEffect, useRef } = React;
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
 
-    // --- Three.js Background Component ---
-    const BackgroundVortex = ({ speedMultiplier }) => {
-        const speedRef = useRef(1);
+        // --- Three.js Background Component ---
+        const BackgroundVortex = ({ speedMultiplier }) => {
+            const speedRef = useRef(1);
 
-        useEffect(() => {
-            speedRef.current = speedMultiplier;
-        }, [speedMultiplier]);
+            useEffect(() => {
+                speedRef.current = speedMultiplier;
+            }, [speedMultiplier]);
 
-        useEffect(() => {
-            const container = document.getElementById('canvas-container');
-            if (!container) return;
+            useEffect(() => {
+                const container = document.getElementById('canvas-container');
+                if (!container) return;
 
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            container.appendChild(renderer.domElement);
-
-            // Particles
-            const particlesCount = 1800;
-            const particleGroup = new THREE.Group();
-            
-            // Octahedron geometry for diamond shape
-            const geometry = new THREE.OctahedronGeometry(0.07, 0);
-
-            for (let i = 0; i < particlesCount; i++) {
-                const color = new THREE.Color();
-                if (Math.random() > 0.5) {
-                    color.setHex(0xff8c00); 
-                } else {
-                    color.setHex(0x9370db);
-                }
-
-                const material = new THREE.MeshBasicMaterial({ 
-                    color: color, 
-                    transparent: true, 
-                    opacity: Math.random() * 0.4 + 0.1 
-                });
-                
-                const mesh = new THREE.Mesh(geometry, material);
-                
-                // Spiral/Vortex distribution
-                const radius = (Math.random() * 8) + 1;
-                const theta = Math.random() * Math.PI * 2;
-                const y = (Math.random() - 0.5) * 15;
-
-                mesh.position.set(
-                    radius * Math.cos(theta),
-                    y,
-                    radius * Math.sin(theta)
-                );
-                
-                mesh.rotation.x = Math.random() * Math.PI;
-                mesh.rotation.y = Math.random() * Math.PI;
-                
-                const s = Math.random() * 0.7 + 0.3;
-                mesh.scale.set(s, s, s);
-
-                particleGroup.add(mesh);
-            }
-            
-            scene.add(particleGroup);
-            camera.position.z = 7;
-
-            let mouseX = 0, mouseY = 0;
-            const handleMouseMove = (e) => {
-                mouseX = (e.clientX - window.innerWidth / 2) / 100;
-                mouseY = (e.clientY - window.innerHeight / 2) / 100;
-            };
-            window.addEventListener('mousemove', handleMouseMove);
-
-            let currentAnimSpeed = 0.0015;
-
-            const animate = () => {
-                requestAnimationFrame(animate);
-                
-                const targetAnimSpeed = speedRef.current > 1 ? 0.025 : 0.0015;
-                currentAnimSpeed += (targetAnimSpeed - currentAnimSpeed) * 0.05;
-
-                particleGroup.rotation.y += currentAnimSpeed;
-                particleGroup.rotation.x += currentAnimSpeed * 0.3;
-                
-                particleGroup.children.forEach(p => {
-                    p.rotation.y += 0.02;
-                });
-
-                camera.position.x += (mouseX - camera.position.x) * 0.04;
-                camera.position.y += (-mouseY - camera.position.y) * 0.04;
-                camera.lookAt(scene.position);
-
-                renderer.render(scene, camera);
-            };
-
-            animate();
-
-            const handleResize = () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
                 renderer.setSize(window.innerWidth, window.innerHeight);
-            };
-            window.addEventListener('resize', handleResize);
+                container.appendChild(renderer.domElement);
 
-            return () => {
-                window.removeEventListener('mousemove', handleMouseMove);
-                window.removeEventListener('resize', handleResize);
-                if (container.contains(renderer.domElement)) {
-                    container.removeChild(renderer.domElement);
+                // Particles
+                const particlesCount = 1800;
+                const particleGroup = new THREE.Group();
+
+                // Octahedron geometry for diamond shape
+                const geometry = new THREE.OctahedronGeometry(0.07, 0);
+
+                for (let i = 0; i < particlesCount; i++) {
+                    const color = new THREE.Color();
+                    if (Math.random() > 0.5) {
+                        color.setHex(0xff8c00);
+                    } else {
+                        color.setHex(0x9370db);
+                    }
+
+                    const material = new THREE.MeshBasicMaterial({
+                        color: color,
+                        transparent: true,
+                        opacity: Math.random() * 0.4 + 0.1
+                    });
+
+                    const mesh = new THREE.Mesh(geometry, material);
+
+                    // Spiral/Vortex distribution
+                    const radius = (Math.random() * 8) + 1;
+                    const theta = Math.random() * Math.PI * 2;
+                    const y = (Math.random() - 0.5) * 15;
+
+                    mesh.position.set(
+                        radius * Math.cos(theta),
+                        y,
+                        radius * Math.sin(theta)
+                    );
+
+                    mesh.rotation.x = Math.random() * Math.PI;
+                    mesh.rotation.y = Math.random() * Math.PI;
+
+                    const s = Math.random() * 0.7 + 0.3;
+                    mesh.scale.set(s, s, s);
+
+                    particleGroup.add(mesh);
                 }
-            };
-        }, []); // Only run once
 
-        return null;
-    };
+                scene.add(particleGroup);
+                camera.position.z = 7;
 
-    // --- Main React Application ---
-    const App = () => {
-        const [query, setQuery] = useState("");
-        const [results, setResults] = useState([]);
-        const [loading, setLoading] = useState(false);
-        const [speed, setSpeed] = useState(1);
+                let mouseX = 0, mouseY = 0;
+                const handleMouseMove = (e) => {
+                    mouseX = (e.clientX - window.innerWidth / 2) / 100;
+                    mouseY = (e.clientY - window.innerHeight / 2) / 100;
+                };
+                window.addEventListener('mousemove', handleMouseMove);
 
-        const handleSearch = async () => {
-            if (!query.trim()) return;
-            setLoading(true);
-            setSpeed(10);
-            setResults([]);
-            
-            try {
-                const response = await fetch("/search", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ query, top_k: 5 })
-                });
-                const data = await response.json();
-                setResults(data.results || []);
-            } catch (error) {
-                console.error("Search failed:", error);
-            } finally {
-                setLoading(false);
-                setTimeout(() => setSpeed(1), 2000);
-            }
+                let currentAnimSpeed = 0.0015;
+
+                const animate = () => {
+                    requestAnimationFrame(animate);
+
+                    const targetAnimSpeed = speedRef.current > 1 ? 0.025 : 0.0015;
+                    currentAnimSpeed += (targetAnimSpeed - currentAnimSpeed) * 0.05;
+
+                    particleGroup.rotation.y += currentAnimSpeed;
+                    particleGroup.rotation.x += currentAnimSpeed * 0.3;
+
+                    particleGroup.children.forEach(p => {
+                        p.rotation.y += 0.02;
+                    });
+
+                    camera.position.x += (mouseX - camera.position.x) * 0.04;
+                    camera.position.y += (-mouseY - camera.position.y) * 0.04;
+                    camera.lookAt(scene.position);
+
+                    renderer.render(scene, camera);
+                };
+
+                animate();
+
+                const handleResize = () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                };
+                window.addEventListener('resize', handleResize);
+
+                return () => {
+                    window.removeEventListener('mousemove', handleMouseMove);
+                    window.removeEventListener('resize', handleResize);
+                    if (container.contains(renderer.domElement)) {
+                        container.removeChild(renderer.domElement);
+                    }
+                };
+            }, []); // Only run once
+
+            return null;
         };
 
-        return (
-            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <BackgroundVortex speedMultiplier={speed} />
-                
-                <div className="header">
-                    <p>SWH Code Exploration</p>
-                    <h1>EVENT HORIZON</h1>
-                    <p style={{fontSize: '0.65rem', opacity: 0.4, letterSpacing: '6px', marginTop: '10px'}}>Semantic Neural Retrieval Engine</p>
-                </div>
+        // --- Main React Application ---
+        const App = () => {
+            const [query, setQuery] = useState("");
+            const [results, setResults] = useState([]);
+            const [loading, setLoading] = useState(false);
+            const [speed, setSpeed] = useState(1);
 
-                <div className="search-container">
-                    <textarea 
-                        placeholder="// Enter code logic to traverse the semantic archive..."
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                        disabled={loading}
-                    />
-                    <div className="search-footer">
-                        <div className="info-pill">INDEXED: CoCo-trie · FUNCTION SCALE</div>
-                        <button className="search-btn" onClick={handleSearch} disabled={loading}>
-                            {loading ? "TRAVERSING..." : "INITIATE SEARCH"}
-                        </button>
+            const handleSearch = async () => {
+                if (!query.trim()) return;
+                setLoading(true);
+                setSpeed(10);
+                setResults([]);
+
+                try {
+                    const response = await fetch("/search", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ query, top_k: 5 })
+                    });
+                    const data = await response.json();
+                    setResults(data.results || []);
+                } catch (error) {
+                    console.error("Search failed:", error);
+                } finally {
+                    setLoading(false);
+                    setTimeout(() => setSpeed(1), 2000);
+                }
+            };
+
+            return (
+                <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <BackgroundVortex speedMultiplier={speed} />
+
+                    <div className="header">
+                        <p>SWH Code Exploration</p>
+                        <h1>EVENT HORIZON</h1>
+                        <p style={{ fontSize: '0.65rem', opacity: 0.4, letterSpacing: '6px', marginTop: '10px' }}>Semantic Neural Retrieval Engine</p>
                     </div>
-                </div>
 
-                {loading && <div style={{marginTop: '6rem'}}><div className="loader"></div></div>}
-
-                <div className="results">
-                    {!loading && results.map((res, i) => (
-                        <div key={i} className="result-card" style={{animationDelay: `${i * 0.15}s`}}>
-                            <div className="result-header">
-                                <div className="file-info">
-                                    <h3>{res.filepath.split('/').pop()}</h3>
-                                    <div style={{color: '#aaa', fontSize: '0.85rem', marginBottom: '4px'}}>{res.filepath.split('/').slice(0,-1).join('/')}</div>
-                                    <div style={{color: 'var(--accent-orange)', fontWeight: 700, fontSize: '1.1rem'}}>{res.name}</div>
-                                    <a 
-                                        href={`https://archive.softwareheritage.org/${res.swhid}`} 
-                                        target="_blank" 
-                                        className="swhid-link"
-                                    >
-                                        {res.swhid}
-                                    </a>
-                                </div>
-                                <div className="score-box">
-                                    <div className="score-label">MATCH CONFIDENCE</div>
-                                    <div className="score-value">{res.score.toFixed(4)}</div>
-                                </div>
-                            </div>
-                            <pre><code>{res.code}</code></pre>
+                    <div className="search-container">
+                        <textarea
+                            placeholder="// Enter code logic to traverse the semantic archive..."
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            disabled={loading}
+                        />
+                        <div className="search-footer">
+                            <div className="info-pill">INDEXED: CoCo-trie · FUNCTION SCALE</div>
+                            <button className="search-btn" onClick={handleSearch} disabled={loading}>
+                                {loading ? "TRAVERSING..." : "INITIATE SEARCH"}
+                            </button>
                         </div>
-                    ))}
-                    {!loading && query && results.length === 0 && (
-                        <div style={{textAlign: 'center', opacity: 0.3, marginTop: '5rem', fontSize: '1.2rem', fontWeight: 300}}>The singularity returned no results for this query.</div>
-                    )}
+                    </div>
+
+                    {loading && <div style={{ marginTop: '6rem' }}><div className="loader"></div></div>}
+
+                    <div className="results">
+                        {!loading && results.map((res, i) => (
+                            <div key={i} className="result-card" style={{ animationDelay: `${i * 0.15}s` }}>
+                                <div className="result-header">
+                                    <div className="file-info">
+                                        <h3>{res.filepath.split('/').pop()}</h3>
+                                        <div style={{ color: '#aaa', fontSize: '0.85rem', marginBottom: '4px' }}>{res.filepath.split('/').slice(0, -1).join('/')}</div>
+                                        <div style={{ color: 'var(--accent-orange)', fontWeight: 700, fontSize: '1.1rem' }}>{res.name}</div>
+                                        <a
+                                            href={`https://archive.softwareheritage.org/${res.swhid}`}
+                                            target="_blank"
+                                            className="swhid-link"
+                                        >
+                                            {res.swhid}
+                                        </a>
+                                    </div>
+                                    <div className="score-box">
+                                        <div className="score-item">
+                                            <div className="score-label">RERANK-STAGE SCORE</div>
+                                            <div className="score-value rank">{res.rerank_score.toFixed(4)}</div>
+                                        </div>
+                                        <div className="score-item" style={{ opacity: 0.6 }}>
+                                            <div className="score-label">RECALL-STAGE SCORE</div>
+                                            <div className="score-value" style={{ fontSize: '0.9rem' }}>{res.recall_score.toFixed(4)}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <pre><code>{res.code}</code></pre>
+                            </div>
+                        ))}
+                        {!loading && query && results.length === 0 && (
+                            <div style={{ textAlign: 'center', opacity: 0.3, marginTop: '5rem', fontSize: '1.2rem', fontWeight: 300 }}>The singularity returned no results for this query.</div>
+                        )}
+                    </div>
+
+                    <footer style={{
+                        marginTop: 'auto',
+                        padding: '4rem 2rem 2rem 2rem',
+                        width: '100%',
+                        maxWidth: '900px',
+                        textAlign: 'center',
+                        fontSize: '0.8rem',
+                        color: '#666',
+                        borderTop: '1px solid rgba(255,255,255,0.05)',
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        justifyContent: 'center',
+                        gap: '1rem',
+                        alignItems: 'center'
+                    }}>
+                        <span>Created by: <a href="https://meta.wikimedia.org/wiki/User:Super_nabla" target="_blank" style={{ color: 'var(--accent-orange)', textDecoration: 'none' }}>Super nabla 🪰</a></span>
+                        <span style={{ opacity: 0.3 }}>|</span>
+                        <span>Licence: <a href="https://github.com/ftosoni/code-search-engine/blob/main/LICENSE.md" target="_blank" style={{ color: 'inherit' }}>Apache 2.0</a></span>
+                        <span style={{ opacity: 0.3 }}>|</span>
+                        <span><a href="https://github.com/ftosoni/code-search-engine" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>View source</a></span>
+                        <span style={{ opacity: 0.3 }}>|</span>
+                        <span><a href="https://archive.softwareheritage.org/swh:1:dir:f9f858a48d663b3809c9e2f336412717496202ab" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>View SWHID</a></span>
+                        <span style={{ opacity: 0.3 }}>|</span>
+                        <span>Last updated on: 25th March 2026</span>
+                    </footer>
                 </div>
+            );
+        };
 
-                <footer style={{
-                    marginTop: 'auto',
-                    padding: '4rem 2rem 2rem 2rem',
-                    width: '100%',
-                    maxWidth: '900px',
-                    textAlign: 'center',
-                    fontSize: '0.8rem',
-                    color: '#666',
-                    borderTop: '1px solid rgba(255,255,255,0.05)',
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    justifyContent: 'center',
-                    gap: '1rem',
-                    alignItems: 'center'
-                }}>
-                    <span>Created by: <a href="https://meta.wikimedia.org/wiki/User:Super_nabla" target="_blank" style={{color: 'var(--accent-orange)', textDecoration: 'none'}}>Super nabla 🪰</a></span>
-                    <span style={{opacity: 0.3}}>|</span>
-                    <span>Licence: <a href="https://github.com/ftosoni/code-search-engine/blob/main/LICENSE.md" target="_blank" style={{color: 'inherit'}}>Apache 2.0</a></span>
-                    <span style={{opacity: 0.3}}>|</span>
-                    <span><a href="https://github.com/ftosoni/code-search-engine" target="_blank" style={{color: 'inherit', textDecoration: 'none'}}>View source</a></span>
-                    <span style={{opacity: 0.3}}>|</span>
-                    <span><a href="https://archive.softwareheritage.org/swh:1:dir:f9f858a48d663b3809c9e2f336412717496202ab" target="_blank" style={{color: 'inherit', textDecoration: 'none'}}>View SWHID</a></span>
-                    <span style={{opacity: 0.3}}>|</span>
-                    <span>Last updated on: 25th March 2026</span>
-                </footer>
-            </div>
-        );
-    };
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-
-</script>
+    </script>
 </body>
+
 </html>

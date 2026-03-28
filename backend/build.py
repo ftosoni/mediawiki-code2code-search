@@ -4,10 +4,10 @@ import hashlib
 from pathlib import Path
 import tempfile
 import git
-import torch
-from transformers import AutoModel, AutoTokenizer
 import faiss
 import numpy as np
+import torch
+from sentence_transformers import SentenceTransformer
 import re
 from dotenv import load_dotenv
 
@@ -37,7 +37,8 @@ REPO_URL = "https://github.com/aboffa/CoCo-trie"
 SWH_ORIGIN = REPO_URL.replace("https://", "https:/") 
 
 FAISS_INDEX_PATH = "event_horizon.index"
-EMBEDDING_DIM = 768 # UniXcoder dim
+EMBEDDING_DIM = 896 # Jina 0.5B dim
+DEBUG_LIMIT = 256   # Process a set amount of functions (0 for no limit)
 
 def get_swhid_content_hash(content: bytes) -> str:
     if SWH_MODEL_AVAILABLE:
@@ -143,10 +144,17 @@ def extract_functions_treesitter(code_bytes: bytes, ext: str) -> list:
 def build_pipeline():
     print(f"== Event Horizon: Semantic Code Search Build Pipeline (Local-First Edition) ==")
     
-    print(f"Initialising UniXcoder (microsoft/unixcoder-base)...")
-    tokenizer = AutoTokenizer.from_pretrained("microsoft/unixcoder-base")
-    model = AutoModel.from_pretrained("microsoft/unixcoder-base").to("cpu")
-    model.eval()
+    # Use HF_TOKEN for authentication (faster downloads/API checks)
+    print(f"Initialising Jina Code Embeddings (jinaai/jina-code-embeddings-0.5b)...")
+    model = SentenceTransformer(
+        "jinaai/jina-code-embeddings-0.5b", 
+        trust_remote_code=True, 
+        device="cpu",
+        use_auth_token=HF_TOKEN
+    )
+    # Cap sequence length aggressively for initial diagnosis (default 32k context is too slow for CPU)
+    # 512 is common for embeddings and should be very fast even on CPU.
+    model.max_seq_length = 512
 
     repo_path = Path("CoCo-trie")
     if not repo_path.exists():
@@ -197,37 +205,51 @@ def build_pipeline():
                         
     unique_funcs = {f["id"]: f for f in functions}
     functions = list(unique_funcs.values())
+    
+    if DEBUG_LIMIT :
+        print(f"DEBUG MODE: Limiting to first {DEBUG_LIMIT} functions.")
+        functions = functions[:DEBUG_LIMIT]
+        
     print(f"Extracted {len(functions)} unique functions via structural segmentation.")
     
     if not functions:
         print("No functions extracted. Pipeline aborted.")
         return
         
+    # Sort by code length to optimize batching performance (minimizes padding overhead)
+    functions.sort(key=lambda x: len(x["code"]))
+    
     with open("functions.json", "w", encoding="utf-8") as f:
         json.dump(functions, f, indent=2)
         
-    print(f"Vectorising {len(functions)} functions with UniXcoder (768D)...")
+    print(f"\nVectorizing {len(functions)} unique functions with Jina (896D)...")
     
-    all_embeddings = []
-    batch_size = 16
-    for i in range(0, len(functions), batch_size):
-        batch = functions[i:i+batch_size]
-        batch_code = [f["code"] for f in batch]
-        
-        with torch.no_grad():
-            inputs = tokenizer(batch_code, padding=True, truncation=True, return_tensors='pt', max_length=512)
-            outputs = model(**inputs)
-            # Use CLS token and normalize
-            embeddings = outputs.last_hidden_state[:, 0, :]
-            embeddings = torch.nn.functional.normalize(embeddings, p=2, dim=1)
-            all_embeddings.append(embeddings.cpu().numpy())
-        print(f"Progress: {min(i+batch_size, len(functions))}/{len(functions)}", end="\r")
+    code_snippets = [f["code"] for f in functions]
     
-    embeddings = np.vstack(all_embeddings)
+    # Detailed diagnostic logging
+    avg_len = sum(len(s) for s in code_snippets) / len(code_snippets) if code_snippets else 0
+    max_len = max(len(s) for s in code_snippets) if code_snippets else 0
+    print(f"Encoding snippets (Avg: {avg_len:.1f}, Max: {max_len} chars)...")
+
+    embeddings = model.encode(
+        code_snippets, 
+        batch_size=1,           # Forced batch_size=1 to ensure progress updates for every snippet
+        show_progress_bar=True, 
+        normalize_embeddings=True
+    )
     
-    print(f"\nInitialising FAISS index...")
-    index = faiss.IndexFlatL2(EMBEDDING_DIM)
-    index.add(np.array(embeddings).astype('float32'))
+    print(f"\nInitialising FAISS IndexIVFPQ (Disk-ready)...")
+    # nlist should be less than the number of points for training
+    nlist = min(100, len(functions))
+    quantizer = faiss.IndexFlatL2(EMBEDDING_DIM)
+    index = faiss.IndexIVFPQ(quantizer, EMBEDDING_DIM, nlist, 32, 8)
+    
+    print("Training IVF index on extracted embeddings...")
+    index.train(embeddings.astype('float32'))
+    
+    print("Adding vectors to index...")
+    index.add(embeddings.astype('float32'))
+    
     faiss.write_index(index, FAISS_INDEX_PATH)
     
     print("✅ Build pipeline complete. Local-first architecture prioritised.")
