@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Horizon | Semantic Code Search</title>
+    <title>MediaWiki Code2Code Search | Semantic Neural Retrieval</title>
     <!-- React & Babel for zero-node weightless feel -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -12,7 +12,7 @@
     <!-- Three.js for the particle vortex -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <!-- Google Fonts: Outfit & Inter for modern tech feel -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&family=Noto+Sans:wght@300;400;700&display=swap"
         rel="stylesheet">
     <style>
         :root {
@@ -28,7 +28,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'Noto Sans', sans-serif;
         }
 
         body {
@@ -72,6 +72,7 @@
             letter-spacing: -2px;
             background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
         }
@@ -156,6 +157,46 @@
             filter: grayscale(1);
             opacity: 0.4;
             cursor: wait;
+        }
+
+        /* Language Selector UI */
+        .lang-selector {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 6px 12px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .lang-selector:hover {
+            border-color: var(--accent-orange);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .lang-selector select {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        .lang-selector option {
+            background: #111;
+            color: #fff;
         }
 
         .results {
@@ -452,6 +493,301 @@
             const [results, setResults] = useState([]);
             const [loading, setLoading] = useState(false);
             const [speed, setSpeed] = useState(1);
+            const [currentLang, setCurrentLang] = useState("en");
+
+            const translations = {
+                en: {
+                    search_title: "SWH Code Exploration",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "Semantic Neural Retrieval Engine",
+                    placeholder: "// Enter code logic to traverse the semantic archive...",
+                    indexed: "INDEXED: CoCo-trie · FUNCTION SCALE",
+                    btn_search: "INITIATE SEARCH",
+                    btn_loading: "TRAVERSING...",
+                    rerank_score: "RERANK-STAGE SCORE",
+                    recall_score: "RECALL-STAGE SCORE",
+                    no_results: "The singularity returned no results for this query.",
+                    created_by: "Created by:",
+                    licence: "Licence:",
+                    view_source: "View source",
+                    view_swhid: "View SWHID",
+                    last_updated: "Last updated on: 28th March 2026"
+                },
+                it: {
+                    search_title: "Esplorazione del Codice SWH",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "Motore di Ricerca Neurale Semantica",
+                    placeholder: "// Inserisci la logica del codice per attraversare l'archivio semantico...",
+                    indexed: "INDICIZZATO: CoCo-trie · SCALA FUNZIONE",
+                    btn_search: "AVVIA RICERCA",
+                    btn_loading: "ATTRAVERSAMENTO...",
+                    rerank_score: "PUNTEGGIO RERANK",
+                    recall_score: "PUNTEGGIO RECALL",
+                    no_results: "La singolarità non ha restituito risultati per questa query.",
+                    created_by: "Creato da:",
+                    licence: "Licenza:",
+                    view_source: "Vedi sorgente",
+                    view_swhid: "Vedi SWHID",
+                    last_updated: "Ultimo aggiornamento: 28 Marzo 2026"
+                },
+                fr: {
+                    search_title: "Exploration du Code SWH",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "Moteur de Recherche Neurale Sémantique",
+                    placeholder: "// Entrez la logique du code pour traverser l'archive sémantique...",
+                    indexed: "INDEXÉ : CoCo-trie · ÉCHELLE DE FONCTION",
+                    btn_search: "LANCER LA RECHERCHE",
+                    btn_loading: "TRAVERSÉE...",
+                    rerank_score: "SCORE RERANK",
+                    recall_score: "SCORE RECALL",
+                    no_results: "La singularité n'a retourné aucun résultat pour cette requête.",
+                    created_by: "Créé par :",
+                    licence: "Licence :",
+                    view_source: "Voir la source",
+                    view_swhid: "Voir SWHID",
+                    last_updated: "Dernière mise à jour : 28 Mars 2026"
+                },
+                hi: {
+                    search_title: "SWH कोड अन्वेषण",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "सिमेंटिक न्यूरल रिट्रीवल इंजन",
+                    placeholder: "// सिमेंटिक आर्काइव को पार करने के लिए कोड लॉजिक दर्ज करें...",
+                    indexed: "अनुक्रमित: CoCo-trie · फंक्शन स्केल",
+                    btn_search: "खोज शुरू करें",
+                    btn_loading: "पार कर रहा है...",
+                    rerank_score: "रीरैंक स्कोर",
+                    recall_score: "रिकॉल स्कोर",
+                    no_results: "इस क्वेरी के लिए कोई परिणाम नहीं मिला।",
+                    created_by: "द्वारा बनाया गया:",
+                    licence: "लाइसेंस:",
+                    view_source: "स्रोत देखें",
+                    view_swhid: "SWHID देखें",
+                    last_updated: "अंतिम अपडेट: 28 मार्च 2026"
+                },
+                bn: {
+                    search_title: "SWH কোড অন্বেষণ",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "সিমেন্টিক নিউরাল রিট্রিভাল ইঞ্জিন",
+                    placeholder: "// সিমেন্টিক আর্কাইভ অতিক্রম করতে কোড লজিক লিখুন...",
+                    indexed: "ইনডেক্স করা হয়েছে: CoCo-trie · ফাংশন স্কেল",
+                    btn_search: "অনুসন্ধান শুরু করুন",
+                    btn_loading: "অনুসন্ধান চলছে...",
+                    rerank_score: "রি-র‍্যাঙ্ক স্কোর",
+                    recall_score: "রিকল স্কোর",
+                    no_results: "এই অনুসন্ধানের জন্য কোনো ফলাফল পাওয়া যায়নি।",
+                    created_by: "তৈরি করেছেন:",
+                    licence: "লাইসেন্স:",
+                    view_source: "উৎস দেখুন",
+                    view_swhid: "SWHID দেখুন",
+                    last_updated: "সর্বশেষ আপডেট: ২৮ মার্চ ২০২৬"
+                },
+                mr: {
+                    search_title: "SWH कोड अन्वेषण",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "सिमेंटिक न्यूरल रिट्रीव्हल इंजिन",
+                    placeholder: "// सिमेंटिक आर्काइव्ह पार करण्यासाठी कोड लॉजिक प्रविष्ट करा...",
+                    indexed: "अनुक्रमित: CoCo-trie · फंक्शन स्केल",
+                    btn_search: "शोध सुरू करा",
+                    btn_loading: "शोधत आहे...",
+                    rerank_score: "रीरँक स्कोर",
+                    recall_score: "रिकॉल स्कोर",
+                    no_results: "या क्वेरीसाठी कोणतेही निकाल मिळाले नाहीत।",
+                    created_by: "द्वारे तयार केलेले:",
+                    licence: "परवाना:",
+                    view_source: "स्रोत पहा",
+                    view_swhid: "SWHID पहा",
+                    last_updated: "शेवटचे अपडेट: २८ मार्च २०२६"
+                },
+                te: {
+                    search_title: "SWH కోడ్ అన్వేషణ",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "సిమాంటిక్ న్యూరల్ రిట్రీవల్ ఇంజిన్",
+                    placeholder: "// సిమాంటిక్ ఆర్కైవ్‌ను అన్వేషించడానికి కోడ్ లాజిక్‌ను నమోదు చేయండి...",
+                    indexed: "ఇండెక్స్ చేయబడింది: CoCo-trie · ఫంక్షన్ స్కేల్",
+                    btn_search: "శోధన ప్రారంభించండి",
+                    btn_loading: "శోధిస్తోంది...",
+                    rerank_score: "రీర్యాంక్ స్కోర్",
+                    recall_score: "రీకాల్ స్కోర్",
+                    no_results: "ఈ శోధనకు ఫలితాలు లేవు।",
+                    created_by: "రూపకర్త:",
+                    licence: "లైసెన్స్:",
+                    view_source: "మూలాన్ని చూడండి",
+                    view_swhid: "SWHID చూడండి",
+                    last_updated: "చివరి అప్‌డేట్: 28 మార్చి 2026"
+                },
+                ta: {
+                    search_title: "SWH குறியீடு ஆய்வு",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "செமாண்டிக் நியூரல் மீட்டெடுப்பு இயந்திரம்",
+                    placeholder: "// செமாண்டிக் காப்பகத்தைத் தேட குறியீட்டு தர்க்கத்தை உள்ளிடவும்...",
+                    indexed: "வரிசைப்படுத்தப்பட்டது: CoCo-trie · செயல்பாடு அளவு",
+                    btn_search: "தேடலைத் தொடங்கு",
+                    btn_loading: "தேடுகிறது...",
+                    rerank_score: "மறுவரிசை மதிப்பீடு",
+                    recall_score: "மீட்டெடுப்பு மதிப்பீடு",
+                    no_results: "இந்தத் தேடலுக்கு முடிவுகள் எதுவும் இல்லை.",
+                    created_by: "உருவாக்கியவர்:",
+                    licence: "உரிமம்:",
+                    view_source: "மூலத்தைக் காண்க",
+                    view_swhid: "SWHID காண்க",
+                    last_updated: "கடைசி புதுப்பிப்பு: 28 மார்ச் 2026"
+                },
+                gu: {
+                    search_title: "SWH કોડ અન્વેષણ",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "સિમેન્ટિક ન્યુરલ રીટ્રીવલ એન્જિન",
+                    placeholder: "// સિમેન્ટિક આર્કાઇવને પાર કરવા માટે કોડ લોજિક દાખલ કરો...",
+                    indexed: "અનુક્રમિત: CoCo-trie · ફંકશન સ્કેલ",
+                    btn_search: "શોધ શરૂ કરો",
+                    btn_loading: "શોધી રહ્યું છે...",
+                    rerank_score: "રીરેન્ક સ્કોર",
+                    recall_score: "રીકોલ સ્કોર",
+                    no_results: "આ ક્વેરી માટે કોઈ પરિણામ મળ્યા નથી.",
+                    created_by: "દ્વારા બનાવવામાં આવ્યું:",
+                    licence: "લાઇસન્સ:",
+                    view_source: "સ્રોત જુઓ",
+                    view_swhid: "SWHID જુઓ",
+                    last_updated: "છેલ્લું અપડેટ: ૨૮ માર્ચ ૨૦૨૬"
+                },
+                ur: {
+                    search_title: "SWH کوڈ کی تلاش",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "سیمنٹک نیورل ریٹریول انجن",
+                    placeholder: "// سیمنٹک آرکائیو کو تلاش کرنے کے لئے کوڈ کی منطق درج کریں...",
+                    indexed: "فہرست شدہ: CoCo-trie · فنکشن اسکیل",
+                    btn_search: "تلاش شروع کریں",
+                    btn_loading: "تلاش جاری ہے...",
+                    rerank_score: "ری رینک اسکور",
+                    recall_score: "ریکال اسکور",
+                    no_results: "اس سوال کے لئے کوئی نتیجہ نہیں ملا۔",
+                    created_by: "تخلیق کار:",
+                    licence: "لائسنس:",
+                    view_source: "سورس دیکھیں",
+                    view_swhid: "SWHID دیکھیں",
+                    last_updated: "آخری اپ ڈیٹ: 28 مارچ 2026"
+                },
+                kn: {
+                    search_title: "SWH ಕೋಡ್ ಅನ್ವೇಷಣೆ",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "ಸೆಮ್ಯಾಂಟಿಕ್ ನ್ಯೂರಲ್ ರಿಟ್ರೀವಲ್ ಎಂಜಿನ್",
+                    placeholder: "// ಸೆಮ್ಯಾಂಟಿಕ್ ಆರ್ಕೈವ್ ಅನ್ನು ಹುಡುಕಲು ಕೋಡ್ ಲಾಜಿಕ್ ಅನ್ನು ನಮೂದಿಸಿ...",
+                    indexed: "ಇಂಡೆಕ್ಸ್ ಮಾಡಲಾಗಿದೆ: CoCo-trie · ಫಂಕ್ಷನ್ ಸ್ಕೇಲ್",
+                    btn_search: "ಹುಡುಕಾಟ ಪ್ರಾರಂಭಿಸಿ",
+                    btn_loading: "ಹುಡುಕಲಾಗುತ್ತಿದೆ...",
+                    rerank_score: "ರೀರ್ಯಾಂಕ್ ಸ್ಕೋರ್",
+                    recall_score: "ರೀಕಾಲ್ ಸ್ಕೋರ್",
+                    no_results: "ಈ ಪ್ರಶ್ನೆಗೆ ಯಾವುದೇ ಫಲಿತಾಂಶಗಳು ಕಂಡುಬಂದಿಲ್ಲ.",
+                    created_by: "ರಚಿಸಿದವರು:",
+                    licence: "ಪರವಾನಗಿ:",
+                    view_source: "ಮೂಲವನ್ನು ನೋಡಿ",
+                    view_swhid: "SWHID ನೋಡಿ",
+                    last_updated: "ಕೊನೆಯ ನವೀಕರಣ: 28 ಮಾರ್ಚ್ 2026"
+                },
+                or: {
+                    search_title: "SWH କୋଡ୍ ଅନ୍ୱେଷଣ",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "ସିମାଣ୍ଟିକ୍ ନ୍ୟୁରାଲ୍ ରିଟ୍ରିଭାଲ୍ ଇଞ୍ଜିନ୍",
+                    placeholder: "// ସିମାଣ୍ଟିକ୍ ଆର୍କାଇଭ୍ ପାର କରିବା ପାଇଁ କୋଡ୍ ଲଜିକ୍ ପ୍ରବେଶ କରନ୍ତୁ...",
+                    indexed: "ସୂଚୀବଦ୍ଧ: CoCo-trie · ଫଙ୍କସନ୍ ସ୍କେଲ୍",
+                    btn_search: "ଖୋଜିବା ଆରମ୍ଭ କରନ୍ତୁ",
+                    btn_loading: "ଖୋଜୁଛି...",
+                    rerank_score: "ରିର୍ୟାଙ୍କ ସ୍କୋର",
+                    recall_score: "ରିକଲ୍ ସ୍କୋର",
+                    no_results: "ଏହି ପ୍ରଶ୍ନ ପାଇଁ କୌଣସି ଫଳାଫଳ ମିଳିଲା ନାହିଁ।",
+                    created_by: "ଦ୍ୱାରା ନିର୍ମିତ:",
+                    licence: "ଲାଇସେନ୍ସ:",
+                    view_source: "ଉତ୍ସ ଦେଖନ୍ତୁ",
+                    view_swhid: "SWHID ଦେଖନ୍ତୁ",
+                    last_updated: "ଶେଷ ଅପଡେଟ୍: ୨୮ ମାର୍ଚ୍ଚ ୨୦୨୬"
+                },
+                ml: {
+                    search_title: "SWH കോഡ് പര്യവേക്ഷണം",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "സെമാന്റിക് ന്യൂറൽ റിട്രീവൽ എഞ്ചിൻ",
+                    placeholder: "// സെമാന്റിക് ആർക്കൈവ് തിരയാൻ കോഡ് ലോജിക് നൽകുക...",
+                    indexed: "ഇൻഡക്സ് ചെയ്തു: CoCo-trie · ഫംഗ്‌ഷൻ സ്കെയിൽ",
+                    btn_search: "തിരച്ചിൽ തുടങ്ങുക",
+                    btn_loading: "തിരയുന്നു...",
+                    rerank_score: "റീറാങ്ക് സ്കോർ",
+                    recall_score: "റീകോൾ സ്കോർ",
+                    no_results: "ഈ ക്വറിക്ക് ഫലങ്ങളൊന്നും ലഭ്യമല്ല.",
+                    created_by: "നിർമ്മിച്ചത്:",
+                    licence: "ലൈസൻസ്:",
+                    view_source: "ഉറവിടം കാണുക",
+                    view_swhid: "SWHID കാണുക",
+                    last_updated: "അവസാന അപ്ഡേറ്റ്: 28 മാർച്ച് 2026"
+                },
+                pa: {
+                    search_title: "SWH ਕੋਡ ਖੋਜ",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "ਸਿਮੈਂਟਿਕ ਨਿਊਰਲ ਰੀਟਰੀਵਲ ਇੰਜਨ",
+                    placeholder: "// ਸਿਮੈਂਟਿਕ ਆਰਕਾਈਵ ਦੀ ਖੋਜ ਕਰਨ ਲਈ ਕੋਡ ਲਾਜ਼ੀਕ ਦਰਜ ਕਰੋ...",
+                    indexed: "ਇੰਡੈਕਸ ਕੀਤਾ ਗਿਆ: CoCo-trie · ਫੰਕਸ਼ਨ ਸਕੇਲ",
+                    btn_search: "ਖੋਜ ਸ਼ੁਰੂ ਕਰੋ",
+                    btn_loading: "ਖੋਜ ਜਾਰੀ ਹੈ...",
+                    rerank_score: "ਰੀਰੈਂਕ ਸਕੋਰ",
+                    recall_score: "ਰੀਕਾਲ ਸਕੋਰ",
+                    no_results: "ਇਸ ਕੁਐਰੀ ਲਈ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।",
+                    created_by: "ਦੁਆਰਾ ਬਣਾਇਆ ਗਿਆ:",
+                    licence: "ਲਾਇਸੈਂਸ:",
+                    view_source: "ਸਰੋਤ ਦੇਖੋ",
+                    view_swhid: "SWHID ਦੇਖੋ",
+                    last_updated: "ਆਖਰੀ ਅਪਡੇਟ: 28 ਮਾਰਚ 2026"
+                },
+                as: {
+                    search_title: "SWH ক'ড অন্বেষণ",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "চিমেন্টিক নিউৰেল ৰিট্ৰিভাইল ইঞ্জিন",
+                    placeholder: "// চিমেন্টিক আৰ্কাইভ অতিক্ৰম কৰিবলৈ ক'ড লজিক লিখক...",
+                    indexed: "ইনডেক্স কৰা হৈছে: CoCo-trie · ফাংচন স্কেল",
+                    btn_search: "সন্ধান আৰম্ভ কৰক",
+                    btn_loading: "সন্ধান চলি আছে...",
+                    rerank_score: "ৰি-ৰেংক স্ক'ৰ",
+                    recall_score: "ৰিকল স্ক'ৰ",
+                    no_results: "এই অনুসন্ধানৰ বাবে কোনো ফলাফল পোৱা নগ'ল।",
+                    created_by: "তৈয়াৰ কৰিছে:",
+                    licence: "লাইচেন্স:",
+                    view_source: "উৎস চাওক",
+                    view_swhid: "SWHID চাওক",
+                    last_updated: "শেহতীয়া আপডেট: ২৮ মাৰ্চ ২০২৬"
+                },
+                mai: {
+                    search_title: "SWH कोड अन्वेषण",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "सिमेंटिक न्यूरल रिट्रीवल इंजन",
+                    placeholder: "// सिमेंटिक आर्काइव देखबाक लेल कोड लॉजिक दर्ज करू...",
+                    indexed: "अनुक्रमित: CoCo-trie · फंक्शन स्केल",
+                    btn_search: "खोज शुरू करू",
+                    btn_loading: "खोजि रहल अछि...",
+                    rerank_score: "रीरैंक स्कोर",
+                    recall_score: "रिकॉल स्कोर",
+                    no_results: "एहि क्वेरीक लेल कोनो परिणाम नहि भेटल।",
+                    created_by: "बनाओल गेल:",
+                    licence: "लाइसेंस:",
+                    view_source: "स्रोत देखू",
+                    view_swhid: "SWHID देखू",
+                    last_updated: "अंतिम अपडेट: 28 मार्च 2026"
+                },
+                sat: {
+                    search_title: "SWH ᱠᱳᱰ ᱥᱮᱸᱫᱽᱨᱟ",
+                    main_title: "MediaWiki Code2Code Search",
+                    subtitle: "ᱥᱤᱢᱟᱱᱴᱤᱠ ᱱᱤᱭᱩᱨᱟᱞ ᱨᱤᱴᱨᱤᱵᱷᱟᱞ ᱤᱧᱡᱤᱱ",
+                    placeholder: "// ᱥᱤᱢᱟᱱᱴᱤᱠ ᱟᱨᱠᱟᱭᱵᱷ ᱥᱮᱸᱫᱽᱨᱟ ᱞᱟᱹᱜᱤᱫ ᱠᱳᱰ ᱵᱷᱮᱱᱮᱛ ᱮᱢ ᱢᱮ...",
+                    indexed: "ᱤᱱᱰᱮᱠᱥ ᱟᱠᱟᱱᱟ: CoCo-trie · ᱯᱷᱟᱝᱥᱟᱱ ᱥᱠᱮᱞ",
+                    btn_search: "ᱥᱮᱸᱫᱽᱨᱟ ᱮᱦᱚᱵᱽ ᱢᱮ",
+                    btn_loading: "ᱥᱮᱸᱫᱽᱨᱟᱭᱮᱫᱟ...",
+                    rerank_score: "ᱨᱤᱨᱮᱸᱠ ᱥᱠᱳᱨ",
+                    recall_score: "ᱨᱤᱠᱚᱞ ᱥᱠᱳᱨ",
+                    no_results: "ᱱᱚᱣᱟ ᱠᱩᱠᱩᱞᱤ ᱞᱟᱹᱜᱤᱫ ᱪᱮᱫ ᱛᱮᱞᱟ ᱦᱚᱸ ᱵᱟᱹᱱᱩᱜᱼᱟ᱾",
+                    created_by: "ᱛᱮᱭᱟᱨ ᱟᱠᱟᱫᱟᱭ:",
+                    licence: "ᱞᱟᱭᱥᱮᱱᱥ:",
+                    view_source: "ᱢᱩᱲᱩᱛ ᱧᱮᱞ ᱢᱮ",
+                    view_swhid: "SWHID ᱧᱮᱞ ᱢᱮ",
+                    last_updated: "ᱢᱩᱪᱟᱹᱫ ᱟᱯᱰᱮᱴ: ᱒᱘ ᱢᱟᱨᱪ ᱒᱐᱒᱖"
+                }
+            };
+
+            const t = (key) => translations[currentLang][key] || translations["en"][key];
 
             const handleSearch = async () => {
                 if (!query.trim()) return;
@@ -479,23 +815,46 @@
                 <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <BackgroundVortex speedMultiplier={speed} />
 
+                    <div className="lang-selector">
+                        <span style={{fontSize: '0.8rem', opacity: 0.5}}>🌐</span>
+                        <select value={currentLang} onChange={(e) => setCurrentLang(e.target.value)}>
+                            <option value="en">English (EN)</option>
+                            <option value="fr">Français (FR)</option>
+                            <option value="it">Italiano (IT)</option>
+                            <option value="hi">हिन्दी (HI)</option>
+                            <option value="bn">বাংলা (BN)</option>
+                            <option value="mr">मराठी (MR)</option>
+                            <option value="te">తెలుగు (TE)</option>
+                            <option value="ta">தமிழ் (TA)</option>
+                            <option value="gu">ગુજરાતી (GU)</option>
+                            <option value="ur">اردو (UR)</option>
+                            <option value="kn">ಕನ್ನಡ (KN)</option>
+                            <option value="or">ଓଡ଼ିଆ (OR)</option>
+                            <option value="ml">മലയാളം (ML)</option>
+                            <option value="pa">ਪੰਜਾਬੀ (PA)</option>
+                            <option value="as">অসমীয়া (AS)</option>
+                            <option value="mai">मैथिली (MAI)</option>
+                            <option value="sat">ᱥᱟᱱᱛᱟᱲᱤ (SAT)</option>
+                        </select>
+                    </div>
+
                     <div className="header">
-                        <p>SWH Code Exploration</p>
-                        <h1>EVENT HORIZON</h1>
-                        <p style={{ fontSize: '0.65rem', opacity: 0.4, letterSpacing: '6px', marginTop: '10px' }}>Semantic Neural Retrieval Engine</p>
+                        <p>{t('search_title')}</p>
+                        <h1>{t('main_title')}</h1>
+                        <p style={{ fontSize: '0.65rem', opacity: 0.4, letterSpacing: '6px', marginTop: '10px' }}>{t('subtitle')}</p>
                     </div>
 
                     <div className="search-container">
                         <textarea
-                            placeholder="// Enter code logic to traverse the semantic archive..."
+                            placeholder={t('placeholder')}
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                             disabled={loading}
                         />
                         <div className="search-footer">
-                            <div className="info-pill">INDEXED: CoCo-trie · FUNCTION SCALE</div>
+                            <div className="info-pill">{t('indexed')}</div>
                             <button className="search-btn" onClick={handleSearch} disabled={loading}>
-                                {loading ? "TRAVERSING..." : "INITIATE SEARCH"}
+                                {loading ? t('btn_loading') : t('btn_search')}
                             </button>
                         </div>
                     </div>
@@ -514,17 +873,18 @@
                                             href={`https://archive.softwareheritage.org/${res.swhid}`}
                                             target="_blank"
                                             className="swhid-link"
+                                            title="SWHID Copy to Clipboard"
                                         >
                                             {res.swhid}
                                         </a>
                                     </div>
                                     <div className="score-box">
                                         <div className="score-item">
-                                            <div className="score-label">RERANK-STAGE SCORE</div>
+                                            <div className="score-label">{t('rerank_score')}</div>
                                             <div className="score-value rank">{res.rerank_score.toFixed(4)}</div>
                                         </div>
                                         <div className="score-item" style={{ opacity: 0.6 }}>
-                                            <div className="score-label">RECALL-STAGE SCORE</div>
+                                            <div className="score-label">{t('recall_score')}</div>
                                             <div className="score-value" style={{ fontSize: '0.9rem' }}>{res.recall_score.toFixed(4)}</div>
                                         </div>
                                     </div>
@@ -533,7 +893,7 @@
                             </div>
                         ))}
                         {!loading && query && results.length === 0 && (
-                            <div style={{ textAlign: 'center', opacity: 0.3, marginTop: '5rem', fontSize: '1.2rem', fontWeight: 300 }}>The singularity returned no results for this query.</div>
+                            <div style={{ textAlign: 'center', opacity: 0.3, marginTop: '5rem', fontSize: '1.2rem', fontWeight: 300 }}>{t('no_results')}</div>
                         )}
                     </div>
 
@@ -552,15 +912,15 @@
                         gap: '1rem',
                         alignItems: 'center'
                     }}>
-                        <span>Created by: <a href="https://meta.wikimedia.org/wiki/User:Super_nabla" target="_blank" style={{ color: 'var(--accent-orange)', textDecoration: 'none' }}>Super nabla 🪰</a></span>
+                        <span>{t('created_by')} <a href="https://meta.wikimedia.org/wiki/User:Super_nabla" target="_blank" style={{ color: 'var(--accent-orange)', textDecoration: 'none' }}>Super nabla 🪰</a></span>
                         <span style={{ opacity: 0.3 }}>|</span>
-                        <span>Licence: <a href="https://github.com/ftosoni/code-search-engine/blob/main/LICENSE.md" target="_blank" style={{ color: 'inherit' }}>Apache 2.0</a></span>
+                        <span>{t('licence')} <a href="https://github.com/ftosoni/code-search-engine/blob/main/LICENSE.md" target="_blank" style={{ color: 'inherit' }}>Apache 2.0</a></span>
                         <span style={{ opacity: 0.3 }}>|</span>
-                        <span><a href="https://github.com/ftosoni/code-search-engine" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>View source</a></span>
+                        <span><a href="https://github.com/ftosoni/code-search-engine" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>{t('view_source')}</a></span>
                         <span style={{ opacity: 0.3 }}>|</span>
-                        <span><a href="https://archive.softwareheritage.org/swh:1:dir:f9f858a48d663b3809c9e2f336412717496202ab" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>View SWHID</a></span>
+                        <span><a href="https://archive.softwareheritage.org/swh:1:dir:f9f858a48d663b3809c9e2f336412717496202ab" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>{t('view_swhid')}</a></span>
                         <span style={{ opacity: 0.3 }}>|</span>
-                        <span>Last updated on: 25th March 2026</span>
+                        <span>{t('last_updated')}</span>
                     </footer>
                 </div>
             );
