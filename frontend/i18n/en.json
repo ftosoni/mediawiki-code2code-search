@@ -13,5 +13,7 @@
     "licence": "Licence:",
     "view_source": "View source",
     "view_swhid": "View SWHID",
-    "last_updated": "Last updated on: 28th March 2026"
+    "last_updated": "Last updated on: 28th March 2026",
+    "show_more": "Show Full Function",
+    "show_less": "Collapse View"
 }

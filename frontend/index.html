@@ -361,6 +361,72 @@
                 transform: rotate(360deg);
             }
         }
+        .result-card pre {
+            background: rgba(0,0,0,0.3);
+            padding: 1.5rem;
+            border-radius: 16px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            margin: 0;
+        }
+
+        /* Collapsible Code Styles */
+        .code-wrapper {
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .code-wrapper.collapsed {
+            max-height: 300px;
+        }
+
+        .code-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, rgba(5,5,5,0.95), transparent);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .code-wrapper.collapsed .code-gradient {
+            opacity: 1;
+        }
+
+        .expand-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--accent-orange);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .expand-btn:hover {
+            background: rgba(255, 140, 0, 0.1);
+            border-color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 
@@ -485,6 +551,61 @@
             }, []); // Only run once
 
             return null;
+        };
+
+        // --- Individual Result Item Component ---
+        const ResultItem = ({ res, i, t }) => {
+            const [expanded, setExpanded] = useState(false);
+            const codeRef = useRef(null);
+            const [isLong, setIsLong] = useState(false);
+
+            useEffect(() => {
+                if (codeRef.current && codeRef.current.scrollHeight > 300) {
+                    setIsLong(true);
+                }
+            }, [res.code]);
+
+            return (
+                <div className="result-card" style={{ animationDelay: `${i * 0.15}s` }}>
+                    <div className="result-header">
+                        <div className="file-info">
+                            <h3>{res.filepath.split('/').pop()}</h3>
+                            <div style={{ color: '#aaa', fontSize: '0.85rem', marginBottom: '4px' }}>{res.filepath.split('/').slice(0, -1).join('/')}</div>
+                            <div style={{ color: 'var(--accent-orange)', fontWeight: 700, fontSize: '1.1rem' }}>{res.name}</div>
+                            <a
+                                href={`https://archive.softwareheritage.org/${res.swhid}`}
+                                target="_blank"
+                                className="swhid-link"
+                                title="SWHID Copy to Clipboard"
+                            >
+                                {res.swhid}
+                            </a>
+                        </div>
+                        <div className="score-box">
+                            <div className="score-item">
+                                <div className="score-label">{t('rerank_score')}</div>
+                                <div className="score-value rank">{res.rerank_score.toFixed(4)}</div>
+                            </div>
+                            <div className="score-item" style={{ opacity: 0.6 }}>
+                                <div className="score-label">{t('recall_score')}</div>
+                                <div className="score-value" style={{ fontSize: '0.9rem' }}>{res.recall_score.toFixed(4)}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className={`code-wrapper ${isLong && !expanded ? 'collapsed' : ''}`} ref={codeRef}>
+                        <pre><code>{res.code}</code></pre>
+                        {isLong && !expanded && <div className="code-gradient"></div>}
+                    </div>
+
+                    {isLong && (
+                        <button className="expand-btn" onClick={() => setExpanded(!expanded)}>
+                            <span>{expanded ? '▲' : '▼'}</span>
+                            {expanded ? t('show_less') : t('show_more')}
+                        </button>
+                    )}
+                </div>
+            );
         };
 
         // --- Main React Application ---
@@ -614,34 +735,7 @@
 
                     <div className="results">
                         {!loading && results.map((res, i) => (
-                            <div key={i} className="result-card" style={{ animationDelay: `${i * 0.15}s` }}>
-                                <div className="result-header">
-                                    <div className="file-info">
-                                        <h3>{res.filepath.split('/').pop()}</h3>
-                                        <div style={{ color: '#aaa', fontSize: '0.85rem', marginBottom: '4px' }}>{res.filepath.split('/').slice(0, -1).join('/')}</div>
-                                        <div style={{ color: 'var(--accent-orange)', fontWeight: 700, fontSize: '1.1rem' }}>{res.name}</div>
-                                        <a
-                                            href={`https://archive.softwareheritage.org/${res.swhid}`}
-                                            target="_blank"
-                                            className="swhid-link"
-                                            title="SWHID Copy to Clipboard"
-                                        >
-                                            {res.swhid}
-                                        </a>
-                                    </div>
-                                    <div className="score-box">
-                                        <div className="score-item">
-                                            <div className="score-label">{t('rerank_score')}</div>
-                                            <div className="score-value rank">{res.rerank_score.toFixed(4)}</div>
-                                        </div>
-                                        <div className="score-item" style={{ opacity: 0.6 }}>
-                                            <div className="score-label">{t('recall_score')}</div>
-                                            <div className="score-value" style={{ fontSize: '0.9rem' }}>{res.recall_score.toFixed(4)}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <pre><code>{res.code}</code></pre>
-                            </div>
+                            <ResultItem key={i} res={res} i={i} t={t} />
                         ))}
                         {!loading && query && results.length === 0 && (
                             <div style={{ textAlign: 'center', opacity: 0.3, marginTop: '5rem', fontSize: '1.2rem', fontWeight: 300 }}>{t('no_results')}</div>
