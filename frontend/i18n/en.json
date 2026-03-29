@@ -15,5 +15,7 @@
     "view_swhid": "View SWHID",
     "last_updated": "Last updated on: 28th March 2026",
     "show_more": "Show Full Function",
-    "show_less": "Collapse View"
+    "show_less": "Collapse View",
+    "fetching_code": "Fetching code from Software Heritage...",
+    "error_fetching_code": "Snippet unavailable in SWH Archive"
 }

@@ -15,5 +15,7 @@
     "view_swhid": "SWHID ನೋಡಿ",
     "last_updated": "ಕೊನೆಯ ನವೀಕರಣ: 28 ಮಾರ್ಚ್ 2026",
     "show_more": "ಪೂರ್ಣ ಕಾರ್ಯವನ್ನು ತೋರಿಸು",
-    "show_less": "ಕುಗ್ಗಿಸು"
+    "show_less": "ಕುಗ್ಗಿಸು",
+    "fetching_code": "Software Heritage ನಿಂದ ಕೋಡ್ ಪಡೆಯಲಾಗುತ್ತಿದೆ...",
+    "error_fetching_code": "SWH ಆರ್ಕೈವ್‌ನಲ್ಲಿ ಸ್ನಿಪ್ಪೆಟ್ ಲಭ್ಯವಿಲ್ಲ"
 }

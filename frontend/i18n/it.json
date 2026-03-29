@@ -15,5 +15,7 @@
     "view_swhid": "Vedi SWHID",
     "last_updated": "Ultimo aggiornamento: 28 Marzo 2026",
     "show_more": "Mostra Funzione Completa",
-    "show_less": "Comprimi Vista"
+    "show_less": "Comprimi Vista",
+    "fetching_code": "Recupero codice da Software Heritage...",
+    "error_fetching_code": "Snippet non disponibile nell'archivio SWH"
 }

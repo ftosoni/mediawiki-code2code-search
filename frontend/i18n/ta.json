@@ -15,5 +15,7 @@
     "view_swhid": "SWHID காண்",
     "last_updated": "கடைசி புதுப்பிப்பு: 28 மார்ச் 2026",
     "show_more": "முழு செயல்பாட்டைக் காட்டு",
-    "show_less": "சுருக்குக"
+    "show_less": "சுருக்குக",
+    "fetching_code": "Software Heritage இலிருந்து குறியீட்டைப் பெறுகிறது...",
+    "error_fetching_code": "SWH காப்பகத்தில் துணுக்கைக் காணவில்லை"
 }

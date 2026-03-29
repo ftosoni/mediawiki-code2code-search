@@ -15,5 +15,7 @@
     "view_swhid": "SWHID చూడండి",
     "last_updated": "చివరి అప్‌డేట్: 28 మార్చి 2026",
     "show_more": "పూర్తి ఫంక్షన్‌ను చూడండి",
-    "show_less": "కుదించండి"
+    "show_less": "కుదించండి",
+    "fetching_code": "Software Heritage నుండి కోడ్‌ని పొందుతోంది...",
+    "error_fetching_code": "SWH ఆర్కైవ్‌లో స్నిప్పెట్ అందుబాటులో లేదు"
 }

@@ -15,5 +15,7 @@
     "view_swhid": "SWHID ᱧᱮᱞ ᱢᱮ",
     "last_updated": "ᱢᱩᱪᱟᱹᱫ ᱟᱯᱰᱮᱴ: ᱒᱘ ᱢᱟᱨᱪ ᱒᱐٢᱖",
     "show_more": "ᱜᱚᱴᱟ ᱯᱷᱟᱝᱥᱟᱱ ᱧᱮᱞ ᱢᱮ",
-    "show_less": "ᱠᱟᱹᱴᱤᱡᱽ ᱢᱮ"
+    "show_less": "ᱠᱟᱹᱴᱤᱡᱽ ᱢᱮ",
+    "fetching_code": "Software Heritage ᱠᱷᱚᱱ ᱠᱳᱰ ᱟᱹᱜᱩᱭᱮᱫᱟ...",
+    "error_fetching_code": "SWH ᱟᱨᱠᱟᱭᱵᱷ ᱨᱮ ᱥᱱᱤᱯᱮᱴ ᱵᱟᱹᱱᱩᱜᱼᱟ"
 }

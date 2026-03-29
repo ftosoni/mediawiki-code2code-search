@@ -15,5 +15,7 @@
     "view_swhid": "SWHID ਦੇਖੋ",
     "last_updated": "ਆਖਰੀ ਅਪਡੇਟ: 28 ਮਾਰਚ 2026",
     "show_more": "ਪੂਰਾ ਫੰਕਸ਼ਨ ਦੇਖੋ",
-    "show_less": "ਛੋਟਾ ਕਰੋ"
+    "show_less": "ਛੋਟਾ ਕਰੋ",
+    "fetching_code": "Software Heritage ਤੋਂ ਕੋਡ ਪ੍ਰਾਪਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
+    "error_fetching_code": "SWH ਆਰਕਾਈਵ ਵਿੱਚ ਸਨਿੱਪਟ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
 }

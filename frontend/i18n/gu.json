@@ -15,5 +15,7 @@
     "view_swhid": "SWHID જુઓ",
     "last_updated": "છેલ્લું અપડેટ: ૨૮ માર્ચ ૨૦૨૬",
     "show_more": "સંપૂર્ણ ફંકશન જુઓ",
-    "show_less": "નાનું કરો"
+    "show_less": "નાનું કરો",
+    "fetching_code": "Software Heritage માંથી કોડ મેળવી રહ્યું છે...",
+    "error_fetching_code": "SWH આર્કાઇવમાં સ્નિપેટ ઉપલબ્ધ નથી"
 }

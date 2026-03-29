@@ -15,5 +15,7 @@
     "view_swhid": "SWHID കാണുക",
     "last_updated": "അവസാന അപ്ഡേറ്റ്: 28 മാർച്ച് 2026",
     "show_more": "മുഴുനീള ഫംഗ്‌ഷൻ കാണുക",
-    "show_less": "ചുരുക്കി കാണിക്കുക"
+    "show_less": "ചുരുക്കി കാണിക്കുക",
+    "fetching_code": "Software Heritage-ൽ നിന്ന് കോഡ് ലഭ്യമാക്കുന്നു...",
+    "error_fetching_code": "SWH ആർക്കൈവിൽ സ്നിപ്പറ്റ് ലഭ്യമല്ല"
 }

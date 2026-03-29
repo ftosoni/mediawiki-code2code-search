@@ -285,12 +285,12 @@ async def search_code(req: SearchQuery):
     ready_for_rerank.sort(key=lambda x: x["rerank_score"], reverse=True)
     return {"results": ready_for_rerank[:req.top_k]}
 
-# Mount the static frontend directory
-frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../frontend"))
-if os.path.exists(frontend_path):
-    app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
-
 @app.get("/health")
 def health():
     return {"status": "ok", "index_size": index.ntotal if index else 0}
+
+# Mount the static frontend directory last to avoid intercepting API calls
+frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../frontend"))
+if os.path.exists(frontend_path):
+    app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
 

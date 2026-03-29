@@ -15,5 +15,7 @@
     "view_swhid": "SWHID पहा",
     "last_updated": "शेवटचे अपडेट: २८ मार्च २०२६",
     "show_more": "पूर्ण फंक्शन पहा",
-    "show_less": "कमी करा"
+    "show_less": "कमी करा",
+    "fetching_code": "Software Heritage कडून कोड मिळवत आहे...",
+    "error_fetching_code": "SWH आर्काइव्हमध्ये स्निपेट उपलब्ध नाही"
 }
