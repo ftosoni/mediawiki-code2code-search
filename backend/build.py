@@ -8,6 +8,7 @@ import faiss
 import numpy as np
 import torch
 from sentence_transformers import SentenceTransformer
+import requests
 import re
 from dotenv import load_dotenv
 
@@ -36,9 +37,32 @@ except ImportError:
 REPO_URL = "https://github.com/aboffa/CoCo-trie"
 SWH_ORIGIN = REPO_URL.replace("https://", "https:/") 
 
-FAISS_INDEX_PATH = "event_horizon.index"
+FAISS_INDEX_PATH = os.path.join(os.path.dirname(__file__), "event_horizon.index")
 EMBEDDING_DIM = 896 # Jina 0.5B dim
 DEBUG_LIMIT = 256   # Process a set amount of functions (0 for no limit)
+
+# Cache for SHA1 Git -> Standard SHA1
+SWH_SHA1_CACHE = {}
+
+def get_sha1_from_swh(sha1_git: str) -> str:
+    """Fetch standard SHA1 from SWH API given a sha1_git."""
+    if sha1_git in SWH_SHA1_CACHE:
+        return SWH_SHA1_CACHE[sha1_git]
+    
+    url = f"https://archive.softwareheritage.org/api/1/content/sha1_git:{sha1_git}/"
+    try:
+        response = requests.get(url, timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            sha1 = data.get("checksums", {}).get("sha1")
+            if sha1:
+                SWH_SHA1_CACHE[sha1_git] = sha1
+                return sha1
+        print(f"  Warning: Could not resolve sha1 for {sha1_git} (Status: {response.status_code})")
+    except Exception as e:
+        print(f"  Error querying SWH API for {sha1_git}: {e}")
+    
+    return None
 
 def get_swhid_content_hash(content: bytes) -> str:
     if SWH_MODEL_AVAILABLE:
@@ -190,15 +214,18 @@ def build_pipeline():
                         # Unique ID based on code content
                         func_hash = hashlib.md5(func_code.encode()).hexdigest()
                         
+                        # Look up standard SHA1 for S3 access
+                        sha1 = get_sha1_from_swh(swhid_hash)
+                        
                         # SWHID format: swh:1:cnt:HASH;origin=URL;lines=S-E
                         swhid = f"swh:1:cnt:{swhid_hash};origin={SWH_ORIGIN};lines={fn['start_line']}-{fn['end_line']}/"
                         
                         functions.append({
                             "id": func_hash,
-                            "name": fn["name"],
-                            "code": func_code,
                             "swhid": swhid,
-                            "filepath": str(filepath.relative_to(repo_path)).replace("\\", "/")
+                            "sha1": sha1,
+                            "filepath": str(filepath.relative_to(repo_path)).replace("\\", "/"),
+                            "code_for_embedding": func_code # Temporary field for vectorization
                         })
                 except Exception as e:
                     print(f"  Failed to process {file}: {e}")
@@ -216,15 +243,24 @@ def build_pipeline():
         print("No functions extracted. Pipeline aborted.")
         return
         
-    # Sort by code length to optimize batching performance (minimizes padding overhead)
-    functions.sort(key=lambda x: len(x["code"]))
+    # Sort by code length to optimize batching performance
+    functions.sort(key=lambda x: len(x["code_for_embedding"]))
     
-    with open("functions.json", "w", encoding="utf-8") as f:
-        json.dump(functions, f, indent=2)
+    # We SAVE a version WITHOUT the code for production search!
+    # This is the key RAM optimization.
+    functions_meta_only = []
+    for f in functions:
+        meta = f.copy()
+        code_text = meta.pop("code_for_embedding") # Extract for embedding
+        functions_meta_only.append(meta)
+    
+    meta_path = os.path.join(os.path.dirname(__file__), "functions.json")
+    with open(meta_path, "w", encoding="utf-8") as f:
+        json.dump(functions_meta_only, f, indent=2)
         
     print(f"\nVectorizing {len(functions)} unique functions with Jina (896D)...")
     
-    code_snippets = [f["code"] for f in functions]
+    code_snippets = [f["code_for_embedding"] for f in functions]
     
     # Detailed diagnostic logging
     avg_len = sum(len(s) for s in code_snippets) / len(code_snippets) if code_snippets else 0
