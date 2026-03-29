@@ -12,7 +12,8 @@
     <!-- Three.js for the particle vortex -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <!-- Google Fonts: Outfit & Inter for modern tech feel -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&family=Noto+Sans:wght@300;400;700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&family=Noto+Sans:wght@300;400;700&display=swap"
         rel="stylesheet">
     <style>
         :root {
@@ -361,8 +362,9 @@
                 transform: rotate(360deg);
             }
         }
+
         .result-card pre {
-            background: rgba(0,0,0,0.3);
+            background: rgba(0, 0, 0, 0.3);
             padding: 1.5rem;
             border-radius: 16px;
             font-family: 'JetBrains Mono', 'Fira Code', monospace;
@@ -391,7 +393,7 @@
             left: 0;
             width: 100%;
             height: 100px;
-            background: linear-gradient(to top, rgba(5,5,5,0.95), transparent);
+            background: linear-gradient(to top, rgba(5, 5, 5, 0.95), transparent);
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -556,14 +558,43 @@
         // --- Individual Result Item Component ---
         const ResultItem = ({ res, i, t }) => {
             const [expanded, setExpanded] = useState(false);
+            const [code, setCode] = useState("");
+            const [codeLoading, setCodeLoading] = useState(true);
+            const [codeError, setCodeError] = useState(false);
             const codeRef = useRef(null);
             const [isLong, setIsLong] = useState(false);
 
             useEffect(() => {
-                if (codeRef.current && codeRef.current.scrollHeight > 300) {
+                const fetchCode = async () => {
+                    if (res.code) {
+                        setCode(res.code);
+                        setCodeLoading(false);
+                        return;
+                    }
+                    setCodeLoading(true);
+                    try {
+                        const response = await fetch(`/code?swhid=${encodeURIComponent(res.swhid)}`);
+                        const data = await response.json();
+                        if (data.code) {
+                            setCode(data.code);
+                        } else {
+                            setCodeError(true);
+                        }
+                    } catch (error) {
+                        console.error("Failed to fetch code:", error);
+                        setCodeError(true);
+                    } finally {
+                        setCodeLoading(false);
+                    }
+                };
+                fetchCode();
+            }, [res.swhid, res.code]);
+
+            useEffect(() => {
+                if (code && codeRef.current && codeRef.current.scrollHeight > 300) {
                     setIsLong(true);
                 }
-            }, [res.code]);
+            }, [code]);
 
             return (
                 <div className="result-card" style={{ animationDelay: `${i * 0.15}s` }}>
@@ -592,9 +623,20 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className={`code-wrapper ${isLong && !expanded ? 'collapsed' : ''}`} ref={codeRef}>
-                        <pre><code>{res.code}</code></pre>
+                        {codeLoading ? (
+                            <div style={{ padding: '2rem', textAlign: 'center', opacity: 0.5 }}>
+                                <div className="loader" style={{ width: '24px', height: '24px', margin: '0 auto 10px' }}></div>
+                                <span style={{ fontSize: '0.8rem' }}>{t('fetching_code')}</span>
+                            </div>
+                        ) : codeError ? (
+                            <div style={{ padding: '2rem', textAlign: 'center', color: '#ff6b6b', fontSize: '0.8rem' }}>
+                                ⚠️ {t('error_fetching_code')}
+                            </div>
+                        ) : (
+                            <pre><code>{code}</code></pre>
+                        )}
                         {isLong && !expanded && <div className="code-gradient"></div>}
                     </div>
 
@@ -670,12 +712,12 @@
 
                     {translating && (
                         <div style={{
-                            position: 'fixed', 
-                            top: 0, 
-                            left: 0, 
-                            width: '100%', 
-                            height: '100%', 
-                            background: 'rgba(5,5,5,0.8)', 
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            background: 'rgba(5,5,5,0.8)',
                             backdropFilter: 'blur(10px)',
                             zIndex: 9999,
                             display: 'flex',
@@ -683,12 +725,12 @@
                             justifyContent: 'center',
                             animation: 'fadeIn 0.3s ease'
                         }}>
-                             <div className="loader"></div>
+                            <div className="loader"></div>
                         </div>
                     )}
 
                     <div className="lang-selector">
-                        <span style={{fontSize: '0.8rem', opacity: 0.5}}>🌐</span>
+                        <span style={{ fontSize: '0.8rem', opacity: 0.5 }}>🌐</span>
                         <select value={currentLang} onChange={(e) => setCurrentLang(e.target.value)}>
                             <option value="as">অসমীয়া (AS)</option>
                             <option value="bn">বাংলা (BN)</option>
@@ -757,7 +799,7 @@
                         gap: '1rem',
                         alignItems: 'center'
                     }}>
-                        <span>{t('created_by')} <a href="https://meta.wikimedia.org/wiki/User:Super_nabla" target="_blank" style={{ color: 'var(--accent-orange)', textDecoration: 'none' }}>Super nabla 🪰</a></span>
+                        <span>{t('created_by')} <a href="https://meta.wikimedia.org/wiki/User:Super_nabla" target="_blank" style={{ color: 'var(--accent-orange)', textDecoration: 'none' }}>Super nabla 🪰</a> (<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/Indic_MediaWiki_Developers_User_Group" target="_blank" style={{ color: 'var(--accent-purple)', textDecoration: 'none' }}>Indic MediaWiki Developers UG</a>)</span>
                         <span style={{ opacity: 0.3 }}>|</span>
                         <span>{t('licence')} <a href="https://github.com/ftosoni/code-search-engine/blob/main/LICENSE.md" target="_blank" style={{ color: 'inherit' }}>Apache 2.0</a></span>
                         <span style={{ opacity: 0.3 }}>|</span>
