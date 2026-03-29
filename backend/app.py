@@ -173,6 +173,7 @@ app.add_middleware(
 class SearchQuery(BaseModel):
     query: str
     top_k: int = 5
+    type_filter: str = "all" # all, function, type
 
 # Legacy helper removed. Use SWHS3Cache.fetch_blob()
 
@@ -230,6 +231,11 @@ async def search_code(req: SearchQuery):
     for i, idx in enumerate(indices[0]):
         if idx != -1 and idx < len(metadata):
             item = metadata[idx]
+            
+            # Apply type filter (function, type, or all)
+            if req.type_filter != "all" and item.get("type") != req.type_filter:
+                continue
+                
             dist = float(distances[0][i])
             recall_candidates.append({**item, "recall_score": 1.0 / (1.0 + dist)})
             

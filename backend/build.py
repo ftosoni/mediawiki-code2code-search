@@ -86,41 +86,41 @@ def get_swhid_content_hash(content: bytes) -> str:
         header = f"blob {len(content)}\0".encode()
         return hashlib.sha1(header + content).hexdigest()
 
-def extract_functions_treesitter(code_bytes: bytes, ext: str) -> list:
+def extract_code_entities(code_bytes: bytes, ext: str) -> list:
     """
-    High-precision AST-based function extraction using Tree-sitter.
-    Includes preceding comments/docstrings by traversing siblings.
+    High-precision AST-based extraction of functions and types using Tree-sitter.
+    Categorizes entities as 'function' or 'type' (classes, structs, interfaces).
     """
     if ext == ".py":
         lang = PY_LANGUAGE
-        query_scm = "(function_definition) @function"
+        query_scm = "(function_definition) @function (class_definition) @type"
     elif ext in [".cpp", ".hpp", ".h", ".cc", ".cxx"]:
         lang = CPP_LANGUAGE
-        query_scm = "(function_definition) @function (template_declaration) @function"
+        query_scm = "(function_definition) @function (template_declaration) @function (class_specifier) @type (struct_specifier) @type (enum_specifier) @type"
     elif ext == ".c":
         lang = C_LANGUAGE
-        query_scm = "(function_definition) @function"
+        query_scm = "(function_definition) @function (struct_specifier) @type (union_specifier) @type (enum_specifier) @type"
     elif ext == ".php":
         lang = PHP_LANGUAGE
-        query_scm = "(function_definition) @function (method_declaration) @function"
+        query_scm = "(function_definition) @function (method_declaration) @function (class_declaration) @type (interface_declaration) @type (trait_declaration) @type (enum_declaration) @type"
     elif ext == ".js":
         lang = JS_LANGUAGE
-        query_scm = "(function_declaration) @function (method_definition) @function"
+        query_scm = "(function_declaration) @function (method_definition) @function (class_declaration) @type"
     elif ext in [".ts", ".tsx", ".mts", ".cts"]:
         lang = TS_LANGUAGE
-        query_scm = "(function_declaration) @function (method_definition) @function"
+        query_scm = "(function_declaration) @function (method_definition) @function (class_declaration) @type (interface_declaration) @type (enum_declaration) @type (type_alias_declaration) @type"
     elif ext == ".lua":
         lang = LUA_LANGUAGE
         query_scm = "(function_declaration) @function"
     elif ext == ".go":
         lang = GO_LANGUAGE
-        query_scm = "(function_declaration) @function (method_declaration) @function"
+        query_scm = "(function_declaration) @function (method_declaration) @function (type_declaration) @type"
     elif ext == ".java":
         lang = JAVA_LANGUAGE
-        query_scm = "(method_declaration) @function"
+        query_scm = "(method_declaration) @function (class_declaration) @type (interface_declaration) @type (enum_declaration) @type (record_declaration) @type"
     elif ext == ".rs":
         lang = RUST_LANGUAGE
-        query_scm = "(function_item) @function"
+        query_scm = "(function_item) @function (struct_item) @type (enum_item) @type (trait_item) @type (type_item) @type"
     else:
         return []
 
@@ -137,7 +137,7 @@ def extract_functions_treesitter(code_bytes: bytes, ext: str) -> list:
                  lang = C_LANGUAGE
                  parser = tree_sitter.Parser(lang)
                  tree = parser.parse(code_bytes)
-                 query = tree_sitter.Query(lang, "(function_definition) @function")
+                 query = tree_sitter.Query(lang, "(function_definition) @function (struct_specifier) @type (enum_specifier) @type")
                  cursor = tree_sitter.QueryCursor(query)
                  captures_dict = cursor.captures(tree.root_node)
              except Exception:
@@ -146,35 +146,25 @@ def extract_functions_treesitter(code_bytes: bytes, ext: str) -> list:
             print(f"  Tree-sitter error for {ext}: {e}")
             return []
     
-    # Normalize dictionary-style captures (0.25.2) to flat list of Nodes
+    # Normalize dictionary-style captures (0.25.2) to flat list of (Node, entity_type)
     captures = []
-    for nodes in captures_dict.values():
-        captures.extend(nodes)
+    for entity_type, nodes in captures_dict.items():
+        for node in nodes:
+            captures.append((node, entity_type))
 
     functions = []
     seen_nodes = set()
     
     for capture in captures:
-        # Robustly extract Node from capture (can be Node or (Node, tag))
-        if isinstance(capture, tuple) and len(capture) > 0:
-            node = capture[0]
-        elif hasattr(capture, 'start_byte'):
-            node = capture
-        else:
-            continue
-            
+        node, entity_type = capture
+        
         node_key = (node.start_byte, node.end_byte)
         if node_key in seen_nodes: continue
         seen_nodes.add(node_key)
         
-        # Start/End points
-        start_byte = node.start_byte
-        end_byte = node.end_byte
-        start_line = node.start_point[0] + 1
-        
         # Walk backward to include comments/docstrings
-        current_start = start_byte
-        actual_start_line = start_line
+        current_start = node.start_byte
+        actual_start_line = node.start_point[0] + 1
         
         prev = node.prev_sibling
         while prev and prev.type in ["comment", "line_comment", "block_comment"]:
@@ -182,20 +172,32 @@ def extract_functions_treesitter(code_bytes: bytes, ext: str) -> list:
             actual_start_line = prev.start_point[0] + 1
             prev = prev.prev_sibling
             
-        func_code = code_bytes[current_start:end_byte].decode('utf-8', errors='ignore')
+        func_code = code_bytes[current_start:node.end_byte].decode('utf-8', errors='ignore')
         
-        # Extract function name (heuristic within node)
+        # Extract name (recursive search for the first identifier-like node)
         name = "unknown"
-        for child in node.children:
-            if child.type in ["identifier", "field_identifier"]:
-                name = code_bytes[child.start_byte:child.end_byte].decode('utf-8', errors='ignore')
-                break
+        # 1. Try named 'name' field first
+        name_node = node.child_by_field_name("name")
+        if not name_node:
+             # 2. Heuristic: find first identifier/field_identifier in any descendant
+             def find_name(n):
+                 if n.type in ["identifier", "field_identifier", "type_identifier"]:
+                     return n
+                 for child in n.children:
+                     found = find_name(child)
+                     if found: return found
+                 return None
+             name_node = find_name(node)
+             
+        if name_node:
+            name = code_bytes[name_node.start_byte:name_node.end_byte].decode('utf-8', errors='ignore')
         
         functions.append({
             "name": name,
             "start_line": actual_start_line,
             "end_line": node.end_point[0] + 1,
-            "code": func_code
+            "code": func_code,
+            "type": entity_type
         })
         
     return functions
@@ -243,11 +245,11 @@ def build_pipeline():
                     text_lf = raw_content.replace(b"\r\n", b"\n")
                     swhid_hash = get_swhid_content_hash(text_lf)
                     
-                    extracted = extract_functions_treesitter(text_lf, ext)
-                    print(f"  Extracted {len(extracted)} functions.")
+                    extracted = extract_code_entities(text_lf, ext)
+                    print(f"  Extracted {len(extracted)} entities.")
                     
-                    for fn in extracted:
-                        func_code = fn["code"]
+                    for ent in extracted:
+                        func_code = ent["code"]
                         if not func_code.strip(): continue
                             
                         # Unique ID based on code content
@@ -257,13 +259,15 @@ def build_pipeline():
                         sha1 = get_sha1_from_swh(swhid_hash)
                         
                         # SWHID format: swh:1:cnt:HASH;origin=URL;lines=S-E
-                        swhid = f"swh:1:cnt:{swhid_hash};origin={SWH_ORIGIN};lines={fn['start_line']}-{fn['end_line']}/"
+                        swhid = f"swh:1:cnt:{swhid_hash};origin={SWH_ORIGIN};lines={ent['start_line']}-{ent['end_line']}/"
                         
                         functions.append({
                             "id": func_hash,
                             "swhid": swhid,
                             "sha1": sha1,
                             "filepath": str(filepath.relative_to(repo_path)).replace("\\", "/"),
+                            "name": ent["name"],
+                            "type": ent["type"],
                             "code_for_embedding": func_code # Temporary field for vectorization
                         })
                 except Exception as e:

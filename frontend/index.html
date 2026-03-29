@@ -600,8 +600,25 @@
                 <div className="result-card" style={{ animationDelay: `${i * 0.15}s` }}>
                     <div className="result-header">
                         <div className="file-info">
-                            <h3>{res.filepath.split('/').pop()}</h3>
-                            <div style={{ color: '#aaa', fontSize: '0.85rem', marginBottom: '4px' }}>{res.filepath.split('/').slice(0, -1).join('/')}</div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                <div>
+                                    <h3>{res.filepath.split('/').pop()}</h3>
+                                    <div style={{ color: '#aaa', fontSize: '0.85rem', marginBottom: '4px' }}>{res.filepath.split('/').slice(0, -1).join('/')}</div>
+                                </div>
+                                <div style={{
+                                    padding: '4px 10px',
+                                    borderRadius: '8px',
+                                    fontSize: '0.7rem',
+                                    fontWeight: 'bold',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '1px',
+                                    background: res.type === 'type' ? 'rgba(157, 0, 255, 0.2)' : 'rgba(0, 255, 127, 0.1)',
+                                    color: res.type === 'type' ? '#E1B0FF' : '#00FF7F',
+                                    border: `1px solid ${res.type === 'type' ? 'rgba(157, 0, 255, 0.3)' : 'rgba(0, 255, 127, 0.2)'}`
+                                }}>
+                                    {res.type || 'function'}
+                                </div>
+                            </div>
                             <div style={{ color: 'var(--accent-orange)', fontWeight: 700, fontSize: '1.1rem' }}>{res.name}</div>
                             <a
                                 href={`https://archive.softwareheritage.org/${res.swhid}`}
@@ -654,6 +671,7 @@
         const App = () => {
             const [query, setQuery] = useState("");
             const [results, setResults] = useState([]);
+            const [typeFilter, setTypeFilter] = useState("all");
             const [loading, setLoading] = useState(false);
             const [speed, setSpeed] = useState(1);
             const [currentLang, setCurrentLang] = useState("en");
@@ -693,7 +711,7 @@
                     const response = await fetch("/search", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ query, top_k: 5 })
+                        body: JSON.stringify({ query, top_k: 5, type_filter: typeFilter })
                     });
                     const data = await response.json();
                     setResults(data.results || []);
@@ -766,7 +784,29 @@
                             disabled={loading}
                         />
                         <div className="search-footer">
-                            <div className="info-pill">{t('indexed')}</div>
+                            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                                <div className="info-pill">{t('indexed')}</div>
+                                <select 
+                                    value={typeFilter} 
+                                    onChange={(e) => setTypeFilter(e.target.value)}
+                                    style={{
+                                        background: 'rgba(255, 255, 255, 0.05)',
+                                        border: '1px solid var(--glass-border)',
+                                        color: '#ccc',
+                                        borderRadius: '50px',
+                                        padding: '4px 12px',
+                                        fontSize: '0.7rem',
+                                        cursor: 'pointer',
+                                        outline: 'none',
+                                        appearance: 'none',
+                                        textAlign: 'center'
+                                    }}
+                                >
+                                    <option value="all">All Entities</option>
+                                    <option value="function">Functions</option>
+                                    <option value="type">Types</option>
+                                </select>
+                            </div>
                             <button className="search-btn" onClick={handleSearch} disabled={loading}>
                                 {loading ? t('btn_loading') : t('btn_search')}
                             </button>

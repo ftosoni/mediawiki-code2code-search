@@ -3,1536 +3,2048 @@
     "id": "dbcb6ddff5b31fad1aab24805c112058",
     "swhid": "swh:1:cnt:b32f816dc652dfeee2066b18116acddbd781d2f2;origin=https:/github.com/aboffa/CoCo-trie;lines=47-47/",
     "sha1": "e5087698ddb0f50fbedbeff6bfcf0817d567327d",
-    "filepath": "include/dfuds.hpp"
+    "filepath": "include/dfuds.hpp",
+    "name": "dfuds",
+    "type": "function"
   },
   {
     "id": "756d3358dcd97dc77c061d6cb4cb60d6",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=46-46/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "louds_sux",
+    "type": "function"
+  },
+  {
+    "id": "f38ae1709182783ab7dc59f6267ed1eb",
+    "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=19-19/",
+    "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "bit_vector",
+    "type": "type"
   },
   {
     "id": "89b3420b2b8ed66258176fd49d9a15dc",
     "swhid": "swh:1:cnt:b32f816dc652dfeee2066b18116acddbd781d2f2;origin=https:/github.com/aboffa/CoCo-trie;lines=36-36/",
     "sha1": "e5087698ddb0f50fbedbeff6bfcf0817d567327d",
-    "filepath": "include/dfuds.hpp"
+    "filepath": "include/dfuds.hpp",
+    "name": "dfuds",
+    "type": "function"
   },
   {
     "id": "006f566fd8855ac0bff0fdfdafb0db19",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=36-36/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
-  },
-  {
-    "id": "e6b4180975c3792b8a77441013392520",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=20-21/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "louds_sux",
+    "type": "function"
   },
   {
     "id": "a98514b1a0d3dc573a0961d2a301d876",
     "swhid": "swh:1:cnt:a155da74bf6353cdbaff49ba36052a9305d3c98c;origin=https:/github.com/aboffa/CoCo-trie;lines=21-21/",
     "sha1": "5683db3d55e8cc3c3f9354745f7c3c629ba8a743",
-    "filepath": "include/alphabet_remapping.hpp"
+    "filepath": "include/alphabet_remapping.hpp",
+    "name": "alphamap",
+    "type": "function"
+  },
+  {
+    "id": "a2bd91032b6ea50b619a7bd5947438b0",
+    "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=17-17/",
+    "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
+    "filepath": "include/synthetic.hpp",
+    "name": "N",
+    "type": "type"
   },
   {
     "id": "4d51cbc156f525f051e71d836592a7e4",
     "swhid": "swh:1:cnt:4af833add78917477bba52fefd71aa15d37f2be9;origin=https:/github.com/aboffa/CoCo-trie;lines=26-26/",
     "sha1": "a83b721d521f977c4a5e56360202b729db589aae",
-    "filepath": "include/array.hpp"
+    "filepath": "include/array.hpp",
+    "name": "array",
+    "type": "function"
   },
   {
     "id": "d218e883068b6aeed86fb9016f8c3a35",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=237-237/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "seed",
+    "type": "function"
   },
   {
     "id": "699086625b6647c37b90f6beaa9893fc",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=207-208/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "bit_vector",
+    "type": "function"
   },
   {
     "id": "00b528cb21abc11fa9cf85ba2952e4a3",
     "swhid": "swh:1:cnt:a155da74bf6353cdbaff49ba36052a9305d3c98c;origin=https:/github.com/aboffa/CoCo-trie;lines=23-23/",
     "sha1": "5683db3d55e8cc3c3f9354745f7c3c629ba8a743",
-    "filepath": "include/alphabet_remapping.hpp"
+    "filepath": "include/alphabet_remapping.hpp",
+    "name": "alphamap",
+    "type": "function"
   },
   {
     "id": "7c7866aa447b07fe7fa3e87f57301e22",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=79-81/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "Trie_lw",
+    "type": "function"
   },
   {
     "id": "769939593a980b59233fb9c6bf99f718",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=83-85/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "Trie_lw",
+    "type": "function"
   },
   {
     "id": "c7f56cf961fc3752631a023c088dfed4",
     "swhid": "swh:1:cnt:6100d18bcd439c5dfb8436f483cec9973f6c19cb;origin=https:/github.com/aboffa/CoCo-trie;lines=181-183/",
     "sha1": "0d5608ded9ad68aa563572c15e051b3b77db1047",
-    "filepath": "include/CoCo-trie_v2.hpp"
+    "filepath": "include/CoCo-trie_v2.hpp",
+    "name": "CoCo_v2",
+    "type": "function"
   },
   {
     "id": "736b65da73da9b65d516b44c5e6e4a46",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=179-181/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "size",
+    "type": "function"
   },
   {
     "id": "df25104115448b870bd93a7ff582ad3e",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=31-31/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "ZRandom",
+    "type": "function"
   },
   {
     "id": "15fc4db1452e37a6c94e63f501187239",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=254-256/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "size",
+    "type": "function"
   },
   {
     "id": "883a1cdd103ea64b86662cf07c3f5244",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=375-376/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "enumerator",
+    "type": "function"
   },
   {
     "id": "9c6927aff650ae9f57a1d539a38789bd",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=46-46/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "test",
+    "type": "function"
   },
   {
     "id": "908c6f84b08059d3f794b061241b642e",
     "swhid": "swh:1:cnt:a155da74bf6353cdbaff49ba36052a9305d3c98c;origin=https:/github.com/aboffa/CoCo-trie;lines=54-56/",
     "sha1": "5683db3d55e8cc3c3f9354745f7c3c629ba8a743",
-    "filepath": "include/alphabet_remapping.hpp"
+    "filepath": "include/alphabet_remapping.hpp",
+    "name": "rankmax",
+    "type": "function"
   },
   {
     "id": "7748708ef6620727b689b7c054e04d37",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=472-474/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "position",
+    "type": "function"
   },
   {
     "id": "e1457d4b0881ca1576f57ca7f37db48a",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=461-462/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "unary_enumerator",
+    "type": "function"
   },
   {
     "id": "7335bcc8a23181cb9731d0b2ef75145e",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=445-447/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "position",
+    "type": "function"
   },
   {
     "id": "4917422e3f8dcd2082a8db25dfd8c6bf",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=94-96/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
-  },
-  {
-    "id": "470fc363f61faf050e554445bbafa006",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=221-224/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
-  },
-  {
-    "id": "703e28e0f76c7ce0eba18205eaf1d3b0",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=261-264/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "set_filename",
+    "type": "function"
   },
   {
     "id": "e73f9aea4ceca33fccd859685c73cc7d",
     "swhid": "swh:1:cnt:a155da74bf6353cdbaff49ba36052a9305d3c98c;origin=https:/github.com/aboffa/CoCo-trie;lines=25-27/",
     "sha1": "5683db3d55e8cc3c3f9354745f7c3c629ba8a743",
-    "filepath": "include/alphabet_remapping.hpp"
+    "filepath": "include/alphabet_remapping.hpp",
+    "name": "set_or_bitwise",
+    "type": "function"
   },
   {
     "id": "3a43d10c9c2c3ef969215a2cd02e7b17",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=14-16/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "words_for",
+    "type": "function"
   },
   {
     "id": "fad4139dd5e163cca720dd2d35602340",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=52-54/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "bytes_sum",
+    "type": "function"
   },
   {
     "id": "799ed428095cf32532d1a6fd2c6efde0",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=47-49/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
-  },
-  {
-    "id": "a25c92d2772f0adb7fb002e390836095",
-    "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=38-40/",
-    "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "getDouble",
+    "type": "function"
   },
   {
     "id": "9a50fd09a301bb5d2e41b00cc71bc6b0",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=370-372/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "mappable_vector",
+    "type": "function"
+  },
+  {
+    "id": "a25c92d2772f0adb7fb002e390836095",
+    "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=38-40/",
+    "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "reserve",
+    "type": "function"
   },
   {
     "id": "6c1d11ef64afdf568541d6e31a73ad63",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=179-182/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "get_min_char",
+    "type": "function"
   },
   {
     "id": "2dda3d37cfb16c8b679a4175653ae98b",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=106-107/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "UniformDataGenerator",
+    "type": "function"
   },
   {
     "id": "20e79630debf69b83360897dba6f577d",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=98-100/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "same_msb",
+    "type": "function"
   },
   {
     "id": "bd362c2363f8fde588a3f6534e7ba350",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=158-159/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "ClusteredDataGenerator",
+    "type": "function"
   },
   {
     "id": "5d48ab2d522414bd6fb133b357d61441",
     "swhid": "swh:1:cnt:a155da74bf6353cdbaff49ba36052a9305d3c98c;origin=https:/github.com/aboffa/CoCo-trie;lines=44-46/",
     "sha1": "5683db3d55e8cc3c3f9354745f7c3c629ba8a743",
-    "filepath": "include/alphabet_remapping.hpp"
+    "filepath": "include/alphabet_remapping.hpp",
+    "name": "get_bit",
+    "type": "function"
   },
   {
     "id": "511818dcbadb77b67fd3cf5f0e9bbb8f",
     "swhid": "swh:1:cnt:4af833add78917477bba52fefd71aa15d37f2be9;origin=https:/github.com/aboffa/CoCo-trie;lines=28-31/",
     "sha1": "a83b721d521f977c4a5e56360202b729db589aae",
-    "filepath": "include/array.hpp"
+    "filepath": "include/array.hpp",
+    "name": "T",
+    "type": "function"
   },
   {
     "id": "cfc64bc6dd73ecc32616da93a31c10a4",
     "swhid": "swh:1:cnt:4af833add78917477bba52fefd71aa15d37f2be9;origin=https:/github.com/aboffa/CoCo-trie;lines=33-36/",
     "sha1": "a83b721d521f977c4a5e56360202b729db589aae",
-    "filepath": "include/array.hpp"
+    "filepath": "include/array.hpp",
+    "name": "T",
+    "type": "function"
   },
   {
     "id": "fa455017ed5f820cface71322511a161",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=272-274/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "compute_codes_descendents_l",
+    "type": "function"
   },
   {
     "id": "99a17ee3e9f8a61086e1c3acd514a190",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=124-126/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
-  },
-  {
-    "id": "509fc354f3e66c6e5065e6fa726adce7",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=375-378/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "msb",
+    "type": "function"
   },
   {
     "id": "bb2c6152f85c20adacc664eca365a24d",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=123-126/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "bits_gamma_code",
+    "type": "function"
   },
   {
     "id": "ea35047f9bd925c5319d5dd7cadb7900",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=139-142/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
-  },
-  {
-    "id": "c83ad4aac4c2d114ab0bbe3ca008779b",
-    "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=140-142/",
-    "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "clear_space_cost",
+    "type": "function"
   },
   {
     "id": "c15a1fc279b4f2cd4306a58cd5499c73",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=135-137/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "msb",
+    "type": "function"
   },
   {
     "id": "d068f27ec0d7c395593cc1ce0f72ebeb",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=449-452/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "fill_buf",
+    "type": "function"
   },
   {
     "id": "32bdbccb74a6469b5aee7f9e4b3b9ba8",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=129-132/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "bits_gamma_code_zero",
+    "type": "function"
   },
   {
     "id": "c4ffd1ef2644b16b232e87156faa3d4b",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=113-116/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "size_in_bits",
+    "type": "function"
   },
   {
     "id": "d74654b4196fe19e9892b66285f709eb",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=249-252/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "swap",
+    "type": "function"
   },
   {
     "id": "9b9558f8987a866d5ea90ec6e2fb76b5",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=174-177/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "bits_type",
+    "type": "function"
   },
   {
     "id": "5096ed4bd60eb5c3b1d06f8c8bd59438",
     "swhid": "swh:1:cnt:a155da74bf6353cdbaff49ba36052a9305d3c98c;origin=https:/github.com/aboffa/CoCo-trie;lines=38-42/",
     "sha1": "5683db3d55e8cc3c3f9354745f7c3c629ba8a743",
-    "filepath": "include/alphabet_remapping.hpp"
+    "filepath": "include/alphabet_remapping.hpp",
+    "name": "test_correctness",
+    "type": "function"
   },
   {
     "id": "0e039da684d547688c4bd415be49c79f",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=122-126/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "T",
+    "type": "function"
   },
   {
     "id": "4d652869707132e5c4d4a0ec6b2c7031",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=237-240/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
-  },
-  {
-    "id": "e5d3ce187f0264b2482a1179f081ebf6",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=406-409/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
-  },
-  {
-    "id": "ac2627283d394c747d0b664b787d0340",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=411-414/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "bit_vector",
+    "type": "function"
   },
   {
     "id": "f1c799390b3bd61864e5e39bf91c8ea8",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=132-136/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "is_leaf",
+    "type": "function"
   },
   {
     "id": "a2ea304113b9709f110db930875d4c75",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=217-218/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "ZipfianGenerator",
+    "type": "function"
   },
   {
     "id": "defa25b76a5fc7ebde480cb04b352843",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=243-247/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "map",
+    "type": "function"
   },
   {
     "id": "0b822f73c416211499034049db6ae7d4",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=37-39/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
-  },
-  {
-    "id": "8fca94680ddd08f7fb1d4a07e3459064",
-    "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=128-132/",
-    "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "zcompare_step_8",
+    "type": "function"
   },
   {
     "id": "be956ec7268059d0cc45f71f71ac791a",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=174-177/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "get_alphabet_size",
+    "type": "function"
+  },
+  {
+    "id": "8fca94680ddd08f7fb1d4a07e3459064",
+    "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=128-132/",
+    "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
+    "filepath": "include/utils.hpp",
+    "name": "T",
+    "type": "function"
   },
   {
     "id": "334af8bdb8a9d09a4abee7d4bddd6753",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=135-138/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "bits_delta_code",
+    "type": "function"
   },
   {
     "id": "d9ec23ea8d103dc1c248a4be3d236c61",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=46-50/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "log_universe",
+    "type": "function"
   },
   {
     "id": "663b451c1177d10311111cc65df2ba35",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=186-193/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "checkIsPrintable",
+    "type": "function"
   },
   {
     "id": "f28bac6d96af5b117d25ec7bd594c725",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=65-70/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "add_node",
+    "type": "function"
   },
   {
     "id": "97416ae9d92502275aaefe76f0b8a743",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=134-138/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "T",
+    "type": "function"
   },
   {
     "id": "2e7da0f3631369760137f686fb9b36ef",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=29-31/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
-  },
-  {
-    "id": "4f18ff0f435a38f8a30b69a96aaa2fdc",
-    "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=128-133/",
-    "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "leq_step_8",
+    "type": "function"
   },
   {
     "id": "8d8626ca079a0b048c66d12bb1bfe7b8",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=171-176/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "lsb",
+    "type": "function"
+  },
+  {
+    "id": "4f18ff0f435a38f8a30b69a96aaa2fdc",
+    "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=128-133/",
+    "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "msb",
+    "type": "function"
   },
   {
     "id": "e1218d7ce08aabe4a3b7c9cb8c87c429",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=144-149/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
-  },
-  {
-    "id": "4f24f38627977c9ffb636002dbe85d23",
-    "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=151-156/",
-    "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "msb",
+    "type": "function"
   },
   {
     "id": "fb6c035bb643f9b3f2264a0c5806b104",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=38-44/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "louds_sux",
+    "type": "function"
   },
   {
     "id": "e9b236a238ec7cf6e9d397af8829e044",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=87-92/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "recursive_delete",
+    "type": "function"
   },
   {
     "id": "db08614dbc486365a9acc8fcc89e4443",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=242-247/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "Visitor",
+    "type": "function"
   },
   {
     "id": "4d86385711056f21778f96f1a8904e15",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=45-50/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "code_type",
+    "type": "function"
   },
   {
     "id": "36ef12babe0495ca01a234d44eafd363",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=185-193/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
-  },
-  {
-    "id": "7a1e0ec08bf32f3448fbb22d142cfe75",
-    "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=41-43/",
-    "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "string",
+    "type": "function"
   },
   {
     "id": "5117265ad9e0f481d58f7669d38a4051",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=33-35/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "uleq_step_8",
+    "type": "function"
+  },
+  {
+    "id": "7a1e0ec08bf32f3448fbb22d142cfe75",
+    "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=41-43/",
+    "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "uleq_step_9",
+    "type": "function"
   },
   {
     "id": "fee837c4c79d628cb94b817100a3532b",
     "swhid": "swh:1:cnt:b32f816dc652dfeee2066b18116acddbd781d2f2;origin=https:/github.com/aboffa/CoCo-trie;lines=66-70/",
     "sha1": "e5087698ddb0f50fbedbeff6bfcf0817d567327d",
-    "filepath": "include/dfuds.hpp"
+    "filepath": "include/dfuds.hpp",
+    "name": "node_rank",
+    "type": "function"
   },
   {
     "id": "5756e8caf6ce7de5f77ccd0f0861afaf",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=85-89/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "node_rank",
+    "type": "function"
   },
   {
     "id": "17ce75de15d1767f95059cbb0549dcd6",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=56-62/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "popcount",
+    "type": "function"
   },
   {
     "id": "1cd347a93d43f160b83aea0ee75093df",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=378-381/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "enumerator",
+    "type": "function"
   },
   {
     "id": "b426882ce0eafb85aa96a39575456fe5",
     "swhid": "swh:1:cnt:b32f816dc652dfeee2066b18116acddbd781d2f2;origin=https:/github.com/aboffa/CoCo-trie;lines=38-45/",
     "sha1": "e5087698ddb0f50fbedbeff6bfcf0817d567327d",
-    "filepath": "include/dfuds.hpp"
+    "filepath": "include/dfuds.hpp",
+    "name": "dfuds",
+    "type": "function"
   },
   {
     "id": "66c32e47d1f21524f3369fc40bb6b403",
     "swhid": "swh:1:cnt:a155da74bf6353cdbaff49ba36052a9305d3c98c;origin=https:/github.com/aboffa/CoCo-trie;lines=48-52/",
     "sha1": "5683db3d55e8cc3c3f9354745f7c3c629ba8a743",
-    "filepath": "include/alphabet_remapping.hpp"
+    "filepath": "include/alphabet_remapping.hpp",
+    "name": "rank",
+    "type": "function"
   },
   {
     "id": "8673f74a8ee2eae0679984818e3a389d",
     "swhid": "swh:1:cnt:a155da74bf6353cdbaff49ba36052a9305d3c98c;origin=https:/github.com/aboffa/CoCo-trie;lines=30-35/",
     "sha1": "5683db3d55e8cc3c3f9354745f7c3c629ba8a743",
-    "filepath": "include/alphabet_remapping.hpp"
+    "filepath": "include/alphabet_remapping.hpp",
+    "name": "set_bit",
+    "type": "function"
   },
   {
     "id": "8e4f99e7a0fd72d018b43b45541ea283",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=196-201/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "static_for",
+    "type": "function"
   },
   {
     "id": "b115f6e9f739bba432a356f2bbd696a4",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=183-187/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "swap",
+    "type": "function"
   },
   {
     "id": "e3a9254fe3547c21ba2b45fc49e69532",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=438-443/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "move",
+    "type": "function"
   },
   {
     "id": "d1ca91f872b5b3596fd38131d88f3acf",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=118-123/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "num_child",
+    "type": "function"
   },
   {
     "id": "d5eb4e1386aa9ac9111dd629c69eba2a",
     "swhid": "swh:1:cnt:b32f816dc652dfeee2066b18116acddbd781d2f2;origin=https:/github.com/aboffa/CoCo-trie;lines=59-64/",
     "sha1": "e5087698ddb0f50fbedbeff6bfcf0817d567327d",
-    "filepath": "include/dfuds.hpp"
+    "filepath": "include/dfuds.hpp",
+    "name": "build_rank_select_ds",
+    "type": "function"
   },
   {
     "id": "7211ca43286ee7b12237c612a7790c9a",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=215-221/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "ostream",
+    "type": "function"
   },
   {
     "id": "1c4fa7e293720c3da6e166d79e09526d",
     "swhid": "swh:1:cnt:a155da74bf6353cdbaff49ba36052a9305d3c98c;origin=https:/github.com/aboffa/CoCo-trie;lines=58-65/",
     "sha1": "5683db3d55e8cc3c3f9354745f7c3c629ba8a743",
-    "filepath": "include/alphabet_remapping.hpp"
+    "filepath": "include/alphabet_remapping.hpp",
+    "name": "check_chars",
+    "type": "function"
   },
   {
     "id": "d378a581b759ce898b3ebde0020f65f0",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=245-251/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "zeta",
+    "type": "function"
   },
   {
     "id": "f4564493db551b0db733bc47605590eb",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=87-93/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "vector",
+    "type": "function"
   },
   {
     "id": "78f7602edbb5b09b9784e56e241d9245",
     "swhid": "swh:1:cnt:a155da74bf6353cdbaff49ba36052a9305d3c98c;origin=https:/github.com/aboffa/CoCo-trie;lines=29-35/",
     "sha1": "5683db3d55e8cc3c3f9354745f7c3c629ba8a743",
-    "filepath": "include/alphabet_remapping.hpp"
+    "filepath": "include/alphabet_remapping.hpp",
+    "name": "b",
+    "type": "function"
   },
   {
     "id": "ba332cb2878ead011527489fcaf2a6d8",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=95-101/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "vector",
+    "type": "function"
   },
   {
     "id": "9d22ab8a45449b8624e3656e0a65c278",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=117-120/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "bits_first_code",
+    "type": "function"
   },
   {
     "id": "6a74129284157e8c8172047d61b2745b",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=252-257/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "nextInt",
+    "type": "function"
   },
   {
     "id": "162bd374ebf3c331142fd99392454348",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=276-279/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "space_cost_all_nodes",
+    "type": "function"
   },
   {
     "id": "36235ebeb1874fca0afb8052d4f188e8",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=138-143/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "internal_rank",
+    "type": "function"
   },
   {
     "id": "10df5a061b99195cf0c264a75d0475c3",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=383-390/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
-  },
-  {
-    "id": "92da4ddcd7d2741938c2b8c85f263b50",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=350-355/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "next",
+    "type": "function"
   },
   {
     "id": "3c96d71921f2cb0d4328fae1f6b63df6",
     "swhid": "swh:1:cnt:b32f816dc652dfeee2066b18116acddbd781d2f2;origin=https:/github.com/aboffa/CoCo-trie;lines=113-118/",
     "sha1": "e5087698ddb0f50fbedbeff6bfcf0817d567327d",
-    "filepath": "include/dfuds.hpp"
+    "filepath": "include/dfuds.hpp",
+    "name": "internal_rank",
+    "type": "function"
   },
   {
     "id": "be615e0f33dde485a537dc60024ac8f0",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=204-213/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "lcp",
+    "type": "function"
   },
   {
     "id": "275a1551eed857a7d783d5319aeae435",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=195-201/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "First",
+    "type": "function"
   },
   {
     "id": "f9fac65d409a48af4b9df60c1fe1c2f5",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=319-324/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "vector",
+    "type": "function"
   },
   {
     "id": "d34532bdf156403a5af44d6097682484",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=125-130/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "n_th_child_rank",
+    "type": "function"
   },
   {
     "id": "8739308f0afef47f2ffafdda89f1ff31",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=52-58/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
-  },
-  {
-    "id": "657e786b4c5150387e59f447b32cfc7f",
-    "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=45-50/",
-    "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "set",
+    "type": "function"
   },
   {
     "id": "f327e81e844bb961061f6e5f6284ef6c",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=117-122/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "bit_position",
+    "type": "function"
+  },
+  {
+    "id": "657e786b4c5150387e59f447b32cfc7f",
+    "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=45-50/",
+    "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "byte_counts",
+    "type": "function"
   },
   {
     "id": "428fe56b43264c96c23a4b589c6b7ffd",
     "swhid": "swh:1:cnt:f9130f1bb6f98a887c8782ddf6c483c68a64957a;origin=https:/github.com/aboffa/CoCo-trie;lines=28-32/",
     "sha1": "cbac75351eb38ce1430bbbd1c49eea87bf9d71d0",
-    "filepath": "benchmark.cpp"
+    "filepath": "benchmark.cpp",
+    "name": "usage",
+    "type": "function"
   },
   {
     "id": "7031b2ac79b2395dc33f84551761f713",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=239-243/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "ZipfianGenerator",
+    "type": "function"
   },
   {
     "id": "8c37428e146bc1cc36ff6657fafdb036",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=386-393/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "print_percentage",
+    "type": "function"
   },
   {
     "id": "83c66f7f474eefccc8d9a3c3b4416a42",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=119-127/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "one_extend",
+    "type": "function"
   },
   {
     "id": "3840d9914e7a2e0496904d371a1fdd93",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=203-213/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "string_t",
+    "type": "function"
   },
   {
     "id": "24bca4b5e69a77db7a11eeb19db85b37",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=268-274/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "pos",
+    "type": "function"
   },
   {
     "id": "59ebfb380c9337cd7dccd3eaa91e7941",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=116-120/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "MIN_L",
+    "type": "function"
   },
   {
     "id": "2c99fcd37f9b1baf56d0dae4cdc15caf",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=91-97/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
-  },
-  {
-    "id": "f3656c35815f0b53aaef8e274ff219f5",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=357-362/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "node_select",
+    "type": "function"
   },
   {
     "id": "5fc05281072e78f228af56959185d8a9",
     "swhid": "swh:1:cnt:b32f816dc652dfeee2066b18116acddbd781d2f2;origin=https:/github.com/aboffa/CoCo-trie;lines=72-79/",
     "sha1": "e5087698ddb0f50fbedbeff6bfcf0817d567327d",
-    "filepath": "include/dfuds.hpp"
+    "filepath": "include/dfuds.hpp",
+    "name": "size_in_bytes",
+    "type": "function"
   },
   {
     "id": "7e6933f5032d10f46a88bce8cb6c1b99",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=201-207/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "vector",
+    "type": "function"
   },
   {
     "id": "7fe76c8c0c7b72731fbc3fdd7463f190",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=318-324/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "code_type",
+    "type": "function"
   },
   {
     "id": "9b20dd97feb1bf61562571154fa516c0",
     "swhid": "swh:1:cnt:b32f816dc652dfeee2066b18116acddbd781d2f2;origin=https:/github.com/aboffa/CoCo-trie;lines=100-105/",
     "sha1": "e5087698ddb0f50fbedbeff6bfcf0817d567327d",
-    "filepath": "include/dfuds.hpp"
+    "filepath": "include/dfuds.hpp",
+    "name": "n_th_child_rank",
+    "type": "function"
   },
   {
     "id": "6a4e672146f61fb60aac6ee888e8f81d",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=464-470/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "unary_enumerator",
+    "type": "function"
   },
   {
     "id": "88aba23e8e8166ebfca5487bb4302463",
     "swhid": "swh:1:cnt:b32f816dc652dfeee2066b18116acddbd781d2f2;origin=https:/github.com/aboffa/CoCo-trie;lines=93-98/",
     "sha1": "e5087698ddb0f50fbedbeff6bfcf0817d567327d",
-    "filepath": "include/dfuds.hpp"
+    "filepath": "include/dfuds.hpp",
+    "name": "n_th_child",
+    "type": "function"
   },
   {
     "id": "41c408d06a14ae785451f7ac1493122f",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=169-176/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "build_actual_CoCo_children",
+    "type": "function"
+  },
+  {
+    "id": "99ef3cb1774cdc65d67ba6a788b813de",
+    "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=52-64/",
+    "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
+    "filepath": "include/utils.hpp",
+    "name": "node_type",
+    "type": "type"
   },
   {
     "id": "4d8094f5405e1ee6366e43627be9b3f2",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=110-117/",
-    "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "sha1": null,
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "zero_extend",
+    "type": "function"
   },
   {
     "id": "ab678e5b1618b396ee32b91a3fa06d4b",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=159-169/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "lsb",
+    "type": "function"
   },
   {
     "id": "f6a69e93785edc9d59661e7f8044fe1e",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=163-168/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "fillUniform",
+    "type": "function"
   },
   {
     "id": "53f87061491f3f34d84d8bbcb3f62bd3",
     "swhid": "swh:1:cnt:4af833add78917477bba52fefd71aa15d37f2be9;origin=https:/github.com/aboffa/CoCo-trie;lines=38-47/",
     "sha1": "a83b721d521f977c4a5e56360202b729db589aae",
-    "filepath": "include/array.hpp"
+    "filepath": "include/array.hpp",
+    "name": "rank",
+    "type": "function"
   },
   {
     "id": "0d22deec93e4a61f392d7f2f2dc94e6a",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=310-316/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "vector",
+    "type": "function"
   },
   {
     "id": "3d9ea37cfe7964139389b4644c6c3b52",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=42-50/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "push_back",
+    "type": "function"
   },
   {
     "id": "dd51e89d819bd8b8620f6ed68c1d6887",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=75-80/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "reverse_bits",
+    "type": "function"
   },
   {
     "id": "61bdb3bd17f2da03fa49b49d5cfe48cb",
     "swhid": "swh:1:cnt:6100d18bcd439c5dfb8436f483cec9973f6c19cb;origin=https:/github.com/aboffa/CoCo-trie;lines=343-350/",
     "sha1": "0d5608ded9ad68aa563572c15e051b3b77db1047",
-    "filepath": "include/CoCo-trie_v2.hpp"
+    "filepath": "include/CoCo-trie_v2.hpp",
+    "name": "size_in_bits",
+    "type": "function"
   },
   {
     "id": "8ffdab39a7bd50225731c64c93734dad",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=471-478/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "size_in_bits",
+    "type": "function"
   },
   {
     "id": "6c654b71df429bfcc8e809199e2b9f99",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=129-137/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "count_L",
+    "type": "function"
   },
   {
     "id": "83d4086f6b6f75e72814f7fd3b24090a",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=29-31/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "fixed_node",
+    "type": "function"
   },
   {
     "id": "ddb93ebb3f74ed81f1ff98efedd1ffab",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=89-97/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "write_packed",
+    "type": "function"
   },
   {
     "id": "b12c5197a606173b17ec27275861ac2b",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=235-243/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "vector",
+    "type": "function"
   },
   {
     "id": "a764f2f1365151929136386dbbd16be5",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=309-316/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "code_type",
+    "type": "function"
   },
   {
     "id": "f05b219593344198011f52aaf0fce7a3",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=189-197/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
-  },
-  {
-    "id": "87bdb14b5915e3a53569b1ccad89e0f2",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=380-387/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "bit_vector_builder",
+    "type": "function"
   },
   {
     "id": "4bbbab95940715ac55f19fb64129a771",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=303-308/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "get_word56",
+    "type": "function"
   },
   {
     "id": "bb53a9375e1330cc21841e4799e98a0d",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=33-44/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
-  },
-  {
-    "id": "6ebdab73eaa1c3c8d4a8b95ae682956e",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=226-237/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "seed",
+    "type": "function"
   },
   {
     "id": "161aab8bc89727bf7f1635478045977a",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=32-45/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "TrieNode_lw",
+    "type": "function"
   },
   {
-    "id": "733f1f0dd14ba94ddd49a75bbfbf70d3",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=151-158/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "id": "d9e1ae8628302aa5c4d121fd9e8926e8",
+    "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=14-29/",
+    "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
+    "filepath": "include/synthetic.hpp",
+    "name": "ZRandom",
+    "type": "type"
   },
   {
     "id": "fe9058426e77544f1f68a0209842b945",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=161-168/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "iterator",
+    "type": "function"
   },
   {
     "id": "e003d4b41cacd6a08ce9e45252346aa2",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=337-344/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "CoCo_v1",
+    "type": "function"
   },
   {
     "id": "0066efc92f63ae100999ac19625793ed",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=64-73/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "reverse_bytes",
+    "type": "function"
   },
   {
     "id": "ac67df40605afafefd7a425aab63c304",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=260-270/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "vector",
+    "type": "function"
   },
   {
     "id": "b8c3cfc3a70a7b61a7d8a8493463a251",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=407-418/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "uint128_t",
+    "type": "function"
   },
   {
     "id": "e634649761fa814e59af4a46278a01cd",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=51-65/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "getValue",
+    "type": "function"
   },
   {
     "id": "d6f6e4c7f5708292780d7f68f83049c2",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=26-36/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "bit_vector_builder",
+    "type": "function"
   },
   {
     "id": "076e1d2e689aa188dfb3da6221c7b303",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=115-127/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "search",
+    "type": "function"
   },
   {
     "id": "b9c2af06044e86ae71ed61b7aba3d938",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=145-154/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "nextZero",
+    "type": "function"
   },
   {
     "id": "965a051aa246f6bce17dcae589699387",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=353-364/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "query_time",
+    "type": "function"
   },
   {
     "id": "4400ed74a6575cc09f44f0fd3ad78fd5",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=352-364/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "F",
+    "type": "function"
   },
   {
     "id": "b4304f09d6dea8f4d239db86fb75b725",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=392-405/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "take",
+    "type": "function"
   },
   {
     "id": "0f7805d84907c69ef453d0595d2018e3",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=476-487/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "next",
+    "type": "function"
   },
   {
     "id": "10e96521687605386778c5bb50bd6bc5",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=96-108/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "append_bits",
+    "type": "function"
   },
   {
     "id": "86c8b8fda28a090f900f7653f813bee4",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=258-266/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "serialize",
+    "type": "function"
   },
   {
     "id": "f5eccc3e340f2d51cc46aa255bf61120",
     "swhid": "swh:1:cnt:8a2f23c27da370995588444ae9ad9500f854f17c;origin=https:/github.com/aboffa/CoCo-trie;lines=204-212/",
     "sha1": "e49aa131b2f470950f7d78ded7912368466d24fc",
-    "filepath": "include/CoCo-trie_dfuds.hpp"
-  },
-  {
-    "id": "41fc726bc29bf3e289d26d656f8265b3",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=365-373/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "filepath": "include/CoCo-trie_dfuds.hpp",
+    "name": "CoCo_dfuds",
+    "type": "function"
   },
   {
     "id": "b959c7a0b24defaf4b00ae0eb4b2b17c",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=291-301/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "get_word",
+    "type": "function"
   },
   {
     "id": "ea7c232f843154357e9c28a465f4ce75",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=99-110/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "size_in_bytes",
+    "type": "function"
   },
   {
     "id": "a45726344f81d792cb9f9a71c6bd85e1",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=57-66/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "write_elias_fano",
+    "type": "function"
   },
   {
     "id": "5a1aaf954143d841e26aaf2a7ef4b496",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=340-353/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "predecessor1",
+    "type": "function"
+  },
+  {
+    "id": "9e979b09742e0ca95f85b2d79729f7d5",
+    "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=23-32/",
+    "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "fixed_node",
+    "type": "type"
   },
   {
     "id": "19bb357ecd6eb0c79b5be85e3266201e",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=310-323/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "predecessor0",
+    "type": "function"
   },
   {
     "id": "40ffb8e5d62aeb1f4f9afe5e6b8b6789",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=355-368/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "successor1",
+    "type": "function"
   },
   {
     "id": "4ac9d15e868685f5a00af0b66ac13692",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=325-338/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "successor0",
+    "type": "function"
   },
   {
     "id": "c32376e75b31ae10d3badc9b7371d824",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=337-348/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "string",
+    "type": "function"
   },
   {
     "id": "138460be50076e1c2931c320ea130a3e",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=98-113/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "insert",
+    "type": "function"
   },
   {
     "id": "93704176d865a8e84cab8b53f78ffec0",
     "swhid": "swh:1:cnt:6100d18bcd439c5dfb8436f483cec9973f6c19cb;origin=https:/github.com/aboffa/CoCo-trie;lines=205-213/",
     "sha1": "0d5608ded9ad68aa563572c15e051b3b77db1047",
-    "filepath": "include/CoCo-trie_v2.hpp"
+    "filepath": "include/CoCo-trie_v2.hpp",
+    "name": "CoCo_v2",
+    "type": "function"
   },
   {
     "id": "f43bd028cf6779affb2b78674a582bc6",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=67-85/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "getValue",
+    "type": "function"
   },
   {
     "id": "ee55bd7d6faa61519676612f27a1d3cf",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=223-244/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "string",
+    "type": "function"
   },
   {
     "id": "2f7180b065830ad094aca0eeed94d130",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=326-335/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "string",
+    "type": "function"
   },
   {
     "id": "8c4b44da673b7c337e0a10c884c590ad",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=72-83/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "build_rank_select_ds",
+    "type": "function"
   },
   {
     "id": "f4594b7bdf1ee19d5406263308e6aaab",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=220-235/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "init",
+    "type": "function"
   },
   {
     "id": "335db2dfc33c9731598373b326ed3bc6",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=276-289/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "get_bits",
+    "type": "function"
   },
   {
     "id": "948f66aedd1cb74866724405d7195971",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=420-436/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "skip_zeros",
+    "type": "function"
   },
   {
     "id": "671ca5130886917a8d936e23db658e3b",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=48-60/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "louds_sux",
+    "type": "function"
   },
   {
     "id": "af2181eee1da296fd129ee78d7a1ecf0",
     "swhid": "swh:1:cnt:6100d18bcd439c5dfb8436f483cec9973f6c19cb;origin=https:/github.com/aboffa/CoCo-trie;lines=353-365/",
     "sha1": "0d5608ded9ad68aa563572c15e051b3b77db1047",
-    "filepath": "include/CoCo-trie_v2.hpp"
+    "filepath": "include/CoCo-trie_v2.hpp",
+    "name": "serialize",
+    "type": "function"
   },
   {
     "id": "15b4fbc95135fe873e8c31ab02d765e8",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=144-167/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "clear_space_cost_recursive",
+    "type": "function"
   },
   {
     "id": "13f00fe8af422c71fc4c0bbbb66878a1",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=217-233/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "count_L",
+    "type": "function"
   },
   {
     "id": "85f7bb26fd0f0c3f6fb355ac1d0640ee",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=331-345/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "check_l_max_amap",
+    "type": "function"
   },
   {
     "id": "ffe976dc00994a37ebfbe95f78788f3d",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=79-94/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "append_bits",
+    "type": "function"
+  },
+  {
+    "id": "d380a4a3ae2b9457514a20a7192133fc",
+    "swhid": "swh:1:cnt:4af833add78917477bba52fefd71aa15d37f2be9;origin=https:/github.com/aboffa/CoCo-trie;lines=21-49/",
+    "sha1": "a83b721d521f977c4a5e56360202b729db589aae",
+    "filepath": "include/array.hpp",
+    "name": "array",
+    "type": "type"
   },
   {
     "id": "34e678816fa2a373d82c749050a4b42b",
     "swhid": "swh:1:cnt:4af833add78917477bba52fefd71aa15d37f2be9;origin=https:/github.com/aboffa/CoCo-trie;lines=20-49/",
     "sha1": "a83b721d521f977c4a5e56360202b729db589aae",
-    "filepath": "include/array.hpp"
+    "filepath": "include/array.hpp",
+    "name": "T",
+    "type": "function"
   },
   {
     "id": "dc15dfecffe542e52010da5c91ec454a",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=489-503/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "skip",
+    "type": "function"
   },
   {
     "id": "fa973958ac4c6e67a957fa7518d78b77",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=155-172/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "reverse",
+    "type": "function"
   },
   {
     "id": "2e361d75ff3f00f5507955fca7b3aa15",
     "swhid": "swh:1:cnt:0697ce8c206a6d6f6f4773d92a39225c2ebfe1b1;origin=https:/github.com/aboffa/CoCo-trie;lines=24-45/",
     "sha1": "aec34b62784331164dbbf1a93671d44aaf6e3fbc",
-    "filepath": "example.cpp"
+    "filepath": "example.cpp",
+    "name": "main",
+    "type": "function"
   },
   {
     "id": "e43d56e3941d952cffcce8912b752c50",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=99-115/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "read_and_search_elias_fano",
+    "type": "function"
   },
   {
     "id": "195f788838286f4120e1a3ea487b676c",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=60-77/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "set_bits",
+    "type": "function"
   },
   {
     "id": "f387568645fe69a5d31d0e48dc3ae01e",
     "swhid": "swh:1:cnt:55de9131471f9f095950e43bedc471ec15cd67ae;origin=https:/github.com/aboffa/CoCo-trie;lines=82-96/",
     "sha1": "fc408c9320d8c06e7f90164d5b0f01c5225202f1",
-    "filepath": "lib/adapted_code/broadword.hpp"
+    "filepath": "lib/adapted_code/broadword.hpp",
+    "name": "select_in_word",
+    "type": "function"
   },
   {
     "id": "10b20f390132634e331a61079a09c80f",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=318-334/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "CoCo_v1",
+    "type": "function"
   },
   {
     "id": "465c94e36c2469ca1cd19dca6c32577c",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=505-520/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "skip0",
+    "type": "function"
   },
   {
     "id": "77d8dc8a2b78457588a71b28fde3c13c",
     "swhid": "swh:1:cnt:6100d18bcd439c5dfb8436f483cec9973f6c19cb;origin=https:/github.com/aboffa/CoCo-trie;lines=367-389/",
     "sha1": "0d5608ded9ad68aa563572c15e051b3b77db1047",
-    "filepath": "include/CoCo-trie_v2.hpp"
+    "filepath": "include/CoCo-trie_v2.hpp",
+    "name": "load",
+    "type": "function"
   },
   {
     "id": "6a6deca5c2fc361ae65d3858c5fa05a1",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=789-808/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "code_type",
+    "type": "function"
   },
   {
     "id": "6adae0860ddfee5308d260208c14a3fc",
     "swhid": "swh:1:cnt:8a2f23c27da370995588444ae9ad9500f854f17c;origin=https:/github.com/aboffa/CoCo-trie;lines=184-202/",
     "sha1": "e49aa131b2f470950f7d78ded7912368466d24fc",
-    "filepath": "include/CoCo-trie_dfuds.hpp"
+    "filepath": "include/CoCo-trie_dfuds.hpp",
+    "name": "CoCo_dfuds",
+    "type": "function"
   },
   {
     "id": "5464c250609eb53cbac165767ee7974f",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=211-235/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
-  },
-  {
-    "id": "60f872434776bdad168ccd881c08b01c",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=239-259/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "bit_vector",
+    "type": "function"
   },
   {
     "id": "1dd2b91baa8fe34b393e5c698236a0cb",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=273-300/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "vector",
+    "type": "function"
   },
   {
     "id": "57d114957a775914540302399426b3de",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=210-235/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "Range",
+    "type": "function"
   },
   {
     "id": "15532df6ddf00f24d4126bab90369eb9",
     "swhid": "swh:1:cnt:6100d18bcd439c5dfb8436f483cec9973f6c19cb;origin=https:/github.com/aboffa/CoCo-trie;lines=185-203/",
     "sha1": "0d5608ded9ad68aa563572c15e051b3b77db1047",
-    "filepath": "include/CoCo-trie_v2.hpp"
+    "filepath": "include/CoCo-trie_v2.hpp",
+    "name": "CoCo_v2",
+    "type": "function"
   },
   {
     "id": "30bb8f9b55eb7541bd7432935942be15",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=367-384/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "get_queries",
+    "type": "function"
   },
   {
     "id": "a0cdef4446bcfa454be00f9beb7c5332",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=272-300/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "Dist",
+    "type": "function"
   },
   {
     "id": "9fc4fe408ef95f502684bb900acd3cb6",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=787-808/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "string",
+    "type": "function"
+  },
+  {
+    "id": "0d7fc4ea1e5daf2c9559efbae9a49ec9",
+    "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=31-66/",
+    "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "TrieNode_lw",
+    "type": "type"
   },
   {
     "id": "dac7e2775e41a794b556354e7a1c88dd",
     "swhid": "swh:1:cnt:f9130f1bb6f98a887c8782ddf6c483c68a64957a;origin=https:/github.com/aboffa/CoCo-trie;lines=35-60/",
     "sha1": "cbac75351eb38ce1430bbbd1c49eea87bf9d71d0",
-    "filepath": "benchmark.cpp"
+    "filepath": "benchmark.cpp",
+    "name": "test_trie",
+    "type": "function"
   },
   {
     "id": "d12b85ae88d570d3a33523c9090a3fa4",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=68-87/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "write_bitvector",
+    "type": "function"
   },
   {
     "id": "b647bc1d298827b17208e7e6e595a091",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=643-669/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "space_cost_recursive",
+    "type": "function"
   },
   {
     "id": "1c50b0bd3609c836b04243388b8fcbe2",
     "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=129-153/",
     "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
-    "filepath": "lib/adapted_code/bit_vector.hpp"
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "append",
+    "type": "function"
   },
   {
     "id": "a0682a21f9e53c90632c2e2a72c2ff87",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=761-785/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "code_type",
+    "type": "function"
   },
   {
     "id": "f7ab49a8f6931503a0dbdac2e34459e9",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=245-270/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "compute_codes_descendents_l_recursive",
+    "type": "function"
   },
   {
     "id": "4249d2659bf7717b410de0c27df6fb01",
     "swhid": "swh:1:cnt:f9130f1bb6f98a887c8782ddf6c483c68a64957a;origin=https:/github.com/aboffa/CoCo-trie;lines=34-60/",
     "sha1": "cbac75351eb38ce1430bbbd1c49eea87bf9d71d0",
-    "filepath": "benchmark.cpp"
-  },
-  {
-    "id": "491e614a888575916a375bdb49627994",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=268-294/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "filepath": "benchmark.cpp",
+    "name": "uncompact_trie_t",
+    "type": "function"
   },
   {
     "id": "786b82db010090a8a19f8d4734cc75bb",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=246-272/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
-  },
-  {
-    "id": "ef88396e682b22b6d52faf0d4d8262c5",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=160-187/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "datasetStats",
+    "type": "function"
   },
   {
     "id": "5549f935f6afb5f536f6ca9ee428b7a4",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=759-785/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "string",
+    "type": "function"
   },
   {
     "id": "65a93d4ff0ca8f64157a17f71a6e60bb",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=173-199/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
-  },
-  {
-    "id": "7d006221d48b617e193d365b8fec501c",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=189-219/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "fillClustered",
+    "type": "function"
   },
   {
     "id": "18ae98e4ec08897a1978fc8ae05f6469",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=151-172/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "print",
+    "type": "function"
   },
   {
     "id": "ded0f76149ce72aa070b1c78d778fb4f",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=108-146/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "vector",
+    "type": "function"
   },
   {
     "id": "7f7fa709899d7bfae0e52967e1a7371c",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=170-199/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "iterator",
+    "type": "function"
   },
   {
     "id": "669c8b19e1afd5a771c1f0308f54ebb6",
     "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=274-306/",
     "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
-    "filepath": "include/utils.hpp"
+    "filepath": "include/utils.hpp",
+    "name": "datasetStats",
+    "type": "function"
   },
   {
-    "id": "d9863334cfe6eb48b3150dfa375a3f7a",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=23-47/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "id": "2db0f6a7595e2f033074853ca30e740a",
+    "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=104-148/",
+    "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
+    "filepath": "include/synthetic.hpp",
+    "name": "UniformDataGenerator",
+    "type": "type"
   },
   {
     "id": "2d2d4f34cfdc0f65a318aebbff3d2ef2",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=722-757/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "string",
+    "type": "function"
   },
   {
     "id": "0df0755df2fc67f1a3db277dae0938cf",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=103-148/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "code_type",
+    "type": "function"
   },
   {
     "id": "bc43b2ba0800222310b7bc272d392bdf",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=721-757/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "is_leftmost",
+    "type": "function"
   },
   {
     "id": "cc605bf3ac9fdb671fca2986b58c16b2",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=117-152/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "read_and_search_bitvector",
+    "type": "function"
+  },
+  {
+    "id": "f3b6e1662cfeb8f738b26dccd83d7b80",
+    "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=210-258/",
+    "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
+    "filepath": "include/synthetic.hpp",
+    "name": "ZipfianGenerator",
+    "type": "type"
   },
   {
     "id": "a6c1c65aaa1253875b84d5263614838e",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=155-192/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "read_and_search_packed",
+    "type": "function"
   },
   {
     "id": "8b231fd12fe809521c59c3125fdeaf66",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=154-192/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "binary_search",
+    "type": "function"
   },
   {
     "id": "97dd5ad35b5296488aa9f73c8d81ce0a",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=178-215/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "build_actual_CoCo_children_recursive",
+    "type": "function"
   },
   {
-    "id": "ba4ff64476def42505f1ef6e46f676d1",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=296-341/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "id": "ffa77dd513dce659c9cb6d3ce6133b6b",
+    "swhid": "swh:1:cnt:28de0944f9c0d805bc6cbb871e0f41e51e77e0f8;origin=https:/github.com/aboffa/CoCo-trie;lines=140-183/",
+    "sha1": "e4ce4591743304d64a11206f1021b29dd060a4c5",
+    "filepath": "include/utils.hpp",
+    "name": "datasetStats",
+    "type": "type"
+  },
+  {
+    "id": "f5b713f1a69fcbb2ff9e72a4cf51b0ed",
+    "swhid": "swh:1:cnt:a155da74bf6353cdbaff49ba36052a9305d3c98c;origin=https:/github.com/aboffa/CoCo-trie;lines=1-67/",
+    "sha1": "5683db3d55e8cc3c3f9354745f7c3c629ba8a743",
+    "filepath": "include/alphabet_remapping.hpp",
+    "name": "alphamap",
+    "type": "type"
   },
   {
     "id": "f402a4f9b914dcdb1bd7e4faa506cbc4",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=672-719/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "enc_minmax",
+    "type": "function"
   },
   {
     "id": "821b1e970250604f2bcd15aac9d3daf4",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=671-719/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "is_min",
+    "type": "function"
+  },
+  {
+    "id": "576c16149b019db66a0f665b2121fd23",
+    "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=155-208/",
+    "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
+    "filepath": "include/synthetic.hpp",
+    "name": "ClusteredDataGenerator",
+    "type": "type"
   },
   {
     "id": "51e19e5d904d5a743ba1378447ca0ac0",
     "swhid": "swh:1:cnt:8b9c70941101b196887f8ad5b8c21d164413d578;origin=https:/github.com/aboffa/CoCo-trie;lines=150-208/",
     "sha1": "28a5ba6d89698eecfda2aec8cb3f7071dad40c19",
-    "filepath": "include/synthetic.hpp"
+    "filepath": "include/synthetic.hpp",
+    "name": "code_type",
+    "type": "function"
   },
   {
     "id": "e1dc23a3d427b5f895fd8a1a9c099ba7",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=281-328/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "space_cost_all_nodes_recursive",
+    "type": "function"
+  },
+  {
+    "id": "5f9efc9e3fc56d577936aa030401ee62",
+    "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=374-458/",
+    "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "enumerator",
+    "type": "type"
   },
   {
     "id": "0a17cb3d997963573e9f3d42639d03af",
     "swhid": "swh:1:cnt:f9130f1bb6f98a887c8782ddf6c483c68a64957a;origin=https:/github.com/aboffa/CoCo-trie;lines=63-125/",
     "sha1": "cbac75351eb38ce1430bbbd1c49eea87bf9d71d0",
-    "filepath": "benchmark.cpp"
+    "filepath": "benchmark.cpp",
+    "name": "main",
+    "type": "function"
   },
   {
-    "id": "5bb7731b1e6fbfa9bbbdd5cbd66f0631",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=75-141/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "id": "9dcbae4c5eeb0f7093f5319f8a070877",
+    "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=460-526/",
+    "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "unary_enumerator",
+    "type": "type"
+  },
+  {
+    "id": "a9a76b6a2aeff304032aecc6c3e59646",
+    "swhid": "swh:1:cnt:b32f816dc652dfeee2066b18116acddbd781d2f2;origin=https:/github.com/aboffa/CoCo-trie;lines=29-131/",
+    "sha1": "e5087698ddb0f50fbedbeff6bfcf0817d567327d",
+    "filepath": "include/dfuds.hpp",
+    "name": "dfuds",
+    "type": "type"
   },
   {
     "id": "3dbf6012bd157f6a01e4800876d159a1",
     "swhid": "swh:1:cnt:b32f816dc652dfeee2066b18116acddbd781d2f2;origin=https:/github.com/aboffa/CoCo-trie;lines=27-131/",
     "sha1": "e5087698ddb0f50fbedbeff6bfcf0817d567327d",
-    "filepath": "include/dfuds.hpp"
+    "filepath": "include/dfuds.hpp",
+    "name": "bp_support",
+    "type": "function"
+  },
+  {
+    "id": "eafe262f4364f3fc78a88f56d252754f",
+    "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=28-156/",
+    "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
+    "filepath": "include/louds_sux.hpp",
+    "name": "louds_sux",
+    "type": "type"
   },
   {
     "id": "6f74b4964912c0af9056ec9b4a4c7986",
     "swhid": "swh:1:cnt:138de7fbadb75943aabd5ee8089c5b75d84aeaae;origin=https:/github.com/aboffa/CoCo-trie;lines=25-156/",
     "sha1": "eabcc0223168c7d62260182838ad650d85dc7d0e",
-    "filepath": "include/louds_sux.hpp"
+    "filepath": "include/louds_sux.hpp",
+    "name": "rank_support1",
+    "type": "function"
   },
   {
     "id": "b738c1dfc622ce8d3c7effa5df905e72",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=195-316/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "build_CoCo_from_uncompacted_trie",
+    "type": "function"
   },
   {
     "id": "37053c9165c1ae35f0ef566ba73c2317",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=194-316/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "root_type",
+    "type": "function"
+  },
+  {
+    "id": "b5f208914930e22b75e73404ef3023c5",
+    "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=21-203/",
+    "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "bit_vector_builder",
+    "type": "type"
   },
   {
     "id": "e317c056ff48c9f19bd9ac9d58140dbc",
     "swhid": "swh:1:cnt:6100d18bcd439c5dfb8436f483cec9973f6c19cb;origin=https:/github.com/aboffa/CoCo-trie;lines=46-179/",
     "sha1": "0d5608ded9ad68aa563572c15e051b3b77db1047",
-    "filepath": "include/CoCo-trie_v2.hpp"
+    "filepath": "include/CoCo-trie_v2.hpp",
+    "name": "build_CoCo_from_uncompacted_trie",
+    "type": "function"
   },
   {
     "id": "0a28f3af91140abaa9bd6e9ae5f81073",
     "swhid": "swh:1:cnt:6100d18bcd439c5dfb8436f483cec9973f6c19cb;origin=https:/github.com/aboffa/CoCo-trie;lines=45-179/",
     "sha1": "0d5608ded9ad68aa563572c15e051b3b77db1047",
-    "filepath": "include/CoCo-trie_v2.hpp"
+    "filepath": "include/CoCo-trie_v2.hpp",
+    "name": "root_type",
+    "type": "function"
   },
   {
     "id": "88d376900a64913dd58120d0e3c555c2",
     "swhid": "swh:1:cnt:8a2f23c27da370995588444ae9ad9500f854f17c;origin=https:/github.com/aboffa/CoCo-trie;lines=46-182/",
     "sha1": "e49aa131b2f470950f7d78ded7912368466d24fc",
-    "filepath": "include/CoCo-trie_dfuds.hpp"
+    "filepath": "include/CoCo-trie_dfuds.hpp",
+    "name": "build_CoCo_from_uncompacted_trie",
+    "type": "function"
   },
   {
     "id": "9c1762d774490ed668ee6e6962fe9991",
     "swhid": "swh:1:cnt:8a2f23c27da370995588444ae9ad9500f854f17c;origin=https:/github.com/aboffa/CoCo-trie;lines=45-182/",
     "sha1": "e49aa131b2f470950f7d78ded7912368466d24fc",
-    "filepath": "include/CoCo-trie_dfuds.hpp"
+    "filepath": "include/CoCo-trie_dfuds.hpp",
+    "name": "root_type",
+    "type": "function"
   },
   {
     "id": "1ea9c10e49385f6c67e8cd5cb46da29f",
     "swhid": "swh:1:cnt:8a2f23c27da370995588444ae9ad9500f854f17c;origin=https:/github.com/aboffa/CoCo-trie;lines=214-340/",
     "sha1": "e49aa131b2f470950f7d78ded7912368466d24fc",
-    "filepath": "include/CoCo-trie_dfuds.hpp"
+    "filepath": "include/CoCo-trie_dfuds.hpp",
+    "name": "look_up",
+    "type": "function"
   },
   {
     "id": "b6c713cb088de4618c27b489d04adab2",
     "swhid": "swh:1:cnt:6100d18bcd439c5dfb8436f483cec9973f6c19cb;origin=https:/github.com/aboffa/CoCo-trie;lines=215-341/",
     "sha1": "0d5608ded9ad68aa563572c15e051b3b77db1047",
-    "filepath": "include/CoCo-trie_v2.hpp"
+    "filepath": "include/CoCo-trie_v2.hpp",
+    "name": "look_up",
+    "type": "function"
   },
   {
     "id": "b1c9765b41328f0367f66f2f21465e3f",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=346-469/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "look_up",
+    "type": "function"
+  },
+  {
+    "id": "223f59c0a163b93a4c9bbac75cf715b7",
+    "swhid": "swh:1:cnt:2cf0de58ba86c5ce5ad94b42fe9360380fce6a35;origin=https:/github.com/aboffa/CoCo-trie;lines=205-531/",
+    "sha1": "9df7c8f02a600f7771856293fd9be0657dd76840",
+    "filepath": "lib/adapted_code/bit_vector.hpp",
+    "name": "bit_vector",
+    "type": "type"
   },
   {
     "id": "c58bbad71b6bf8a2763fc579b3b7893f",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=347-641/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "vector",
+    "type": "function"
   },
   {
-    "id": "2b0b689491aaa6b2800df9f15e9ce54a",
-    "swhid": "swh:1:cnt:4bd9035d1a78ed579dfc61ae18e37abe555b3093;origin=https:/github.com/aboffa/CoCo-trie;lines=12-424/",
-    "sha1": "60ff1d8dc43918a1ed1c636b2d12abe338bf4f27",
-    "filepath": "lib/adapted_code/compact_elias_fano.hpp"
+    "id": "3a02ad5b5ce63944e2a48d9c5ea42efb",
+    "swhid": "swh:1:cnt:8a2f23c27da370995588444ae9ad9500f854f17c;origin=https:/github.com/aboffa/CoCo-trie;lines=27-351/",
+    "sha1": "e49aa131b2f470950f7d78ded7912368466d24fc",
+    "filepath": "include/CoCo-trie_dfuds.hpp",
+    "name": "CoCo_dfuds",
+    "type": "type"
   },
   {
     "id": "2f04f6c14d1c2e1af396a1d64f48101b",
     "swhid": "swh:1:cnt:8a2f23c27da370995588444ae9ad9500f854f17c;origin=https:/github.com/aboffa/CoCo-trie;lines=21-351/",
     "sha1": "e49aa131b2f470950f7d78ded7912368466d24fc",
-    "filepath": "include/CoCo-trie_dfuds.hpp"
+    "filepath": "include/CoCo-trie_dfuds.hpp",
+    "name": "MIN_L",
+    "type": "function"
+  },
+  {
+    "id": "a01137b99c0c4481dd06b808da90b9d9",
+    "swhid": "swh:1:cnt:6100d18bcd439c5dfb8436f483cec9973f6c19cb;origin=https:/github.com/aboffa/CoCo-trie;lines=28-390/",
+    "sha1": "0d5608ded9ad68aa563572c15e051b3b77db1047",
+    "filepath": "include/CoCo-trie_v2.hpp",
+    "name": "CoCo_v2",
+    "type": "type"
   },
   {
     "id": "f2f7b6683a156e151bc75fc6e13a9c04",
     "swhid": "swh:1:cnt:6100d18bcd439c5dfb8436f483cec9973f6c19cb;origin=https:/github.com/aboffa/CoCo-trie;lines=21-390/",
     "sha1": "0d5608ded9ad68aa563572c15e051b3b77db1047",
-    "filepath": "include/CoCo-trie_v2.hpp"
+    "filepath": "include/CoCo-trie_v2.hpp",
+    "name": "MIN_L",
+    "type": "function"
+  },
+  {
+    "id": "c7f342d3e6d3f889aa876f4afb772336",
+    "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=43-480/",
+    "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "CoCo_v1",
+    "type": "type"
   },
   {
     "id": "50379bcba073565ec557309bb8d57efe",
     "swhid": "swh:1:cnt:202a206d9df972fa13cab892f4ae39798b8d599c;origin=https:/github.com/aboffa/CoCo-trie;lines=36-480/",
     "sha1": "833a8cdff38ed783cd39118c61e568c1f6ff9292",
-    "filepath": "include/CoCo-trie_v1.hpp"
+    "filepath": "include/CoCo-trie_v1.hpp",
+    "name": "MIN_L",
+    "type": "function"
+  },
+  {
+    "id": "735070508b624a2d4bda75e9ca74b439",
+    "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=29-809/",
+    "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "Trie_lw",
+    "type": "type"
   },
   {
     "id": "18c9af0546c514d04eb4e83f2080d73d",
     "swhid": "swh:1:cnt:ce26123e1dba67120b2946358d0334a4131102bc;origin=https:/github.com/aboffa/CoCo-trie;lines=28-809/",
     "sha1": "054a05ff5a84f36fd34227b9cfe9ba0f33135bb4",
-    "filepath": "include/uncompacted_trie.hpp"
+    "filepath": "include/uncompacted_trie.hpp",
+    "name": "MIN_L",
+    "type": "function"
   }
 ]
