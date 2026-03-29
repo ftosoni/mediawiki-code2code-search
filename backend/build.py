@@ -17,11 +17,25 @@ import tree_sitter
 import tree_sitter_python
 import tree_sitter_cpp
 import tree_sitter_c
+import tree_sitter_php
+import tree_sitter_javascript
+import tree_sitter_typescript
+import tree_sitter_lua
+import tree_sitter_go
+import tree_sitter_java
+import tree_sitter_rust
 
 # Initialize Languages
 PY_LANGUAGE = tree_sitter.Language(tree_sitter_python.language())
 CPP_LANGUAGE = tree_sitter.Language(tree_sitter_cpp.language())
 C_LANGUAGE = tree_sitter.Language(tree_sitter_c.language())
+PHP_LANGUAGE = tree_sitter.Language(tree_sitter_php.language_php())
+JS_LANGUAGE = tree_sitter.Language(tree_sitter_javascript.language())
+TS_LANGUAGE = tree_sitter.Language(tree_sitter_typescript.language_typescript())
+LUA_LANGUAGE = tree_sitter.Language(tree_sitter_lua.language())
+GO_LANGUAGE = tree_sitter.Language(tree_sitter_go.language())
+JAVA_LANGUAGE = tree_sitter.Language(tree_sitter_java.language())
+RUST_LANGUAGE = tree_sitter.Language(tree_sitter_rust.language())
 
 # Load local environment variables
 load_dotenv()
@@ -80,21 +94,42 @@ def extract_functions_treesitter(code_bytes: bytes, ext: str) -> list:
     if ext == ".py":
         lang = PY_LANGUAGE
         query_scm = "(function_definition) @function"
-    elif ext in [".cpp", ".hpp", ".h"]:
+    elif ext in [".cpp", ".hpp", ".h", ".cc", ".cxx"]:
         lang = CPP_LANGUAGE
-        # Comprehensive C++ patterns
         query_scm = "(function_definition) @function (template_declaration) @function"
     elif ext == ".c":
         lang = C_LANGUAGE
         query_scm = "(function_definition) @function"
+    elif ext == ".php":
+        lang = PHP_LANGUAGE
+        query_scm = "(function_definition) @function (method_declaration) @function"
+    elif ext == ".js":
+        lang = JS_LANGUAGE
+        query_scm = "(function_declaration) @function (method_definition) @function"
+    elif ext in [".ts", ".tsx", ".mts", ".cts"]:
+        lang = TS_LANGUAGE
+        query_scm = "(function_declaration) @function (method_definition) @function"
+    elif ext == ".lua":
+        lang = LUA_LANGUAGE
+        query_scm = "(function_declaration) @function"
+    elif ext == ".go":
+        lang = GO_LANGUAGE
+        query_scm = "(function_declaration) @function (method_declaration) @function"
+    elif ext == ".java":
+        lang = JAVA_LANGUAGE
+        query_scm = "(method_declaration) @function"
+    elif ext == ".rs":
+        lang = RUST_LANGUAGE
+        query_scm = "(function_item) @function"
     else:
         return []
 
     try:
         parser = tree_sitter.Parser(lang)
         tree = parser.parse(code_bytes)
-        query = lang.query(query_scm)
-        captures = query.captures(tree.root_node)
+        query = tree_sitter.Query(lang, query_scm)
+        cursor = tree_sitter.QueryCursor(query)
+        captures_dict = cursor.captures(tree.root_node)
     except Exception as e:
         # Fallback for headers that might be C or C++
         if ext == ".h":
@@ -102,19 +137,19 @@ def extract_functions_treesitter(code_bytes: bytes, ext: str) -> list:
                  lang = C_LANGUAGE
                  parser = tree_sitter.Parser(lang)
                  tree = parser.parse(code_bytes)
-                 query = lang.query("(function_definition) @function")
-                 captures = query.captures(tree.root_node)
+                 query = tree_sitter.Query(lang, "(function_definition) @function")
+                 cursor = tree_sitter.QueryCursor(query)
+                 captures_dict = cursor.captures(tree.root_node)
              except Exception:
                  return []
         else:
-            raise e
+            print(f"  Tree-sitter error for {ext}: {e}")
+            return []
     
-    # Normalize captures to a list of nodes
-    if isinstance(captures, dict):
-        all_nodes = []
-        for nodes in captures.values():
-            all_nodes.extend(nodes)
-        captures = all_nodes
+    # Normalize dictionary-style captures (0.25.2) to flat list of Nodes
+    captures = []
+    for nodes in captures_dict.values():
+        captures.extend(nodes)
 
     functions = []
     seen_nodes = set()
@@ -189,7 +224,11 @@ def build_pipeline():
             
     print("Segmenting functions using Tree-sitter AST...")
     functions = []
-    valid_exts = {".c", ".cpp", ".h", ".hpp", ".py"}
+    valid_exts = {
+        ".c", ".cpp", ".h", ".hpp", ".cc", ".cxx",
+        ".py", ".php", ".js", ".ts", ".tsx", ".mts", ".cts",
+        ".lua", ".go", ".java", ".rs"
+    }
     for root, _, files in os.walk(repo_path):
         if ".git" in root: continue
         for file in files:
