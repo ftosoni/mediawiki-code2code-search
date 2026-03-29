@@ -1,4 +1,4 @@
-# Event Horizon | Semantic Code Search
+# MediaWki Code2Code Search
 
 ![Event Horizon Banner](https://img.shields.io/badge/Status-Optimized-success?style=for-the-badge)
 ![Tech Stack](https://img.shields.io/badge/Stack-FastAPI%20|%20Jina%20|%20FAISS-orange?style=for-the-badge)
