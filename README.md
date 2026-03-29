@@ -1,67 +1,69 @@
 # Event Horizon | Semantic Code Search
 
-![Event Horizon Banner](https://img.shields.io/badge/Status-Prototype-orange?style=for-the-badge)
-![Tech Stack](https://img.shields.io/badge/Stack-FastAPI%20|%20React%20|%20Three.js-purple?style=for-the-badge)
+![Event Horizon Banner](https://img.shields.io/badge/Status-Optimized-success?style=for-the-badge)
+![Tech Stack](https://img.shields.io/badge/Stack-FastAPI%20|%20Jina%20|%20FAISS-orange?style=for-the-badge)
+![Deployment](https://img.shields.io/badge/Platform-Wikimedia%20Toolforge-blue?style=for-the-badge)
 
-Event Horizon is a next-generation, high-fidelity code-to-code search engine specifically optimized for the **Software Heritage (SWH)** ecosystem. It allows searching for functionally similar code snippets across large repositories using modern neural retrieval techniques.
+Event Horizon is a high-performance, memory-efficient semantic code search engine designed for the **Software Heritage (SWH)** ecosystem. It implements a modern retrieval-reranking architecture optimized for the strict resource constraints of **Wikimedia Toolforge**.
 
 ## ✨ Key Features
 
-- **🎯 Function-Level Precision**: Unlike traditional file-based search, Event Horizon indexes individual functions, isolating logic from boilerplate and headers.
-- **🧠 LLM-Assisted Offsets**: Uses GPT-4o during the build phase to identify exact function boundaries (including docstrings and comments) for language-agnostic precision.
-- **🆔 Verified SWHIDs**: Implementation follows strict `swh.model` identification logic, normalization (LF), and canonical hashing to ensure generated identifiers match the Software Heritage archive perfectly.
-- **🌌 Octahedron Vortex UI**: A visually stunning search interface built with React and Three.js, featuring a custom particle physics engine and a sleek orange-to-purple technological aesthetic.
+- **🧠 Dual-Phase Retrieval**: 
+    - **Recall**: Uses `jina-code-embeddings-0.5b` with FAISS `IndexIVFPQ` (int8 quantized) for lightning-fast candidate identification.
+    - **Precision**: Uses `jina-reranker-v2-base-multilingual` with dynamic quantization for high-fidelity ranking of retrieved snippets.
+- **🌳 Multi-Language AST Segmentation**: Leverages **Tree-sitter** for precise function-level extraction across 10 languages:
+    - PHP, Python, JavaScript, TypeScript, Lua, Go, Java, Rust, C, and C++.
+- **☁️ On-Demand S3 Retrieval**: Instead of storing full source code locally, it fetches gzipped blobs directly from the **Software Heritage S3 bucket** using standard SHA1 hashes, minimizing disk and RAM usage.
+- **🌍 Global by Design (i18n)**: Fully localized UI supporting over 15 languages, including Indic languages (Bengali, Hindi, Tamil, Telugu, etc.), French, and Italian.
+- **🌌 Octahedron Vortex UI**: A visually stunning frontend built with React and Three.js, featuring a custom particle physics engine and a sleek technological aesthetic.
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.9+
-- OpenAI API Key (for the indexing pipeline)
+- Python 3.10+
+- `git` (for repository cloning)
 
 ### Installation
 1. Clone the repository:
    ```bash
    git clone https://github.com/ftosoni/code-search-engine.git
-   cd code-search-engine/backend
+   cd code-search-engine
    ```
-2. Create and activate a virtual environment:
+2. Setup the virtual environment and install dependencies:
    ```bash
+   cd backend
    python -m venv venv
-   source venv/bin/activate
-   ```
-   ```powershell
-   # Windows PowerShell
-   python -m venv venv
-   .\venv\Scripts\Activate.ps1
-   ```
-3. Install dependencies:
-   ```bash
+   # Windows: .\venv\Scripts\Activate.ps1 | Linux: source venv/bin/activate
    pip install -r requirements.txt
    ```
 
 ### Running the Pipeline
-To build the index from the base repository (`CoCo-trie`):
-1. Set your OpenAI API key in `build.py` or as an environment variable.
-2. Run the build script:
+To build the semantic index from a target repository:
+1. Run the build script:
    ```bash
    python build.py
    ```
-This will generate `functions.json` (metadata) and `event_horizon.index` (vector database).
+This will:
+- Clone/update the target repository.
+- Segment functions using Tree-sitter AST.
+- Resolve Git hashes to standard SHA1 via the SWH API.
+- Generate a disk-ready FAISS index and metadata.
 
 ### Starting the Search Engine
-Launch the FastAPI server:
+Launch the FastAPI server using Uvicorn:
 ```bash
-cd backend
-python -m uvicorn app:app --reload
+python -m uvicorn app:app --host 0.0.0.0 --port 8000
 ```
-Navigate to **`http://127.0.0.1:8000`** in your browser to start exploring the Event Horizon.
+Navigate to **`http://localhost:8000`** to start exploring the Event Horizon.
 
 ## 🛠️ Technology Stack
-- **Backend Framework**: [FastAPI](https://fastapi.tiangolo.com/)
-- **Vector Engine**: [FAISS](https://github.com/facebookresearch/faiss)
-- **Embeddings**: `all-MiniLM-L6-v2` (Sentence-Transformers)
+
+- **Recall Model**: [Jina Code Embeddings (0.5b)](https://huggingface.co/jinaai/jina-code-embeddings-0.5b)
+- **Rerank Model**: [Jina Reranker v2 (Multilingual)](https://huggingface.co/jinaai/jina-reranker-v2-base-multilingual)
+- **Vector Engine**: [FAISS](https://github.com/facebookresearch/faiss) (with IndexIVFPQ for memory efficiency)
+- **Segmentation**: [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) (10 language parsers)
+- **Archive Access**: [Software Heritage S3](https://archive.softwareheritage.org/) (SHA1-based gzipped blob retrieval)
 - **Frontend**: React 18 / Three.js (Single-file weightless implementation)
-- **SWH ID Gen**: `swh.model` (Software Heritage identification logic)
 
 ## 📄 License
-Apache 2.0 License. Created as a prototype for advanced code-to-code retrieval.
+Apache 2.0 License. Created for advanced code-to-code retrieval within the Wikimedia developer ecosystem.
