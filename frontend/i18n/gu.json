@@ -13,9 +13,14 @@
     "licence": "લાઇસન્સ:",
     "view_source": "સ્રોત જુઓ",
     "view_swhid": "SWHID જુઓ",
-    "last_updated": "છેલ્લું અપડેટ: ૨૮ માર્ચ ૨૦૨૬",
-    "show_more": "સંપૂર્ણ ફંકશન જુઓ",
+    "last_updated": "છેલ્લું અપડેટ: ૨ એપ્રિલ ૨૦૨૬",
+    "show_more": "વધુ કોડ બતાવો",
     "show_less": "નાનું કરો",
+    "type_all": "બધું",
+    "type_function": "ફંકશન્સ",
+    "type_type": "પ્રકાર (Types)",
+    "type_template_function": "ટેમ્પલેટ ફંકશન્સ",
+    "type_template_type": "ટેમ્પલેટ પ્રકાર",
     "fetching_code": "Software Heritage માંથી કોડ મેળવી રહ્યું છે...",
     "error_fetching_code": "SWH આર્કાઇવમાં સ્નિપેટ ઉપલબ્ધ નથી"
 }

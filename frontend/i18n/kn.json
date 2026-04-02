@@ -13,9 +13,14 @@
     "licence": "ಪರವಾನಗಿ:",
     "view_source": "ಮೂಲವನ್ನು ನೋಡಿ",
     "view_swhid": "SWHID ನೋಡಿ",
-    "last_updated": "ಕೊನೆಯ ನವೀಕರಣ: 28 ಮಾರ್ಚ್ 2026",
-    "show_more": "ಪೂರ್ಣ ಕಾರ್ಯವನ್ನು ತೋರಿಸು",
-    "show_less": "ಕುಗ್ಗಿಸು",
+    "last_updated": "ಕೊನೆಯ ಅಪ್‌ಡೇಟ್: 2 ಏಪ್ರಿಲ್ 2026",
+    "show_more": "ಹೆಚ್ಚಿನ ಕೋಡ್ ನೋಡಿ",
+    "show_less": "ಲಘುಗೊಳಿಸಿ",
+    "type_all": "ಎಲ್ಲಾ",
+    "type_function": "ಫಂಕ್ಷನ್‌ಗಳು",
+    "type_type": "ವಿಧಗಳು (Types)",
+    "type_template_function": "ಟೆಂಪ್ಲೇಟ್ ಫಂಕ್ಷನ್‌ಗಳು",
+    "type_template_type": "ಟೆಂಪ್ಲೇಟ್ ವಿಧಗಳು",
     "fetching_code": "Software Heritage ನಿಂದ ಕೋಡ್ ಪಡೆಯಲಾಗುತ್ತಿದೆ...",
     "error_fetching_code": "SWH ಆರ್ಕೈವ್‌ನಲ್ಲಿ ಸ್ನಿಪ್ಪೆಟ್ ಲಭ್ಯವಿಲ್ಲ"
 }

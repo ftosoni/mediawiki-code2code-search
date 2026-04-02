@@ -13,9 +13,14 @@
     "licence": "ലൈസൻസ്:",
     "view_source": "ഉറവിടം കാണുക",
     "view_swhid": "SWHID കാണുക",
-    "last_updated": "അവസാന അപ്ഡേറ്റ്: 28 മാർച്ച് 2026",
-    "show_more": "മുഴുനീള ഫംഗ്‌ഷൻ കാണുക",
-    "show_less": "ചുരുക്കി കാണിക്കുക",
+    "last_updated": "അവസാന അപ്‌ഡേറ്റ്: 2 ഏപ്രിൽ 2026",
+    "show_more": "കൂടുതൽ കോഡ് കാണുക",
+    "show_less": "ചുരുക്കുക",
+    "type_all": "എല്ലാം",
+    "type_function": "ഫംഗ്ഷനുകൾ",
+    "type_type": "തരങ്ങൾ (Types)",
+    "type_template_function": "ടെംപ്ലേറ്റ് ഫംഗ്ഷനുകൾ",
+    "type_template_type": "ടെംപ്ലേറ്റ് തരങ്ങൾ",
     "fetching_code": "Software Heritage-ൽ നിന്ന് കോഡ് ലഭ്യമാക്കുന്നു...",
     "error_fetching_code": "SWH ആർക്കൈവിൽ സ്നിപ്പറ്റ് ലഭ്യമല്ല"
 }

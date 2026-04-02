@@ -13,9 +13,14 @@
     "licence": "ਲਾਇਸੈਂਸ:",
     "view_source": "ਸਰੋਤ ਦੇਖੋ",
     "view_swhid": "SWHID ਦੇਖੋ",
-    "last_updated": "ਆਖਰੀ ਅਪਡੇਟ: 28 ਮਾਰਚ 2026",
-    "show_more": "ਪੂਰਾ ਫੰਕਸ਼ਨ ਦੇਖੋ",
+    "last_updated": "ਆਖਰੀ ਅੱਪਡੇਟ: 2 ਅਪ੍ਰੈਲ 2026",
+    "show_more": "ਹੋਰ ਕੋਡ ਦੇਖੋ",
     "show_less": "ਛੋਟਾ ਕਰੋ",
+    "type_all": "ਸਾਰੇ",
+    "type_function": "ਫੰਕਸ਼ਨ",
+    "type_type": "ਕਿਸਮਾਂ (Types)",
+    "type_template_function": "ਟੈਂਪਲੇਟ ਫੰਕਸ਼ਨ",
+    "type_template_type": "ਟੈਂਪਲੇਟ ਕਿਸਮਾਂ",
     "fetching_code": "Software Heritage ਤੋਂ ਕੋਡ ਪ੍ਰਾਪਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
     "error_fetching_code": "SWH ਆਰਕਾਈਵ ਵਿੱਚ ਸਨਿੱਪਟ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
 }

@@ -166,14 +166,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-
-
-
-class SearchQuery(BaseModel):
+class SearchRequest(BaseModel):
     query: str
     top_k: int = 5
-    type_filter: str = "all" # all, function, type
+    repo_group: Optional[str] = "all"
+    type_filter: str = "all" # all, function, type, template_function, template_type
 
 # Legacy helper removed. Use SWHS3Cache.fetch_blob()
 
@@ -213,54 +210,48 @@ async def get_code_snippet(swhid: str):
     return {"code": snippet}
 
 @app.post("/search")
-async def search_code(req: SearchQuery):
+async def search_code(req: SearchRequest):
     if bi_model is None or index is None or rerank_model is None:
         return {"error": "Server not fully initialised"}
 
     # 1. RECALL PHASE (Bi-Encoder)
     instruction = "Find the most relevant code snippet given the following query:\n"
     xq = bi_model.encode([instruction + req.query], normalize_embeddings=True)
-    xq = np.array(xq).astype('float32')
+    query_vec = np.array(xq).astype('float32')
 
-    # Retrieve top candidates (Recall 50+)
-    recall_k = max(50, req.top_k * 2) 
-    distances, indices = index.search(xq, recall_k)
-
-    recall_candidates = []
-    unique_sha1s = set()
-    for i, idx in enumerate(indices[0]):
+    # Retrieve top candidates
+    # Retrieve more candidates if filtering by group to ensure enough results after filter
+    retrieve_k = req.top_k * 5 if req.repo_group != "all" else req.top_k
+    distances, indices = index.search(query_vec, retrieve_k)
+    top_indices = indices[0]
+    
+    # Get metadata and filter by group if specified
+    candidates = []
+    for idx in top_indices:
         if idx != -1 and idx < len(metadata):
-            item = metadata[idx]
-            
-            # Apply type filter (function, type, or all)
-            if req.type_filter != "all" and item.get("type") != req.type_filter:
-                continue
-                
-            dist = float(distances[0][i])
-            recall_candidates.append({**item, "recall_score": 1.0 / (1.0 + dist)})
-            
-            # Identify unique files to fetch using the standard sha1
-            if item.get("sha1"):
-                unique_sha1s.add(item["sha1"])
-
-    if not recall_candidates:
-        print("Recall phase returned no candidates.")
-        return {"results": []}
-
-    print(f"Recall phase found {len(recall_candidates)} candidates. Unique SHA1s: {len(unique_sha1s)}")
+            item = metadata[int(idx)]
+            if req.repo_group == "all" or item.get("repo_group") == req.repo_group:
+                if req.type_filter == "all" or item.get("type") == req.type_filter:
+                    candidates.append(item)
+    
+    # Limit to top_k after filtering
+    ready_for_rerank_meta = candidates[:req.top_k]
+    
+    if not ready_for_rerank_meta:
+        return {"results": [], "total": 0}
 
     # 2. BATCH FETCH PHASE (Deduplicated Parallel S3 Access)
+    unique_sha1s = {c["sha1"] for c in ready_for_rerank_meta if c.get("sha1")}
     blob_tasks = {s: SWHS3Cache.fetch_blob(s) for s in unique_sha1s}
     blob_map = {}
     
-    # Run fetches concurrently to minimize latency
     fetch_results = await asyncio.gather(*blob_tasks.values())
     for (s, content) in zip(blob_tasks.keys(), fetch_results):
         blob_map[s] = content
 
     # 3. PREPARE FOR RERANK (Local Slicing)
     ready_for_rerank = []
-    for cand in recall_candidates:
+    for cand in ready_for_rerank_meta:
         sha1 = cand.get("sha1")
         l_match = re.search(r"lines=(\d+)-(\d+)", cand["swhid"])
         
@@ -276,8 +267,7 @@ async def search_code(req: SearchQuery):
     if not ready_for_rerank:
         return {"results": []}
 
-    # 4. RERANK PHASE (Jina v3 optimized)
-    # The .rerank() method handles tokenization and scoring internally
+    # 4. RERANK PHASE (Cross-Encoder)
     rerank_results = rerank_model.rerank(
         query=req.query, 
         documents=[c["code"] for c in ready_for_rerank], 

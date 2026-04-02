@@ -13,9 +13,14 @@
     "licence": "परवाना:",
     "view_source": "स्रोत पहा",
     "view_swhid": "SWHID पहा",
-    "last_updated": "शेवटचे अपडेट: २८ मार्च २०२६",
-    "show_more": "पूर्ण फंक्शन पहा",
-    "show_less": "कमी करा",
+    "last_updated": "अंतिम अपडेट: २ एप्रिल २०२६",
+    "show_more": "अधिक कोड पहा",
+    "show_less": "लहान करा",
+    "type_all": "सर्व",
+    "type_function": "फंक्शन्स",
+    "type_type": "प्रकार (Types)",
+    "type_template_function": "टेम्पलेट फंक्शन्स",
+    "type_template_type": "टेम्पलेट प्रकार",
     "fetching_code": "Software Heritage कडून कोड मिळवत आहे...",
     "error_fetching_code": "SWH आर्काइव्हमध्ये स्निपेट उपलब्ध नाही"
 }

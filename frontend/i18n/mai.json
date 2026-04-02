@@ -13,9 +13,14 @@
     "licence": "लाइसेंस:",
     "view_source": "स्रोत देखू",
     "view_swhid": "SWHID देखू",
-    "last_updated": "अंतिम अपडेट: 28 मार्च 2026",
-    "show_more": "पूरा फंक्शन देखू",
-    "show_less": "छोटा करू",
+    "last_updated": "अंतिम अपडेट: 2 अप्रैल 2026",
+    "show_more": "आर कोड देखू",
+    "show_less": "छोट करू",
+    "type_all": "सभ",
+    "type_function": "फंक्शंस",
+    "type_type": "प्रकार (Types)",
+    "type_template_function": "टेम्पलेट फंक्शंस",
+    "type_template_type": "टेम्पलेट प्रकार",
     "fetching_code": "Software Heritage सँ कोड प्राप्त कएल जा रहल अछि...",
     "error_fetching_code": "SWH आर्काइव में स्निपेट उपलब्ध नहि अछि"
 }

@@ -13,9 +13,14 @@
     "licence": "লাইচেন্স:",
     "view_source": "উৎস চাওক",
     "view_swhid": "SWHID চাওক",
-    "last_updated": "শেহতীয়া আপডেট: ২৮ মাৰ্চ ২০২৬",
-    "show_more": "সম্পূৰ্ণ ফাংচন চাওক",
+    "last_updated": "অন্তিম আপডেট: ২ এপ্ৰিল ২০২৬",
+    "show_more": "অধিক ক’ড দেখুওৱক",
     "show_less": "সংক্ষিপ্ত কৰক",
+    "type_all": "সকলো",
+    "type_function": "ফাংচন",
+    "type_type": "প্ৰকাৰ (Types)",
+    "type_template_function": "টেমপ্লেট ফাংচন",
+    "type_template_type": "টেমপ্লেট প্ৰকাৰ",
     "fetching_code": "Software Heritage ৰ পৰা ক'ড সংগ্ৰহ কৰা হৈছে...",
     "error_fetching_code": "SWH আৰ্কাইভত এই স্নিপেটটো নাই"
 }

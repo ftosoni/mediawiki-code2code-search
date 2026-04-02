@@ -13,9 +13,14 @@
     "licence": "لائسنس:",
     "view_source": "سورس دیکھیں",
     "view_swhid": "SWHID دیکھیں",
-    "last_updated": "آخری اپ ڈیٹ: 28 مارچ 2026",
-    "show_more": "پورا فنکشن دیکھیں",
+    "last_updated": "آخری اپ ڈیٹ: 2 اپریل 2026",
+    "show_more": "مزید کوڈ دیکھیں",
     "show_less": "کم دکھائیں",
+    "type_all": "تمام",
+    "type_function": "فنکشنز",
+    "type_type": "اقسام (Types)",
+    "type_template_function": "ٹیمپلیٹ فنکشنز",
+    "type_template_type": "ٹیمپلیٹ اقسام",
     "fetching_code": "Software Heritage سے کوڈ حاصل کیا جا رہا ہے...",
     "error_fetching_code": "SWH آرکائیو میں سنپٹ دستیاب نہیں ہے"
 }

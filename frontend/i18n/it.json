@@ -13,9 +13,14 @@
     "licence": "Licenza:",
     "view_source": "Vedi sorgente",
     "view_swhid": "Vedi SWHID",
-    "last_updated": "Ultimo aggiornamento: 28 Marzo 2026",
-    "show_more": "Mostra Funzione Completa",
+    "last_updated": "Ultimo aggiornamento: 2 Aprile 2026",
+    "show_more": "Mostra altro codice",
     "show_less": "Comprimi Vista",
+    "type_all": "Tutte le entità",
+    "type_function": "Funzioni",
+    "type_type": "Tipi",
+    "type_template_function": "Funzioni Template",
+    "type_template_type": "Tipi Template",
     "fetching_code": "Recupero codice da Software Heritage...",
     "error_fetching_code": "Snippet non disponibile nell'archivio SWH"
 }

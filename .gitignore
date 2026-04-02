@@ -7,9 +7,16 @@ venv/
 
 # Event Horizon Indexing
 backend/event_horizon.index
+backend/mediawiki.index
 backend/functions.json
+backend/raw_functions.json
 backend/test_repo/
 backend/CoCo-trie/
+
+# Preprocessing Data & Config
+preprocessing/mediawiki_repos/
+preprocessing/config.json
+preprocessing/failed_clones.json
 
 # OS
 .DS_Store

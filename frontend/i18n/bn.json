@@ -13,9 +13,14 @@
     "licence": "লাইসেন্স:",
     "view_source": "উৎস দেখুন",
     "view_swhid": "SWHID দেখুন",
-    "last_updated": "সর্বশেষ আপডেট: ২৮ মার্চ ২০২৬",
-    "show_more": "সম্পূর্ণ ফাংশন দেখুন",
-    "show_less": "সংক্ষিপ্ত করুন",
+    "last_updated": "সর্বশেষ আপডেট: ২ এপ্রিল ২০২৬",
+    "show_more": "আরও কোড দেখুন",
+    "show_less": "ছোট করুন",
+    "type_all": "সব",
+    "type_function": "ফাংশন",
+    "type_type": "ধরণ (Types)",
+    "type_template_function": "টেমপ্লেট ফাংশন",
+    "type_template_type": "টেমপ্লেট ধরণ",
     "fetching_code": "Software Heritage থেকে কোড সংগ্রহ করা হচ্ছে...",
     "error_fetching_code": "SWH আর্কাইভে এই স্নিপেটটি নেই"
 }

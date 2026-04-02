@@ -13,9 +13,14 @@
     "licence": "உரிமம்:",
     "view_source": "மூலத்தைக் காண்க",
     "view_swhid": "SWHID காண்",
-    "last_updated": "கடைசி புதுப்பிப்பு: 28 மார்ச் 2026",
-    "show_more": "முழு செயல்பாட்டைக் காட்டு",
-    "show_less": "சுருக்குக",
+    "last_updated": "கடைசி அப்பிడేட்: 2 ஏப்ரல் 2026",
+    "show_more": "கூடுதல் குறியீட்டைக் காட்டு",
+    "show_less": "சுருக்கு",
+    "type_all": "அனைத்தும்",
+    "type_function": "சார்புகள் (Functions)",
+    "type_type": "வகைகள் (Types)",
+    "type_template_function": "வார்ப்புரு சார்புகள்",
+    "type_template_type": "வார்ப்புரு வகைகள்",
     "fetching_code": "Software Heritage இலிருந்து குறியீட்டைப் பெறுகிறது...",
     "error_fetching_code": "SWH காப்பகத்தில் துணுக்கைக் காணவில்லை"
 }
