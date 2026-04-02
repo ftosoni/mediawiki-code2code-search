@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import torch
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
+from transformers import AutoModel, AutoTokenizer
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
@@ -26,7 +26,7 @@ HF_TOKEN = os.getenv("HF_TOKEN")
 
 # Standardise Paths (Script Relative)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FAISS_INDEX_PATH = os.path.join(BASE_DIR, "event_horizon.index")
+FAISS_INDEX_PATH = os.path.join(BASE_DIR, "mediawiki.index")
 METADATA_PATH = os.path.join(BASE_DIR, "functions.json")
 CACHE_DIR = os.path.join(BASE_DIR, "swh_cache")
 CACHE_LIMIT_MB = 100
@@ -53,17 +53,15 @@ async def lifespan(app: FastAPI):
     # Bi-Encoder (Recall)
     bi_model = SentenceTransformer("jinaai/jina-code-embeddings-0.5b", trust_remote_code=True, device="cpu")
     
-    print("Initialising Jina Reranker v2 (Rerank model)...")
+    print("Initialising Jina Reranker v3 (Rerank model)...")
     # Cross-Encoder (Rerank)
-    # Using float32 for CPU base, as bitsandbytes (int8) is CUDA only.
-    # To truly scale on Toolforge, we'd use Optimum/OpenVINO or Torch Dynamic Quantization.
-    rerank_model = AutoModelForSequenceClassification.from_pretrained(
-        "jinaai/jina-reranker-v2-base-multilingual", 
+    rerank_model = AutoModel.from_pretrained(
+        "jinaai/jina-reranker-v3", 
         trust_remote_code=True,
-        torch_dtype=torch.float32 # Jina v2 code expects torch_dtype despite transformers warning
+        torch_dtype=torch.float32
     ).to("cpu")
     rerank_model.eval()
-    rerank_tokenizer = AutoTokenizer.from_pretrained("jinaai/jina-reranker-v2-base-multilingual")
+    rerank_tokenizer = AutoTokenizer.from_pretrained("jinaai/jina-reranker-v3", trust_remote_code=True)
     
     # Apply dynamic quantization to Reranker for CPU memory savings
     # (Reduces RAM footprint significantly for Toolforge)
@@ -276,20 +274,22 @@ async def search_code(req: SearchQuery):
     if not ready_for_rerank:
         return {"results": []}
 
-    # 4. RERANK PHASE (Cross-Encoder Precision)
-    pairs = [[req.query, c["code"]] for c in ready_for_rerank]
-    with torch.no_grad():
-        # Using the torch.qint8 quantized model
-        inputs = rerank_tokenizer(pairs, padding=True, truncation=True, return_tensors='pt', max_length=512)
-        logits = rerank_model(**inputs).logits
-        scores = torch.sigmoid(logits).cpu().numpy().flatten()
+    # 4. RERANK PHASE (Jina v3 optimized)
+    # The .rerank() method handles tokenization and scoring internally
+    rerank_results = rerank_model.rerank(
+        query=req.query, 
+        documents=[c["code"] for c in ready_for_rerank], 
+        top_n=req.top_k,
+        max_length=512
+    )
 
-    for i, cand in enumerate(ready_for_rerank):
-        cand["rerank_score"] = float(scores[i])
+    final_results = []
+    for res in rerank_results:
+        cand = ready_for_rerank[res['index']]
+        cand["rerank_score"] = float(res['relevance_score'])
+        final_results.append(cand)
 
-    # Final Sort and top-K filter
-    ready_for_rerank.sort(key=lambda x: x["rerank_score"], reverse=True)
-    return {"results": ready_for_rerank[:req.top_k]}
+    return {"results": final_results}
 
 @app.get("/health")
 def health():
