@@ -51,7 +51,7 @@ except ImportError:
 REPO_URL = "https://github.com/aboffa/CoCo-trie"
 SWH_ORIGIN = REPO_URL.replace("https://", "https:/") 
 
-FAISS_INDEX_PATH = os.path.join(os.path.dirname(__file__), "event_horizon.index")
+FAISS_INDEX_PATH = os.path.join(os.path.dirname(__file__), "mediawiki.index")
 EMBEDDING_DIM = 896 # Jina 0.5B dim
 DEBUG_LIMIT = 256   # Process a set amount of functions (0 for no limit)
 

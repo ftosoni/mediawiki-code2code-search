@@ -70,14 +70,16 @@ async def lifespan(app: FastAPI):
         rerank_model, {torch.nn.Linear}, dtype=torch.qint8
     )
 
-    if os.path.exists(FAISS_INDEX_PATH) and os.path.exists(METADATA_PATH):
+    if not os.path.exists(FAISS_INDEX_PATH):
+        print(f"⚠️ Warning: FAISS Index not found at {FAISS_INDEX_PATH}. Please run build.py first.")
+    elif not os.path.exists(METADATA_PATH):
+        print(f"⚠️ Warning: Metadata not found at {METADATA_PATH}. Please run build.py first.")
+    else:
         print(f"Loading FAISS index from {FAISS_INDEX_PATH}...")
         index = faiss.read_index(FAISS_INDEX_PATH)
         with open(METADATA_PATH, "r", encoding="utf-8") as f:
             metadata = json.load(f)
         print(f"Index loaded. Metadata entries: {len(metadata)}")
-    else:
-        print(f"⚠️ Warning: Index or metadata not found at {METADATA_PATH}. Please run build.py first.")
     
     yield
     # Cleanup
@@ -280,7 +282,7 @@ async def search_code(req: SearchQuery):
         query=req.query, 
         documents=[c["code"] for c in ready_for_rerank], 
         top_n=req.top_k,
-        max_length=512
+        max_doc_length=512
     )
 
     final_results = []
