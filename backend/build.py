@@ -96,7 +96,25 @@ def extract_code_entities(code_bytes: bytes, ext: str) -> list:
         query_scm = "(function_definition) @function (class_definition) @type"
     elif ext in [".cpp", ".hpp", ".h", ".cc", ".cxx"]:
         lang = CPP_LANGUAGE
-        query_scm = "(function_definition) @function (template_declaration) @function (class_specifier) @type (struct_specifier) @type (enum_specifier) @type"
+        query_scm = """
+            ; Template-wrapped entities
+            (template_declaration (function_definition)) @template_function
+            (template_declaration [(class_specifier) (struct_specifier) (enum_specifier) (alias_declaration)]) @template_type
+            
+            ; Non-template entities (also captures methods and inner components)
+            (function_definition) @function
+            (class_specifier) @type
+            (struct_specifier) @type
+            (enum_specifier) @type
+            (alias_declaration) @type
+        """
+        # Ensure category mapping is available for filtering
+        category_map = {
+            "template_function": "function",
+            "template_type": "type",
+            "function": "function",
+            "type": "type"
+        }
     elif ext == ".c":
         lang = C_LANGUAGE
         query_scm = "(function_definition) @function (struct_specifier) @type (union_specifier) @type (enum_specifier) @type"
@@ -146,21 +164,55 @@ def extract_code_entities(code_bytes: bytes, ext: str) -> list:
             print(f"  Tree-sitter error for {ext}: {e}")
             return []
     
-    # Normalize dictionary-style captures (0.25.2) to flat list of (Node, entity_type)
-    captures = []
+    # Normalize 0.23+ API dictionary-style captures to flat list of (Node, entity_type)
+    all_captures = []
     for entity_type, nodes in captures_dict.items():
         for node in nodes:
-            captures.append((node, entity_type))
+            all_captures.append((node, entity_type))
+
+    # Sort captures by range size (largest first) to prioritize template wrappers
+    # and outer classes over inner ones of the same type.
+    all_captures.sort(key=lambda x: (x[0].end_byte - x[0].start_byte), reverse=True)
+
+    # Redundancy filtering: for each entity_type, skip nodes that are already
+    # contained within a larger node of the SAME logical type (e.g. template class vs class).
+    final_nodes = []
+    # Map high-level categories for overlap checks
+    category_map = {
+        "template_function": "function",
+        "template_type": "type",
+        "function": "function",
+        "type": "type"
+    }
+    # (start, end, name) -> logical_type
+    covered_ranges = {"function": [], "type": []}
+    
+    for node, entity_type in all_captures:
+        node_start, node_end = node.start_byte, node.end_byte
+        name = extract_entity_name(node, code_bytes)
+        
+        # Determine logical category (e.g. template_type and type share the 'type' category)
+        logical_cat = category_map.get(entity_type, entity_type)
+        
+        # Check if this node is already fully covered by a larger node of the SAME logical type
+        # AND shares the same name (redundant template wrapper vs body)
+        is_covered = False
+        for (c_start, c_end, c_name) in covered_ranges.get(logical_cat, []):
+            if node_start >= c_start and node_end <= c_end:
+                if name == c_name or name == "unknown":
+                    is_covered = True
+                    break
+        
+        if not is_covered:
+            final_nodes.append((node, entity_type))
+            if logical_cat not in covered_ranges:
+                covered_ranges[logical_cat] = []
+            covered_ranges[logical_cat].append((node_start, node_end, name))
 
     functions = []
-    seen_nodes = set()
-    
-    for capture in captures:
-        node, entity_type = capture
-        
-        node_key = (node.start_byte, node.end_byte)
-        if node_key in seen_nodes: continue
-        seen_nodes.add(node_key)
+    for node, entity_type in final_nodes:
+        # Extract name using helper
+        name = extract_entity_name(node, code_bytes)
         
         # Walk backward to include comments/docstrings
         current_start = node.start_byte
@@ -174,24 +226,6 @@ def extract_code_entities(code_bytes: bytes, ext: str) -> list:
             
         func_code = code_bytes[current_start:node.end_byte].decode('utf-8', errors='ignore')
         
-        # Extract name (recursive search for the first identifier-like node)
-        name = "unknown"
-        # 1. Try named 'name' field first
-        name_node = node.child_by_field_name("name")
-        if not name_node:
-             # 2. Heuristic: find first identifier/field_identifier in any descendant
-             def find_name(n):
-                 if n.type in ["identifier", "field_identifier", "type_identifier"]:
-                     return n
-                 for child in n.children:
-                     found = find_name(child)
-                     if found: return found
-                 return None
-             name_node = find_name(node)
-             
-        if name_node:
-            name = code_bytes[name_node.start_byte:name_node.end_byte].decode('utf-8', errors='ignore')
-        
         functions.append({
             "name": name,
             "start_line": actual_start_line,
@@ -201,6 +235,39 @@ def extract_code_entities(code_bytes: bytes, ext: str) -> list:
         })
         
     return functions
+
+
+def extract_entity_name(node, code_bytes: bytes) -> str:
+    """Extract name from AST node"""
+    # Handle template_declaration specially: we want the name of the template body,
+    # not the template parameters.
+    if node.type == "template_declaration":
+        # Search in the child that isn't the 'template' keyword or parameter list
+        for child in reversed(node.children):
+            if child.type not in ["template", "template_parameter_list", "<", ">", ",", "comment", ";"]:
+                name = extract_entity_name(child, code_bytes)
+                if name and name != "unknown":
+                    return name
+
+    # Try named 'name' field first
+    name_node = node.child_by_field_name("name")
+    if not name_node:
+        # Heuristic: find first identifier in descendants
+        def find_name(n):
+            if n.type in ["identifier", "field_identifier", "type_identifier"]:
+                return n
+            # Search children, but prioritize 'field_identifier' in case of class nodes
+            for child in n.children:
+                found = find_name(child)
+                if found:
+                    return found
+            return None
+        name_node = find_name(node)
+    
+    if name_node:
+        return code_bytes[name_node.start_byte:name_node.end_byte].decode('utf-8', errors='ignore')
+    
+    return "unknown"
 
 def build_pipeline():
     print(f"== Event Horizon: Semantic Code Search Build Pipeline (Local-First Edition) ==")

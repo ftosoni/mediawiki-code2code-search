@@ -612,11 +612,11 @@
                                     fontWeight: 'bold',
                                     textTransform: 'uppercase',
                                     letterSpacing: '1px',
-                                    background: res.type === 'type' ? 'rgba(157, 0, 255, 0.2)' : 'rgba(0, 255, 127, 0.1)',
-                                    color: res.type === 'type' ? '#E1B0FF' : '#00FF7F',
-                                    border: `1px solid ${res.type === 'type' ? 'rgba(157, 0, 255, 0.3)' : 'rgba(0, 255, 127, 0.2)'}`
+                                    background: (res.type.includes('type')) ? 'rgba(157, 0, 255, 0.2)' : 'rgba(0, 255, 127, 0.1)',
+                                    color: (res.type.includes('type')) ? '#E1B0FF' : '#00FF7F',
+                                    border: `1px solid ${(res.type.includes('type')) ? 'rgba(157, 0, 255, 0.3)' : 'rgba(0, 255, 127, 0.2)'}`
                                 }}>
-                                    {res.type || 'function'}
+                                    {res.type.replace('_', ' ') || 'function'}
                                 </div>
                             </div>
                             <div style={{ color: 'var(--accent-orange)', fontWeight: 700, fontSize: '1.1rem' }}>{res.name}</div>
