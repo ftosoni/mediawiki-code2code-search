@@ -2,7 +2,6 @@ import os
 import json
 import hashlib
 from pathlib import Path
-import requests
 import tree_sitter
 import tree_sitter_python
 import tree_sitter_cpp
@@ -32,20 +31,10 @@ RUST_LANGUAGE = tree_sitter.Language(tree_sitter_rust.language())
 
 # Paths relative to this script
 PREPROC_DIR = os.path.dirname(os.path.abspath(__file__))
-CONFIG_FILE = os.path.join(PREPROC_DIR, "config.json")
 REPOS_LIST_PATH = os.path.join(PREPROC_DIR, "repos_list.json")
 LOCAL_REPOS_ROOT = os.path.join(PREPROC_DIR, "mediawiki_repos")
-# Output to backend directory for keep it ready for vectorization
-RAW_METADATA_PATH = os.path.join(PREPROC_DIR, "..", "backend", "raw_functions.json")
-
-def load_config():
-    if not os.path.exists(CONFIG_FILE):
-        return {"user_agent": "mediawiki-repo-fetcher", "swh_token": ""}
-    with open(CONFIG_FILE, "r") as f:
-        return json.load(f)
-
-# Global Config
-GLOBAL_CONFIG = load_config()
+# Intermediate output (unresolved)
+UNRESOLVED_METADATA_PATH = os.path.join(PREPROC_DIR, "raw_metadata_unresolved.json")
 
 # Use swh.model if possible for higher precision hashes
 try:
@@ -54,73 +43,13 @@ try:
 except ImportError:
     SWH_MODEL_AVAILABLE = False
 
-# Cache for SHA1 Git -> Standard SHA1 resolver (SWH API)
-SWH_SHA1_CACHE_PATH = os.path.join(PREPROC_DIR, "swh_sha1_cache.json")
-SWH_SHA1_CACHE = {}
-SWH_CACHE_LOCK = threading.Lock()
-SWH_API_LOCK = threading.Lock() # Maintain single-threaded network access
-
-def load_swh_cache():
-    global SWH_SHA1_CACHE
-    if os.path.exists(SWH_SHA1_CACHE_PATH):
-        try:
-            with open(SWH_SHA1_CACHE_PATH, "r") as f:
-                SWH_SHA1_CACHE = json.load(f)
-            print(f"Loaded {len(SWH_SHA1_CACHE)} entries from SWH SHA1 cache.")
-        except Exception as e:
-            print(f"Warning: Failed to load SWH cache: {e}")
-
-def save_swh_cache():
-    with SWH_CACHE_LOCK:
-        try:
-            with open(SWH_SHA1_CACHE_PATH, "w") as f:
-                json.dump(SWH_SHA1_CACHE, f, indent=2)
-        except Exception as e:
-            print(f"Warning: Failed to save SWH cache: {e}")
-
-load_swh_cache()
-
-def get_sha1_from_swh(sha1_git: str) -> str:
-    # 1. Fast path: check cache without blocking API access
-    with SWH_CACHE_LOCK:
-        if sha1_git in SWH_SHA1_CACHE:
-            return SWH_SHA1_CACHE[sha1_git]
-    
-    # 2. Slow path: Acquire API lock for network access
-    with SWH_API_LOCK:
-        # Double-check if someone else filled the cache while we waited for the lock
-        with SWH_CACHE_LOCK:
-            if sha1_git in SWH_SHA1_CACHE:
-                return SWH_SHA1_CACHE[sha1_git]
-        
-        url = f"https://archive.softwareheritage.org/api/1/content/sha1_git:{sha1_git}/"
-        headers = {
-            "User-Agent": GLOBAL_CONFIG.get("user_agent", "mediawiki-repo-fetcher"),
-            "Accept": "application/json"
-        }
-        if GLOBAL_CONFIG.get("swh_token"):
-            headers["Authorization"] = f"Bearer {GLOBAL_CONFIG['swh_token']}"
-
-        try:
-            response = requests.get(url, headers=headers, timeout=10)
-            if response.status_code == 200:
-                data = response.json()
-                sha1 = data.get("checksums", {}).get("sha1")
-                if sha1:
-                    with SWH_CACHE_LOCK:
-                        SWH_SHA1_CACHE[sha1_git] = sha1
-                    return sha1
-            elif response.status_code == 429:
-                pass
-        except Exception:
-            pass
-        return None
-
 def get_swhid_content_hash(content: bytes) -> str:
+    """Calculate the Git-compatible SHA1 (used by SWH) locally."""
     if SWH_MODEL_AVAILABLE:
         res = compute_identifier(ObjectType.CONTENT, {"data": content})
         return str(res)
     else:
+        # Standard Git blob hash calculation: "blob <length>\0<content>"
         header = f"blob {len(content)}\0".encode()
         return hashlib.sha1(header + content).hexdigest()
 
@@ -205,7 +134,6 @@ def extract_code_entities(code_bytes: bytes, ext: str) -> list:
     all_captures.sort(key=lambda x: (x[0].end_byte - x[0].start_byte), reverse=True)
 
     final_nodes = []
-    # Mapping for deduplication grouping.
     category_map = {
         "template_function": "template_function", 
         "template_type": "template_type", 
@@ -260,7 +188,6 @@ def process_repository(repo_info, group_dir, valid_exts):
     swh_origin = repo_info["url"].replace("https://", "https:/")
     
     repo_entities = []
-    
     if not os.path.isdir(repo_path):
         return []
 
@@ -279,32 +206,30 @@ def process_repository(repo_info, group_dir, valid_exts):
                     
                     if extracted:
                         swhid_hash = get_swhid_content_hash(text_lf)
-                        # Call SWH API only once per file if entities extracted
-                        sha1 = get_sha1_from_swh(swhid_hash)
-                        
                         relative_path = str(filepath.relative_to(repo_path)).replace("\\", "/")
                         
                         for ent in extracted:
                             if not ent["code"].strip(): continue
                             func_hash = hashlib.md5(ent["code"].encode()).hexdigest()
-                            swhid = f"swh:1:cnt:{swhid_hash};origin={swh_origin};lines={ent['start_line']}-{ent['end_line']}/"
                             
                             repo_entities.append({
                                 "id": func_hash,
-                                "swhid": swhid,
-                                "sha1": sha1,
+                                "swhid_hash": swhid_hash,
+                                "swh_origin": swh_origin,
                                 "repo_name": repo_name,
                                 "repo_group": group,
                                 "filepath": relative_path,
                                 "name": ent["name"],
                                 "type": ent["type"],
+                                "start_line": ent["start_line"],
+                                "end_line": ent["end_line"],
                                 "code_for_embedding": ent["code"]
                             })
                 except Exception: pass
     return repo_entities
 
 def run_extraction():
-    print("== MediaWiki Code Search: Massive Parallel Entity Extraction Phase ==")
+    print("== Phase 3a: Fast Structural Entity Extraction (Local Only) ==")
     
     if not os.path.exists(REPOS_LIST_PATH):
         print(f"Error: {REPOS_LIST_PATH} not found.")
@@ -336,14 +261,13 @@ def run_extraction():
             })
 
     total_repos = len(discovery_list)
-    print(f"Discovered {total_repos} repositories. Starting parallel extraction...")
+    print(f"Starting extraction for {total_repos} repositories...")
 
     all_extracted_entities = []
-    
     start_time = time.time()
     
-    # Use ThreadPoolExecutor to handle mix of IO and CPU
-    max_workers = os.cpu_count() * 2 if os.cpu_count() else 8
+    # Large parallelization for CPU-bound tasks (Tree-sitter releases GIL)
+    max_workers = os.cpu_count() if os.cpu_count() else 4
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         future_to_repo = {
             executor.submit(process_repository, repo, repo["group_dir"], valid_exts): repo 
@@ -365,32 +289,15 @@ def run_extraction():
                 avg_time = elapsed / completed
                 remaining = total_repos - completed
                 eta_s = avg_time * remaining
-                
-                if eta_s > 3600:
-                    eta_str = f"{int(eta_s // 3600)}h {int((eta_s % 3600) // 60)}m"
-                elif eta_s > 60:
-                    eta_str = f"{int(eta_s // 60)}m {int(eta_s % 60)}s"
-                else:
-                    eta_str = f"{int(eta_s)}s"
-                
-                print(f"Progress: {completed}/{total_repos} repositories processed ({(completed/total_repos)*100:.1f}%) - Last finished: {repo['name']} - ETA: {eta_str}")
-            
-            # Periodically save cache to disk
-            if completed % 50 == 0:
-                save_swh_cache()
+                eta_str = f"{int(eta_s // 60)}m {int(eta_s % 60)}s" if eta_s < 3600 else f"{int(eta_s // 3600)}h {int((eta_s % 3600) // 60)}m"
+                print(f"Progress: {completed}/{total_repos} repositories ({(completed/total_repos)*100:.1f}%) - Last: {repo['name']} - ETA: {eta_str}")
 
-    # Deduplicate entities by ID
-    unique_entities = {e["id"]: e for e in all_extracted_entities}
-    final_list = list(unique_entities.values())
+    print(f"\nExtraction complete. Total raw entities: {len(all_extracted_entities)}")
     
-    print(f"\nExtraction complete. Total unique entities: {len(final_list)}")
-    
-    os.makedirs(os.path.dirname(RAW_METADATA_PATH), exist_ok=True)
-    with open(RAW_METADATA_PATH, "w", encoding="utf-8") as f:
-        json.dump(final_list, f, indent=2)
-    save_swh_cache()
-    print(f"Intermediate metadata saved to {RAW_METADATA_PATH}")
+    with open(UNRESOLVED_METADATA_PATH, "w", encoding="utf-8") as f:
+        json.dump(all_extracted_entities, f, indent=2)
+    print(f"Unresolved metadata saved to {UNRESOLVED_METADATA_PATH}")
+    print("Next step: Run resolve_swh_hashes.py to map identities.")
 
 if __name__ == "__main__":
     run_extraction()
-

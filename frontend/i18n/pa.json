@@ -22,5 +22,19 @@
     "type_template_function": "ਟੈਂਪਲੇਟ ਫੰਕਸ਼ਨ",
     "type_template_type": "ਟੈਂਪਲੇਟ ਕਿਸਮਾਂ",
     "fetching_code": "Software Heritage ਤੋਂ ਕੋਡ ਪ੍ਰਾਪਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
-    "error_fetching_code": "SWH ਆਰਕਾਈਵ ਵਿੱਚ ਸਨਿੱਪਟ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
+    "error_fetching_code": "SWH ਆਰਕਾਈਵ ਵਿੱਚ ਸਨਿੱਪਟ ਉਪਲਬਧ ਨਹੀਂ ਹੈ",
+    "group_all": "ਸਭ",
+    "group_core": "ਮੀਡੀਆਵਿਕੀ ਕੋਰ",
+    "group_extensions": "ਐਕਸਟੈਂਸ਼ਨਾਂ",
+    "group_skins": "ਸਕਿਨਾਂ",
+    "group_things": "ਐਕਸਟੈਂਸ਼ਨਾਂ ਅਤੇ ਸਕਿਨਾਂ",
+    "group_libraries": "ਲਾਇਬ੍ਰੇਰੀਆਂ",
+    "group_deployed": "WMF ਡਿਪਲਾਇਡ",
+    "group_operations": "ਓਪਰੇਸ਼ਨ / SRE",
+    "group_puppet": "ਪਪੇਟ (Puppet)",
+    "group_pywikibot": "ਪਾਈਵਿਕੀਬੋਟ",
+    "group_devtools": "ਡੇਵ-ਟੂਲਸ / CI",
+    "group_analytics": "ਐਨਾਲਿਟਿਕਸ",
+    "group_wmcs": "ਕਲਾਊਡ (WMCS)",
+    "group_apps": "ਮੋਬਾਈਲ ਐਪਸ"
 }

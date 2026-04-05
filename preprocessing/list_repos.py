@@ -50,8 +50,13 @@ def fetch_mediawiki_repos(backend='core'):
         repos_subset = []
         for repo_info in data.values():
             if 'url' in repo_info:
+                url = repo_info['url']
+                # Substitute gerrit-replica with gerrit to bypass the replica
+                if url.startswith("https://gerrit-replica."):
+                    url = url.replace("https://gerrit-replica.", "https://gerrit.", 1)
+                
                 repos_subset.append({
-                    "url": repo_info['url'],
+                    "url": url,
                     "group": backend
                 })
         return repos_subset

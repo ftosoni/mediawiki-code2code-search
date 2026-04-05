@@ -1,0 +1,43 @@
+import tree_sitter
+import tree_sitter_php
+
+PHP_LANGUAGE = tree_sitter.Language(tree_sitter_php.language_php())
+parser = tree_sitter.Parser(PHP_LANGUAGE)
+
+code = b"""<?php
+class MyClass {
+    public function myMethod($a) {
+        return $a;
+    }
+}
+
+function myGlobalFunction() {
+    echo "hello";
+}
+"""
+
+tree = parser.parse(code)
+query_scm = "(function_definition) @function (method_declaration) @function (class_declaration) @type"
+query = tree_sitter.Query(PHP_LANGUAGE, query_scm)
+cursor = tree_sitter.QueryCursor(query)
+captures = cursor.captures(tree.root_node)
+
+def extract_entity_name(node, code_bytes: bytes) -> str:
+    name_node = node.child_by_field_name("name")
+    if not name_node:
+        def find_name(n):
+            if n.type in ["identifier", "field_identifier", "type_identifier", "name"]:
+                return n
+            for child in n.children:
+                found = find_name(child)
+                if found: return found
+            return None
+        name_node = find_name(node)
+    
+    if name_node:
+        return code_bytes[name_node.start_byte:name_node.end_byte].decode('utf-8', errors='ignore')
+    return "unknown"
+
+for entity_type, nodes in captures.items():
+    for node in nodes:
+        print(f"Type: {entity_type}, Name: {extract_entity_name(node, code)}")

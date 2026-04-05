@@ -22,5 +22,19 @@
     "type_template_function": "ಟೆಂಪ್ಲೇಟ್ ಫಂಕ್ಷನ್‌ಗಳು",
     "type_template_type": "ಟೆಂಪ್ಲೇಟ್ ವಿಧಗಳು",
     "fetching_code": "Software Heritage ನಿಂದ ಕೋಡ್ ಪಡೆಯಲಾಗುತ್ತಿದೆ...",
-    "error_fetching_code": "SWH ಆರ್ಕೈವ್‌ನಲ್ಲಿ ಸ್ನಿಪ್ಪೆಟ್ ಲಭ್ಯವಿಲ್ಲ"
+    "error_fetching_code": "SWH ಆರ್ಕೈವ್‌ನಲ್ಲಿ ಸ್ನಿಪ್ಪೆಟ್ ಲಭ್ಯವಿಲ್ಲ",
+    "group_all": "ಎಲ್ಲಾ",
+    "group_core": "ಮೀಡಿಯಾವಿಕಿ ಕೋರ್",
+    "group_extensions": "ವಿಸ್ತರಣೆಗಳು",
+    "group_skins": "ಸ್ಕಿನ್ಗಳು",
+    "group_things": "ವಿಸ್ತರಣೆಗಳು ಮತ್ತು ಸ್ಕಿನ್ಗಳು",
+    "group_libraries": "ಲೈಬ್ರರಿಗಳು",
+    "group_deployed": "WMF ನಿಯೋಜಿಸಲಾಗಿದೆ",
+    "group_operations": "ಕಾರ್ಯಾಚರಣೆಗಳು / SRE",
+    "group_puppet": "ಪಪೆಟ್ (Puppet)",
+    "group_pywikibot": "ಪೈವಿಕಿಬಾಟ್",
+    "group_devtools": "ದೇವ್-ಟೂಲ್ಸ್ / CI",
+    "group_analytics": "ಅನಾಲಿಟಿಕ್ಸ್",
+    "group_wmcs": "ಕ್ಲೌಡ್ (WMCS)",
+    "group_apps": "ಮೊಬೈಲ್ ಅಪ್ಲಿಕೇಶನ್ಗಳು"
 }

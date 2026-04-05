@@ -22,5 +22,19 @@
     "type_template_function": "ᱴᱮᱢᱯᱞᱮᱴ ᱯᱷᱟᱱᱠᱥᱚᱱ",
     "type_template_type": "ᱴᱮᱢᱯᱞᱮᱴ ᱞᱮᱠᱟᱱ",
     "fetching_code": "Software Heritage ᱠᱷᱚᱱ ᱠᱳᱰ ᱟᱹᱜᱩᱭᱮᱫᱟ...",
-    "error_fetching_code": "SWH ᱟᱨᱠᱟᱭᱵᱷ ᱨᱮ ᱥᱱᱤᱯᱮᱴ ᱵᱟᱹᱱᱩᱜᱼᱟ"
+    "error_fetching_code": "SWH ᱟᱨᱠᱟᱭᱵᱷ ᱨᱮ ᱥᱱᱤᱯᱮᱴ ᱵᱟᱹᱱᱩᱜᱼᱟ",
+    "group_all": "ᱥᱟᱱᱟᱢ",
+    "group_core": "MediaWiki Core",
+    "group_extensions": "Extensions",
+    "group_skins": "Skins",
+    "group_things": "Extensions & Skins",
+    "group_libraries": "Libraries",
+    "group_deployed": "WMF Deployed",
+    "group_operations": "Operations / SRE",
+    "group_puppet": "Puppet",
+    "group_pywikibot": "Pywikibot",
+    "group_devtools": "DevTools / CI",
+    "group_analytics": "Analytics",
+    "group_wmcs": "Cloud (WMCS)",
+    "group_apps": "Mobile Apps"
 }

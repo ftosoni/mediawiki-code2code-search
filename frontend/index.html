@@ -428,36 +428,49 @@
 
         .group-selector {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 2rem;
             flex-wrap: wrap;
             justify-content: center;
+            width: 90%;
+            max-width: 800px;
+            padding: 10px 0;
         }
 
         .group-chip {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            color: #888;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 0.75rem;
+            background: rgba(75, 97, 209, 0.1);
+            border: 1px solid rgba(75, 97, 209, 0.2);
+            color: #8DA2FB;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.7rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
             letter-spacing: 1px;
             text-transform: uppercase;
+            flex-shrink: 0;
         }
 
         .group-chip:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            color: #ccc;
+            background: rgba(75, 97, 209, 0.2);
+            border-color: var(--accent-italy);
+            color: #fff;
         }
 
         .group-chip.active {
-            background: linear-gradient(135deg, var(--accent-india), var(--accent-italy));
+            background: rgba(75, 97, 209, 0.3);
+            border-color: var(--accent-italy);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(75, 97, 209, 0.4);
+        }
+
+        /* Specific style for EVERYTHING button */
+        .group-chip.all-chip.active {
+            background: var(--accent-india);
             border-color: transparent;
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255, 119, 34, 0.5);
         }
 
         .type-selector {
@@ -522,6 +535,13 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 container.appendChild(renderer.domElement);
 
+                // Lights
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+                scene.add(ambientLight);
+
+                const pointLight = new THREE.PointLight(0x8da2fb, 2, 20); // Cool blue light
+                scene.add(pointLight);
+
                 // Particles
                 const particlesCount = 1800;
                 const particleGroup = new THREE.Group();
@@ -532,15 +552,17 @@
                 for (let i = 0; i < particlesCount; i++) {
                     const color = new THREE.Color();
                     if (Math.random() > 0.5) {
-                        color.setHex(0xff8c00);
+                        color.setHex(0xff8c00); // Saffron
                     } else {
-                        color.setHex(0x9370db);
+                        color.setHex(0x4b61d1); // Savoy Blue
                     }
 
-                    const material = new THREE.MeshBasicMaterial({
+                    const material = new THREE.MeshPhongMaterial({
                         color: color,
                         transparent: true,
-                        opacity: Math.random() * 0.4 + 0.1
+                        opacity: Math.random() * 0.4 + 0.2,
+                        shininess: 100,
+                        specular: 0xffffff
                     });
 
                     const mesh = new THREE.Mesh(geometry, material);
@@ -586,8 +608,19 @@
                     particleGroup.rotation.y += currentAnimSpeed;
                     particleGroup.rotation.x += currentAnimSpeed * 0.3;
 
-                    particleGroup.children.forEach(p => {
-                        p.rotation.y += 0.02;
+                    // Shiny glint tracking
+                    pointLight.position.x = mouseX * 5;
+                    pointLight.position.y = -mouseY * 5;
+                    pointLight.position.z = 5;
+
+                    const time = Date.now() * 0.001;
+
+                    particleGroup.children.forEach((p, idx) => {
+                        p.rotation.y += 0.015;
+                        // Twinkle effect (selective)
+                        if (idx % 15 === 0) {
+                            p.material.opacity = (Math.sin(time * 2 + idx) * 0.15) + 0.35;
+                        }
                     });
 
                     camera.position.x += (mouseX - camera.position.x) * 0.04;
@@ -665,8 +698,23 @@
                         <div className="file-info">
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                 <div>
-                                    <h3>{res.filepath.split('/').pop()}</h3>
-                                    <div style={{ color: '#aaa', fontSize: '0.85rem', marginBottom: '4px' }}>{res.filepath.split('/').slice(0, -1).join('/')}</div>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                                        <span style={{ 
+                                            fontSize: '0.65rem', 
+                                            color: '#8da2fb', 
+                                            fontWeight: 700, 
+                                            background: 'rgba(141, 162, 251, 0.1)', 
+                                            padding: '2px 8px', 
+                                            borderRadius: '4px',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '1px'
+                                        }}>
+                                            {t(`group_${res.repo_group}`) || res.repo_group}
+                                        </span>
+                                        <span style={{ color: '#aaa', fontSize: '0.8rem' }}>{res.repo_name}</span>
+                                    </div>
+                                    <h3>{(res.filepath || "").split('/').pop()}</h3>
+                                    <div style={{ color: '#666', fontSize: '0.75rem' }}>{(res.filepath || "").split('/').slice(0, -1).join('/')}</div>
                                 </div>
                                 <div style={{
                                     padding: '4px 10px',
@@ -695,11 +743,11 @@
                         <div className="score-box">
                             <div className="score-item">
                                 <div className="score-label">{t('rerank_score')}</div>
-                                <div className="score-value rank">{res.rerank_score.toFixed(4)}</div>
+                                <div className="score-value rank">{(res.rerank_score || 0).toFixed(4)}</div>
                             </div>
                             <div className="score-item" style={{ opacity: 0.6 }}>
                                 <div className="score-label">{t('recall_score')}</div>
-                                <div className="score-value" style={{ fontSize: '0.9rem' }}>{res.recall_score.toFixed(4)}</div>
+                                <div className="score-value" style={{ fontSize: '0.9rem' }}>{(res.recall_score || 0).toFixed(4)}</div>
                             </div>
                         </div>
                     </div>
@@ -777,7 +825,7 @@
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             query,
-                            top_k: 5,
+                            top_k: 10,
                             type_filter: typeFilter,
                             repo_group: repoGroup
                         })
@@ -849,7 +897,7 @@
                         {['all', 'core', 'things', 'libraries', 'deployed', 'operations', 'puppet', 'pywikibot', 'devtools', 'analytics', 'wmcs', 'apps'].map(g => (
                             <div
                                 key={g}
-                                className={`group-chip ${repoGroup === g ? 'active' : ''}`}
+                                className={`group-chip ${repoGroup === g ? 'active' : ''} ${g === 'all' ? 'all-chip' : ''}`}
                                 onClick={() => setRepoGroup(g)}
                             >
                                 {t(`group_${g}`)}

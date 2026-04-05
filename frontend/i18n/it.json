@@ -22,5 +22,20 @@
     "type_template_function": "Funzioni Template",
     "type_template_type": "Tipi Template",
     "fetching_code": "Recupero codice da Software Heritage...",
-    "error_fetching_code": "Snippet non disponibile nell'archivio SWH"
+    "error_fetching_code": "Snippet non disponibile nell'archivio SWH",
+    "group_all": "Tutto",
+    "group_core": "MediaWiki Core",
+    "group_extensions": "Estensioni",
+    "group_skins": "Skin",
+    "group_things": "Estensioni e Skin",
+    "group_bundled": "Bundle MW",
+    "group_libraries": "Librerie",
+    "group_deployed": "Distribuito da WMF",
+    "group_operations": "Operazioni / SRE",
+    "group_puppet": "Puppet",
+    "group_pywikibot": "Pywikibot",
+    "group_devtools": "Sviluppo / CI",
+    "group_analytics": "Analitica",
+    "group_wmcs": "Cloud (WMCS)",
+    "group_apps": "App Mobile"
 }

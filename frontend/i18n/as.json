@@ -21,6 +21,20 @@
     "type_type": "প্ৰকাৰ (Types)",
     "type_template_function": "টেমপ্লেট ফাংচন",
     "type_template_type": "টেমপ্লেট প্ৰকাৰ",
-    "fetching_code": "Software Heritage ৰ পৰা ক'ড সংগ্ৰহ কৰা হৈছে...",
-    "error_fetching_code": "SWH আৰ্কাইভত এই স্নিপেটটো নাই"
+    "fetching_code": "Software Heritage-ৰ পৰা ক’ড গোটোৱা হৈছে...",
+    "error_fetching_code": "SWH আৰ্কাইভত এই শ্নীপেটটো নাই",
+    "group_all": "সকলো",
+    "group_core": "মিডিয়াউইকি কোৰ",
+    "group_extensions": "এক্সটেনচন",
+    "group_skins": "স্কিন",
+    "group_things": "এক্সটেনচন আৰু স্কিন",
+    "group_libraries": "লাইব্ৰেৰী",
+    "group_deployed": "WMF দ্বাৰা মোতায়েন",
+    "group_operations": "অপাৰেচন / SRE",
+    "group_puppet": "পাপেট (Puppet)",
+    "group_pywikibot": "পাইউইকিবট",
+    "group_devtools": "ডেভ-টুলচ / CI",
+    "group_analytics": "এনালাইটিক্স",
+    "group_wmcs": "ক্লাউড (WMCS)",
+    "group_apps": "ম’বাইল এপচ"
 }

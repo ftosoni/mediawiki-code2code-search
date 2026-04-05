@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from typing import Optional
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -168,7 +169,7 @@ app.add_middleware(
 
 class SearchRequest(BaseModel):
     query: str
-    top_k: int = 5
+    top_k: int = 10
     repo_group: Optional[str] = "all"
     type_filter: str = "all" # all, function, type, template_function, template_type
 
@@ -219,26 +220,30 @@ async def search_code(req: SearchRequest):
     xq = bi_model.encode([instruction + req.query], normalize_embeddings=True)
     query_vec = np.array(xq).astype('float32')
 
-    # Retrieve top candidates
-    # Retrieve more candidates if filtering by group to ensure enough results after filter
-    retrieve_k = req.top_k * 5 if req.repo_group != "all" else req.top_k
-    distances, indices = index.search(query_vec, retrieve_k)
+    # Retrieve 50 candidates regardless of top_k to ensure quality for rerank
+    RECALL_K = 50
+    distances, indices = index.search(query_vec, RECALL_K)
     top_indices = indices[0]
     
-    # Get metadata and filter by group if specified
+    # Get metadata and filter by group/type if specified
     candidates = []
-    for idx in top_indices:
+    for i, idx in enumerate(top_indices):
         if idx != -1 and idx < len(metadata):
-            item = metadata[int(idx)]
-            if req.repo_group == "all" or item.get("repo_group") == req.repo_group:
-                if req.type_filter == "all" or item.get("type") == req.type_filter:
-                    candidates.append(item)
+            item = metadata[int(idx)].copy()
+            item["recall_score"] = float(distances[0][i])
+            
+            # Application of filters
+            group_match = (req.repo_group == "all" or item.get("repo_group") == req.repo_group)
+            type_match = (req.type_filter == "all" or item.get("type") == req.type_filter)
+            
+            if group_match and type_match:
+                candidates.append(item)
     
-    # Limit to top_k after filtering
-    ready_for_rerank_meta = candidates[:req.top_k]
-    
-    if not ready_for_rerank_meta:
+    if not candidates:
         return {"results": [], "total": 0}
+
+    # We can rerank up to some reasonable limit (e.g. 50)
+    ready_for_rerank_meta = candidates # Re-ranking all candidates that passed filtering
 
     # 2. BATCH FETCH PHASE (Deduplicated Parallel S3 Access)
     unique_sha1s = {c["sha1"] for c in ready_for_rerank_meta if c.get("sha1")}

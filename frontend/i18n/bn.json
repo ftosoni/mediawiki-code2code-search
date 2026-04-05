@@ -22,5 +22,19 @@
     "type_template_function": "টেমপ্লেট ফাংশন",
     "type_template_type": "টেমপ্লেট ধরণ",
     "fetching_code": "Software Heritage থেকে কোড সংগ্রহ করা হচ্ছে...",
-    "error_fetching_code": "SWH আর্কাইভে এই স্নিপেটটি নেই"
+    "error_fetching_code": "SWH আর্কাইভে এই স্নিপেটটি নেই",
+    "group_all": "সব",
+    "group_core": "মিডিয়াউইকি কোর",
+    "group_extensions": "এক্সটেনশন",
+    "group_skins": "স্কিনস",
+    "group_things": "এক্সটেনশন এবং স্কিনস",
+    "group_libraries": "লাইব্রেরি",
+    "group_deployed": "WMF মোতায়েন",
+    "group_operations": "অপারেশনস / SRE",
+    "group_puppet": "পাপেট (Puppet)",
+    "group_pywikibot": "পাইউইকিবট",
+    "group_devtools": "ডেভ-টুলস / CI",
+    "group_analytics": "অ্যানালিটিক্স",
+    "group_wmcs": "ক্লাউড (WMCS)",
+    "group_apps": "মোবাইল অ্যাপস"
 }

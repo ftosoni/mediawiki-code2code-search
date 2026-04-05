@@ -21,6 +21,20 @@
     "type_type": "اقسام (Types)",
     "type_template_function": "ٹیمپلیٹ فنکشنز",
     "type_template_type": "ٹیمپلیٹ اقسام",
-    "fetching_code": "Software Heritage سے کوڈ حاصل کیا جا رہا ہے...",
-    "error_fetching_code": "SWH آرکائیو میں سنپٹ دستیاب نہیں ہے"
+    "fetching_code": "سافٹ ویئر ہیریٹیج سے کوڈ حاصل کیا جا رہا ہے...",
+    "error_fetching_code": "SWH آرکائیو میں سنپٹ دستیاب نہیں ہے",
+    "group_all": "سب",
+    "group_core": "میڈیا وکی کور",
+    "group_extensions": "ایکسٹینشنز",
+    "group_skins": "سکنز",
+    "group_things": "ایکسٹینشنز اور سکنز",
+    "group_libraries": "لائبریریاں",
+    "group_deployed": "WMF ڈیپلائیڈ",
+    "group_operations": "آپریشنز / SRE",
+    "group_puppet": "پپٹ (Puppet)",
+    "group_pywikibot": "پائی وکی بوٹ",
+    "group_devtools": "ڈیو ٹولز / CI",
+    "group_analytics": "اینالیٹکس",
+    "group_wmcs": "کلاؤڈ (WMCS)",
+    "group_apps": "موبائل ایپس"
 }

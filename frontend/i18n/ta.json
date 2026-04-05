@@ -22,5 +22,19 @@
     "type_template_function": "வார்ப்புரு சார்புகள்",
     "type_template_type": "வார்ப்புரு வகைகள்",
     "fetching_code": "Software Heritage இலிருந்து குறியீட்டைப் பெறுகிறது...",
-    "error_fetching_code": "SWH காப்பகத்தில் துணுக்கைக் காணவில்லை"
+    "error_fetching_code": "SWH காப்பகத்தில் துணுக்கைக் காணவில்லை",
+    "group_all": "அனைத்தும்",
+    "group_core": "மீடியாவிக்கி கோர்",
+    "group_extensions": "நீட்டிப்புகள் (Extensions)",
+    "group_skins": "ஸ்கின்கள்",
+    "group_things": "நீட்டிப்புகள் மற்றும் ஸ்கின்கள்",
+    "group_libraries": "நூலகங்கள் (Libraries)",
+    "group_deployed": "WMF வரிசைப்படுத்தப்பட்டது",
+    "group_operations": "செயல்பாடுகள் / SRE",
+    "group_puppet": "பப்பட் (Puppet)",
+    "group_pywikibot": "பைவிக்கிபாட்",
+    "group_devtools": "தேவ்-டூல்ஸ் / CI",
+    "group_analytics": "பகுப்பாய்வு",
+    "group_wmcs": "கிளவுட் (WMCS)",
+    "group_apps": "மொபைல் ஆப்ஸ்"
 }

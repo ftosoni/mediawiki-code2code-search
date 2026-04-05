@@ -21,6 +21,20 @@
     "type_type": "પ્રકાર (Types)",
     "type_template_function": "ટેમ્પલેટ ફંકશન્સ",
     "type_template_type": "ટેમ્પલેટ પ્રકાર",
-    "fetching_code": "Software Heritage માંથી કોડ મેળવી રહ્યું છે...",
-    "error_fetching_code": "SWH આર્કાઇવમાં સ્નિપેટ ઉપલબ્ધ નથી"
+    "fetching_code": "Software Heritage પરથી કોડ મેળવી રહ્યા છીએ...",
+    "error_fetching_code": "SWH આર્કાઇવમાં સ્નિપેટ ઉપલબ્ધ નથી",
+    "group_all": "બધું",
+    "group_core": "મીડિયા વિકિ કોર",
+    "group_extensions": "એક્સ્ટેન્શન્સ",
+    "group_skins": "સ્કિન્સ",
+    "group_things": "એક્સ્ટેન્શન્સ અને સ્કિન્સ",
+    "group_libraries": "લાઇબ્રેરીઝ",
+    "group_deployed": "WMF ડિપ્લોયડ",
+    "group_operations": "ઓપરેશન્સ / SRE",
+    "group_puppet": "પપેટ (Puppet)",
+    "group_pywikibot": "પાયવિકિબોટ",
+    "group_devtools": "ડેવ-ટૂલ્સ / CI",
+    "group_analytics": "એનાલિટિક્સ",
+    "group_wmcs": "ક્લાઉડ (WMCS)",
+    "group_apps": "મોબાઇલ એપ્સ"
 }

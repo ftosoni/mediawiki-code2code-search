@@ -21,6 +21,20 @@
     "type_type": "തരങ്ങൾ (Types)",
     "type_template_function": "ടെംപ്ലേറ്റ് ഫംഗ്ഷനുകൾ",
     "type_template_type": "ടെംപ്ലേറ്റ് തരങ്ങൾ",
-    "fetching_code": "Software Heritage-ൽ നിന്ന് കോഡ് ലഭ്യമാക്കുന്നു...",
-    "error_fetching_code": "SWH ആർക്കൈവിൽ സ്നിപ്പറ്റ് ലഭ്യമല്ല"
+    "fetching_code": "Software Heritage-ൽ നിന്ന് കോഡ് എടുക്കുന്നു...",
+    "error_fetching_code": "SWH ആർക്കൈവിൽ സ്നിപ്പറ്റ് ലഭ്യമല്ല",
+    "group_all": "എല്ലാം",
+    "group_core": "മീഡിയവിക്കി കോർ",
+    "group_extensions": "എക്സ്റ്റൻഷനുകൾ",
+    "group_skins": "സ്കിന്നുകൾ",
+    "group_things": "എക്സ്റ്റൻഷനുകളും സ്കിന്നുകളും",
+    "group_libraries": "ലൈബ്രറികൾ",
+    "group_deployed": "WMF വിന്യസിച്ചിട്ടുള്ളവ",
+    "group_operations": "ഓപ്പറേഷൻസ് / SRE",
+    "group_puppet": "പപ്പറ്റ് (Puppet)",
+    "group_pywikibot": "പൈവിക്കിബോട്ട്",
+    "group_devtools": "ദേവ്-ടൂൾസ് / CI",
+    "group_analytics": "അനലിറ്റിക്സ്",
+    "group_wmcs": "ക്ലൗഡ് (WMCS)",
+    "group_apps": "മൊബൈൽ ആപ്ലിക്കേഷനുകൾ"
 }

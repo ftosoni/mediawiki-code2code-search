@@ -21,6 +21,12 @@
 
 The indexing pipeline is designed for a **mass-scale, distributed build**. 
 
+## 🛠️ Setup
+Install the necessary dependencies in your virtual environment:
+```bash
+pip install -r backend/requirements.txt
+```
+
 ### Phase 1: Discovery & Mirroring (Local)
 First, discover the ecosystem and mirror it for processing:
 ```bash
@@ -48,6 +54,14 @@ Move `raw_functions.json` to a GPU-equipped environment to compute neural vector
 cd backend
 python generate_index.py  # Auto-detects CUDA/GPU
 ```
+
+### Phase 5: Deployment (Local/Toolforge)
+Once the index is built, start the FastAPI backend:
+```bash
+cd backend
+uvicorn app:app --host 0.0.0.0 --port 8000
+```
+The server will be available at `http://localhost:8000`. You can access the automatic API documentation at `http://localhost:8000/docs`.
 
 ---
 
