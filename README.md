@@ -1,10 +1,12 @@
 # MediaWiki Code2Code Search
 
-![Event Horizon Banner](https://img.shields.io/badge/Status-Optimized-success?style=for-the-badge)
+![MediaWiki Code2Code Search Banner](https://img.shields.io/badge/Status-Optimized-success?style=for-the-badge)
 ![Tech Stack](https://img.shields.io/badge/Stack-FastAPI%20|%20Jina%20|%20FAISS-orange?style=for-the-badge)
 ![Scaling](https://img.shields.io/badge/Index-2400+%20Repos-bluev?style=for-the-badge)
 
-**MediaWiki Code2Code Search** is a high-performance, multi-language, memory-efficient semantic code search engine indexing the entire MediaWiki open-source ecosystem (2,400+ repositories). It implements a modern recall-then-rerank architecture optimized for the strict resource constraints of **Wikimedia Toolforge**, while providing high-fidelity code-to-code retrieval.
+A multi-stage, high-precision semantic code search engine designed for the MediaWiki ecosystem. 
+Built on a hybrid architecture of deep neural retrieval (Jina 0.5b) and cross-encoder re-ranking (Jina Reranker v3), 
+optimized for large-scale codebases like MediaWiki Core, Extensions, and WMF Operations.
 
 ## ✨ Key Features
 

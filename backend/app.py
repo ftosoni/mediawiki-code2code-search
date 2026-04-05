@@ -157,7 +157,7 @@ class SWHS3Cache:
         
         return None
 
-app = FastAPI(title="Event Horizon: Semantic Code Search", lifespan=lifespan)
+app = FastAPI(title="MediaWiki Code2Code Search", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
