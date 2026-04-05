@@ -37,5 +37,8 @@
     "group_analytics": "ਐਨਾਲਿਟਿਕਸ",
     "group_wmcs": "ਕਲਾਊਡ (WMCS)",
     "group_apps": "ਮੋਬਾਈਲ ਐਪਸ",
-    "indic_ug": "ਇੰਡਿਕ ਮੀਡੀਆਵਿਕੀ ਡੇਵਲਪਰਸ ਯੂਜ਼ਰ ਗਰੁੱਪ"
+    "indic_ug": "ਇੰਡਿਕ ਮੀਡੀਆਵਿਕੀ ਡੇਵਲਪਰਸ ਯੂਜ਼ਰ ਗਰੁੱਪ",
+    "sloan_grant_prefix": "ਇਹ ਅਧਿਐਨ ",
+    "sloan_grant_mid": " ਦੁਆਰਾ ਗ੍ਰਾਂਟ #",
+    "sloan_grant_suffix": " ਨਾਲ ਵਿੱਤੀ ਸਹਾਇਤਾ ਪ੍ਰਾਪਤ ਹੈ (sloan.org)।"
 }

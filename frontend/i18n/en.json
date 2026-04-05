@@ -43,5 +43,8 @@
     "group_armchairgm": "ArmchairGM",
     "group_shouthow": "ShoutHow",
     "group_apps": "Mobile Apps",
-    "indic_ug": "Indic MediaWiki Developers UG"
+    "indic_ug": "Indic MediaWiki Developers UG",
+    "sloan_grant_prefix": "This study was funded by the ",
+    "sloan_grant_mid": " with the grant #",
+    "sloan_grant_suffix": " (sloan.org)."
 }

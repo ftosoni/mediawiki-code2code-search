@@ -37,5 +37,8 @@
     "group_analytics": "അനലിറ്റിക്സ്",
     "group_wmcs": "ക്ലൗഡ് (WMCS)",
     "group_apps": "മൊബൈൽ ആപ്ലിക്കേഷനുകൾ",
-    "indic_ug": "ഇൻഡിക് മീഡിയവിക്കി ഡെവലപ്പേഴ്സ് യൂസർ ഗ്രൂപ്പ്"
+    "indic_ug": "ഇൻഡിക് മീഡിയവിക്കി ഡെവലപ്പേഴ്സ് യൂസർ ഗ്രൂപ്പ്",
+    "sloan_grant_prefix": "ഈ പഠനത്തിന് ",
+    "sloan_grant_mid": " ഗ്രാന്റ് #",
+    "sloan_grant_suffix": " വഴി ധനസഹായം ലഭിച്ചു (sloan.org)."
 }

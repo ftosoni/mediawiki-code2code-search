@@ -39,5 +39,8 @@
     "group_analytics": "Analyse",
     "group_wmcs": "Cloud (WMCS)",
     "group_apps": "Applications mobiles",
-    "indic_ug": "Groupe d'utilisateurs des développeurs Indic MediaWiki"
+    "indic_ug": "Groupe d'utilisateurs des développeurs Indic MediaWiki",
+    "sloan_grant_prefix": "Cette étude a été financée par la ",
+    "sloan_grant_mid": " avec la subvention #",
+    "sloan_grant_suffix": " (sloan.org)."
 }

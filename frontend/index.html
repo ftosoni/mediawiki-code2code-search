@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MediaWiki Code2Code Search | Semantic Neural Retrieval</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>">
     <!-- React & Babel for zero-node weightless feel -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -700,12 +701,12 @@
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                 <div>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                                        <span style={{ 
-                                            fontSize: '0.65rem', 
-                                            color: '#8da2fb', 
-                                            fontWeight: 700, 
-                                            background: 'rgba(141, 162, 251, 0.1)', 
-                                            padding: '2px 8px', 
+                                        <span style={{
+                                            fontSize: '0.65rem',
+                                            color: '#8da2fb',
+                                            fontWeight: 700,
+                                            background: 'rgba(141, 162, 251, 0.1)',
+                                            padding: '2px 8px',
                                             borderRadius: '4px',
                                             textTransform: 'uppercase',
                                             letterSpacing: '1px'
@@ -915,7 +916,7 @@
                         />
                         <div className="type-selector">
                             {['all', 'function', 'type', 'template_function', 'template_type'].map(f => (
-                                <div 
+                                <div
                                     key={f}
                                     className={`type-chip ${typeFilter === f ? 'active' : ''}`}
                                     onClick={() => setTypeFilter(f)}
@@ -961,10 +962,7 @@
                         alignItems: 'center'
                     }}>
                         <span>
-                            {t('created_by')} 
-                            <a href="https://meta.wikimedia.org/wiki/User:Super_nabla" target="_blank" style={{ color: 'var(--accent-india)', textDecoration: 'none' }}>Super nabla 🪰</a> 
-                            & <a href="https://acube.di.unipi.it/" target="_blank" style={{ color: 'var(--accent-italy)', textDecoration: 'none' }}>Acube Lab</a> 
-                            (<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/Indic_MediaWiki_Developers_User_Group" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>{t('indic_ug')}</a>)
+                            {t('created_by')} <a href="https://meta.wikimedia.org/wiki/User:Super_nabla" target="_blank" style={{ color: 'var(--accent-italy)', textDecoration: 'none' }}>Super nabla 🪰</a> (<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/Indic_MediaWiki_Developers_User_Group" target="_blank" style={{ color: 'var(--accent-india)', textDecoration: 'none' }}>{t('indic_ug')}</a>) & <a href="https://acube.di.unipi.it/" target="_blank" style={{ color: 'var(--accent-italy)', textDecoration: 'none' }}>Acube Lab</a>
                         </span>
                         <span style={{ opacity: 0.3 }}>|</span>
                         <span>{t('licence')} <a href="https://github.com/ftosoni/code-search-engine/blob/main/LICENSE.md" target="_blank" style={{ color: 'inherit' }}>Apache 2.0</a></span>
@@ -973,10 +971,12 @@
                         <span style={{ opacity: 0.3 }}>|</span>
                         <span><a href="https://archive.softwareheritage.org/swh:1:dir:f9f858a48d663b3809c9e2f336412717496202ab" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>{t('view_swhid')}</a></span>
                         <span style={{ opacity: 0.3 }}>|</span>
-                        <span>{t('last_updated')}</span>
-                        
-                        <div style={{ width: '100%', marginTop: '2rem', fontSize: '0.65rem', opacity: 0.25, fontStyle: 'italic' }}>
-                            This study was funded by the <a href="https://sloan.org/" target="_blank" style={{ color: 'inherit' }}>Alfred P. Sloan Foundation</a> with the grant #<a href="https://sloan.org/grant-detail/g-2025-25193" target="_blank" style={{ color: 'inherit' }}>G-2025-25193</a> (sloan.org).
+                        <div style={{ width: '100%', marginTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '1.5rem', color: '#666' }}>
+                            {t('sloan_grant_prefix')} 
+                            <a href="https://sloan.org/" target="_blank" style={{ color: 'inherit' }}>Alfred P. Sloan Foundation</a> 
+                            {t('sloan_grant_mid')} 
+                            <a href="https://sloan.org/grant-detail/g-2025-25193" target="_blank" style={{ color: 'inherit' }}>G-2025-25193</a> 
+                            {t('sloan_grant_suffix')}
                         </div>
                     </footer>
                 </div>
