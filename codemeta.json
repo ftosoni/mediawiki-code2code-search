@@ -1,0 +1,41 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "type": "SoftwareSourceCode",
+    "applicationCategory": "Semantic code search for MediaWiki ecosystem",
+    "author": [
+        {
+            "id": "https://orcid.org/0000-0001-8457-3866",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "Sant'Anna School of Advanced Studies, Pisa"
+            },
+            "email": "Francesco.Tosoni@santannapisa.it",
+            "familyName": "Tosoni",
+            "givenName": "Francesco"
+        }
+    ],
+    "codeRepository": "git+https://github.com/ftosoni/mediawiki-code2code-search.git",
+    "datePublished": "2026-04-05",
+    "description": "MediaWiki Code2Code Search is a high-performance semantic search tool designed specifically for the MediaWiki open-source ecosystem with links to the Software Heritage archive. It leverages a modern 'recall-then-rerank' architecture to help developers navigate complex codebases with high precision and minimal resource usage.",
+    "keywords": [
+        "semantic code search",
+        "MediaWiki",
+        "code retrieval",
+        "neural information retrieval",
+        "FAISS",
+        "Jina embeddings",
+        "Tree-sitter",
+        "Software Heritage"
+    ],
+    "license": "https://spdx.org/licenses/Apache-2.0",
+    "name": "MediaWiki Code2Code Search",
+    "programmingLanguage": "Python",
+    "developmentStatus": "active",
+    "issueTracker": "https://github.com/ftosoni/mediawiki-code2code-search/issues",
+    "softwareVersion": "First release",
+    "version": "First release",
+    "identifier": "swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d",
+    "codeRepository": "https://github.com/ftosoni/mediawiki-code2code-search",
+    "url": "https://www.placeholder.it"
+}

@@ -1,0 +1,44 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: MediaWiki Code2Code Search
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Francesco
+    family-names: Tosoni
+    email: Francesco.Tosoni@santannapisa.it
+    affiliation: 'Sant''Anna School of Advanced Studies, Pisa'
+    orcid: 'https://orcid.org/0000-0001-8457-3866'
+identifiers:
+  - type: swh
+    value: 'swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d'
+    description: The SWHID of the first release
+  - type: url
+    value: 'https://www.placeholder.it'
+    description: The website of the tool
+repository-code: 'https://github.com/ftosoni/mediawiki-code2code-search'
+url: 'https://www.placeholder.it'
+abstract: >-
+  MediaWiki Code2Code Search is a high-performance semantic
+  search tool designed specifically for the MediaWiki
+  open-source ecosystem with links to the Software Heritage
+  archive. It leverages a modern "recall-then-rerank"
+  architecture to help developers navigate complex codebases
+  with high precision and minimal resource usage. 
+keywords:
+  - semantic code search
+  - MediaWiki
+  - code retrieval
+  - neural information retrieval
+  - FAISS
+  - Jina embeddings
+  - Tree-sitter
+  - Software Heritage
+license: Apache-2.0
+commit: ce15c5415a2ac3d2d0a60c1a16e697da2a5b10e9
+version: First release
+date-released: '2026-04-05'

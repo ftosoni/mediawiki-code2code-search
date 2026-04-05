@@ -6,7 +6,6 @@ venv/
 .env
 
 # Event Horizon Indexing
-backend/event_horizon.index
 backend/mediawiki.index
 backend/functions.json
 backend/raw_functions.json
@@ -26,6 +25,7 @@ backend/swh_cache/
 
 # Academic Manuscript
 manuscript/
+diff.txt
 
 # OS
 .DS_Store
