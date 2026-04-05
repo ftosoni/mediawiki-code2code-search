@@ -38,5 +38,6 @@
     "group_devtools": "Développement / CI",
     "group_analytics": "Analyse",
     "group_wmcs": "Cloud (WMCS)",
-    "group_apps": "Applications mobiles"
+    "group_apps": "Applications mobiles",
+    "indic_ug": "Groupe d'utilisateurs des développeurs Indic MediaWiki"
 }

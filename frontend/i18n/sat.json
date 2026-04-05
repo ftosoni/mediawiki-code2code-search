@@ -36,5 +36,6 @@
     "group_devtools": "DevTools / CI",
     "group_analytics": "Analytics",
     "group_wmcs": "Cloud (WMCS)",
-    "group_apps": "Mobile Apps"
+    "group_apps": "Mobile Apps",
+    "indic_ug": "Indic MediaWiki Developers User Group"
 }
