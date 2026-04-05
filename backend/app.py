@@ -1,10 +1,11 @@
 from fastapi import FastAPI
+from typing import Optional
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import torch
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
+from transformers import AutoModel, AutoTokenizer
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
@@ -26,7 +27,7 @@ HF_TOKEN = os.getenv("HF_TOKEN")
 
 # Standardise Paths (Script Relative)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FAISS_INDEX_PATH = os.path.join(BASE_DIR, "event_horizon.index")
+FAISS_INDEX_PATH = os.path.join(BASE_DIR, "mediawiki.index")
 METADATA_PATH = os.path.join(BASE_DIR, "functions.json")
 CACHE_DIR = os.path.join(BASE_DIR, "swh_cache")
 CACHE_LIMIT_MB = 100
@@ -53,17 +54,15 @@ async def lifespan(app: FastAPI):
     # Bi-Encoder (Recall)
     bi_model = SentenceTransformer("jinaai/jina-code-embeddings-0.5b", trust_remote_code=True, device="cpu")
     
-    print("Initialising Jina Reranker v2 (Rerank model)...")
+    print("Initialising Jina Reranker v3 (Rerank model)...")
     # Cross-Encoder (Rerank)
-    # Using float32 for CPU base, as bitsandbytes (int8) is CUDA only.
-    # To truly scale on Toolforge, we'd use Optimum/OpenVINO or Torch Dynamic Quantization.
-    rerank_model = AutoModelForSequenceClassification.from_pretrained(
-        "jinaai/jina-reranker-v2-base-multilingual", 
+    rerank_model = AutoModel.from_pretrained(
+        "jinaai/jina-reranker-v3", 
         trust_remote_code=True,
-        torch_dtype=torch.float32 # Jina v2 code expects torch_dtype despite transformers warning
+        torch_dtype=torch.float32
     ).to("cpu")
     rerank_model.eval()
-    rerank_tokenizer = AutoTokenizer.from_pretrained("jinaai/jina-reranker-v2-base-multilingual")
+    rerank_tokenizer = AutoTokenizer.from_pretrained("jinaai/jina-reranker-v3", trust_remote_code=True)
     
     # Apply dynamic quantization to Reranker for CPU memory savings
     # (Reduces RAM footprint significantly for Toolforge)
@@ -72,14 +71,16 @@ async def lifespan(app: FastAPI):
         rerank_model, {torch.nn.Linear}, dtype=torch.qint8
     )
 
-    if os.path.exists(FAISS_INDEX_PATH) and os.path.exists(METADATA_PATH):
+    if not os.path.exists(FAISS_INDEX_PATH):
+        print(f"⚠️ Warning: FAISS Index not found at {FAISS_INDEX_PATH}. Please run build.py first.")
+    elif not os.path.exists(METADATA_PATH):
+        print(f"⚠️ Warning: Metadata not found at {METADATA_PATH}. Please run build.py first.")
+    else:
         print(f"Loading FAISS index from {FAISS_INDEX_PATH}...")
         index = faiss.read_index(FAISS_INDEX_PATH)
         with open(METADATA_PATH, "r", encoding="utf-8") as f:
             metadata = json.load(f)
         print(f"Index loaded. Metadata entries: {len(metadata)}")
-    else:
-        print(f"⚠️ Warning: Index or metadata not found at {METADATA_PATH}. Please run build.py first.")
     
     yield
     # Cleanup
@@ -156,7 +157,7 @@ class SWHS3Cache:
         
         return None
 
-app = FastAPI(title="Event Horizon: Semantic Code Search", lifespan=lifespan)
+app = FastAPI(title="MediaWiki Code2Code Search", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -166,14 +167,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-
-
-
-class SearchQuery(BaseModel):
+class SearchRequest(BaseModel):
     query: str
-    top_k: int = 5
-    type_filter: str = "all" # all, function, type
+    top_k: int = 10
+    repo_group: Optional[str] = "all"
+    type_filter: str = "all" # all, function, type, template_function, template_type
 
 # Legacy helper removed. Use SWHS3Cache.fetch_blob()
 
@@ -213,54 +211,52 @@ async def get_code_snippet(swhid: str):
     return {"code": snippet}
 
 @app.post("/search")
-async def search_code(req: SearchQuery):
+async def search_code(req: SearchRequest):
     if bi_model is None or index is None or rerank_model is None:
         return {"error": "Server not fully initialised"}
 
     # 1. RECALL PHASE (Bi-Encoder)
     instruction = "Find the most relevant code snippet given the following query:\n"
     xq = bi_model.encode([instruction + req.query], normalize_embeddings=True)
-    xq = np.array(xq).astype('float32')
+    query_vec = np.array(xq).astype('float32')
 
-    # Retrieve top candidates (Recall 50+)
-    recall_k = max(50, req.top_k * 2) 
-    distances, indices = index.search(xq, recall_k)
-
-    recall_candidates = []
-    unique_sha1s = set()
-    for i, idx in enumerate(indices[0]):
+    # Retrieve 50 candidates regardless of top_k to ensure quality for rerank
+    RECALL_K = 50
+    distances, indices = index.search(query_vec, RECALL_K)
+    top_indices = indices[0]
+    
+    # Get metadata and filter by group/type if specified
+    candidates = []
+    for i, idx in enumerate(top_indices):
         if idx != -1 and idx < len(metadata):
-            item = metadata[idx]
+            item = metadata[int(idx)].copy()
+            item["recall_score"] = float(distances[0][i])
             
-            # Apply type filter (function, type, or all)
-            if req.type_filter != "all" and item.get("type") != req.type_filter:
-                continue
-                
-            dist = float(distances[0][i])
-            recall_candidates.append({**item, "recall_score": 1.0 / (1.0 + dist)})
+            # Application of filters
+            group_match = (req.repo_group == "all" or item.get("repo_group") == req.repo_group)
+            type_match = (req.type_filter == "all" or item.get("type") == req.type_filter)
             
-            # Identify unique files to fetch using the standard sha1
-            if item.get("sha1"):
-                unique_sha1s.add(item["sha1"])
+            if group_match and type_match:
+                candidates.append(item)
+    
+    if not candidates:
+        return {"results": [], "total": 0}
 
-    if not recall_candidates:
-        print("Recall phase returned no candidates.")
-        return {"results": []}
-
-    print(f"Recall phase found {len(recall_candidates)} candidates. Unique SHA1s: {len(unique_sha1s)}")
+    # We can rerank up to some reasonable limit (e.g. 50)
+    ready_for_rerank_meta = candidates # Re-ranking all candidates that passed filtering
 
     # 2. BATCH FETCH PHASE (Deduplicated Parallel S3 Access)
+    unique_sha1s = {c["sha1"] for c in ready_for_rerank_meta if c.get("sha1")}
     blob_tasks = {s: SWHS3Cache.fetch_blob(s) for s in unique_sha1s}
     blob_map = {}
     
-    # Run fetches concurrently to minimize latency
     fetch_results = await asyncio.gather(*blob_tasks.values())
     for (s, content) in zip(blob_tasks.keys(), fetch_results):
         blob_map[s] = content
 
     # 3. PREPARE FOR RERANK (Local Slicing)
     ready_for_rerank = []
-    for cand in recall_candidates:
+    for cand in ready_for_rerank_meta:
         sha1 = cand.get("sha1")
         l_match = re.search(r"lines=(\d+)-(\d+)", cand["swhid"])
         
@@ -276,20 +272,21 @@ async def search_code(req: SearchQuery):
     if not ready_for_rerank:
         return {"results": []}
 
-    # 4. RERANK PHASE (Cross-Encoder Precision)
-    pairs = [[req.query, c["code"]] for c in ready_for_rerank]
-    with torch.no_grad():
-        # Using the torch.qint8 quantized model
-        inputs = rerank_tokenizer(pairs, padding=True, truncation=True, return_tensors='pt', max_length=512)
-        logits = rerank_model(**inputs).logits
-        scores = torch.sigmoid(logits).cpu().numpy().flatten()
+    # 4. RERANK PHASE (Cross-Encoder)
+    rerank_results = rerank_model.rerank(
+        query=req.query, 
+        documents=[c["code"] for c in ready_for_rerank], 
+        top_n=req.top_k,
+        max_doc_length=512
+    )
 
-    for i, cand in enumerate(ready_for_rerank):
-        cand["rerank_score"] = float(scores[i])
+    final_results = []
+    for res in rerank_results:
+        cand = ready_for_rerank[res['index']]
+        cand["rerank_score"] = float(res['relevance_score'])
+        final_results.append(cand)
 
-    # Final Sort and top-K filter
-    ready_for_rerank.sort(key=lambda x: x["rerank_score"], reverse=True)
-    return {"results": ready_for_rerank[:req.top_k]}
+    return {"results": final_results}
 
 @app.get("/health")
 def health():

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MediaWiki Code2Code Search | Semantic Neural Retrieval</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>">
     <!-- React & Babel for zero-node weightless feel -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -18,8 +20,10 @@
     <style>
         :root {
             --bg-dark: #050505;
-            --accent-orange: #ff8c00;
-            --accent-purple: #9370db;
+            /* Indian Saffron (Kesari) */
+            --accent-india: #FF7722;
+            /* Savoy Blue */
+            --accent-italy: #4B61D1;
             --text-main: #e0e0e0;
             --glass: rgba(255, 255, 255, 0.04);
             --glass-border: rgba(255, 255, 255, 0.1);
@@ -71,7 +75,7 @@
             font-size: 3.5rem;
             font-weight: 700;
             letter-spacing: -2px;
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent-india), var(--accent-italy));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -135,7 +139,7 @@
         }
 
         .search-btn {
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent-india), var(--accent-italy));
             border: none;
             color: white;
             padding: 1.1rem 3rem;
@@ -179,7 +183,7 @@
         }
 
         .lang-selector:hover {
-            border-color: var(--accent-orange);
+            border-color: var(--accent-india);
             background: rgba(255, 255, 255, 0.08);
         }
 
@@ -229,7 +233,7 @@
             top: 0;
             bottom: 0;
             width: 6px;
-            background: linear-gradient(to bottom, var(--accent-orange), var(--accent-purple));
+            background: linear-gradient(to bottom, var(--accent-india), var(--accent-italy));
             opacity: 0.8;
         }
 
@@ -246,7 +250,7 @@
         }
 
         .file-info h3 {
-            color: var(--accent-orange);
+            color: var(--accent-india);
             font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 0.3rem;
@@ -254,7 +258,7 @@
         }
 
         .swhid-link {
-            color: var(--accent-purple);
+            color: var(--accent-italy);
             text-decoration: none;
             font-size: 0.8rem;
             font-family: 'JetBrains Mono', monospace;
@@ -305,7 +309,7 @@
         }
 
         .score-value.rank {
-            color: var(--accent-orange);
+            color: var(--accent-india);
             font-size: 1.3rem;
         }
 
@@ -347,7 +351,7 @@
             width: 70px;
             height: 70px;
             border: 5px solid rgba(255, 255, 255, 0.05);
-            border-bottom-color: var(--accent-orange);
+            border-bottom-color: var(--accent-india);
             border-radius: 50%;
             display: inline-block;
             animation: rotation 1s linear infinite;
@@ -406,7 +410,7 @@
         .expand-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--glass-border);
-            color: var(--accent-orange);
+            color: var(--accent-india);
             padding: 10px 20px;
             border-radius: 50px;
             font-size: 0.75rem;
@@ -424,10 +428,84 @@
             margin-right: auto;
         }
 
-        .expand-btn:hover {
-            background: rgba(255, 140, 0, 0.1);
-            border-color: var(--accent-orange);
-            transform: translateY(-2px);
+        .group-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 90%;
+            max-width: 800px;
+            padding: 10px 0;
+        }
+
+        .group-chip {
+            background: rgba(75, 97, 209, 0.1);
+            border: 1px solid rgba(75, 97, 209, 0.2);
+            color: #8DA2FB;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .group-chip:hover {
+            background: rgba(75, 97, 209, 0.2);
+            border-color: var(--accent-italy);
+            color: #fff;
+        }
+
+        .group-chip.active {
+            background: rgba(75, 97, 209, 0.3);
+            border-color: var(--accent-italy);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(75, 97, 209, 0.4);
+        }
+
+        /* Specific style for EVERYTHING button */
+        .group-chip.all-chip.active {
+            background: var(--accent-india);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255, 119, 34, 0.5);
+        }
+
+        .type-selector {
+            display: flex;
+            gap: 8px;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            justify-content: flex-start;
+        }
+
+        .type-chip {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            color: #777;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .type-chip:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: #aaa;
+        }
+
+        .type-chip.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-india);
+            color: var(--accent-india);
         }
     </style>
 </head>
@@ -459,6 +537,13 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 container.appendChild(renderer.domElement);
 
+                // Lights
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+                scene.add(ambientLight);
+
+                const pointLight = new THREE.PointLight(0x8da2fb, 2, 20); // Cool blue light
+                scene.add(pointLight);
+
                 // Particles
                 const particlesCount = 1800;
                 const particleGroup = new THREE.Group();
@@ -469,15 +554,17 @@
                 for (let i = 0; i < particlesCount; i++) {
                     const color = new THREE.Color();
                     if (Math.random() > 0.5) {
-                        color.setHex(0xff8c00);
+                        color.setHex(0xff8c00); // Saffron
                     } else {
-                        color.setHex(0x9370db);
+                        color.setHex(0x4b61d1); // Savoy Blue
                     }
 
-                    const material = new THREE.MeshBasicMaterial({
+                    const material = new THREE.MeshPhongMaterial({
                         color: color,
                         transparent: true,
-                        opacity: Math.random() * 0.4 + 0.1
+                        opacity: Math.random() * 0.4 + 0.2,
+                        shininess: 100,
+                        specular: 0xffffff
                     });
 
                     const mesh = new THREE.Mesh(geometry, material);
@@ -523,8 +610,19 @@
                     particleGroup.rotation.y += currentAnimSpeed;
                     particleGroup.rotation.x += currentAnimSpeed * 0.3;
 
-                    particleGroup.children.forEach(p => {
-                        p.rotation.y += 0.02;
+                    // Shiny glint tracking
+                    pointLight.position.x = mouseX * 5;
+                    pointLight.position.y = -mouseY * 5;
+                    pointLight.position.z = 5;
+
+                    const time = Date.now() * 0.001;
+
+                    particleGroup.children.forEach((p, idx) => {
+                        p.rotation.y += 0.015;
+                        // Twinkle effect (selective)
+                        if (idx % 15 === 0) {
+                            p.material.opacity = (Math.sin(time * 2 + idx) * 0.15) + 0.35;
+                        }
                     });
 
                     camera.position.x += (mouseX - camera.position.x) * 0.04;
@@ -602,8 +700,23 @@
                         <div className="file-info">
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                 <div>
-                                    <h3>{res.filepath.split('/').pop()}</h3>
-                                    <div style={{ color: '#aaa', fontSize: '0.85rem', marginBottom: '4px' }}>{res.filepath.split('/').slice(0, -1).join('/')}</div>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                                        <span style={{
+                                            fontSize: '0.65rem',
+                                            color: '#8da2fb',
+                                            fontWeight: 700,
+                                            background: 'rgba(141, 162, 251, 0.1)',
+                                            padding: '2px 8px',
+                                            borderRadius: '4px',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '1px'
+                                        }}>
+                                            {t(`group_${res.repo_group}`) || res.repo_group}
+                                        </span>
+                                        <span style={{ color: '#aaa', fontSize: '0.8rem' }}>{res.repo_name}</span>
+                                    </div>
+                                    <h3>{(res.filepath || "").split('/').pop()}</h3>
+                                    <div style={{ color: '#666', fontSize: '0.75rem' }}>{(res.filepath || "").split('/').slice(0, -1).join('/')}</div>
                                 </div>
                                 <div style={{
                                     padding: '4px 10px',
@@ -616,10 +729,10 @@
                                     color: (res.type.includes('type')) ? '#E1B0FF' : '#00FF7F',
                                     border: `1px solid ${(res.type.includes('type')) ? 'rgba(157, 0, 255, 0.3)' : 'rgba(0, 255, 127, 0.2)'}`
                                 }}>
-                                    {res.type.replace('_', ' ') || 'function'}
+                                    {t(`type_${res.type}`) || res.type.replace('_', ' ')}
                                 </div>
                             </div>
-                            <div style={{ color: 'var(--accent-orange)', fontWeight: 700, fontSize: '1.1rem' }}>{res.name}</div>
+                            <div style={{ color: 'var(--accent-india)', fontWeight: 700, fontSize: '1.1rem' }}>{res.name}</div>
                             <a
                                 href={`https://archive.softwareheritage.org/${res.swhid}`}
                                 target="_blank"
@@ -632,11 +745,11 @@
                         <div className="score-box">
                             <div className="score-item">
                                 <div className="score-label">{t('rerank_score')}</div>
-                                <div className="score-value rank">{res.rerank_score.toFixed(4)}</div>
+                                <div className="score-value rank">{(res.rerank_score || 0).toFixed(4)}</div>
                             </div>
                             <div className="score-item" style={{ opacity: 0.6 }}>
                                 <div className="score-label">{t('recall_score')}</div>
-                                <div className="score-value" style={{ fontSize: '0.9rem' }}>{res.recall_score.toFixed(4)}</div>
+                                <div className="score-value" style={{ fontSize: '0.9rem' }}>{(res.recall_score || 0).toFixed(4)}</div>
                             </div>
                         </div>
                     </div>
@@ -672,6 +785,7 @@
             const [query, setQuery] = useState("");
             const [results, setResults] = useState([]);
             const [typeFilter, setTypeFilter] = useState("all");
+            const [repoGroup, setRepoGroup] = useState("all");
             const [loading, setLoading] = useState(false);
             const [speed, setSpeed] = useState(1);
             const [currentLang, setCurrentLang] = useState("en");
@@ -711,7 +825,12 @@
                     const response = await fetch("/search", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ query, top_k: 5, type_filter: typeFilter })
+                        body: JSON.stringify({
+                            query,
+                            top_k: 10,
+                            type_filter: typeFilter,
+                            repo_group: repoGroup
+                        })
                     });
                     const data = await response.json();
                     setResults(data.results || []);
@@ -776,6 +895,18 @@
                         <p style={{ fontSize: '0.65rem', opacity: 0.4, letterSpacing: '6px', marginTop: '10px' }}>{t('subtitle')}</p>
                     </div>
 
+                    <div className="group-selector">
+                        {['all', 'core', 'things', 'libraries', 'deployed', 'operations', 'puppet', 'pywikibot', 'devtools', 'analytics', 'wmcs', 'apps'].map(g => (
+                            <div
+                                key={g}
+                                className={`group-chip ${repoGroup === g ? 'active' : ''} ${g === 'all' ? 'all-chip' : ''}`}
+                                onClick={() => setRepoGroup(g)}
+                            >
+                                {t(`group_${g}`)}
+                            </div>
+                        ))}
+                    </div>
+
                     <div className="search-container">
                         <textarea
                             placeholder={t('placeholder')}
@@ -783,29 +914,20 @@
                             onChange={(e) => setQuery(e.target.value)}
                             disabled={loading}
                         />
+                        <div className="type-selector">
+                            {['all', 'function', 'type', 'template_function', 'template_type'].map(f => (
+                                <div
+                                    key={f}
+                                    className={`type-chip ${typeFilter === f ? 'active' : ''}`}
+                                    onClick={() => setTypeFilter(f)}
+                                >
+                                    {t(`type_${f}`)}
+                                </div>
+                            ))}
+                        </div>
                         <div className="search-footer">
                             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                                 <div className="info-pill">{t('indexed')}</div>
-                                <select 
-                                    value={typeFilter} 
-                                    onChange={(e) => setTypeFilter(e.target.value)}
-                                    style={{
-                                        background: 'rgba(255, 255, 255, 0.05)',
-                                        border: '1px solid var(--glass-border)',
-                                        color: '#ccc',
-                                        borderRadius: '50px',
-                                        padding: '4px 12px',
-                                        fontSize: '0.7rem',
-                                        cursor: 'pointer',
-                                        outline: 'none',
-                                        appearance: 'none',
-                                        textAlign: 'center'
-                                    }}
-                                >
-                                    <option value="all">All Entities</option>
-                                    <option value="function">Functions</option>
-                                    <option value="type">Types</option>
-                                </select>
                             </div>
                             <button className="search-btn" onClick={handleSearch} disabled={loading}>
                                 {loading ? t('btn_loading') : t('btn_search')}
@@ -839,7 +961,9 @@
                         gap: '1rem',
                         alignItems: 'center'
                     }}>
-                        <span>{t('created_by')} <a href="https://meta.wikimedia.org/wiki/User:Super_nabla" target="_blank" style={{ color: 'var(--accent-orange)', textDecoration: 'none' }}>Super nabla 🪰</a> (<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/Indic_MediaWiki_Developers_User_Group" target="_blank" style={{ color: 'var(--accent-purple)', textDecoration: 'none' }}>Indic MediaWiki Developers UG</a>)</span>
+                        <span>
+                            {t('created_by')} <a href="https://meta.wikimedia.org/wiki/User:Super_nabla" target="_blank" style={{ color: 'var(--accent-italy)', textDecoration: 'none' }}>Super nabla 🪰</a> (<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/Indic_MediaWiki_Developers_User_Group" target="_blank" style={{ color: 'var(--accent-india)', textDecoration: 'none' }}>{t('indic_ug')}</a>) & <a href="https://acube.di.unipi.it/" target="_blank" style={{ color: 'var(--accent-italy)', textDecoration: 'none' }}>Acube Lab</a>
+                        </span>
                         <span style={{ opacity: 0.3 }}>|</span>
                         <span>{t('licence')} <a href="https://github.com/ftosoni/code-search-engine/blob/main/LICENSE.md" target="_blank" style={{ color: 'inherit' }}>Apache 2.0</a></span>
                         <span style={{ opacity: 0.3 }}>|</span>
@@ -847,7 +971,13 @@
                         <span style={{ opacity: 0.3 }}>|</span>
                         <span><a href="https://archive.softwareheritage.org/swh:1:dir:f9f858a48d663b3809c9e2f336412717496202ab" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>{t('view_swhid')}</a></span>
                         <span style={{ opacity: 0.3 }}>|</span>
-                        <span>{t('last_updated')}</span>
+                        <div style={{ width: '100%', marginTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '1.5rem', color: '#666' }}>
+                            {t('sloan_grant_prefix')} 
+                            <a href="https://sloan.org/" target="_blank" style={{ color: 'inherit' }}>Alfred P. Sloan Foundation</a> 
+                            {t('sloan_grant_mid')} 
+                            <a href="https://sloan.org/grant-detail/g-2025-25193" target="_blank" style={{ color: 'inherit' }}>G-2025-25193</a> 
+                            {t('sloan_grant_suffix')}
+                        </div>
                     </footer>
                 </div>
             );

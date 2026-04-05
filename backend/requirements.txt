@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 faiss-cpu
-transformers==4.47.1
+transformers>=5.4.0
 sentence-transformers
 einops
 bitsandbytes
