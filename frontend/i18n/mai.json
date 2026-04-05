@@ -1,9 +1,8 @@
 {
     "search_title": "SWH कोड अन्वेषण",
     "main_title": "MediaWiki Code2Code Search",
-    "subtitle": "सिमेंटिक न्यूरल रिट्रीवल इंजन",
+    "subtitle": "सिमेंटic न्यूरल रिट्रीवल इंजन",
     "placeholder": "// सिमेंटिक आर्काइव देखबाक लेल कोड लॉजिक दर्ज करू...",
-    "indexed": "अनुक्रमित: CoCo-trie · फंक्शन स्केल",
     "btn_search": "खोज शुरू करू",
     "btn_loading": "खोजि रहल अछि...",
     "rerank_score": "रीरैंक स्कोर",

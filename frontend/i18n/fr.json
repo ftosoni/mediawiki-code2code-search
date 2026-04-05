@@ -3,7 +3,6 @@
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "Moteur de Recherche Neurale Sémantique",
     "placeholder": "// Entrez la logique du code pour traverser l'archive sémantique...",
-    "indexed": "INDEXÉ : CoCo-trie · ÉCHELLE DE FONCTION",
     "btn_search": "LANCER LA RECHERCHE",
     "btn_loading": "TRAVERSÉE...",
     "rerank_score": "SCORE RERANK",

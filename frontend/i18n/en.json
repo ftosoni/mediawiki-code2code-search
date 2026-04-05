@@ -3,7 +3,6 @@
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "Semantic Neural Retrieval Engine",
     "placeholder": "// Enter code logic to traverse the semantic archive...",
-    "indexed": "INDEXED: Global MediaWiki Ecosystem",
     "btn_search": "INITIATE SEARCH",
     "btn_loading": "TRAVERSING...",
     "rerank_score": "RERANK-STAGE SCORE",

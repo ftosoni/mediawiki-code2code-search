@@ -3,7 +3,6 @@
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "સિમેન્ટિક ન્યુરલ રીટ્રીવલ એન્જિન",
     "placeholder": "// સિમેન્ટિક આર્કાઇવને પાર કરવા માટે કોડ લોજિક દાખલ કરો...",
-    "indexed": "અનુક્રમિત: CoCo-trie · ફંકશન સ્કેલ",
     "btn_search": "શોધ શરૂ કરો",
     "btn_loading": "શોધી રહ્યું છે...",
     "rerank_score": "રીરેન્ક સ્કોર",

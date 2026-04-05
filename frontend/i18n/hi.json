@@ -3,7 +3,6 @@
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "सिमेंटिक न्यूरल रिट्रीवल इंजन",
     "placeholder": "// सिमेंटिक आर्काइव को पार करने के लिए कोड लॉजिक दर्ज करें...",
-    "indexed": "अनुक्रमित: CoCo-trie · फंक्शन स्केल",
     "btn_search": "खोज शुरू करें",
     "btn_loading": "पार कर रहा है...",
     "rerank_score": "रीरैंक स्कोर",
