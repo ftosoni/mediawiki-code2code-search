@@ -14,8 +14,7 @@ def download_model(repo_id, folder_name):
     snapshot_download(
         repo_id=repo_id, 
         local_dir=save_path, 
-        local_dir_use_symlinks=False, # Copy files for easy transfer
-        trust_remote_code=True
+        local_dir_use_symlinks=False # Copy files for easy transfer
     )
     print(f"✅ Successfully downloaded to {save_path}")
 
