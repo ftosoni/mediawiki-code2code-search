@@ -39,6 +39,6 @@ keywords:
   - Tree-sitter
   - Software Heritage
 license: Apache-2.0
-commit: 37d0ff9ac5ac0034de9790f26277c1bc70377458
+commit: 9e0483c628148ec25eefb6cb0f7d1fafd2c535a9
 version: First release
 date-released: '2026-04-07'
