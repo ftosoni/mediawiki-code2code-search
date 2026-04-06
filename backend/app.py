@@ -46,6 +46,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FAISS_INDEX_PATH = os.path.join(BASE_DIR, "mediawiki.index")
 METADATA_PATH = os.path.join(BASE_DIR, "functions.json")
 CACHE_DIR = os.path.join(BASE_DIR, "swh_cache")
+MODELS_DIR = os.path.join(BASE_DIR, "..", "models")
 CACHE_LIMIT_MB = 100
 
 # Ensure Cache Directory exists
@@ -68,17 +69,35 @@ async def lifespan(app: FastAPI):
     
     print("Initialising Jina Code Embeddings (Recall model)...")
     # Bi-Encoder (Recall)
-    bi_model = SentenceTransformer("jinaai/jina-code-embeddings-0.5b", trust_remote_code=True, device="cpu")
+    bi_local_path = os.path.join(MODELS_DIR, "jina-embeddings")
+    if os.path.exists(bi_local_path):
+        print(f"Loading Bi-Encoder from local cache: {bi_local_path}")
+        bi_model = SentenceTransformer(bi_local_path, trust_remote_code=True, device="cpu")
+    else:
+        print("Loading Bi-Encoder from Hugging Face Hub (this may take a while)...")
+        bi_model = SentenceTransformer("jinaai/jina-code-embeddings-0.5b", trust_remote_code=True, device="cpu")
     
     print("Initialising Jina Reranker v3 (Rerank model)...")
     # Cross-Encoder (Rerank)
-    rerank_model = AutoModel.from_pretrained(
-        "jinaai/jina-reranker-v3", 
-        trust_remote_code=True,
-        torch_dtype=torch.float32
-    ).to("cpu")
+    rerank_local_path = os.path.join(MODELS_DIR, "jina-reranker")
+    if os.path.exists(rerank_local_path):
+        print(f"Loading Reranker from local cache: {rerank_local_path}")
+        rerank_model = AutoModel.from_pretrained(
+            rerank_local_path, 
+            trust_remote_code=True,
+            torch_dtype=torch.float32
+        ).to("cpu")
+        rerank_tokenizer = AutoTokenizer.from_pretrained(rerank_local_path, trust_remote_code=True)
+    else:
+        print("Loading Reranker from Hugging Face Hub (this may take a while)...")
+        rerank_model = AutoModel.from_pretrained(
+            "jinaai/jina-reranker-v3", 
+            trust_remote_code=True,
+            torch_dtype=torch.float32
+        ).to("cpu")
+        rerank_tokenizer = AutoTokenizer.from_pretrained("jinaai/jina-reranker-v3", trust_remote_code=True)
+    
     rerank_model.eval()
-    rerank_tokenizer = AutoTokenizer.from_pretrained("jinaai/jina-reranker-v3", trust_remote_code=True)
     
     # Apply dynamic quantization to Reranker for CPU memory savings
     # (Reduces RAM footprint significantly for Toolforge)

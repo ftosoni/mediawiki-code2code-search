@@ -31,3 +31,6 @@ diff.txt
 .DS_Store
 Thumbs.db
 
+# Models (Local Download)
+models/
+
