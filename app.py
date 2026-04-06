@@ -182,13 +182,9 @@ async def lifespan(app: FastAPI):
         
         rerank_model.eval()
         
-        # Apply dynamic quantization to Reranker for CPU memory savings
-        # (Reduces RAM footprint significantly for Toolforge)
-        print("Applying dynamic quantization to Reranker...")
-        rerank_model = torch.quantization.quantize_dynamic(
-            rerank_model, {torch.nn.Linear}, dtype=torch.qint8
-        )
-
+        # NOTE: Dynamic quantization is skipped to prioritize the simplest and fastest startup.
+        # This requires setting the webservice memory to at least 6GiB (8GiB recommended).
+        
         if not os.path.exists(FAISS_INDEX_PATH):
             print(f"⚠️ Warning: FAISS Index not found at {FAISS_INDEX_PATH}. Please run build.py first.")
         elif not os.path.exists(METADATA_PATH):
