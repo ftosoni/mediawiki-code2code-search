@@ -15,11 +15,11 @@ authors:
     orcid: 'https://orcid.org/0000-0001-8457-3866'
 identifiers:
   - type: swh
-    value: 'swh:1:rev:309cf2674ee7a0749978cf8265ab91a60aea0f7d'
+    value: 'swh:1:dir:7102e192b9399dfdc06ef36c514f9a9505fd5d24;origin=https://github.com/ftosoni/mediawiki-code2code-search'
     description: The SWHID of the first release
   - type: url
-    value: 'https://www.placeholder.it'
-    description: The website of the tool
+    value: 'https://code2codesearch.toolforge.org/'
+    description: The Toolforge URL of the tool
 repository-code: 'https://github.com/ftosoni/mediawiki-code2code-search'
 url: 'https://www.placeholder.it'
 abstract: >-
@@ -41,4 +41,4 @@ keywords:
 license: Apache-2.0
 commit: ce15c5415a2ac3d2d0a60c1a16e697da2a5b10e9
 version: First release
-date-released: '2026-04-05'
+date-released: '2026-04-07'
