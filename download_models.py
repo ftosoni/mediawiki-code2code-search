@@ -2,7 +2,7 @@ import os
 from sentence_transformers import SentenceTransformer
 from transformers import AutoModel, AutoTokenizer
 
-base_path = "/data/project/code2codesearch/models"
+base_path = "/data/project/code2codesearch/mediawiki-code2code-search/models"
 
 print("Downloading Jina Embeddings...")
 bi_model = SentenceTransformer("jinaai/jina-code-embeddings-0.5b", trust_remote_code=True)
@@ -16,4 +16,4 @@ rerank_tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=T
 rerank_model.save_pretrained(os.path.join(base_path, "jina-reranker"))
 rerank_tokenizer.save_pretrained(os.path.join(base_path, "jina-reranker"))
 
-print("All saved in /data/project/code2codesearch/models")
+print("All saved in /data/project/code2codesearch/mediawiki-code2code-search/models")
