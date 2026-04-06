@@ -43,10 +43,10 @@ HF_TOKEN = os.getenv("HF_TOKEN")
 
 # Standardise Paths (Script Relative)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FAISS_INDEX_PATH = os.path.join(BASE_DIR, "mediawiki.index")
-METADATA_PATH = os.path.join(BASE_DIR, "functions.json")
-CACHE_DIR = os.path.join(BASE_DIR, "swh_cache")
-MODELS_DIR = os.path.join(BASE_DIR, "..", "models")
+FAISS_INDEX_PATH = os.path.join(BASE_DIR, "backend", "mediawiki.index")
+METADATA_PATH = os.path.join(BASE_DIR, "backend", "functions.json")
+CACHE_DIR = os.path.join(BASE_DIR, "backend", "swh_cache")
+MODELS_DIR = os.path.join(BASE_DIR, "models")
 CACHE_LIMIT_MB = 100
 
 # Ensure Cache Directory exists
@@ -328,7 +328,6 @@ def health():
     return {"status": "ok", "index_size": index.ntotal if index else 0}
 
 # Mount the static frontend directory last to avoid intercepting API calls
-frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../frontend"))
+frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "frontend"))
 if os.path.exists(frontend_path):
     app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
-
