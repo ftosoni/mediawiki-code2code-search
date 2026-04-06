@@ -1,1 +1,1 @@
-web: gunicorn app:app -k uvicorn.workers.UvicornWorker --workers=2 --timeout 120 --bind 0.0.0.0
+web: TORCHINDUCTOR_CACHE_DIR=/tmp/torch_cache TORCHDYNAMO_DISABLE=1 TORCH_COMPILE_DISABLE=1 PYTHONUNBUFFERED=1 gunicorn app:app -k uvicorn.workers.UvicornWorker --workers=1 --timeout 300 --bind 0.0.0.0

@@ -14,6 +14,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
+import sys
+import getpass
+try:
+    import pwd
+except ImportError:
+    pwd = None
+
+# Patch per Toolforge/Kubernetes - evita getpass.getuser() failures
+os.environ.setdefault('TORCHINDUCTOR_CACHE_DIR', '/tmp/torch_cache')
+os.environ.setdefault('TORCHDYNAMO_DISABLE', '1')
+os.environ.setdefault('TORCH_COMPILE_DISABLE', '1')
+
+# Monkey patch getpass.getuser per Toolforge
+original_getuser = getpass.getuser
+
+def patched_getuser():
+    try:
+        return original_getuser()
+    except KeyError:
+        # In Toolforge container, uid non esiste in /etc/passwd
+        return 'toolforge_user'
+
+getpass.getuser = patched_getuser
+
 from fastapi import FastAPI
 from typing import Optional
 from contextlib import asynccontextmanager
