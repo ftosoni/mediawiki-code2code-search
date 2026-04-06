@@ -26,6 +26,9 @@ except ImportError:
 os.environ.setdefault('TORCHINDUCTOR_CACHE_DIR', '/tmp/torch_cache')
 os.environ.setdefault('TORCHDYNAMO_DISABLE', '1')
 os.environ.setdefault('TORCH_COMPILE_DISABLE', '1')
+os.environ.setdefault('TQDM_DISABLE', '1') # Disables progress bars that break logs
+os.environ.setdefault('TRANSFORMERS_VERBOSITY', 'error') # Reduces noise
+os.makedirs('/tmp/torch_cache', exist_ok=True)
 
 # Monkey patch getpass.getuser per Toolforge
 original_getuser = getpass.getuser
