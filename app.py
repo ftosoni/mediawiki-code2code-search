@@ -99,6 +99,31 @@ print("="*50)
 # Ensure Cache Directory exists
 os.makedirs(CACHE_DIR, exist_ok=True)
 
+# Diagnostic: Check model readability before loading
+print("--- DIAGNOSTIC: Checking model readability ---")
+try:
+    print(f"Current process UID: {os.getuid()}, GID: {os.getgid()}")
+    if os.path.exists(MODELS_DIR):
+        print(f"MODELS_DIR resides at: {MODELS_DIR}")
+        for sub in ['jina-embeddings', 'jina-reranker']:
+            sub_path = os.path.join(MODELS_DIR, sub)
+            if os.path.exists(sub_path):
+                readable = os.access(sub_path, os.R_OK)
+                executable = os.access(sub_path, os.X_OK)
+                print(f"Directory {sub}: Readable={readable}, Executable={executable}")
+                # Check a sample file
+                sample_file = os.path.join(sub_path, "config.json")
+                if os.path.exists(sample_file):
+                    file_readable = os.access(sample_file, os.R_OK)
+                    print(f"  - {sample_file} readable: {file_readable}")
+            else:
+                print(f"Directory {sub} MISSING from {MODELS_DIR}")
+    else:
+        print(f"❌ MODELS_DIR {MODELS_DIR} DOES NOT EXIST")
+except Exception as diag_e:
+    print(f"Diagnostic error: {diag_e}")
+print("----------------------------------------------")
+
 # Initialise singletons
 bi_model = None
 rerank_model = None
