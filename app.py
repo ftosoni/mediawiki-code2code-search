@@ -78,18 +78,18 @@ CACHE_LIMIT_MB = 100
 print("="*50)
 print("DEBUGGING PATHS")
 print(f"BASE_DIR: {BASE_DIR}")
-print(f"MODELS_DIR: {MODELS_DIR}")
+print(f"MODELS_DIR (relative to app.py): {MODELS_DIR}")
 print(f"Current working directory: {os.getcwd()}")
 print(f"Files in current directory: {os.listdir('.')[:10]}")
 print(f"Does MODELS_DIR exist? {os.path.exists(MODELS_DIR)}")
 if os.path.exists(MODELS_DIR):
     print(f"Contents of MODELS_DIR: {os.listdir(MODELS_DIR)}")
     
-# Try abs path
-absolute_models = "/data/project/code2codesearch/mediawiki-code2code-search/models"
-print(f"Does absolute path exist? {os.path.exists(absolute_models)}")
-if os.path.exists(absolute_models):
-    print(f"Contents of absolute path: {os.listdir(absolute_models)}")
+# Try standardized abs path
+standardized_path = "/data/project/code2codesearch/models"
+print(f"Does standardized path exist? {os.path.exists(standardized_path)}")
+if os.path.exists(standardized_path):
+    print(f"Contents of standardized path: {os.listdir(standardized_path)}")
 print("="*50)
 # end debug
 
@@ -111,55 +111,59 @@ async def lifespan(app: FastAPI):
     # Init Async HTTP Client
     http_client = httpx.AsyncClient(timeout=10.0)
     
-    print("Initialising Jina Code Embeddings (Recall model)...")
-    # Bi-Encoder (Recall)
-    bi_local_path = os.path.join(MODELS_DIR, "jina-embeddings")
-    if os.path.exists(bi_local_path):
-        print(f"Loading Bi-Encoder from local cache: {bi_local_path}")
-        bi_model = SentenceTransformer(bi_local_path, trust_remote_code=True, device="cpu")
-    else:
-        print("Loading Bi-Encoder from Hugging Face Hub (this may take a while)...")
-        bi_model = SentenceTransformer("jinaai/jina-code-embeddings-0.5b", trust_remote_code=True, device="cpu")
-    
-    print("Initialising Jina Reranker v3 (Rerank model)...")
-    # Cross-Encoder (Rerank)
-    rerank_local_path = os.path.join(MODELS_DIR, "jina-reranker")
-    if os.path.exists(rerank_local_path):
-        print(f"Loading Reranker from local cache: {rerank_local_path}")
-        rerank_model = AutoModel.from_pretrained(
-            rerank_local_path, 
-            trust_remote_code=True,
-            torch_dtype=torch.float32
-        ).to("cpu")
-        rerank_tokenizer = AutoTokenizer.from_pretrained(rerank_local_path, trust_remote_code=True)
-    else:
-        print("Loading Reranker from Hugging Face Hub (this may take a while)...")
-        rerank_model = AutoModel.from_pretrained(
-            "jinaai/jina-reranker-v3", 
-            trust_remote_code=True,
-            torch_dtype=torch.float32
-        ).to("cpu")
-        rerank_tokenizer = AutoTokenizer.from_pretrained("jinaai/jina-reranker-v3", trust_remote_code=True)
-    
-    rerank_model.eval()
-    
-    # Apply dynamic quantization to Reranker for CPU memory savings
-    # (Reduces RAM footprint significantly for Toolforge)
-    print("Applying dynamic quantization to Reranker...")
-    rerank_model = torch.quantization.quantize_dynamic(
-        rerank_model, {torch.nn.Linear}, dtype=torch.qint8
-    )
+    try:
+        print("Initialising Jina Code Embeddings (Recall model)...")
+        # Bi-Encoder (Recall)
+        bi_local_path = os.path.join(MODELS_DIR, "jina-embeddings")
+        if os.path.exists(bi_local_path):
+            print(f"Loading Bi-Encoder from local cache: {bi_local_path}")
+            bi_model = SentenceTransformer(bi_local_path, trust_remote_code=True, device="cpu")
+        else:
+            print("Loading Bi-Encoder from Hugging Face Hub (this may take a while)...")
+            bi_model = SentenceTransformer("jinaai/jina-code-embeddings-0.5b", trust_remote_code=True, device="cpu")
+        
+        print("Initialising Jina Reranker v3 (Rerank model)...")
+        # Cross-Encoder (Rerank)
+        rerank_local_path = os.path.join(MODELS_DIR, "jina-reranker")
+        if os.path.exists(rerank_local_path):
+            print(f"Loading Reranker from local cache: {rerank_local_path}")
+            rerank_model = AutoModel.from_pretrained(
+                rerank_local_path, 
+                trust_remote_code=True,
+                torch_dtype=torch.float32
+            ).to("cpu")
+            rerank_tokenizer = AutoTokenizer.from_pretrained(rerank_local_path, trust_remote_code=True)
+        else:
+            print("Loading Reranker from Hugging Face Hub (this may take a while)...")
+            rerank_model = AutoModel.from_pretrained(
+                "jinaai/jina-reranker-v3", 
+                trust_remote_code=True,
+                torch_dtype=torch.float32
+            ).to("cpu")
+            rerank_tokenizer = AutoTokenizer.from_pretrained("jinaai/jina-reranker-v3", trust_remote_code=True)
+        
+        rerank_model.eval()
+        
+        # Apply dynamic quantization to Reranker for CPU memory savings
+        # (Reduces RAM footprint significantly for Toolforge)
+        print("Applying dynamic quantization to Reranker...")
+        rerank_model = torch.quantization.quantize_dynamic(
+            rerank_model, {torch.nn.Linear}, dtype=torch.qint8
+        )
 
-    if not os.path.exists(FAISS_INDEX_PATH):
-        print(f"⚠️ Warning: FAISS Index not found at {FAISS_INDEX_PATH}. Please run build.py first.")
-    elif not os.path.exists(METADATA_PATH):
-        print(f"⚠️ Warning: Metadata not found at {METADATA_PATH}. Please run build.py first.")
-    else:
-        print(f"Loading FAISS index from {FAISS_INDEX_PATH}...")
-        index = faiss.read_index(FAISS_INDEX_PATH)
-        with open(METADATA_PATH, "r", encoding="utf-8") as f:
-            metadata = json.load(f)
-        print(f"Index loaded. Metadata entries: {len(metadata)}")
+        if not os.path.exists(FAISS_INDEX_PATH):
+            print(f"⚠️ Warning: FAISS Index not found at {FAISS_INDEX_PATH}. Please run build.py first.")
+        elif not os.path.exists(METADATA_PATH):
+            print(f"⚠️ Warning: Metadata not found at {METADATA_PATH}. Please run build.py first.")
+        else:
+            print(f"Loading FAISS index from {FAISS_INDEX_PATH}...")
+            index = faiss.read_index(FAISS_INDEX_PATH)
+            with open(METADATA_PATH, "r", encoding="utf-8") as f:
+                metadata = json.load(f)
+            print(f"Index loaded. Metadata entries: {len(metadata)}")
+    except Exception as e:
+        print(f"❌ CRITICAL ERROR DURING LIFESPAN INITIALIZATION: {e}")
+        # Allow the app to start even if models fail, for diagnostics
     
     yield
     # Cleanup
