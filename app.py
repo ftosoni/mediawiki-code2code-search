@@ -49,6 +49,25 @@ CACHE_DIR = os.path.join(BASE_DIR, "backend", "swh_cache")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 CACHE_LIMIT_MB = 100
 
+# Debug from here
+print("="*50)
+print("DEBUGGING PATHS")
+print(f"BASE_DIR: {BASE_DIR}")
+print(f"MODELS_DIR: {MODELS_DIR}")
+print(f"Current working directory: {os.getcwd()}")
+print(f"Files in current directory: {os.listdir('.')[:10]}")
+print(f"Does MODELS_DIR exist? {os.path.exists(MODELS_DIR)}")
+if os.path.exists(MODELS_DIR):
+    print(f"Contents of MODELS_DIR: {os.listdir(MODELS_DIR)}")
+    
+# Try abs path
+absolute_models = "/data/project/code2codesearch/mediawiki-code2code-search/models"
+print(f"Does absolute path exist? {os.path.exists(absolute_models)}")
+if os.path.exists(absolute_models):
+    print(f"Contents of absolute path: {os.listdir(absolute_models)}")
+print("="*50)
+# end debug
+
 # Ensure Cache Directory exists
 os.makedirs(CACHE_DIR, exist_ok=True)
 
