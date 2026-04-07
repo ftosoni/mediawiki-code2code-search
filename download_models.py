@@ -14,7 +14,8 @@ def download_model(repo_id, folder_name):
     snapshot_download(
         repo_id=repo_id, 
         local_dir=save_path, 
-        local_dir_use_symlinks=False # Copy files for easy transfer
+        local_dir_use_symlinks=False, # Copy files for easy transfer
+        ignore_patterns=["onnx/*", "*.onnx"] # Skip heavy ONNX weights
     )
     print(f"✅ Successfully downloaded to {save_path}")
 
@@ -23,7 +24,7 @@ if __name__ == "__main__":
     download_model("jinaai/jina-code-embeddings-0.5b", "jina-embeddings")
     
     # 2. Reranker model (Cross-Encoder)
-    download_model("jinaai/jina-reranker-v3", "jina-reranker")
+    download_model("jinaai/jina-reranker-v2-base-multilingual", "jina-reranker")
     
     print("\n✅ All models successfully saved in the 'models/' directory.")
     print("You can now transfer this folder to your Toolforge project root.")

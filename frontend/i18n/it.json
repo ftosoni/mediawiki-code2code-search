@@ -5,7 +5,7 @@
     "placeholder": "Scrivi uno snippet di codice e ne troverò di simili...",
     "btn_search": "AVVIA RICERCA",
     "btn_loading": "ATTRAVERSAMENTO...",
-    "recall_score": "PUNTEGGIO DI CORRISPONDENZA",
+    "recall_score": "MATCHING SCORE",
     "no_results": "La singolarità non ha restituito risultati per questa query.",
     "show_more": "Mostra altro codice",
     "show_less": "Comprimi Vista",

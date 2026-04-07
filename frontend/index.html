@@ -30,10 +30,8 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <!-- Three.js for the particle vortex -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- Google Fonts: Outfit & Inter for modern tech feel -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&family=Noto+Sans:wght@300;400;700&display=swap"
-        rel="stylesheet">
+    <!-- Toolforge Font CDN: Ubuntu for open-source compliance & local feel -->
+    <link href='https://tools-static.wmflabs.org/fontcdn/css?family=Ubuntu' rel='stylesheet' type='text/css'>
     <style>
         :root {
             --bg-dark: #050505;
@@ -50,7 +48,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', 'Noto Sans', sans-serif;
+            font-family: 'Ubuntu', sans-serif;
         }
 
         body {
@@ -88,7 +86,7 @@
         }
 
         .header h1 {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Ubuntu', sans-serif;
             font-size: 3.5rem;
             font-weight: 700;
             letter-spacing: -2px;
@@ -272,7 +270,7 @@
             font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 0.3rem;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Ubuntu', sans-serif;
         }
 
         .swhid-link {
@@ -323,7 +321,7 @@
             font-size: 1.1rem;
             font-weight: 700;
             color: #fff;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Ubuntu', sans-serif;
         }
 
         .score-value.rank {
@@ -993,7 +991,7 @@
 
                     <div className="search-container">
                         <textarea
-                            placeholder={t('placeholder')}
+                            placeholder={`${t('placeholder')}\n\ndef greatest_common_divisor(m,n) :\n  if (m==0) :\n    return n\n  return greatest_common_divisor(n,m%n)`}
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                             disabled={loading}

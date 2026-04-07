@@ -2,7 +2,7 @@
     "search_title": "SWH कोड अन्वेषण",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "सिमेंटिक न्यूरल रिट्रीव्हल इंजिन",
-    "placeholder": "एक कोड स्निपेट लिहा आणि मी त्यासारखेच शोधून देईन...",
+    "placeholder": "एक कोड स्निपेट लिहा...",
     "btn_search": "शोध सुरू करा",
     "btn_loading": "शोधत आहे...",
     "recall_score": "मॅचिंग स्कोर",
