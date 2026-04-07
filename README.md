@@ -1,8 +1,7 @@
 # MediaWiki Code2Code Search
 
-![MediaWiki Code2Code Search Banner](https://img.shields.io/badge/Status-Optimized-success?style=for-the-badge)
-![Tech Stack](https://img.shields.io/badge/Stack-FastAPI%20|%20Jina%20|%20FAISS-orange?style=for-the-badge)
-![Scaling](https://img.shields.io/badge/Index-2400+%20Repos-bluev?style=for-the-badge)
+[![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/ftosoni/mediawiki-code2code-search/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search)
+[![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:3828a0822cd519efff41844cdf0e1a3b3118d1ae/)](https://archive.softwareheritage.org/swh:1:dir:3828a0822cd519efff41844cdf0e1a3b3118d1ae;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:e4686e16f69aca1f54432055085365b5790336ff;anchor=swh:1:rev:24b9bd6272e08661e06aa08079637e4557c0fc5a)
 
 A high-performance semantic code search engine designed for the MediaWiki ecosystem. 
 Built on the Jina 0.5b neural retrieval model, optimized for large-scale codebases like MediaWiki Core, Extensions, and WMF Operations.
