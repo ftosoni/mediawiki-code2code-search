@@ -8,6 +8,7 @@ venv/
 # Event Horizon Indexing
 backend/mediawiki.index
 backend/functions.json
+backend/functions.db
 backend/raw_functions.json
 backend/test_repo/
 backend/CoCo-trie/
