@@ -379,8 +379,10 @@ async def search_code(req: SearchRequest):
                 
                 for i, idx in enumerate(top_indices):
                     if idx != -1 and int(idx) in meta_map:
-                        item = meta_map[int(idx)].copy()
-                        item["recall_score"] = float(distances[0][i])
+                        # Convert L2 distance to a similarity score (Higher is better)
+                        # Formula: 1 / (1 + distance)
+                        distance = float(distances[0][i])
+                        item["recall_score"] = 1.0 / (1.0 + distance)
                         
                         # Application of filters
                         group_match = (req.repo_group == "all" or item.get("repo_group") == req.repo_group)
