@@ -47,7 +47,7 @@ from typing import Optional
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import torch
 from transformers import AutoModel, AutoTokenizer, AutoModelForSequenceClassification
 from sentence_transformers import SentenceTransformer
@@ -291,8 +291,8 @@ app.add_middleware(
 )
 
 class SearchRequest(BaseModel):
-    query: str
-    top_k: int = 10
+    query: str = Field(..., max_length=2000)
+    top_k: int = Field(10, gt=0, le=50)
     repo_group: Optional[str] = "all"
     type_filter: str = "all" # all, function, type, template_function, template_type
 
