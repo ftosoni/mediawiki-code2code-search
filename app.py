@@ -49,12 +49,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import torch
-from transformers import AutoModel, AutoTokenizer
+from transformers import AutoModel, AutoTokenizer, AutoModelForSequenceClassification
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
+import sqlite3
 import json
-import os
 import httpx
 import functools
 import re
@@ -72,7 +72,7 @@ HF_TOKEN = os.getenv("HF_TOKEN")
 # Standardise Paths (Script Relative)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FAISS_INDEX_PATH = os.path.join(BASE_DIR, "backend", "mediawiki.index")
-METADATA_PATH = os.path.join(BASE_DIR, "backend", "functions.json")
+METADATA_DB_PATH = os.path.join(BASE_DIR, "backend", "functions.db")
 CACHE_DIR = os.path.join(BASE_DIR, "backend", "swh_cache")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 CACHE_LIMIT_MB = 100
@@ -102,7 +102,8 @@ os.makedirs(CACHE_DIR, exist_ok=True)
 # Diagnostic: Check model readability before loading
 print("--- DIAGNOSTIC: Checking model readability ---")
 try:
-    print(f"Current process UID: {os.getuid()}, GID: {os.getgid()}")
+    if hasattr(os, 'getuid'):
+        print(f"Current process UID: {os.getuid()}, GID: {os.getgid()}")
     if os.path.exists(MODELS_DIR):
         print(f"MODELS_DIR resides at: {MODELS_DIR}")
         for sub in ['jina-embeddings', 'jina-reranker']:
@@ -126,15 +127,17 @@ print("----------------------------------------------")
 
 # Initialise singletons
 bi_model = None
-rerank_model = None
-rerank_tokenizer = None
+# Jina Reranker v2 is disabled for CPU performance
+# rerank_model = None
+# rerank_tokenizer = None
 index = None
-metadata = []
+# metadata list removed to save RAM. Use SQLite at METADATA_DB_PATH instead.
 http_client = None # Async client for SWH API/S3
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global bi_model, rerank_model, rerank_tokenizer, index, metadata, http_client
+    global bi_model, index, http_client
+
     
     # Init Async HTTP Client
     http_client = httpx.AsyncClient(timeout=10.0)
@@ -154,47 +157,50 @@ async def lifespan(app: FastAPI):
             print(f"⚠️ Local Bi-Encoder failed ({e}). Falling back to Hugging Face Hub...")
             bi_model = SentenceTransformer(bi_id, trust_remote_code=True, device="cpu")
         
-        print("Initialising Jina Reranker v3 (Rerank model)...")
-        rerank_id = "jinaai/jina-reranker-v3"
-        rerank_local_path = os.path.join(MODELS_DIR, "jina-reranker")
+# Jina Reranker v2 is disabled to prioritize sub-second search on CPU
+        # print("Initialising Jina Reranker v2 (Rerank model)...")
+        # rerank_id = "jinaai/jina-reranker-v2-base-multilingual"
+        # rerank_local_path = os.path.join(MODELS_DIR, "jina-reranker")
         
-        try:
-            if os.path.exists(rerank_local_path):
-                print(f"Loading Reranker from local cache: {rerank_local_path}")
-                rerank_model = AutoModel.from_pretrained(
-                    rerank_local_path, 
-                    trust_remote_code=True,
-                    torch_dtype=torch.float32,
-                    low_cpu_mem_usage=True
-                ).to("cpu")
-                rerank_tokenizer = AutoTokenizer.from_pretrained(rerank_local_path, trust_remote_code=True)
-            else:
-                raise FileNotFoundError(f"Local Reranker path missing: {rerank_local_path}")
-        except Exception as e:
-            print(f"⚠️ Local Reranker failed ({e}). Falling back to Hugging Face Hub...")
-            rerank_model = AutoModel.from_pretrained(
-                rerank_id, 
-                trust_remote_code=True,
-                torch_dtype=torch.float32,
-                low_cpu_mem_usage=True
-            ).to("cpu")
-            rerank_tokenizer = AutoTokenizer.from_pretrained(rerank_id, trust_remote_code=True)
+        # try:
+        #     if os.path.exists(rerank_local_path):
+        #         print(f"Loading Reranker from local cache: {rerank_local_path}")
+        #         rerank_model = AutoModelForSequenceClassification.from_pretrained(
+        #             rerank_local_path, 
+        #             trust_remote_code=True,
+        #             torch_dtype="auto",
+        #             low_cpu_mem_usage=False
+        #         ).to("cpu")
+        #         rerank_tokenizer = AutoTokenizer.from_pretrained(rerank_local_path, trust_remote_code=True)
+        #     else:
+        #         raise FileNotFoundError(f"Local Reranker path missing: {rerank_local_path}")
+        # except Exception as e:
+        #     print(f"⚠️ Local Reranker failed ({e}). Falling back to Hugging Face Hub...")
+        #     rerank_model = AutoModelForSequenceClassification.from_pretrained(
+        #         rerank_id, 
+        #         trust_remote_code=True,
+        #         torch_dtype="auto",
+        #         low_cpu_mem_usage=False
+        #     ).to("cpu")
+        #     rerank_tokenizer = AutoTokenizer.from_pretrained(rerank_id, trust_remote_code=True)
         
-        rerank_model.eval()
+        # if rerank_model:
+        #     rerank_model.eval()
+
         
         # NOTE: Dynamic quantization is skipped to prioritize the simplest and fastest startup.
         # This requires setting the webservice memory to at least 6GiB (8GiB recommended).
+
+
         
         if not os.path.exists(FAISS_INDEX_PATH):
             print(f"⚠️ Warning: FAISS Index not found at {FAISS_INDEX_PATH}. Please run build.py first.")
-        elif not os.path.exists(METADATA_PATH):
-            print(f"⚠️ Warning: Metadata not found at {METADATA_PATH}. Please run build.py first.")
+        elif not os.path.exists(METADATA_DB_PATH):
+            print(f"⚠️ Warning: SQLite Metadata not found at {METADATA_DB_PATH}. Please run backend/migrate_to_sqlite.py first.")
         else:
             print(f"Loading FAISS index from {FAISS_INDEX_PATH}...")
             index = faiss.read_index(FAISS_INDEX_PATH)
-            with open(METADATA_PATH, "r", encoding="utf-8") as f:
-                metadata = json.load(f)
-            print(f"Index loaded. Metadata entries: {len(metadata)}")
+            print(f"Index loaded. Metadata managed via SQLite: {METADATA_DB_PATH}")
     except Exception as e:
         print(f"❌ CRITICAL ERROR DURING LIFESPAN INITIALIZATION: {e}")
         # Allow the app to start even if models fail, for diagnostics
@@ -300,12 +306,19 @@ async def get_code_snippet(swhid: str):
         return {"error": "Invalid SWHID format"}
     swhid_hash = hash_match.group(1)
 
-    # 2. Look up sha1 in metadata
+    # 2. Look up sha1 in metadata (SQLite)
     sha1 = None
-    for item in metadata:
-        if swhid_hash in item.get("swhid", ""):
-            sha1 = item.get("sha1")
-            break
+    try:
+        with sqlite3.connect(METADATA_DB_PATH) as conn:
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            # We match the prefix of swhid or the hash itself
+            cursor.execute("SELECT sha1 FROM functions WHERE swhid LIKE ?", (f"%{swhid_hash}%",))
+            row = cursor.fetchone()
+            if row:
+                sha1 = row["sha1"]
+    except Exception as e:
+        print(f"Database error in get_code_snippet: {e}")
             
     if not sha1:
         return {"error": "SWHID not found in index metadata"}
@@ -329,81 +342,62 @@ async def get_code_snippet(swhid: str):
 
 @app.post("/search")
 async def search_code(req: SearchRequest):
-    if bi_model is None or index is None or rerank_model is None:
+    if bi_model is None or index is None:
         return {"error": "Server not fully initialised"}
+
 
     # 1. RECALL PHASE (Bi-Encoder)
     instruction = "Find the most relevant code snippet given the following query:\n"
     xq = bi_model.encode([instruction + req.query], normalize_embeddings=True)
     query_vec = np.array(xq).astype('float32')
 
-    # Retrieve 50 candidates regardless of top_k to ensure quality for rerank
-    RECALL_K = 50
+    # Retrieve top candidates (performance optimization for CPU)
+    RECALL_K = 30
     distances, indices = index.search(query_vec, RECALL_K)
     top_indices = indices[0]
+
+
     
-    # Get metadata and filter by group/type if specified
+    # Get metadata from SQLite for the top indices
     candidates = []
-    for i, idx in enumerate(top_indices):
-        if idx != -1 and idx < len(metadata):
-            item = metadata[int(idx)].copy()
-            item["recall_score"] = float(distances[0][i])
-            
-            # Application of filters
-            group_match = (req.repo_group == "all" or item.get("repo_group") == req.repo_group)
-            type_match = (req.type_filter == "all" or item.get("type") == req.type_filter)
-            
-            if group_match and type_match:
-                candidates.append(item)
+    valid_indices = [int(idx) for idx in top_indices if idx != -1]
+    
+    if valid_indices:
+        try:
+            with sqlite3.connect(METADATA_DB_PATH) as conn:
+                conn.row_factory = sqlite3.Row
+                cursor = conn.cursor()
+                
+                # Retrieve all relevant metadata in one batch (including the code snippet)
+                placeholders = ",".join(["?"] * len(valid_indices))
+                query = f"SELECT * FROM functions WHERE id IN ({placeholders})"
+                cursor.execute(query, valid_indices)
+                rows = cursor.fetchall()
+                
+                # Map rows by original ID (positional id) to preserve distance info
+                meta_map = {row["id"]: dict(row) for row in rows}
+                
+                for i, idx in enumerate(top_indices):
+                    if idx != -1 and int(idx) in meta_map:
+                        item = meta_map[int(idx)].copy()
+                        item["recall_score"] = float(distances[0][i])
+                        
+                        # Application of filters
+                        group_match = (req.repo_group == "all" or item.get("repo_group") == req.repo_group)
+                        type_match = (req.type_filter == "all" or item.get("type") == req.type_filter)
+                        
+                        if group_match and type_match:
+                            candidates.append(item)
+        except Exception as e:
+            print(f"Database error in search_code: {e}")
+            return {"error": "Internal database error"}
     
     if not candidates:
         return {"results": [], "total": 0}
 
-    # We can rerank up to some reasonable limit (e.g. 50)
-    ready_for_rerank_meta = candidates # Re-ranking all candidates that passed filtering
+    # Results from Recall + Metadata are already sorted by FAISS L2 distance
+    return {"results": candidates[:req.top_k]}
 
-    # 2. BATCH FETCH PHASE (Deduplicated Parallel S3 Access)
-    unique_sha1s = {c["sha1"] for c in ready_for_rerank_meta if c.get("sha1")}
-    blob_tasks = {s: SWHS3Cache.fetch_blob(s) for s in unique_sha1s}
-    blob_map = {}
-    
-    fetch_results = await asyncio.gather(*blob_tasks.values())
-    for (s, content) in zip(blob_tasks.keys(), fetch_results):
-        blob_map[s] = content
-
-    # 3. PREPARE FOR RERANK (Local Slicing)
-    ready_for_rerank = []
-    for cand in ready_for_rerank_meta:
-        sha1 = cand.get("sha1")
-        l_match = re.search(r"lines=(\d+)-(\d+)", cand["swhid"])
-        
-        if sha1 and l_match:
-            full_text = blob_map.get(sha1)
-            if full_text:
-                s_l, e_l = int(l_match.group(1)), int(l_match.group(2))
-                lines = full_text.splitlines()
-                # Populate candidate with actual code for reranker
-                cand["code"] = "\n".join(lines[s_l-1 : e_l])
-                ready_for_rerank.append(cand)
-
-    if not ready_for_rerank:
-        return {"results": []}
-
-    # 4. RERANK PHASE (Cross-Encoder)
-    rerank_results = rerank_model.rerank(
-        query=req.query, 
-        documents=[c["code"] for c in ready_for_rerank], 
-        top_n=req.top_k,
-        max_doc_length=512
-    )
-
-    final_results = []
-    for res in rerank_results:
-        cand = ready_for_rerank[res['index']]
-        cand["rerank_score"] = float(res['relevance_score'])
-        final_results.append(cand)
-
-    return {"results": final_results}
 
 @app.get("/health")
 def health():

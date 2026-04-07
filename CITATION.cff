@@ -15,13 +15,13 @@ authors:
     orcid: 'https://orcid.org/0000-0001-8457-3866'
 identifiers:
   - type: swh
-    value: 'swh:1:dir:177f16bf04a4fc87ce920bdf6f5f5fa19b0bed39;origin=https://github.com/ftosoni/mediawiki-code2code-search'
+    value: 'swh:1:dir:3828a0822cd519efff41844cdf0e1a3b3118d1ae;origin=https://github.com/ftosoni/mediawiki-code2code-search'
     description: The SWHID of the first release
   - type: url
     value: 'https://code2codesearch.toolforge.org/'
     description: The Toolforge URL of the tool
 repository-code: 'https://github.com/ftosoni/mediawiki-code2code-search'
-url: 'https://www.placeholder.it'
+url: 'https://code2codesearch.toolforge.org/'
 abstract: >-
   MediaWiki Code2Code Search is a high-performance semantic
   search tool designed specifically for the MediaWiki
