@@ -34,5 +34,9 @@
     "indic_ug": "Gruppo Utenti Sviluppatori Indic MediaWiki",
     "sloan_grant_prefix": "Questo studio è stato finanziato dalla ",
     "sloan_grant_mid": " con la sovvenzione #",
-    "sloan_grant_suffix": " (sloan.org)."
+    "sloan_grant_suffix": " (sloan.org).",
+    "view_source": "Vedi sorgente",
+    "view_swhid": "Vedi SWHID",
+    "created_by": "Creato da:",
+    "licence": "Licenza:"
 }

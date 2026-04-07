@@ -262,8 +262,9 @@
         .result-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             margin-bottom: 2rem;
+            width: 100%;
         }
 
         .file-info h3 {
@@ -831,11 +832,9 @@
                                 {res.swhid}
                             </a>
                         </div>
-                        <div className="score-box">
-                            <div className="score-item">
-                                <div className="score-label" style={{ color: '#FF9933', opacity: 0.8 }}>{t('recall_score')}</div>
-                                <div className="score-value rank" style={{ color: '#FF9933' }}>{(res.recall_score || 0).toFixed(4)}</div>
-                            </div>
+                        <div className="score-box" style={{ flexShrink: 0, marginLeft: '2rem' }}>
+                            <div className="score-label" style={{ color: '#FF9933', opacity: 0.8, fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '1px' }}>{t('recall_score')}</div>
+                            <div className="score-value rank" style={{ color: '#FF9933', fontSize: '1.2rem', fontWeight: 800 }}>{(res.recall_score || 0).toFixed(4)}</div>
                         </div>
                     </div>
 

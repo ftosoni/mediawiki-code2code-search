@@ -39,5 +39,9 @@
     "indic_ug": "Indic MediaWiki Developers UG",
     "sloan_grant_prefix": "This study was funded by the ",
     "sloan_grant_mid": " with the grant #",
-    "sloan_grant_suffix": " (sloan.org)."
+    "sloan_grant_suffix": " (sloan.org).",
+    "view_source": "View source",
+    "view_swhid": "View SWHID",
+    "created_by": "Created by:",
+    "licence": "Licence:"
 }

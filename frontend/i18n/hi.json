@@ -33,5 +33,9 @@
     "indic_ug": "इन्डिक मीडियाविकि डेवलपर्स यूज़र ग्रुप",
     "sloan_grant_prefix": "यह अध्ययन ",
     "sloan_grant_mid": " द्वारा अनुदान #",
-    "sloan_grant_suffix": " के साथ वित्तपोषित किया गया था (sloan.org)।"
+    "sloan_grant_suffix": " के साथ वित्तपोषित किया गया था (sloan.org)।",
+    "view_source": "स्रोत देखें",
+    "view_swhid": "SWHID देखें",
+    "created_by": "द्वारा बनाया गया:",
+    "licence": "लाइसेंस:"
 }
