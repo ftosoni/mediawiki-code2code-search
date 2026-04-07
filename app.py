@@ -379,6 +379,7 @@ async def search_code(req: SearchRequest):
                 
                 for i, idx in enumerate(top_indices):
                     if idx != -1 and int(idx) in meta_map:
+                        item = meta_map[int(idx)].copy()
                         # Convert L2 distance to a similarity score (Higher is better)
                         # Formula: 1 / (1 + distance)
                         distance = float(distances[0][i])
