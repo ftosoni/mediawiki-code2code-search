@@ -38,6 +38,8 @@ gitpython
 pydantic
 swh.model
 numpy
+httpx
+sentencepiece
 --extra-index-url https://download.pytorch.org/whl/cpu
 torch
 gunicorn
