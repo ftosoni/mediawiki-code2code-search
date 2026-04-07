@@ -295,14 +295,14 @@
 
         .score-box {
             text-align: right;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 153, 51, 0.08);
             padding: 12px 20px;
             border-radius: 16px;
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(255, 153, 51, 0.2);
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            min-width: 140px;
+            justify-content: center;
+            min-width: 150px;
         }
 
         .score-item {
@@ -831,9 +831,9 @@
                                 {res.swhid}
                             </a>
                         </div>
-                        <div className="score-box" style={{ justifyContent: 'flex-end' }}>
-                            <div className="score-item" style={{ background: 'rgba(255, 153, 51, 0.1)', border: '1px solid rgba(255, 153, 51, 0.2)' }}>
-                                <div className="score-label" style={{ color: '#FF9933' }}>{t('recall_score')}</div>
+                        <div className="score-box">
+                            <div className="score-item">
+                                <div className="score-label" style={{ color: '#FF9933', opacity: 0.8 }}>{t('recall_score')}</div>
                                 <div className="score-value rank" style={{ color: '#FF9933' }}>{(res.recall_score || 0).toFixed(4)}</div>
                             </div>
                         </div>
