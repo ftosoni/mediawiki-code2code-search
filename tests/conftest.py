@@ -45,32 +45,32 @@ def mock_db(tmp_path):
     return str(db_path)
 
 @pytest.fixture
-def mock_faiss_index():
-    """Create a mock FAISS index"""
-    index = MagicMock()
-    index.ntotal = 2
-    # Mock search to return indices [0, 1] and some dummy distances
-    index.search.return_value = (np.array([[0.1, 0.5]], dtype='float32'), np.array([[0, 1]], dtype='int64'))
-    return index
+def test_faiss_index(tmp_path):
+    """Create a small real FAISS index for testing"""
+    index_path = tmp_path / "test_mediawiki.index"
+    d = 512  # Jina dimension
+    index = faiss.IndexFlatL2(d)
+    # Add 2 dummy vectors corresponding to our dummy DB entries
+    xb = np.zeros((2, d)).astype('float32')
+    index.add(xb)
+    faiss.write_index(index, str(index_path))
+    return str(index_path)
 
 @pytest.fixture
-def client(mock_db, mock_faiss_index):
-    """FastAPI test client with mocked models and database"""
-    # Mock the models before importing app
+def client(mock_db, test_faiss_index):
+    """FastAPI test client with mocked models and real test database/index"""
+    # Mock the heavy models before importing app
     with patch("app.SentenceTransformer") as mock_st, \
-         patch("faiss.read_index") as mock_read_index, \
          patch("app.METADATA_DB_PATH", mock_db), \
-         patch("app.FAISS_INDEX_PATH", "fake_index_path"):
+         patch("app.FAISS_INDEX_PATH", test_faiss_index):
         
         # Configure mock SentenceTransformer
         mock_model = MagicMock()
-        # Mock encode to return a 512-dim vector
         mock_model.encode.return_value = np.zeros((1, 512), dtype='float32')
         mock_st.return_value = mock_model
         
-        # Configure mock faiss.read_index
-        mock_read_index.return_value = mock_faiss_index
-        
+        # Now we can import the app which will trigger the lifespan
+        # with the patched paths
         from app import app
         with TestClient(app) as c:
             yield c
