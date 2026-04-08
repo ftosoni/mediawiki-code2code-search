@@ -83,9 +83,9 @@ The server will be available at `http://localhost:8000`. You can access the auto
 - **Neural Model**: [Jina Code Embeddings (0.5b)](https://huggingface.co/jinaai/jina-code-embeddings-0.5b)
 - **Vector Engine**: [FAISS](https://github.com/facebookresearch/faiss) (IndexIVFPQ for memory efficiency)
 - **Segmentation**: [Tree-sitter](https://tree-sitter.github.io/tree-sitter/)
-- **Archive Access**: [Software Heritage S3](https://archive.softwareheritage.org/)
+- **Archive Access**: [Software Heritage](https://archive.softwareheritage.org/)
 - **Frontend**: React 18 / Three.js
 
 
-## 📄 License
-Apache 2.0 License. Created for advanced code-to-code retrieval within the Wikimedia developer ecosystem.
+## 📄 Licence
+[Apache 2.0 License](./LICENSE.md). Created for advanced code-to-code retrieval within the Wikimedia developer ecosystem.
