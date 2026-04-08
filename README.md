@@ -82,26 +82,29 @@ The server will be available at `http://localhost:8000`. You can access the auto
 
 Follow these steps to deploy the application on Wikimedia Toolforge.
 
+> [!NOTE]
+> The examples below use `supnabla` as the username and `code2codesearch` as the project name. Replace these with your own Toolforge credentials where applicable.
+
 ### 1. Upload Assets
 Since the model weights and indexes are large, they should be uploaded from your local machine to the Toolforge project data directory:
 
 ```bash
 # From the project root
-scp -r "./models" toolforge:/data/project/code2codesearch/
-scp -r "./backend/mediawiki.index" toolforge:/data/project/code2codesearch/backend/
-scp -r "./backend/functions.db" toolforge:/data/project/code2codesearch/backend/
+scp -r "./models" supnabla@login.toolforge.org:/data/project/code2codesearch/
+scp -r "./backend/mediawiki.index" supnabla@login.toolforge.org:/data/project/code2codesearch/backend/
+scp -r "./backend/functions.db" supnabla@login.toolforge.org:/data/project/code2codesearch/backend/
 ```
 
 ### 2. Configure Permissions
 Log into Toolforge and set the necessary permissions:
 
 ```bash
-ssh <your_username>@login.toolforge.org
-become <your_project_name> # e.g. code2codesearch
+ssh supnabla@login.toolforge.org
+become code2codesearch
 
-chmod -R a+r /data/project/<your_project_name>/mediawiki-code2code-search/models/
-chmod a+x /data/project/<your_project_name>/backend/functions.db
-chmod a+x /data/project/<your_project_name>/backend/mediawiki.index
+chmod -R a+r /data/project/code2codesearch/mediawiki-code2code-search/models/
+chmod a+x /data/project/code2codesearch/backend/functions.db
+chmod a+x /data/project/code2codesearch/backend/mediawiki.index
 ```
 
 ### 3. Deploy
