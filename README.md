@@ -1,7 +1,7 @@
 # MediaWiki Code2Code Search
 
 [![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/ftosoni/mediawiki-code2code-search/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search)
-[![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:6330e495db7c52549eb7dbc9f8dff16064b3abd5/)](https://archive.softwareheritage.org/swh:1:dir:6330e495db7c52549eb7dbc9f8dff16064b3abd5;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:df7b4dba0618e43fbac5097c11ad18e0b5f969b8;anchor=swh:1:rev:d84306c1facba552e7ef335932623bec6bec31ef)
+[![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:66492dab86c9f925ece8f71a0b14c2a15c603120/)](https://archive.softwareheritage.org/swh:1:dir:66492dab86c9f925ece8f71a0b14c2a15c603120;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:c8b3575023c929bab906140238d34cdfd860f0d7;anchor=swh:1:rev:33268480c008173d8b2c0d553af23e1b8fa0e177)
 
 A high-performance semantic code search engine designed for the MediaWiki ecosystem. 
 Built on the Jina 0.5b neural retrieval model, optimized for large-scale codebases like MediaWiki Core, Extensions, and WMF Operations.
