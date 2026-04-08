@@ -38,3 +38,6 @@ models/
 # Maintenance scripts (local only)
 update_i18n.py
 
+# Tests
+.pytest_cache/
+

@@ -1,0 +1,52 @@
+# This file is part of MediaWiki Code2Code Search
+# <https://github.com/ftosoni/mediawiki-code2code-search>.
+# Copyright (c) 2026 Francesco Tosoni.
+
+name: Python CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Install Linting dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        # We install dependencies but exclude heavy ones if possible, 
+        # however app.py imports them so we need them for TestClient to work.
+        pip install -r requirements.txt
+        pip install pytest pytest-asyncio
+    - name: Run tests
+      run: |
+        # Run only mocked API tests and connectivity tests
+        # Excluding test_jina_components.py as it downloads heavy models
+        pytest tests/test_api.py tests/test_hf_availability.py
