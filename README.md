@@ -2,6 +2,10 @@
 
 [![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/ftosoni/mediawiki-code2code-search/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search)
 [![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:66492dab86c9f925ece8f71a0b14c2a15c603120/)](https://archive.softwareheritage.org/swh:1:dir:66492dab86c9f925ece8f71a0b14c2a15c603120;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:c8b3575023c929bab906140238d34cdfd860f0d7;anchor=swh:1:rev:33268480c008173d8b2c0d553af23e1b8fa0e177)
+[![Python](https://img.shields.io/badge/python-3.11-blue.svg?style=flat-square)](https://www.python.org/)
+[![CI](https://github.com/ftosoni/mediawiki-code2code-search/actions/workflows/python-ci.yml/badge.svg?branch=main&style=flat-square)](https://github.com/ftosoni/mediawiki-code2code-search/actions/workflows/python-ci.yml)
+[![Code Style: PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg?style=flat-square)](https://www.python.org/dev/peps/pep-0008/)
+[![License](https://img.shields.io/github/license/ftosoni/mediawiki-code2code-search?style=flat-square)](./LICENSE.md)
 
 A high-performance semantic code search engine designed for the MediaWiki ecosystem. 
 Built on the Jina 0.5b neural retrieval model, optimized for large-scale codebases like MediaWiki Core, Extensions, and WMF Operations.
