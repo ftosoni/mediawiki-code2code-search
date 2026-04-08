@@ -2,7 +2,7 @@
     "search_title": "SWH કોડ અન્વેષણ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "સિમેન્ટિક ન્યુરલ રીટ્રીવલ એન્જિન",
-    "placeholder": "એક કોડ સ્નિપેટ લખો...",
+    "placeholder": "# એક કોડ સ્નિપેટ લખો અને હું સમાન શોધી કાઢીશ...",
     "btn_search": "શોધ શરૂ કરો",
     "btn_loading": "શોધી રહ્યું છે...",
     "recall_score": "મેચિંગ સ્કોર",

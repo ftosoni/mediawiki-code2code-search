@@ -263,6 +263,7 @@
             align-items: center;
             margin-bottom: 2rem;
             width: 100%;
+            gap: 2rem;
         }
 
         .file-info h3 {
@@ -285,6 +286,8 @@
             padding: 6px 12px;
             background: rgba(0, 0, 0, 0.3);
             border-radius: 8px;
+            word-break: break-all;
+            white-space: normal;
         }
 
         .swhid-link:hover {
@@ -582,6 +585,12 @@
             .result-card {
                 padding: 1.2rem;
                 border-radius: 20px;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            .result-card:hover {
+                transform: none !important;
             }
 
             .result-header {
@@ -785,7 +794,7 @@
             return (
                 <div className="result-card" style={{ animationDelay: `${i * 0.15}s` }}>
                     <div className="result-header">
-                        <div className="file-info">
+                        <div className="file-info" style={{ flex: 1, minWidth: 0 }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                 <div>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
@@ -820,7 +829,7 @@
                                     {t(`type_${res.type}`) || res.type.replace('_', ' ')}
                                 </div>
                             </div>
-                            <div style={{ color: 'var(--accent-india)', fontWeight: 700, fontSize: '1.1rem' }}>{res.name}</div>
+                            <div style={{ color: 'var(--accent-india)', fontWeight: 700, fontSize: '1.1rem', wordBreak: 'break-all' }}>{res.name}</div>
                             <a
                                 href={`https://archive.softwareheritage.org/${res.swhid}`}
                                 target="_blank"
@@ -830,7 +839,7 @@
                                 {res.swhid}
                             </a>
                         </div>
-                        <div className="score-box" style={{ flexShrink: 0, marginLeft: '2rem' }}>
+                        <div className="score-box" style={{ flexShrink: 0 }}>
                             <div className="score-label" style={{ color: '#FF9933', opacity: 0.8, fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '1px' }}>{t('recall_score')}</div>
                             <div className="score-value rank" style={{ color: '#FF9933', fontSize: '1.2rem', fontWeight: 800 }}>{(res.recall_score || 0).toFixed(4)}</div>
                         </div>

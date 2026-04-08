@@ -2,7 +2,7 @@
     "search_title": "Exploration du Code SWH",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "Moteur de Recherche Neurale Sémantique",
-    "placeholder": "Écrivez un extrait de code...",
+    "placeholder": "# Écrivez un extrait de code et je trouverai des similaires...",
     "btn_search": "LANCER LA RECHERCHE",
     "btn_loading": "TRAVERSÉE...",
     "recall_score": "SCORE",

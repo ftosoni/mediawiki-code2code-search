@@ -2,7 +2,7 @@
     "search_title": "SWH Code Exploration",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "Semantic Neural Retrieval Engine",
-    "placeholder": "Write a code snippet and I'll find similar ones...",
+    "placeholder": "# Write a code snippet and I'll find similar ones...",
     "btn_search": "INITIATE SEARCH",
     "btn_loading": "TRAVERSING...",
     "recall_score": "MATCHING SCORE",

@@ -2,7 +2,7 @@
     "search_title": "SWH কোড অন্বেষণ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "সিমেন্টিক নিউরাল রিট্রিভাল ইঞ্জিন",
-    "placeholder": "একটি কোড স্নিপেট লিখুন...",
+    "placeholder": "# একটি কোড স্নিপেট লিখুন এবং আমি অনুরূপগুলি খুঁজে দেব...",
     "btn_search": "অনুসন্ধান শুরু করুন",
     "btn_loading": "অনুসন্ধান চলছে...",
     "recall_score": "মানানসই স্কোর",
