@@ -1,0 +1,5 @@
+# Default Code Owners
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Use * to apply to all files in the repository
+*       @ftosoni
