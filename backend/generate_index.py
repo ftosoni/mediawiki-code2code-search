@@ -56,8 +56,19 @@ def generate_index():
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Using device: {device.upper()}")
     
+    # Try local path first to save bandwidth/time
+    MODELS_DIR = os.path.join(os.path.dirname(BASE_DIR), "models")
+    bi_local_path = os.path.join(MODELS_DIR, "jina-embeddings")
+    
+    if os.path.exists(bi_local_path):
+        print(f"Loading local model from {bi_local_path}")
+        model_path = bi_local_path
+    else:
+        print(f"Local model not found at {bi_local_path}. Using Hugging Face Hub.")
+        model_path = "jinaai/jina-code-embeddings-0.5b"
+
     model = SentenceTransformer(
-        "jinaai/jina-code-embeddings-0.5b", 
+        model_path, 
         trust_remote_code=True, 
         device=device,
         use_auth_token=HF_TOKEN
