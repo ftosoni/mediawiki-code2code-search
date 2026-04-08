@@ -35,3 +35,6 @@ Thumbs.db
 # Models (Local Download)
 models/
 
+# Maintenance scripts (local only)
+update_i18n.py
+
