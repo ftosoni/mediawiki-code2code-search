@@ -57,12 +57,17 @@ def test_faiss_index(tmp_path):
     return str(index_path)
 
 @pytest.fixture
-def client(mock_db, test_faiss_index):
+def client(mock_db, test_faiss_index, tmp_path):
     """FastAPI test client with mocked models and real test database/index"""
-    # Mock the heavy models before importing app
+    # Create an isolated cache dir for tests
+    test_cache_dir = tmp_path / "swh_cache"
+    test_cache_dir.mkdir()
+    
+    # Mock the heavy models and paths before importing app
     with patch("app.SentenceTransformer") as mock_st, \
          patch("app.METADATA_DB_PATH", mock_db), \
-         patch("app.FAISS_INDEX_PATH", test_faiss_index):
+         patch("app.FAISS_INDEX_PATH", test_faiss_index), \
+         patch("app.CACHE_DIR", str(test_cache_dir)):
         
         # Configure mock SentenceTransformer
         mock_model = MagicMock()
