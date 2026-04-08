@@ -23,12 +23,7 @@ identifiers:
 repository-code: 'https://github.com/ftosoni/mediawiki-code2code-search'
 url: 'https://code2codesearch.toolforge.org/'
 abstract: >-
-  MediaWiki Code2Code Search is a high-performance semantic
-  search tool designed specifically for the MediaWiki
-  open-source ecosystem with links to the Software Heritage
-  archive. It leverages a modern "recall-then-rerank"
-  architecture to help developers navigate complex codebases
-  with high precision and minimal resource usage. 
+  MediaWiki Code2Code Search is a high-performance semantic search tool designed specifically for the MediaWiki open-source ecosystem, integrated with the Software Heritage archive. It utilises a single-stage neural retrieval architecture to help developers navigate complex codebases with high precision and minimal resource usage.
 keywords:
   - semantic code search
   - MediaWiki
