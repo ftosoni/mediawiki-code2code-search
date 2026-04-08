@@ -43,7 +43,7 @@ def patched_getuser():
 getpass.getuser = patched_getuser
 
 from fastapi import FastAPI
-from typing import Optional
+from typing import Optional, Union, List
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -293,8 +293,23 @@ app.add_middleware(
 class SearchRequest(BaseModel):
     query: str = Field(..., max_length=2000)
     top_k: int = Field(10, gt=0, le=50)
-    repo_group: Optional[str] = "all"
+    repo_group: Union[str, List[str]] = "all"
     type_filter: str = "all" # all, function, type, template_function, template_type
+    language_filter: Union[str, List[str]] = "all"
+
+# Mapping for language filtering based on file extensions
+LANGUAGE_EXTENSIONS = {
+    "Python": [".py"],
+    "C++": [".cpp", ".hpp", ".h", ".cc", ".cxx"],
+    "C": [".c"],
+    "PHP": [".php", ".inc"],
+    "JavaScript": [".js"],
+    "TypeScript": [".ts", ".tsx", ".mts", ".cts"],
+    "Lua": [".lua"],
+    "Go": [".go"],
+    "Java": [".java"],
+    "Rust": [".rs"]
+}
 
 # Legacy helper removed. Use SWHS3Cache.fetch_blob()
 
@@ -352,12 +367,10 @@ async def search_code(req: SearchRequest):
     query_vec = np.array(xq).astype('float32')
 
     # Retrieve top candidates (performance optimization for CPU)
-    RECALL_K = 30
+    RECALL_K = 100
     distances, indices = index.search(query_vec, RECALL_K)
     top_indices = indices[0]
 
-
-    
     # Get metadata from SQLite for the top indices
     candidates = []
     valid_indices = [int(idx) for idx in top_indices if idx != -1]
@@ -386,10 +399,27 @@ async def search_code(req: SearchRequest):
                         item["recall_score"] = 1.0 / (1.0 + distance)
                         
                         # Application of filters
-                        group_match = (req.repo_group == "all" or item.get("repo_group") == req.repo_group)
+                        # Group Filter (Multi-select)
+                        group_match = (req.repo_group == "all" or 
+                                       ("all" in req.repo_group if isinstance(req.repo_group, list) else False) or
+                                       item.get("repo_group") in req.repo_group)
+                        
+                        # Type Filter (Single-select)
                         type_match = (req.type_filter == "all" or item.get("type") == req.type_filter)
                         
-                        if group_match and type_match:
+                        # Language Filter (Multi-select, based on file extension)
+                        lang_match = True
+                        if req.language_filter != "all" and not (isinstance(req.language_filter, list) and "all" in req.language_filter):
+                            # req.language_filter is a list of language names
+                            langs = [req.language_filter] if isinstance(req.language_filter, str) else req.language_filter
+                            all_allowed_exts = []
+                            for l in langs:
+                                all_allowed_exts.extend(LANGUAGE_EXTENSIONS.get(l, []))
+                            
+                            filepath = item.get("filepath", "")
+                            lang_match = any(filepath.endswith(ext) for ext in all_allowed_exts)
+                        
+                        if group_match and type_match and lang_match:
                             candidates.append(item)
         except Exception as e:
             print(f"Database error in search_code: {e}")
