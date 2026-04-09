@@ -156,6 +156,7 @@ const BackgroundVortex = ({ speedMultiplier }) => {
 const ResultItem = ({ res, i, t }) => {
     const [expanded, setExpanded] = useState(false);
     const [code, setCode] = useState("");
+    const [highlightedCode, setHighlightedCode] = useState("");
     const [codeLoading, setCodeLoading] = useState(true);
     const [codeError, setCodeError] = useState(false);
     const codeRef = useRef(null);
@@ -165,6 +166,7 @@ const ResultItem = ({ res, i, t }) => {
         const fetchCode = async () => {
             if (res.code) {
                 setCode(res.code);
+                setHighlightedCode(res.highlighted_code || "");
                 setCodeLoading(false);
                 return;
             }
@@ -172,8 +174,9 @@ const ResultItem = ({ res, i, t }) => {
             try {
                 const response = await fetch(`/code?swhid=${encodeURIComponent(res.swhid)}`);
                 const data = await response.json();
-                if (data.code) {
-                    setCode(data.code);
+                if (data.code || data.highlighted_code) {
+                    setCode(data.code || "");
+                    setHighlightedCode(data.highlighted_code || "");
                 } else {
                     setCodeError(true);
                 }
@@ -185,7 +188,7 @@ const ResultItem = ({ res, i, t }) => {
             }
         };
         fetchCode();
-    }, [res.swhid, res.code]);
+    }, [res.swhid, res.code, res.highlighted_code]);
 
     useEffect(() => {
         if (code && codeRef.current && codeRef.current.scrollHeight > 300) {
@@ -258,7 +261,7 @@ const ResultItem = ({ res, i, t }) => {
                         ⚠️ {t('error_fetching_code')}
                     </div>
                 ) : (
-                    <pre><code>{code}</code></pre>
+                    <pre><code dangerouslySetInnerHTML={{ __html: highlightedCode || code.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") }}></code></pre>
                 )}
                 {isLong && !expanded && <div className="code-gradient"></div>}
             </div>

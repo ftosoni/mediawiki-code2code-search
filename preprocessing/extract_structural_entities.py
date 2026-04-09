@@ -70,14 +70,36 @@ def get_swhid_content_hash(content: bytes) -> str:
         return hashlib.sha1(header + content).hexdigest()
 
 def extract_entity_name(node, code_bytes: bytes) -> str:
+    """Recursively find the most appropriate name for a code entity."""
     if node.type == "template_declaration":
+        # Look for the entity being templated (last child usually)
         for child in reversed(node.children):
             if child.type not in ["template", "template_parameter_list", "<", ">", ",", "comment", ";"]:
-                name = extract_entity_name(child, code_bytes)
-                if name and name != "unknown":
-                    return name
+                return extract_entity_name(child, code_bytes)
+    
+    # Standard field names in Tree-sitter
     name_node = node.child_by_field_name("name")
+    if not name_node and node.type in ["function_definition", "declaration"]:
+        # For functions, the name is deep inside the declarator
+        declarator = node.child_by_field_name("declarator")
+        if declarator:
+            def find_identifier(n):
+                if n.type in ["identifier", "destructor_name", "qualified_identifier", "field_identifier"]:
+                    return n
+                # If it's a pointer/reference/function declarator, drill down to the inner declarator
+                if n.type in ["function_declarator", "pointer_declarator", "reference_declarator", "array_declarator"]:
+                    # Usually the 'declarator' field or the first non-punctuation child
+                    inner = n.child_by_field_name("declarator")
+                    if inner: return find_identifier(inner)
+                    for child in n.children:
+                        if child.type not in ["(", ")", "*", "&", "[", "]", "comment"]:
+                            res = find_identifier(child)
+                            if res: return res
+                return None
+            name_node = find_identifier(declarator)
+            
     if not name_node:
+        # Fallback recursive search for identifiers
         def find_name(n):
             if n.type in ["identifier", "field_identifier", "type_identifier", "name"]:
                 return n
@@ -88,8 +110,131 @@ def extract_entity_name(node, code_bytes: bytes) -> str:
         name_node = find_name(node)
     
     if name_node:
-        return code_bytes[name_node.start_byte:name_node.end_byte].decode('utf-8', errors='ignore')
+        # Use resolve_qualified_name to get clean names (e.g. Container instead of Container<T>)
+        name = resolve_qualified_name(name_node, code_bytes)
+        if name == "unknown":
+            name = code_bytes[name_node.start_byte:name_node.end_byte].decode('utf-8', errors='ignore').strip()
+            
+        # For functions, append parameters to distinguish overloads.
+        # We recursively look for a parameter_list or a node with the 'parameters' field under 'node'.
+        params = None
+        def find_params_node(n):
+            if n.type == "parameter_list": return n
+            p_field = n.child_by_field_name("parameters")
+            if p_field: return p_field
+            for child in n.children:
+                res = find_params_node(child)
+                if res: return res
+            return None
+
+        if node.type in ["function_definition", "declaration", "method_declaration", "template_declaration", "function_declarator"]:
+            # For template_declarations, we want the parameters of the INNER function/declaration
+            target = node
+            if node.type == "template_declaration":
+                for child in reversed(node.children):
+                    if child.type in ["function_definition", "declaration", "method_declaration", "function_declarator"]:
+                        target = child
+                        break
+            
+            # Robust recursive search for ANY parameter-like node
+            def find_params_anywhere(p):
+                if p.type in ["parameter_list", "parameters", "argument_list"]:
+                    # In some C++ function pointer contexts, parameter_list might be deep
+                    return p
+                # Also check field
+                f = p.child_by_field_name("parameters")
+                if f: return f
+                for child in p.children:
+                    res = find_params_anywhere(child)
+                    if res: return res
+                return None
+            
+            params = find_params_anywhere(target)
+            
+        if params:
+            param_str = code_bytes[params.start_byte:params.end_byte].decode('utf-8', errors='ignore').strip()
+            name = f"{name}{param_str}"
+            
+        return name
     return "unknown"
+
+def resolve_qualified_name(node, code_bytes: bytes) -> str:
+    """Recursively resolve name for qualified identifiers, template types, etc."""
+    if node.type in ["identifier", "field_identifier", "type_identifier", "namespace_identifier", "destructor_name"]:
+        return code_bytes[node.start_byte:node.end_byte].decode("utf-8", "ignore")
+    elif node.type == "qualified_identifier":
+        parts = []
+        for child in node.children:
+            if child.type not in ["::", "comment"]:
+                res = resolve_qualified_name(child, code_bytes)
+                if res != "unknown" and res:
+                    parts.append(res)
+        return "::".join(parts) if parts else "unknown"
+    elif node.type == "template_type":
+        name_node = node.child_by_field_name("name")
+        if name_node:
+            return resolve_qualified_name(name_node, code_bytes)
+        # Fallback to children search if field missing
+        for child in node.children:
+            if child.type in ["identifier", "type_identifier", "qualified_identifier"]:
+                return resolve_qualified_name(child, code_bytes)
+    elif node.type in ["function_declarator", "pointer_declarator", "reference_declarator"]:
+        for child in node.children:
+            if child.type not in ["(", ")", "*", "&", "comment"]:
+                res = resolve_qualified_name(child, code_bytes)
+                if res != "unknown": return res
+    return "unknown"
+
+def get_parent_scope_name(node, code_bytes: bytes) -> str:
+    """Find the full qualified name of the containing scope(s)."""
+    p = node.parent
+    scopes = []
+    # Language-specific container types
+    container_types = [
+        "class_specifier", "struct_specifier", "enum_specifier", "function_definition",
+        "class_definition", # Python
+        "class_declaration", "interface_declaration", "enum_declaration", "trait_declaration", "record_declaration", # Java, PHP, JS, TS
+        "method_definition", "method_declaration", # JS, TS, PHP, Go
+        "class_body", "declaration_list", # Intermediate nodes that hold names or define scope
+        "struct_item", "enum_item", "trait_item", "mod_item", "function_item", # Rust
+        "type_declaration", # Go
+        "function_declaration", # Lua, Go, PHP
+    ]
+    
+    while p:
+        # Debug: print(f"  Climbing: {p.type}")
+        is_scope = False
+        if p.type in container_types:
+            is_scope = True
+        elif p.type in ["class", "interface", "struct", "enum", "module"]: # Generic fallbacks
+            is_scope = True
+            
+        if is_scope:
+            name = "unknown"
+            if p.type in ["function_definition", "function_declaration", "method_definition", "method_declaration", "function_item"]:
+                name = extract_entity_name(p, code_bytes)
+                if "(" in name: name = name.split("(")[0]
+                if ":" in name and "::" not in name:
+                    name = name.replace(":", "::")
+            else:
+                name_node = p.child_by_field_name("name")
+                if not name_node:
+                    # Look for first identifier-like child
+                    for child in p.children:
+                        if child.type in ["identifier", "type_identifier", "field_identifier", "name"]:
+                            name_node = child
+                            break
+                if name_node:
+                    name = code_bytes[name_node.start_byte:name_node.end_byte].decode("utf-8", "ignore")
+            
+            if name != "unknown" and name:
+                # Avoid self-parenting if extract_entity_name for parent returns child name (shouldn't happen but safe)
+                if not scopes or scopes[-1] != name:
+                    scopes.append(name)
+        p = p.parent
+    if not scopes:
+        return "global"
+    return "::".join(reversed(scopes))
 
 def extract_code_entities(code_bytes: bytes, ext: str) -> list:
     if ext == ".py":
@@ -98,13 +243,11 @@ def extract_code_entities(code_bytes: bytes, ext: str) -> list:
     elif ext in [".cpp", ".hpp", ".h", ".cc", ".cxx"]:
         lang = CPP_LANGUAGE
         query_scm = """
-            (template_declaration (function_definition)) @template_function
-            (template_declaration [(class_specifier) (struct_specifier) (enum_specifier) (alias_declaration)]) @template_type
+            (template_declaration) @template
             (function_definition) @function
             (class_specifier) @type
             (struct_specifier) @type
             (enum_specifier) @type
-            (alias_declaration) @type
         """
     elif ext == ".c":
         lang = C_LANGUAGE
@@ -147,41 +290,71 @@ def extract_code_entities(code_bytes: bytes, ext: str) -> list:
         for node in nodes:
             all_captures.append((node, entity_type))
 
-    all_captures.sort(key=lambda x: (x[0].end_byte - x[0].start_byte), reverse=True)
-
-    final_nodes = []
-    category_map = {
-        "template_function": "template_function", 
-        "template_type": "template_type", 
-        "function": "function", 
-        "type": "type"
-    }
-    covered_ranges = {"function": [], "type": [], "template_function": [], "template_type": []}
+    # 1. Group captures by their 'effective' logical node (e.g. the class/function inside templates)
+    entities_by_effective = {} # effective_node_id -> (outer_node, effective_node, capture_name)
     
-    for node, entity_type in all_captures:
-        node_start, node_end = node.start_byte, node.end_byte
-        name = extract_entity_name(node, code_bytes)
-        logical_cat = category_map.get(entity_type, entity_type)
-        
-        is_covered = False
-        if logical_cat in covered_ranges:
-            for (c_start, c_end, c_name) in covered_ranges[logical_cat]:
-                if node_start >= c_start and node_end <= c_end:
-                    if name == c_name or name == "unknown":
-                        is_covered = True
+    for node, capture_name in all_captures:
+        effective_node = node
+        if node.type == "template_declaration":
+            curr = node
+            while True:
+                inner = None
+                for child in reversed(curr.children):
+                    if child.type not in ["template", "template_parameter_list", "<", ">", ",", "comment", ";"]:
+                        inner = child
                         break
+                if inner and inner.type == "template_declaration":
+                    curr = inner
+                else:
+                    if inner: effective_node = inner
+                    break
+                    
+        eid = (effective_node.id, effective_node.start_byte, effective_node.end_byte)
+        curr_size = node.end_byte - node.start_byte
+        if eid not in entities_by_effective:
+            entities_by_effective[eid] = (node, effective_node, capture_name)
+        else:
+            prev_node, _, _ = entities_by_effective[eid]
+            prev_size = prev_node.end_byte - prev_node.start_byte
+            if curr_size > prev_size:
+                entities_by_effective[eid] = (node, effective_node, capture_name)
+
+    # 2. Extract Names and Deduplicate by Full Name + Logical Type
+    final_entities_map = {} # (full_name, logical_type) -> (outer_node, effective_node, capture_name)
+    
+    for eid, (outer_node, effective_node, capture_name) in entities_by_effective.items():
+        base_name = extract_entity_name(effective_node, code_bytes)
+        if base_name == "unknown": continue
         
-        if not is_covered:
-            final_nodes.append((node, entity_type))
-            if logical_cat not in covered_ranges: covered_ranges[logical_cat] = []
-            covered_ranges[logical_cat].append((node_start, node_end, name))
+        scope = get_parent_scope_name(effective_node, code_bytes)
+        # Construct full qualified name if not already qualified
+        if "::" not in base_name and scope != "global":
+            full_name = f"{scope}::{base_name}"
+        else:
+            full_name = base_name
+            
+        is_func = "function" in capture_name or effective_node.type in ["function_definition", "declaration", "method_declaration"]
+        logical_type = "function" if is_func else "type"
+        
+        key = (full_name, logical_type)
+        curr_size = outer_node.end_byte - outer_node.start_byte
+        
+        if key in final_entities_map:
+            prev_node, _, _ = final_entities_map[key]
+            prev_size = prev_node.end_byte - prev_node.start_byte
+            # If same name/type, prefer the larger node (definition over declaration)
+            if curr_size > prev_size:
+                final_entities_map[key] = (outer_node, effective_node, capture_name)
+        else:
+            final_entities_map[key] = (outer_node, effective_node, capture_name)
 
     entities = []
-    for node, entity_type in final_nodes:
-        name = extract_entity_name(node, code_bytes)
-        current_start = node.start_byte
-        actual_start_line = node.start_point[0] + 1
-        prev = node.prev_sibling
+    # 3. Convert map back to final list
+    for (full_name, _), (outer_node, effective_node, capture_name) in final_entities_map.items():
+        name = full_name
+        current_start = outer_node.start_byte
+        actual_start_line = outer_node.start_point[0] + 1
+        prev = outer_node.prev_sibling
         while prev and prev.type in ["comment", "line_comment", "block_comment"]:
             current_start = prev.start_byte
             actual_start_line = prev.start_point[0] + 1
@@ -191,9 +364,9 @@ def extract_code_entities(code_bytes: bytes, ext: str) -> list:
         entities.append({
             "name": name,
             "start_line": actual_start_line,
-            "end_line": node.end_point[0] + 1,
+            "end_line": outer_node.end_point[0] + 1,
             "code": code,
-            "type": entity_type
+            "type": capture_name
         })
     return entities
 

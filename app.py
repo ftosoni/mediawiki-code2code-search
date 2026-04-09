@@ -64,6 +64,9 @@ import shutil
 import time
 from pathlib import Path
 from dotenv import load_dotenv
+from pygments import highlight
+from pygments.lexers import get_lexer_for_filename, TextLexer
+from pygments.formatters import HtmlFormatter
 
 # Load local environment variables
 load_dotenv()
@@ -311,7 +314,15 @@ LANGUAGE_EXTENSIONS = {
     "Rust": [".rs"]
 }
 
-# Legacy helper removed. Use SWHS3Cache.fetch_blob()
+def get_highlighted_code(code: str, filepath: str) -> str:
+    """Returns syntax-highlighted HTML for the given code and filepath extension."""
+    try:
+        lexer = get_lexer_for_filename(filepath)
+    except Exception:
+        lexer = TextLexer()
+    # nowrap=True allows us to inject the spans into our own <pre> containers
+    formatter = HtmlFormatter(nowrap=True)
+    return highlight(code, lexer, formatter)
 
 @app.get("/code")
 async def get_code_snippet(swhid: str):
@@ -353,7 +364,23 @@ async def get_code_snippet(swhid: str):
     # 5. Slice lines
     lines = full_content.splitlines()
     snippet = "\n".join(lines[start_line-1 : end_line])
-    return {"code": snippet}
+    
+    # 6. Highlight (Optional but requested for frontend)
+    # We need the filepath to choose the lexer
+    filepath = ""
+    try:
+        with sqlite3.connect(METADATA_DB_PATH) as conn:
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            cursor.execute("SELECT filepath FROM functions WHERE swhid LIKE ?", (f"%{swhid_hash}%",))
+            row = cursor.fetchone()
+            if row:
+                filepath = row["filepath"]
+    except Exception:
+        pass
+
+    highlighted = get_highlighted_code(snippet, filepath)
+    return {"code": snippet, "highlighted_code": highlighted}
 
 @app.post("/search")
 async def search_code(req: SearchRequest):
@@ -420,6 +447,9 @@ async def search_code(req: SearchRequest):
                             lang_match = any(filepath.endswith(ext) for ext in all_allowed_exts)
                         
                         if group_match and type_match and lang_match:
+                            # Also produce highlighted snippet if code is present in the DB record
+                            if item.get("code"):
+                                item["highlighted_code"] = get_highlighted_code(item["code"], item.get("filepath", "code.txt"))
                             candidates.append(item)
         except Exception as e:
             print(f"Database error in search_code: {e}")

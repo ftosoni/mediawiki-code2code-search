@@ -47,6 +47,7 @@ jobs:
         pip install pytest pytest-asyncio
     - name: Run tests
       run: |
-        # Run only mocked API tests and connectivity tests
-        # Excluding test_jina_components.py as it downloads heavy models
-        pytest tests/test_api.py tests/test_hf_availability.py
+        # Run structural parser tests for all languages
+        # These are lightweight and do not require heavy model downloads.
+        # Also run mocked API tests and connectivity tests.
+        pytest tests/test_*_parser.py tests/test_api.py tests/test_hf_availability.py
