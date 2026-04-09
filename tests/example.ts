@@ -10,33 +10,32 @@ enum StatusEnum {
     Pending
 }
 
-// Class with nested class, nested enum, nested interface
-class Outer {
-    enum Status {
+// Namespace for grouping (substitute for unsupported nested classes/enums in TS classes)
+namespace Outer {
+    export enum Status {
         Active,
         Inactive
     }
     
-    class InnerStruct {
+    export class InnerStruct {
         constructor(public name: string, public code: number) {}
     }
     
-    interface InnerInterface {
+    export interface InnerInterface {
         id: number;
     }
-    
+}
+
+class OuterClass {
     private value: number;
     
     constructor(value: number) {
         this.value = value;
     }
     
-    // Method returning nested function
     getMultiplier(factor: number): (x: number) => number {
         const self = this;
-        // Nested function
         return function(x: number): number {
-            // Triple nested function
             function innerHelper(a: number, b: number): number {
                 return a * b;
             }
@@ -59,9 +58,7 @@ interface Point {
 // Function with local class, local interface, local type alias
 function functionWithLocalClass(): void {
     class LocalClass {
-        enum LocalEnum { One, Two }
-        
-        static add(a: number, b: number): number {
+        add(a: number, b: number): number {
             const inner = (): number => a + b;
             return inner();
         }

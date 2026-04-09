@@ -195,7 +195,7 @@ def get_parent_scope_name(node, code_bytes: bytes) -> str:
         "class_definition", # Python
         "class_declaration", "interface_declaration", "enum_declaration", "trait_declaration", "record_declaration", # Java, PHP, JS, TS
         "method_definition", "method_declaration", # JS, TS, PHP, Go
-        "class_body", "declaration_list", # Intermediate nodes that hold names or define scope
+        "internal_module", # TS namespace
         "struct_item", "enum_item", "trait_item", "mod_item", "function_item", # Rust
         "type_declaration", # Go
         "function_declaration", # Lua, Go, PHP
