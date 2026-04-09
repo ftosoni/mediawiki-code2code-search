@@ -1,11 +1,13 @@
 import unittest
 import os
+from pathlib import Path
 from preprocessing.extract_structural_entities import extract_code_entities
 
 class TestLuaParser(unittest.TestCase):
     def test_lua_extraction(self):
-        with open("tests/example.lua", "rb") as f:
-            code = f.read()
+        example_path = Path(__file__).parent / "example.lua"
+        with open(example_path, "rb") as f:
+            code = f.read().replace(b"\r\n", b"\n")
         entities = extract_code_entities(code, ".lua")
         
         names = [e["name"] for e in entities]

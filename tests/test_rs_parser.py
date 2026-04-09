@@ -1,11 +1,13 @@
 import unittest
 import os
+from pathlib import Path
 from preprocessing.extract_structural_entities import extract_code_entities
 
 class TestRustParser(unittest.TestCase):
     def test_rs_extraction(self):
-        with open("tests/example.rs", "rb") as f:
-            code = f.read()
+        example_path = Path(__file__).parent / "example.rs"
+        with open(example_path, "rb") as f:
+            code = f.read().replace(b"\r\n", b"\n")
         entities = extract_code_entities(code, ".rs")
         
         names = [e["name"] for e in entities]
@@ -22,8 +24,9 @@ class TestRustParser(unittest.TestCase):
             self.assertTrue(any(name in n for n in names), f"Missing {name} in {names}")
             
     def test_rs_scoping(self):
-        with open("tests/example.rs", "rb") as f:
-            code = f.read()
+        example_path = Path(__file__).parent / "example.rs"
+        with open(example_path, "rb") as f:
+            code = f.read().replace(b"\r\n", b"\n")
         entities = extract_code_entities(code, ".rs")
         names = [e["name"] for e in entities]
         

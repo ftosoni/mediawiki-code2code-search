@@ -9,7 +9,7 @@ from preprocessing.extract_structural_entities import extract_code_entities
 
 def test_py_parser():
     print("Running Python Parser Tests...")
-    example_py = Path("tests/example.py")
+    example_py = Path(__file__).parent / "example.py"
     with open(example_py, "rb") as f:
         code_bytes = f.read().replace(b"\r\n", b"\n")
     

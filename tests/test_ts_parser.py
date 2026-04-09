@@ -9,7 +9,7 @@ from preprocessing.extract_structural_entities import extract_code_entities
 
 def test_ts_parser():
     print("Running TypeScript Parser Tests...")
-    example_ts = Path("tests/example.ts")
+    example_ts = Path(__file__).parent / "example.ts"
     with open(example_ts, "rb") as f:
         code_bytes = f.read().replace(b"\r\n", b"\n")
     

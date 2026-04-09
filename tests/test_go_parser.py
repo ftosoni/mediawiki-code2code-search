@@ -9,7 +9,7 @@ from preprocessing.extract_structural_entities import extract_code_entities
 
 def test_go_parser():
     print("Running Go Parser Tests...")
-    example_go = Path("tests/example.go")
+    example_go = Path(__file__).parent / "example.go"
     with open(example_go, "rb") as f:
         code_bytes = f.read().replace(b"\r\n", b"\n")
     

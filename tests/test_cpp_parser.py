@@ -9,7 +9,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from preprocessing.extract_structural_entities import extract_code_entities
 
 def get_example_cpp_entities():
-    example_path = Path(r"c:\Users\franc\Documents\GitHub\mediawiki-code2code-search\tests\example.cpp")
+    example_path = Path(__file__).parent / "example.cpp"
     with open(example_path, "rb") as f:
         code_bytes = f.read().replace(b"\r\n", b"\n")
     return extract_code_entities(code_bytes, ".cpp")

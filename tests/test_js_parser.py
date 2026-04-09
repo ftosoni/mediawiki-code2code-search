@@ -9,7 +9,7 @@ from preprocessing.extract_structural_entities import extract_code_entities
 
 def test_js_parser():
     print("Running JavaScript Parser Tests...")
-    example_js = Path("tests/example.js")
+    example_js = Path(__file__).parent / "example.js"
     with open(example_js, "rb") as f:
         code_bytes = f.read().replace(b"\r\n", b"\n")
     
