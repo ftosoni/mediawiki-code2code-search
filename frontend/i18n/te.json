@@ -16,8 +16,6 @@
     "type_all": "అన్నీ",
     "type_function": "ఫంక్షన్లు",
     "type_type": "రకాలు (Types)",
-    "type_template_function": "టెంప్లేట్ ఫంక్షన్లు",
-    "type_template_type": "టెంప్లేట్ రకాలు",
     "fetching_code": "Software Heritage నుండి కోడ్ పొందబడుతోంది...",
     "error_fetching_code": "SWH ఆర్కైవ్‌లో స్నిప్పెట్ అందుబాటులో లేదు",
     "group_all": "అన్నీ",
@@ -38,5 +36,6 @@
     "sloan_grant_prefix": "ఈ అధ్యయనానికి ",
     "sloan_grant_mid": " గ్రాంట్ #",
     "sloan_grant_suffix": " ద్వారా నిధులు సమకూర్చబడ్డాయి (sloan.org).",
-    "issues": "సమస్య ట్రాకర్"
+    "issues": "సమస్య ట్రాకర్",
+    "type_template": "టెంప్లేట్లు"
 }

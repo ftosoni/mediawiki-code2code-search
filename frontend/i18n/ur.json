@@ -16,8 +16,6 @@
     "type_all": "تمام",
     "type_function": "فنکشنز",
     "type_type": "اقسام (Types)",
-    "type_template_function": "ٹیمپلیٹ فنکشنز",
-    "type_template_type": "ٹیمپلیٹ اقسام",
     "fetching_code": "سافٹ ویئر ہیریٹیج سے کوڈ حاصل کیا جا رہا ہے...",
     "error_fetching_code": "SWH آرکائیو میں سنپٹ دستیاب نہیں ہے",
     "group_all": "سب",
@@ -38,5 +36,6 @@
     "sloan_grant_prefix": "اس مطالعہ کو ",
     "sloan_grant_mid": " گرانٹ #",
     "sloan_grant_suffix": " کے ساتھ مالی اعانت فراہم کی گئی تھی (sloan.org)۔",
-    "issues": "مسئلہ ٹریکر"
+    "issues": "مسئلہ ٹریکر",
+    "type_template": "ٹیمپलेट्स"
 }

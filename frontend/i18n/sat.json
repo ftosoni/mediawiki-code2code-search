@@ -16,8 +16,6 @@
     "type_all": "ᱥᱟᱱᱟᱢ",
     "type_function": "ᱯᱷᱟᱱᱠᱥᱚᱱ",
     "type_type": "ᱞᱮᱠᱟᱱ (Types)",
-    "type_template_function": "ᱴᱮᱢᱯᱞᱮᱴ ᱯᱷᱟᱱᱠᱥᱚᱱ",
-    "type_template_type": "ᱴᱮᱢᱯᱞᱮᱴ ᱞᱮᱠᱟᱱ",
     "fetching_code": "Software Heritage ᱠᱷᱚᱱ ᱠᱳᱰ ᱟᱹᱜᱩᱭᱮᱫᱟ...",
     "error_fetching_code": "SWH ᱟᱨᱠᱟᱭᱵᱷ ᱨᱮ ᱥᱱᱤᱯᱮᱴ ᱵᱟᱹᱱᱩᱜᱼᱟ",
     "group_all": "ᱥᱟᱱᱟᱢ",
@@ -38,5 +36,6 @@
     "sloan_grant_prefix": "This study was funded by the ",
     "sloan_grant_mid": " with the grant #",
     "sloan_grant_suffix": " (sloan.org).",
-    "issues": "ᱤᱥᱩ ᱴᱨᱮᱠᱚᱨ"
+    "issues": "ᱤᱥᱩ ᱴᱨᱮᱠᱚᱨ",
+    "type_template": "ᱴᱮᱢᱯᱞᱮᱴ"
 }

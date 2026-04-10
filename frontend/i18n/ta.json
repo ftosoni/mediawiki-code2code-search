@@ -16,8 +16,6 @@
     "type_all": "அனைத்தும்",
     "type_function": "சார்புகள் (Functions)",
     "type_type": "வகைகள் (Types)",
-    "type_template_function": "வார்ப்புரு சார்புகள்",
-    "type_template_type": "வார்ப்புரு வகைகள்",
     "fetching_code": "Software Heritage இலிருந்து குறியீட்டைப் பெறுகிறது...",
     "error_fetching_code": "SWH காப்பகத்தில் துணுக்கைக் காணவில்லை",
     "group_all": "அனைத்தும்",
@@ -38,5 +36,6 @@
     "sloan_grant_prefix": "இந்த ஆய்வு ",
     "sloan_grant_mid": " நிதி உதவி #",
     "sloan_grant_suffix": " மூலம் நிதியளிக்கப்பட்டது (sloan.org).",
-    "issues": "பிழை கண்காணிப்பான்"
+    "issues": "பிழை கண்காணிப்பான்",
+    "type_template": "வார்ப்புருக்கள்"
 }

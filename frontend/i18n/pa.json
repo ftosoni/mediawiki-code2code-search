@@ -16,8 +16,6 @@
     "type_all": "ਸਾਰੇ",
     "type_function": "ਫੰਕਸ਼ਨ",
     "type_type": "ਕਿਸਮਾਂ (Types)",
-    "type_template_function": "ਟੈਂਪਲੇਟ ਫੰਕਸ਼ਨ",
-    "type_template_type": "ਟੈਂਪਲੇਟ ਕਿਸਮਾਂ",
     "fetching_code": "Software Heritage ਤੋਂ ਕੋਡ ਪ੍ਰਾਪਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
     "error_fetching_code": "SWH ਆਰਕਾਈਵ ਵਿੱਚ ਸਨਿੱਪਟ ਉਪਲਬਧ ਨਹੀਂ ਹੈ",
     "group_all": "ਸਭ",
@@ -38,5 +36,6 @@
     "sloan_grant_prefix": "ਇਹ ਅਧਿਐਨ ",
     "sloan_grant_mid": " ਦੁਆਰਾ ਗ੍ਰਾਂਟ #",
     "sloan_grant_suffix": " ਨਾਲ ਵਿੱਤੀ ਸਹਾਇਤਾ ਪ੍ਰਾਪਤ ਹੈ (sloan.org)।",
-    "issues": "ਮੁੱਦਾ ਟਰੈਕਰ"
+    "issues": "ਮੁੱਦਾ ਟਰੈਕਰ",
+    "type_template": "ਟੈਂਪਲੇਟਸ"
 }

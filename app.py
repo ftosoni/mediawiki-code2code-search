@@ -297,7 +297,7 @@ class SearchRequest(BaseModel):
     query: str = Field(..., max_length=2000)
     top_k: int = Field(10, gt=0, le=50)
     repo_group: Union[str, List[str]] = "all"
-    type_filter: str = "all" # all, function, type, template_function, template_type
+    type_filter: str = "all" # all, function, type, template
     language_filter: Union[str, List[str]] = "all"
 
 # Mapping for language filtering based on file extensions

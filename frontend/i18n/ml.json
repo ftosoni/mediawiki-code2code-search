@@ -16,8 +16,6 @@
     "type_all": "എല്ലാം",
     "type_function": "ഫംഗ്ഷനുകൾ",
     "type_type": "തരങ്ങൾ (Types)",
-    "type_template_function": "ടെംപ്ലേറ്റ് ഫംഗ്ഷനുകൾ",
-    "type_template_type": "ടെംപ്ലേറ്റ് തരങ്ങൾ",
     "fetching_code": "Software Heritage-ൽ നിന്ന് കോഡ് എടുക്കുന്നു...",
     "error_fetching_code": "SWH ആർക്കൈവിൽ സ്നിപ്പറ്റ് ലഭ്യമല്ല",
     "group_all": "എല്ലാം",
@@ -38,5 +36,6 @@
     "sloan_grant_prefix": "ഈ പഠനത്തിന് ",
     "sloan_grant_mid": " ഗ്രാന്റ് #",
     "sloan_grant_suffix": " വഴി ധനസഹായം ലഭിച്ചു (sloan.org).",
-    "issues": "ഇഷ്യൂ ട്രാക്കർ"
+    "issues": "ഇഷ്യൂ ട്രാക്കർ",
+    "type_template": "ടെംപ്ലേറ്റുകൾ"
 }

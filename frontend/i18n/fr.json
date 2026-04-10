@@ -12,8 +12,6 @@
     "type_all": "Toutes les entités",
     "type_function": "Fonctions",
     "type_type": "Types",
-    "type_template_function": "Fonctions Template",
-    "type_template_type": "Types Template",
     "fetching_code": "Récupération du code depuis Software Heritage...",
     "error_fetching_code": "Snippet non disponible dans l'archive SWH",
     "group_all": "Tout",
@@ -40,5 +38,6 @@
     "view_swhid": "Voir SWHID",
     "created_by": "Créé par :",
     "licence": "Licence :",
-    "issues": "Suivi des problèmes"
+    "issues": "Suivi des problèmes",
+    "type_template": "Modèles"
 }

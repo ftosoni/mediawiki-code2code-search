@@ -16,8 +16,6 @@
     "type_all": "ସମସ୍ତ",
     "type_function": "ଫଙ୍କସନ୍ସ",
     "type_type": "ପ୍ରକାର (Types)",
-    "type_template_function": "ଟେମ୍ପଲେଟ୍ ଫଙ୍କସନ୍ସ",
-    "type_template_type": "ଟେମ୍ପଲେଟ୍ ପ୍ରକାର",
     "fetching_code": "Software Heritage ରୁ କୋଡ୍ ଅଣାଯାଉଛି...",
     "error_fetching_code": "SWH ଆର୍କାଇଭରେ ସ୍ନିପେଟ୍ ଉପଲବ୍ଧ ନାହିଁ",
     "group_all": "ସବୁ",
@@ -38,5 +36,6 @@
     "sloan_grant_prefix": "ଏହି ଅଧ୍ୟୟନ ",
     "sloan_grant_mid": " ଦ୍ୱାରା ଅନୁଦାନ #",
     "sloan_grant_suffix": " ସହିତ ଅର୍ଥ ପ୍ରଦାନ କରାଯାଇଛି (sloan.org) ।",
-    "issues": "ଇସ୍ୟୁ ଟ୍ରାକର"
+    "issues": "ଇସ୍ୟୁ ଟ୍ରାକର",
+    "type_template": "ଟେମ୍ପଲେଟ୍ସ"
 }

@@ -16,8 +16,6 @@
     "type_all": "সব",
     "type_function": "ফাংশন",
     "type_type": "ধরণ (Types)",
-    "type_template_function": "টেমপ্লেট ফাংশন",
-    "type_template_type": "টেমপ্লেট ধরণ",
     "fetching_code": "Software Heritage থেকে কোড সংগ্রহ করা হচ্ছে...",
     "error_fetching_code": "SWH আর্কাইভে এই স্নিপেটটি নেই",
     "group_all": "সব",
@@ -38,5 +36,6 @@
     "sloan_grant_prefix": "এই গবেষণাটি ",
     "sloan_grant_mid": " দ্বারা অনুদান #",
     "sloan_grant_suffix": " এর সাথে অর্থায়ন করা হয়েছে (sloan.org)।",
-    "issues": "ইস্যু ট্র্যাকার"
+    "issues": "ইস্যু ট্র্যাকার",
+    "type_template": "টেমপ্লেট"
 }

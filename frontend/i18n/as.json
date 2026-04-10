@@ -16,8 +16,6 @@
     "type_all": "সকলো",
     "type_function": "ফাংচন",
     "type_type": "প্ৰকাৰ (Types)",
-    "type_template_function": "টেমপ্লেট ফাংচন",
-    "type_template_type": "টেমপ্লেট প্ৰকাৰ",
     "fetching_code": "Software Heritage-ৰ পৰা ক’ড গোটোৱা হৈছে...",
     "error_fetching_code": "SWH আৰ্কাইভত এই শ্নীপেটটো নাই",
     "group_all": "সকলো",
@@ -38,5 +36,6 @@
     "sloan_grant_prefix": "এই গৱেষণাটো ",
     "sloan_grant_mid": " গ্ৰাণ্ট #",
     "sloan_grant_suffix": " ৰ দ্বাৰা পুঁজি প্ৰদান কৰা হৈছে (sloan.org)।",
-    "issues": "ইছু ট্ৰেকাৰ"
+    "issues": "ইছু ট্ৰেকাৰ",
+    "type_template": "টেমপ্লেট (Templates)"
 }

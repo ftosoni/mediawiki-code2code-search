@@ -12,8 +12,6 @@
     "type_all": "सभी",
     "type_function": "फंक्शंस",
     "type_type": "प्रकार (Types)",
-    "type_template_function": "टेम्प्लेट फंक्शंस",
-    "type_template_type": "टेम्प्लेट प्रकार",
     "fetching_code": "Software Heritage से कोड प्राप्त किया जा रहा है...",
     "error_fetching_code": "SWH आर्काइव में स्निपेट अनुपलब्ध है",
     "group_all": "सभी",
@@ -38,5 +36,6 @@
     "view_swhid": "SWHID देखें",
     "created_by": "द्वारा बनाया गया:",
     "licence": "लाइसेंस:",
-    "issues": "समस्या ट्रैकर"
+    "issues": "समस्या ट्रैकर",
+    "type_template": "टेम्प्लेट"
 }

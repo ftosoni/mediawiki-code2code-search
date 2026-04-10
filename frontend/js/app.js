@@ -283,6 +283,14 @@ const App = () => {
     const [typeFilter, setTypeFilter] = useState("all");
     const [repoGroups, setRepoGroups] = useState(["all"]);
     const [langFilters, setLangFilters] = useState(["all"]);
+
+    useEffect(() => {
+        const isCPPSelected = langFilters.includes('all') || langFilters.includes('C++');
+        if (typeFilter === 'template' && !isCPPSelected) {
+            setTypeFilter('all');
+        }
+    }, [langFilters, typeFilter]);
+
     const [loading, setLoading] = useState(false);
     const [speed, setSpeed] = useState(1);
     const [currentLang, setCurrentLang] = useState("en");
@@ -455,15 +463,21 @@ const App = () => {
                     disabled={loading}
                 />
                 <div className="type-selector">
-                    {['all', 'function', 'type', 'template_function', 'template_type'].map(f => (
-                        <div
-                            key={f}
-                            className={`type-chip ${typeFilter === f ? 'active' : ''}`}
-                            onClick={() => setTypeFilter(f)}
-                        >
-                            {t(`type_${f}`)}
-                        </div>
-                    ))}
+                    {['all', 'function', 'type', 'template'].map(f => {
+                        const isCPPSelected = langFilters.includes('all') || langFilters.includes('C++');
+                        const isDisabled = f === 'template' && !isCPPSelected;
+                        return (
+                            <div
+                                key={f}
+                                className={`type-chip ${typeFilter === f ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`}
+                                onClick={() => !isDisabled && setTypeFilter(f)}
+                                title={isDisabled ? "Available only for C++" : ""}
+                                style={isDisabled ? { opacity: 0.3, cursor: 'not-allowed', filter: 'grayscale(1)' } : {}}
+                            >
+                                {t(`type_${f}`)}
+                            </div>
+                        );
+                    })}
                 </div>
                 <div className="search-footer">
                     <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>

@@ -16,8 +16,6 @@
     "type_all": "सभ",
     "type_function": "फंक्शंस",
     "type_type": "प्रकार (Types)",
-    "type_template_function": "टेम्पलेट फंक्शंस",
-    "type_template_type": "टेम्पलेट प्रकार",
     "fetching_code": "Software Heritage सँ कोड प्राप्त कएल जा रहल अछि...",
     "error_fetching_code": "SWH आर्काइव में स्निपेट उपलब्ध नहि अछि",
     "group_all": "सभ",
@@ -38,5 +36,6 @@
     "sloan_grant_prefix": "ई अध्ययन ",
     "sloan_grant_mid": " द्वारा अनुदान #",
     "sloan_grant_suffix": " क साथ वित्तपोषित कयल गेल छल (sloan.org)।",
-    "issues": "इशू ट्रैकर"
+    "issues": "इशू ट्रैकर",
+    "type_template": "टेम्प्लेट"
 }

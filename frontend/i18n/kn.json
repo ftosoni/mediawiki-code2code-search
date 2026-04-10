@@ -16,8 +16,6 @@
     "type_all": "ಎಲ್ಲಾ",
     "type_function": "ಫಂಕ್ಷನ್‌ಗಳು",
     "type_type": "ವಿಧಗಳು (Types)",
-    "type_template_function": "ಟೆಂಪ್ಲೇಟ್ ಫಂಕ್ಷನ್‌ಗಳು",
-    "type_template_type": "ಟೆಂಪ್ಲೇಟ್ ವಿಧಗಳು",
     "fetching_code": "Software Heritage ನಿಂದ ಕೋಡ್ ಪಡೆಯಲಾಗುತ್ತಿದೆ...",
     "error_fetching_code": "SWH ಆರ್ಕೈವ್‌ನಲ್ಲಿ ಸ್ನಿಪ್ಪೆಟ್ ಲಭ್ಯವಿಲ್ಲ",
     "group_all": "ಎಲ್ಲಾ",
@@ -38,5 +36,6 @@
     "sloan_grant_prefix": "ಈ ಅಧ್ಯಯನಕ್ಕೆ ",
     "sloan_grant_mid": " ಅನುದಾನ #",
     "sloan_grant_suffix": " ಮೂಲಕ ಧನಸಹായ ನೀಡಲಾಗಿದೆ (sloan.org).",
-    "issues": "ಸಮಸ್ಯೆ ಟ್ರ್ಯಾಕರ್"
+    "issues": "ಸಮಸ್ಯೆ ಟ್ರ್ಯಾಕರ್",
+    "type_template": "ಟೆಂಪ್ಲೇಟ್‌ಗಳು"
 }

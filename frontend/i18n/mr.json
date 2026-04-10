@@ -16,8 +16,6 @@
     "type_all": "सर्व",
     "type_function": "फंक्शन्स",
     "type_type": "प्रकार (Types)",
-    "type_template_function": "टेम्पलेट फंक्शन्स",
-    "type_template_type": "टेम्पलेट प्रकार",
     "fetching_code": "Software Heritage कडून कोड मिळवत आहे...",
     "error_fetching_code": "SWH आर्काइव्हमध्ये कोड स्निपेट उपलब्ध नाही",
     "group_all": "सर्व",
@@ -38,5 +36,6 @@
     "sloan_grant_prefix": "हा अभ्यास ",
     "sloan_grant_mid": " कडून अनुदान #",
     "sloan_grant_suffix": " सह अर्थसहाय्यित आहे (sloan.org).",
-    "issues": "समस्या ट्रॅकर"
+    "issues": "समस्या ट्रॅकर",
+    "type_template": "टेम्प्लेट्स"
 }
