@@ -360,7 +360,7 @@ def extract_code_entities(code_bytes: bytes, ext: str) -> list:
             actual_start_line = prev.start_point[0] + 1
             prev = prev.prev_sibling
         
-        code = code_bytes[current_start:node.end_byte].decode('utf-8', errors='ignore')
+        code = code_bytes[current_start:outer_node.end_byte].decode('utf-8', errors='ignore')
         entities.append({
             "name": name,
             "start_line": actual_start_line,

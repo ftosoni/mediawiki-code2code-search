@@ -54,9 +54,17 @@ python archive_individual_to_swh.py
 ```
 
 ### Phase 3: Extraction (Local/CPU)
-Perform structural parsing on your local laptop. This captures functions/types and generates `raw_functions.json`.
+Perform high-precision structural parsing on your local machine. This captures functions/types with qualified names (e.g., `Class::Method`) and handles complex language features.
+
+**Phase 3a: Structural Extraction**
 ```bash
-python extract_entities.py
+python extract_structural_entities.py
+```
+
+**Phase 3b: Identity Resolution**
+Resolve Git-compatible hashes to standard SHA1 via the Software Heritage API:
+```bash
+python resolve_swh_hashes.py
 ```
 
 ### Phase 4: Indexing (Remote/GPU)
