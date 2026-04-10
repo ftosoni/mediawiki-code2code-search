@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://code2codesearch.toolforge.org/sitemap.xml

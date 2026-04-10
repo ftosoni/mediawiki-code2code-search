@@ -83,6 +83,19 @@ def update_release(swhid, commit):
         with open(html_path, "w", encoding="utf-8") as f:
             f.write(content)
 
+    # 5. frontend/sitemap.xml
+    sitemap_path = os.path.join("frontend", "sitemap.xml")
+    if os.path.exists(sitemap_path):
+        print(f"Updating {sitemap_path}...")
+        with open(sitemap_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        
+        # Update lastmod
+        content = re.sub(r"<lastmod>\d{4}-\d{2}-\d{2}</lastmod>", f"<lastmod>{today}</lastmod>", content)
+        
+        with open(sitemap_path, "w", encoding="utf-8") as f:
+            f.write(content)
+
     print("✅ All files updated successfully.")
 
 if __name__ == "__main__":

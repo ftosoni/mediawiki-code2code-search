@@ -22,20 +22,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MediaWiki Code2Code Search | Semantic Neural Retrieval</title>
+    <meta name="description"
+        content="AI-powered semantic search for MediaWiki source code. Find functions, types, and templates across the entire MediaWiki ecosystem using neural retrieval.">
+    <meta name="keywords"
+        content="MediaWiki, code search, semantic search, AI, neural retrieval, SWH, Software Heritage, open source, Wikipedia">
+    <meta name="author" content="Francesco Tosoni">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://code2codesearch.toolforge.org/">
+    <meta property="og:title" content="MediaWiki Code2Code Search | Semantic Neural Retrieval">
+    <meta property="og:description"
+        content="Advanced AI-powered semantic search for MediaWiki source code. Search by meaning, not just keywords.">
+    <meta property="og:image" content="https://code2codesearch.toolforge.org/icon.png">
+
+    <link rel="canonical" href="https://code2codesearch.toolforge.org/">
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>">
-    
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "MediaWiki Code2Code Search",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "AI-powered semantic search for MediaWiki source code. Find functions, types, and templates across the entire MediaWiki ecosystem using neural retrieval.",
+      "author": {
+        "@type": "Person",
+        "name": "Francesco Tosoni"
+      }
+    }
+    </script>
+
     <!-- React & Babel (Toolforge Mirror) -->
     <script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
-    <script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+    <script
+        src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
     <script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/babel-standalone/7.28.4/babel.min.js"></script>
-    
+
     <!-- Three.js (Toolforge Mirror) -->
     <script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/three.js/r128/three.min.js"></script>
-    
+
     <!-- Toolforge Font CDN: Ubuntu & JetBrains Mono for open-source compliance & premium look -->
-    <link href='https://tools-static.wmflabs.org/fontcdn/css?family=Ubuntu|JetBrains+Mono' rel='stylesheet' type='text/css'>
-    
+    <link href='https://tools-static.wmflabs.org/fontcdn/css?family=Ubuntu|JetBrains+Mono' rel='stylesheet'
+        type='text/css'>
+
     <!-- External Styles -->
     <link rel="stylesheet" href="css/style.css">
 </head>
