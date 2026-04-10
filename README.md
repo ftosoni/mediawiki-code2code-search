@@ -83,7 +83,8 @@ python generate_index.py  # Auto-detects CUDA/GPU
 ### Phase 5: Memory Optimization & Deployment (Local/Toolforge)
 Before deploying, convert the production metadata to SQLite to stay within 6GiB RAM limits:
 ```bash
-python backend/migrate_to_sqlite.py
+cd backend
+python migrate_to_sqlite.py
 ```
 
 Once the index and database are ready, start the FastAPI backend from the root directory:
@@ -118,7 +119,6 @@ Log into Toolforge and set the necessary permissions:
 
 ```bash
 ssh supnabla@login.toolforge.org
-become code2codesearch
 
 chmod -R a+r /data/project/code2codesearch/mediawiki-code2code-search/models/
 chmod a+x /data/project/code2codesearch/backend/functions.db
@@ -129,6 +129,9 @@ chmod a+x /data/project/code2codesearch/backend/mediawiki.index
 Now you are ready to deploy the webservice:
 
 ```bash
+# Switch to the code2codesearch project
+become code2codesearch
+
 # Stop and clean existing build
 toolforge webservice buildservice stop --mount=all
 toolforge build clean -y
