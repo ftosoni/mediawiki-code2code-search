@@ -62,10 +62,16 @@ python extract_structural_entities.py
 ```
 
 **Phase 3b: Identity Resolution**
-Resolve Git-compatible hashes to standard SHA1 via the Software Heritage API:
-```bash
-python resolve_swh_hashes.py
-```
+Resolve Git-compatible hashes to standard SHA1. You can do this either locally (fast) or via the Software Heritage API (official):
+
+*   **Option A: Local Resolution (Recommended)**
+    ```bash
+    python resolve_swh_hashes_local.py
+    ```
+*   **Option B: API-based Resolution**
+    ```bash
+    python resolve_swh_hashes.py
+    ```
 
 ### Phase 4: Indexing (Remote/GPU)
 Move `raw_functions.json` to a GPU-equipped environment to compute neural vectors and build the FAISS index.
