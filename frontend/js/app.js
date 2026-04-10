@@ -457,7 +457,7 @@ const App = () => {
 
             <div className="search-container">
                 <textarea
-                    placeholder={`${t('placeholder')}\n\ndef greatest_common_divisor(m,n) :\n  if (n==0) :\n    return m\n  return greatest_common_divisor(n,m%n)`}
+                    placeholder={`${t('placeholder')}\n\ndef gcd(m,n) :\n  if (n==0) :\n    return m\n  return gcd(n,m%n)`}
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     disabled={loading}
