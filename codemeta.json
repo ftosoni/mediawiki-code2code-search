@@ -16,7 +16,7 @@
         }
     ],
     "codeRepository": "git+https://github.com/ftosoni/mediawiki-code2code-search.git",
-    "datePublished": "2026-04-10",
+    "datePublished": "2026-04-11",
     "description": "MediaWiki Code2Code Search is a high-performance semantic search tool designed specifically for the MediaWiki open-source ecosystem, integrated with the Software Heritage archive. It utilises a single-stage neural retrieval architecture to help developers navigate complex codebases with high precision and minimal resource usage.",
     "keywords": [
         "semantic code search",
@@ -35,7 +35,7 @@
     "issueTracker": "https://github.com/ftosoni/mediawiki-code2code-search/issues",
     "softwareVersion": "First release",
     "version": "First release",
-    "identifier": "swh:1:dir:38a7f693067f18e1b867ae34474b0ee5cd40d2e4;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:959e7520f20f17081d6f3c171af345b3eccb92a0;anchor=swh:1:rev:c78a39aabb310eba0e2a3f75224db7aa3a2b7656",
+    "identifier": "swh:1:dir:477ac3cbb59f3c53c97f990abdbd60934e8c1f79;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:9b691e064924aacc0ac6d85fce9997aee687b2dc;anchor=swh:1:rev:fa2335b4243966ef0def5c0555c0664f079b7e08",
     "codeRepository": "https://github.com/ftosoni/mediawiki-code2code-search",
     "url": "https://code2codesearch.toolforge.org/"
 }
