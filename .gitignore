@@ -41,3 +41,6 @@ update_i18n.py
 # Tests
 .pytest_cache/
 
+# Temporary files
+tmp
+
