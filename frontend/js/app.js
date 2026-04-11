@@ -515,18 +515,18 @@ const App = () => {
                 alignItems: 'center'
             }}>
                 <span>
-                    {t('created_by')} <a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/User:Super_nabla" target="_blank" style={{ color: 'var(--accent-italy)', textDecoration: 'none' }}>Super nabla 🪰</a> (<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/Indic_MediaWiki_Developers_User_Group" target="_blank" style={{ color: 'var(--accent-india)', textDecoration: 'none' }}>{t('indic_ug')}</a>) & <a href="https://acube.di.unipi.it/" target="_blank" style={{ color: 'var(--accent-italy)', textDecoration: 'none' }}>Acube Lab</a>
+                    {t('created_by')} <a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/User:Super_nabla" target="_blank" style={{ color: 'var(--accent-italy)' }}>Super nabla 🪰</a> (<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/Indic_MediaWiki_Developers_User_Group" target="_blank" style={{ color: 'var(--accent-india)' }}>{t('indic_ug')}</a>) & <a href="https://acube.di.unipi.it/" target="_blank" style={{ color: 'var(--accent-italy)' }}>Acube Lab</a>
                 </span>
                 <span style={{ opacity: 0.3 }}>|</span>
                 <span>{t('licence')} <a href="https://github.com/ftosoni/mediawiki-code2code-search/blob/main/LICENSE.md" target="_blank" style={{ color: 'inherit' }}>Apache 2.0</a></span>
                 <span style={{ opacity: 0.3 }}>|</span>
-                <span><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Code2Code_Search" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>{t('view_mediawiki')}</a></span>
+                <span><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Code2Code_Search" target="_blank" style={{ color: 'inherit' }}>{t('view_mediawiki')}</a></span>
                 <span style={{ opacity: 0.3 }}>|</span>
                 <span>
-                    {t('source')} (<a href="https://github.com/ftosoni/mediawiki-code2code-search" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>GitHub</a> · <a href="https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>SWH</a>)
+                    {t('source')} (<a href="https://github.com/ftosoni/mediawiki-code2code-search" target="_blank" style={{ color: 'inherit' }}>GitHub</a> · <a href="https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search" target="_blank" style={{ color: 'inherit' }}>SWH</a>)
                 </span>
                 <span style={{ opacity: 0.3 }}>|</span>
-                <span><a href="https://github.com/ftosoni/mediawiki-code2code-search/issues" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>{t('issues')}</a></span>
+                <span><a href="https://github.com/ftosoni/mediawiki-code2code-search/issues" target="_blank" style={{ color: 'inherit' }}>{t('issues')}</a></span>
                 <span style={{ opacity: 0.3 }}>|</span>
                 <div style={{ width: '100%', marginTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '1.5rem', color: '#666', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
                     <span>2026-04-08</span>

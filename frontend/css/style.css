@@ -15,6 +15,15 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
+/* --- Global Link Styling --- */
+a {
+    text-decoration: none;
+    transition: color 0.3s ease, opacity 0.3s ease, text-decoration 0.3s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+}
 
 :root {
     --bg-dark: #050505;
