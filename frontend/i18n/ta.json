@@ -9,8 +9,6 @@
     "no_results": "இந்தத் தேடலுக்கு முடிவுகள் எதுவும் இல்லை.",
     "created_by": "உருவாக்கியவர்:",
     "licence": "உரிமம்:",
-    "view_source": "மூலத்தைப் பார்க்கவும்",
-    "view_swhid": "SWHID ஐப் பார்க்கவும்",
     "show_more": "கூடுதல் குறியீட்டைக் காட்டு",
     "show_less": "சுருக்கு",
     "type_all": "அனைத்தும்",
@@ -36,6 +34,9 @@
     "sloan_grant_prefix": "இந்த ஆய்வு ",
     "sloan_grant_mid": " நிதி உதவி #",
     "sloan_grant_suffix": " மூலம் நிதியளிக்கப்பட்டது (sloan.org).",
-    "issues": "பிழை கண்காணிப்பான்",
-    "type_template": "வார்ப்புருக்கள்"
+    "issues": "சிக்கலைப் புகாரளிக்கவும்",
+    "type_template": "வார்ப்புருக்கள்",
+    "view_mediawiki": "MediaWiki ஆவணமாக்கம்",
+    "view_diff": "Diff-ல் இடுகையைக் காண்க",
+    "source": "மூலம்"
 }

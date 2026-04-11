@@ -9,8 +9,6 @@
     "no_results": "ഈ ക്വറിക്ക് ഫലങ്ങളൊന്നും ലഭ്യമല്ല.",
     "created_by": "നിർമ്മിച്ചത്:",
     "licence": "ലൈസൻസ്:",
-    "view_source": "സോഴ്സ് കാണുക",
-    "view_swhid": "SWHID കാണുക",
     "show_more": "കൂടുതൽ കോഡ് കാണുക",
     "show_less": "ചുരുക്കുക",
     "type_all": "എല്ലാം",
@@ -36,6 +34,9 @@
     "sloan_grant_prefix": "ഈ പഠനത്തിന് ",
     "sloan_grant_mid": " ഗ്രാന്റ് #",
     "sloan_grant_suffix": " വഴി ധനസഹായം ലഭിച്ചു (sloan.org).",
-    "issues": "ഇഷ്യൂ ട്രാക്കർ",
-    "type_template": "ടെംപ്ലേറ്റുകൾ"
+    "issues": "ഒരു പ്രശ്നം റിപ്പോർട്ട് ചെയ്യുക",
+    "type_template": "ടെംപ്ലേറ്റുകൾ",
+    "view_mediawiki": "MediaWiki ഡോക്യുമെന്റേഷൻ",
+    "view_diff": "Diff-ൽ പോസ്റ്റ് കാണുക",
+    "source": "ഉറവിടം"
 }

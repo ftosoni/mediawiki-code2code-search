@@ -9,8 +9,6 @@
     "no_results": "एहि क्वेरीक लेल कोनो परिणाम नहि भेटल।",
     "created_by": "द्वारा निर्मित:",
     "licence": "लाइसेंस:",
-    "view_source": "स्रोत देखू",
-    "view_swhid": "SWHID देखू",
     "show_more": "आर कोड देखू",
     "show_less": "छोट करू",
     "type_all": "सभ",
@@ -36,6 +34,9 @@
     "sloan_grant_prefix": "ई अध्ययन ",
     "sloan_grant_mid": " द्वारा अनुदान #",
     "sloan_grant_suffix": " क साथ वित्तपोषित कयल गेल छल (sloan.org)।",
-    "issues": "इशू ट्रैकर",
-    "type_template": "टेम्प्लेट"
+    "issues": "समस्याক রিপোর্ট करू",
+    "type_template": "टेम्प्लेट",
+    "view_mediawiki": "MediaWiki दस्तावेजीकरण",
+    "view_diff": "Diff पर पोस्ट देखी",
+    "source": "स्रोत"
 }

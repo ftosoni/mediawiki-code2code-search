@@ -9,8 +9,6 @@
     "no_results": "ଏହି ପ୍ରଶ୍ନ ପାଇଁ କୌଣସି ଫଳାଫଳ ମିଳିଲା ନାହିଁ।",
     "created_by": "ଦ୍ୱାରା ନିର୍ମିତ:",
     "licence": "ଲାଇସେନ୍ସ:",
-    "view_source": "ସୋର୍ସ ଦେଖନ୍ତୁ",
-    "view_swhid": "SWHID ଦେଖନ୍ତୁ",
     "show_more": "ଅଧିକ କୋଡ୍ ଦେଖନ୍ତୁ",
     "show_less": "ଛୋଟ କରନ୍ତୁ",
     "type_all": "ସମସ୍ତ",
@@ -36,6 +34,9 @@
     "sloan_grant_prefix": "ଏହି ଅଧ୍ୟୟନ ",
     "sloan_grant_mid": " ଦ୍ୱାରା ଅନୁଦାନ #",
     "sloan_grant_suffix": " ସହିତ ଅର୍ଥ ପ୍ରଦାନ କରାଯାଇଛି (sloan.org) ।",
-    "issues": "ଇସ୍ୟୁ ଟ୍ରାକର",
-    "type_template": "ଟେମ୍ପଲେଟ୍ସ"
+    "issues": "ସମସ୍ୟା ରିପୋର୍ଟ କରନ୍ତୁ",
+    "type_template": "ଟେମ୍ପଲେଟ୍ସ",
+    "view_mediawiki": "MediaWiki ଦସ୍ତାବେଜ",
+    "view_diff": "Diff-ରେ ପୋଷ୍ଟ ଦେଖନ୍ତୁ",
+    "source": "ଉତ୍ସ"
 }

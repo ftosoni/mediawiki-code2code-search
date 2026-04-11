@@ -9,8 +9,6 @@
     "no_results": "اس سوال کے لئے کوئی نتیجہ نہیں ملا۔",
     "created_by": "تخلیق کار:",
     "licence": "لائسنس:",
-    "view_source": "ماخذ دیکھیں",
-    "view_swhid": "SWHID دیکھیں",
     "show_more": "مزید کوڈ دیکھیں",
     "show_less": "کم دکھائیں",
     "type_all": "تمام",
@@ -36,6 +34,9 @@
     "sloan_grant_prefix": "اس مطالعہ کو ",
     "sloan_grant_mid": " گرانٹ #",
     "sloan_grant_suffix": " کے ساتھ مالی اعانت فراہم کی گئی تھی (sloan.org)۔",
-    "issues": "مسئلہ ٹریکر",
-    "type_template": "ٹیمپलेट्स"
+    "issues": "مسئلہ رپورٹ کریں",
+    "type_template": "ٹیمپलेट्स",
+    "view_mediawiki": "MediaWiki دستاویزات",
+    "view_diff": "Diff پر پوسٹ دیکھیں",
+    "source": "ماخذ"
 }

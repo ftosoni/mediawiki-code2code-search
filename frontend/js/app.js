@@ -518,11 +518,13 @@ const App = () => {
                     {t('created_by')} <a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/User:Super_nabla" target="_blank" style={{ color: 'var(--accent-italy)', textDecoration: 'none' }}>Super nabla 🪰</a> (<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/Indic_MediaWiki_Developers_User_Group" target="_blank" style={{ color: 'var(--accent-india)', textDecoration: 'none' }}>{t('indic_ug')}</a>) & <a href="https://acube.di.unipi.it/" target="_blank" style={{ color: 'var(--accent-italy)', textDecoration: 'none' }}>Acube Lab</a>
                 </span>
                 <span style={{ opacity: 0.3 }}>|</span>
-                <span>{t('licence')} <a href="https://github.com/ftosoni/code-search-engine/blob/main/LICENSE.md" target="_blank" style={{ color: 'inherit' }}>Apache 2.0</a></span>
+                <span>{t('licence')} <a href="https://github.com/ftosoni/mediawiki-code2code-search/blob/main/LICENSE.md" target="_blank" style={{ color: 'inherit' }}>Apache 2.0</a></span>
                 <span style={{ opacity: 0.3 }}>|</span>
-                <span><a href="https://github.com/ftosoni/code-search-engine" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>{t('view_source')}</a></span>
+                <span><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Code2Code_Search" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>{t('view_mediawiki')}</a></span>
                 <span style={{ opacity: 0.3 }}>|</span>
-                <span><a href="https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>{t('view_swhid')}</a></span>
+                <span>
+                    {t('source')} (<a href="https://github.com/ftosoni/mediawiki-code2code-search" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>GitHub</a> · <a href="https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>SWH</a>)
+                </span>
                 <span style={{ opacity: 0.3 }}>|</span>
                 <span><a href="https://github.com/ftosoni/mediawiki-code2code-search/issues" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>{t('issues')}</a></span>
                 <span style={{ opacity: 0.3 }}>|</span>

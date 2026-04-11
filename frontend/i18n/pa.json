@@ -9,8 +9,6 @@
     "no_results": "ਇਸ ਕੁਐਰੀ ਲਈ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।",
     "created_by": "ਦੁਆਰਾ ਬਣਾਇਆ ਗਿਆ:",
     "licence": "ਲਾਇਸੈਂਸ:",
-    "view_source": "ਸਰੋਤ ਦੇਖੋ",
-    "view_swhid": "SWHID ਦੇਖੋ",
     "show_more": "ਹੋਰ ਕੋਡ ਦੇਖੋ",
     "show_less": "ਛੋਟਾ ਕਰੋ",
     "type_all": "ਸਾਰੇ",
@@ -36,6 +34,9 @@
     "sloan_grant_prefix": "ਇਹ ਅਧਿਐਨ ",
     "sloan_grant_mid": " ਦੁਆਰਾ ਗ੍ਰਾਂਟ #",
     "sloan_grant_suffix": " ਨਾਲ ਵਿੱਤੀ ਸਹਾਇਤਾ ਪ੍ਰਾਪਤ ਹੈ (sloan.org)।",
-    "issues": "ਮੁੱਦਾ ਟਰੈਕਰ",
-    "type_template": "ਟੈਂਪਲੇਟਸ"
+    "issues": "ਸਮੱਸਿਆ ਦੀ ਰਿਪੋਰਟ ਕਰੋ",
+    "type_template": "ਟੈਂਪਲੇਟਸ",
+    "view_mediawiki": "MediaWiki ଦਸਤਾވެਜ਼",
+    "view_diff": "Diff ਤੇ ਪੋਸਟ ਵੇਖੋ",
+    "source": "ସਰੋਤ"
 }

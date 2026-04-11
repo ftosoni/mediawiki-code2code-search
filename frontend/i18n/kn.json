@@ -9,8 +9,6 @@
     "no_results": "ಈ ಪ್ರಶ್ನೆಗೆ ಯಾವುದೇ ಫಲಿತಾಂಶಗಳು ಕಂಡುಬಂದಿಲ್ಲ.",
     "created_by": "ಇವರಿಂದ ರಚಿಸಲಾಗಿದೆ:",
     "licence": "ಪರವಾನಗಿ:",
-    "view_source": "ಮೂಲವನ್ನು ನೋಡಿ",
-    "view_swhid": "SWHID ನೋಡಿ",
     "show_more": "ಹೆಚ್ಚಿನ ಕೋಡ್ ನೋಡಿ",
     "show_less": "ಲಘುಗೊಳಿಸಿ",
     "type_all": "ಎಲ್ಲಾ",
@@ -36,6 +34,9 @@
     "sloan_grant_prefix": "ಈ ಅಧ್ಯಯನಕ್ಕೆ ",
     "sloan_grant_mid": " ಅನುದಾನ #",
     "sloan_grant_suffix": " ಮೂಲಕ ಧನಸಹായ ನೀಡಲಾಗಿದೆ (sloan.org).",
-    "issues": "ಸಮಸ್ಯೆ ಟ್ರ್ಯಾಕರ್",
-    "type_template": "ಟೆಂಪ್ಲೇಟ್‌ಗಳು"
+    "issues": "ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡಿ",
+    "type_template": "ಟೆಂಪ್ಲೇಟ್‌ಗಳು",
+    "view_mediawiki": "MediaWiki ದಸ್ತಾವೇಜು",
+    "view_diff": "Diff-ನಲ್ಲಿ ಪೋสต์ ವีಕ್ಷಿಸಿ",
+    "source": "ಮೂಲ"
 }

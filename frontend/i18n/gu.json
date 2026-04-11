@@ -9,8 +9,6 @@
     "no_results": "આ ક્વેરી માટે કોઈ પરિણામ મળ્યા નથી.",
     "created_by": "દ્વારા બનાવવામાં આવ્યું:",
     "licence": "લાયસન્સ:",
-    "view_source": "સ્ત્રોત જુઓ",
-    "view_swhid": "SWHID જુઓ",
     "show_more": "વધુ કોડ બતાવો",
     "show_less": "નાનું કરો",
     "type_all": "બધું",
@@ -36,6 +34,9 @@
     "sloan_grant_prefix": "આ અભ્યાસ માટે ",
     "sloan_grant_mid": " ગ્રાન્ટ #",
     "sloan_grant_suffix": " દ્વારા ભંડોળ ਪૂરું પાડવામાં આવ્યું છે (sloan.org).",
-    "issues": "ઇશ્યૂ ટ્રેકર",
-    "type_template": "ટેમ્પલેટ્સ"
+    "issues": "સમસ્યાની જાણ કરો",
+    "type_template": "ટેમ્પલેટ્સ",
+    "view_mediawiki": "MediaWiki દસ્તાવેજીકરણ",
+    "view_diff": "Diff પર પોસ્ટ જુઓ",
+    "source": "સ્ત્રોત"
 }

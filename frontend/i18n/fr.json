@@ -34,10 +34,11 @@
     "sloan_grant_prefix": "Cette étude a été financée par la ",
     "sloan_grant_mid": " avec la subvention #",
     "sloan_grant_suffix": " (sloan.org).",
-    "view_source": "Voir la source",
-    "view_swhid": "Voir SWHID",
     "created_by": "Créé par :",
     "licence": "Licence :",
-    "issues": "Suivi des problèmes",
-    "type_template": "Modèles"
+    "issues": "Signaler un problème",
+    "type_template": "Modèles",
+    "view_mediawiki": "Documentation de MediaWiki",
+    "view_diff": "Voir le post sur Diff",
+    "source": "Source"
 }

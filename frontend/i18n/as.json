@@ -9,8 +9,6 @@
     "no_results": "এই অনুসন্ধানৰ বাবে কোনো ফলাফল পোৱা নগ'ল।",
     "created_by": "দ্বাৰা নিৰ্মিত:",
     "licence": "লাইচেন্স:",
-    "view_source": "সোর্স দেখুন",
-    "view_swhid": "SWHID দেখুন",
     "show_more": "অধিক ক’ড দেখুওৱক",
     "show_less": "সংক্ষিপ্ত কৰক",
     "type_all": "সকলো",
@@ -36,6 +34,9 @@
     "sloan_grant_prefix": "এই গৱেষণাটো ",
     "sloan_grant_mid": " গ্ৰাণ্ট #",
     "sloan_grant_suffix": " ৰ দ্বাৰা পুঁজি প্ৰদান কৰা হৈছে (sloan.org)।",
-    "issues": "ইছু ট্ৰেকাৰ",
-    "type_template": "টেমপ্লেট (Templates)"
+    "issues": "সমস্যাৰ ৰিপৰ্ট কৰক (Report an issue)",
+    "type_template": "টেমপ্লেট (Templates)",
+    "view_mediawiki": "MediaWiki নথিপত্ৰ (Documentation)",
+    "view_diff": "Diff-ত পোষ্টটো চাওক",
+    "source": "উৎস (Source)"
 }

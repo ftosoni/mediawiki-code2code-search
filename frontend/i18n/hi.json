@@ -32,10 +32,11 @@
     "sloan_grant_prefix": "यह अध्ययन ",
     "sloan_grant_mid": " द्वारा अनुदान #",
     "sloan_grant_suffix": " के साथ वित्तपोषित किया गया था (sloan.org)।",
-    "view_source": "स्रोत देखें",
-    "view_swhid": "SWHID देखें",
     "created_by": "द्वारा बनाया गया:",
     "licence": "लाइसेंस:",
-    "issues": "समस्या ट्रैकर",
-    "type_template": "टेम्प्लेट"
+    "issues": "समस्या की रिपोर्ट करें",
+    "type_template": "टेम्पलेट",
+    "view_mediawiki": "MediaWiki दस्तावेज़ीकरण",
+    "view_diff": "Diff पर पोस्ट देखें",
+    "source": "स्रोत"
 }

@@ -9,8 +9,6 @@
     "no_results": "এই অনুসন্ধানের জন্য কোনো ফলাফল পাওয়া যায়নি।",
     "created_by": "তৈরি করেছেন:",
     "licence": "লাইসেন্স:",
-    "view_source": "সোর্স দেখুন",
-    "view_swhid": "SWHID দেখুন",
     "show_more": "আরও কোড দেখুন",
     "show_less": "ছোট করুন",
     "type_all": "সব",
@@ -36,6 +34,9 @@
     "sloan_grant_prefix": "এই গবেষণাটি ",
     "sloan_grant_mid": " দ্বারা অনুদান #",
     "sloan_grant_suffix": " এর সাথে অর্থায়ন করা হয়েছে (sloan.org)।",
-    "issues": "ইস্যু ট্র্যাকার",
-    "type_template": "টেমপ্লেট"
+    "issues": "সমস্যার রিপোর্ট করুন",
+    "type_template": "টেমপ্লেট",
+    "view_mediawiki": "MediaWiki নথিপত্র",
+    "view_diff": "Diff-এ পোস্টটি দেখুন",
+    "source": "উৎস"
 }

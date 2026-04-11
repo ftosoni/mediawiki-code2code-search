@@ -9,8 +9,6 @@
     "no_results": "ఈ శోధనకు ఫలితాలు లేవు.",
     "created_by": "రూపొందించినవారు:",
     "licence": "లైసెన్స్:",
-    "view_source": "మూలాన్ని చూడండి",
-    "view_swhid": "SWHID చూడండి",
     "show_more": "మరింత కోడ్ చూడండి",
     "show_less": "తగ్గించు",
     "type_all": "అన్నీ",
@@ -36,6 +34,9 @@
     "sloan_grant_prefix": "ఈ అధ్యయనానికి ",
     "sloan_grant_mid": " గ్రాంట్ #",
     "sloan_grant_suffix": " ద్వారా నిధులు సమకూర్చబడ్డాయి (sloan.org).",
-    "issues": "సమస్య ట్రాకర్",
-    "type_template": "టెంప్లేట్లు"
+    "issues": "సమస్యను నివేదించండి",
+    "type_template": "టెంప్లేట్లు",
+    "view_mediawiki": "MediaWiki డాక్యుమెంటేషన్",
+    "view_diff": "Diff లో పోస్ట్ చూడండి",
+    "source": "మూలం"
 }
