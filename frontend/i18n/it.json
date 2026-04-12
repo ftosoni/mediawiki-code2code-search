@@ -39,5 +39,6 @@
     "issues": "Segnala un problema",
     "view_mediawiki": "Documentazione MediaWiki",
     "view_diff": "Vedi il post su Diff",
-    "source": "Sorgente"
+    "source": "Sorgente",
+    "wikidata": "Elemento Q di Wikidata"
 }

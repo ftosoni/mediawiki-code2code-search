@@ -34,9 +34,10 @@
     "sloan_grant_prefix": "ಈ ಅಧ್ಯಯನಕ್ಕೆ ",
     "sloan_grant_mid": " ಅನುದಾನ #",
     "sloan_grant_suffix": " ಮೂಲಕ ಧನಸಹായ ನೀಡಲಾಗಿದೆ (sloan.org).",
-    "issues": "ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡಿ",
+    "issues": "ಸಮಸ್ಯೆಯನ್ನು వರದಿ ಮಾಡಿ",
     "type_template": "ಟೆಂಪ್ಲೇಟ್‌ಗಳು",
     "view_mediawiki": "MediaWiki ದಸ್ತಾವೇಜು",
     "view_diff": "Diff-ನಲ್ಲಿ ಪೋสต์ ವีಕ್ಷಿಸಿ",
-    "source": "ಮೂಲ"
+    "source": "ಮೂಲ",
+    "wikidata": "ವಿಕಿಡೇಟಾ Q-ಐಟಂ"
 }

@@ -35,8 +35,9 @@
     "sloan_grant_mid": " कडून अनुदान #",
     "sloan_grant_suffix": " सह अर्थसहाय्यित आहे (sloan.org).",
     "issues": "समस्येची तक्रार करा",
-    "type_template": "टेम्্প্লেটস",
+    "type_template": "টেम्্প্লেটস",
     "view_mediawiki": "MediaWiki दस्तऐवजीकरण",
     "view_diff": "Diff वर पोस्ट पहा",
-    "source": "स्रोत"
+    "source": "स्रोत",
+    "wikidata": "विकिडेटा Q-आयटम"
 }

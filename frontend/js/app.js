@@ -522,12 +522,13 @@ const App = () => {
                 <span style={{ opacity: 0.3 }}>|</span>
                 <span><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Code2Code_Search" target="_blank" style={{ color: 'inherit' }}>{t('view_mediawiki')}</a></span>
                 <span style={{ opacity: 0.3 }}>|</span>
+                <span><a href="https://www.wikidata.org/wiki/Q139251277" target="_blank" style={{ color: 'inherit' }}>{t('wikidata')}</a></span>
+                <span style={{ opacity: 0.3 }}>|</span>
                 <span>
                     {t('source')} (<a href="https://github.com/ftosoni/mediawiki-code2code-search" target="_blank" style={{ color: 'inherit' }}>GitHub</a> · <a href="https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search" target="_blank" style={{ color: 'inherit' }}>SWH</a>)
                 </span>
                 <span style={{ opacity: 0.3 }}>|</span>
                 <span><a href="https://github.com/ftosoni/mediawiki-code2code-search/issues" target="_blank" style={{ color: 'inherit' }}>{t('issues')}</a></span>
-                <span style={{ opacity: 0.3 }}>|</span>
                 <div style={{ width: '100%', marginTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '1.5rem', color: '#666', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
                     <span>2026-04-08</span>
                     <span>

@@ -38,5 +38,6 @@
     "type_template": "টেমপ্লেট",
     "view_mediawiki": "MediaWiki নথিপত্র",
     "view_diff": "Diff-এ পোস্টটি দেখুন",
-    "source": "উৎস"
+    "source": "উৎস",
+    "wikidata": "উইকিডেটা Q-আইটেম"
 }

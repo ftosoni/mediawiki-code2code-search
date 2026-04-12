@@ -34,9 +34,10 @@
     "sloan_grant_prefix": "ई अध्ययन ",
     "sloan_grant_mid": " द्वारा अनुदान #",
     "sloan_grant_suffix": " क साथ वित्तपोषित कयल गेल छल (sloan.org)।",
-    "issues": "समस्याক রিপোর্ট करू",
-    "type_template": "टेम्प्लेट",
+    "issues": "সমস্যাক রিপোর্ট करू",
+    "type_template": "টেম্প্লেট",
     "view_mediawiki": "MediaWiki दस्तावेजीकरण",
     "view_diff": "Diff पर पोस्ट देखी",
-    "source": "स्रोत"
+    "source": "स्रोत",
+    "wikidata": "विकिडेटा Q-आइटम"
 }
