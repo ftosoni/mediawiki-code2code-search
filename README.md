@@ -1,7 +1,7 @@
 # MediaWiki Code2Code Search
 
 [![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/ftosoni/mediawiki-code2code-search/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search)
-[![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:477ac3cbb59f3c53c97f990abdbd60934e8c1f79/)](https://archive.softwareheritage.org/swh:1:dir:477ac3cbb59f3c53c97f990abdbd60934e8c1f79;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:9b691e064924aacc0ac6d85fce9997aee687b2dc;anchor=swh:1:rev:fa2335b4243966ef0def5c0555c0664f079b7e08)
+[![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:f2e3873c00b929f3c0af674ea4d978be92a289ee/)](https://archive.softwareheritage.org/swh:1:dir:f2e3873c00b929f3c0af674ea4d978be92a289ee;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:a9637762b3cd2b31471254da6826c9322e1069f9;anchor=swh:1:rev:0eccd883643a706207d8ff5d10c5954a85b07472)
 [![Python](https://img.shields.io/badge/python-3.11-blue.svg?style=flat-square)](https://www.python.org/)
 [![CI](https://github.com/ftosoni/mediawiki-code2code-search/actions/workflows/python-ci.yml/badge.svg?branch=main&style=flat-square)](https://github.com/ftosoni/mediawiki-code2code-search/actions/workflows/python-ci.yml)
 [![Code Style: PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg?style=flat-square)](https://www.python.org/dev/peps/pep-0008/)
