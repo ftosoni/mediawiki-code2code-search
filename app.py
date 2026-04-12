@@ -468,5 +468,10 @@ def health():
 
 # Mount the static frontend directory last to avoid intercepting API calls
 frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "frontend"))
+assets_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "assets"))
+
+if os.path.exists(assets_path):
+    app.mount("/assets", StaticFiles(directory=assets_path), name="assets")
+
 if os.path.exists(frontend_path):
     app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
