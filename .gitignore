@@ -44,3 +44,7 @@ update_i18n.py
 # Temporary files
 tmp
 
+# Node.js
+node_modules/
+frontend/js/app.js
+

@@ -25,6 +25,8 @@ Metadata is managed via indexed SQLite for sub-second responses and a low-memory
 The indexing pipeline is designed for a **mass-scale, distributed build**. 
 
 ## 🛠️ Setup
+
+### Backend (Python)
 Create and activate a virtual environment (optional but recommended), then install dependencies:
 ```bash
 python -m venv venv
@@ -35,6 +37,13 @@ source venv/bin/activate
 
 pip install -r requirements.txt
 ```
+
+### Frontend (Node.js)
+To compile the React application, you will need Node.js installed on your machine. Install the dependencies and run the build:
+```bash
+npm install # This also runs 'npm run build' automatically
+```
+This generates the pre-compiled `frontend/js/app.js` used by the application.
 
 ### Phase 1: Discovery & Mirroring (Local)
 First, discover the ecosystem and mirror it for processing:
