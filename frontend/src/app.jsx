@@ -524,6 +524,8 @@ const App = () => {
                 <span style={{ opacity: 0.3 }}>|</span>
                 <span><a href="https://www.wikidata.org/wiki/Q139251277" target="_blank" style={{ color: 'inherit' }}>{t('wikidata')}</a></span>
                 <span style={{ opacity: 0.3 }}>|</span>
+                <span><a href="https://toolhub.wikimedia.org/tools/toolforge-code2codesearch" target="_blank" style={{ color: 'inherit' }}>{t('toolhub')}</a></span>
+                <span style={{ opacity: 0.3 }}>|</span>
                 <span>
                     {t('source')} (<a href="https://github.com/ftosoni/mediawiki-code2code-search" target="_blank" style={{ color: 'inherit' }}>GitHub</a> · <a href="https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search" target="_blank" style={{ color: 'inherit' }}>SWH</a>)
                 </span>

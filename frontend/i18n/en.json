@@ -45,5 +45,6 @@
     "view_mediawiki": "MediaWiki documentation",
     "view_diff": "View the post on Diff",
     "source": "Source",
-    "wikidata": "Wikidata Q-item"
+    "wikidata": "Wikidata Q-item",
+    "toolhub": "Toolhub"
 }
