@@ -27,8 +27,10 @@
     <meta name="keywords"
         content="MediaWiki, code search, semantic search, AI, neural retrieval, SWH, Software Heritage, open source, Wikipedia">
     <meta name="author" content="Francesco Tosoni">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
-    <!-- Open Graph -->
+    <!-- Social Media (Open Graph) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://code2codesearch.toolforge.org/">
     <meta property="og:title" content="MediaWiki Code2Code Search | Semantic Neural Retrieval">
@@ -36,11 +38,13 @@
         content="Advanced AI-powered semantic search for MediaWiki source code. Search by meaning, not just keywords.">
     <meta property="og:image" content="https://code2codesearch.toolforge.org/icon.png">
 
+    <!-- Icons & Canonical -->
     <link rel="canonical" href="https://code2codesearch.toolforge.org/">
     <link rel="icon" type="image/svg+xml" href="assets/branding/logo-minimal.svg">
     <link rel="alternate icon" type="image/x-icon" href="assets/branding/favicon.ico">
     <link rel="preconnect" href="https://tools-static.wmflabs.org" crossorigin>
 
+    <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -97,30 +101,27 @@
     }
     </script>
 
-    <!-- React (Toolforge Mirror) -->
+    <!-- External Libraries (Toolforge Mirror) -->
     <script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
     <script
         src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
 
-
-    <!-- Three.js (Toolforge Mirror) -->
     <script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <!-- Toolforge Font CDN: Ubuntu & JetBrains Mono for open-source compliance & premium look -->
+    <!-- Font Assets -->
     <link href='https://tools-static.wmflabs.org/fontcdn/css?family=Ubuntu|JetBrains+Mono' rel='stylesheet'
         type='text/css'>
 
-    <!-- External Styles -->
+    <!-- Application Styles -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-
+    <!-- App Containers -->
     <div id="canvas-container"></div>
-
     <div id="root"></div>
 
-    <!-- External Application Logic (Pre-compiled by Babel) -->
+    <!-- Application Logic -->
     <script src="js/app.js"></script>
 </body>
 
