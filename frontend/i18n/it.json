@@ -41,5 +41,6 @@
     "view_diff": "Vedi il post su Diff",
     "source": "Sorgente",
     "wikidata": "Elemento Q di Wikidata",
-    "toolhub": "Toolhub"
+    "toolhub": "Toolhub",
+    "diff_url": "https://diff.wikimedia.org/it/2026/04/14/presentazione-di-mediawiki-code2code-search-ricerca-semantica-per-trovare-codice-per-somiglianza-profonda/"
 }

@@ -1,0 +1,5 @@
+Contact: https://meta.wikimedia.org/wiki/Special:EmailUser/Super_nabla
+Contact: https://github.com/ftosoni/mediawiki-code2code-search/issues
+Expires: 2027-04-17T09:00:00.000Z
+Preferred-Languages: it, en
+Canonical: https://code2codesearch.toolforge.org/.well-known/security.txt

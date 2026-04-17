@@ -46,5 +46,6 @@
     "view_diff": "View the post on Diff",
     "source": "Source",
     "wikidata": "Wikidata Q-item",
-    "toolhub": "Toolhub"
+    "toolhub": "Toolhub",
+    "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/"
 }

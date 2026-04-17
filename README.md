@@ -11,6 +11,8 @@ A high-performance semantic code search engine designed for the MediaWiki ecosys
 Built on the Jina 0.5b neural retrieval model, optimized for large-scale codebases like MediaWiki Core, Extensions, and WMF Operations.
 Metadata is managed via indexed SQLite for sub-second responses and a low-memory footprint (Toolforge compatible).
 
+As featured on [Wikimedia Diff](https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/).
+
 ## ✨ Key Features
 
 - **📂 Global MediaWiki Indexing**: Covers Core, Extensions, Skins, Libraries, Services, and more (2,400+ unique repos).
@@ -39,11 +41,14 @@ pip install -r requirements.txt
 ```
 
 ### Frontend (Node.js)
-To compile the React application, you will need Node.js installed on your machine. Install the dependencies and run the build:
+
+To compile the React application, you will need Node.js installed on your machine. **This step is mandatory** for local development as the compiled `app.js` is excluded from the repository.
+
+Install the dependencies and run the build:
 ```bash
-npm install # This also runs 'npm run build' automatically
+npm install # This also runs 'npm run build' automatically via postinstall
 ```
-This generates the pre-compiled `frontend/js/app.js` used by the application.
+This generates the pre-compiled `frontend/js/app.js` required by the application.
 
 ### Phase 1: Discovery & Mirroring (Local)
 First, discover the ecosystem and mirror it for processing:
@@ -96,7 +101,8 @@ cd backend
 python migrate_to_sqlite.py
 ```
 
-Once the index and database are ready, start the FastAPI backend from the root directory:
+Once the index and database are ready, and the **frontend has been compiled** (see above), start the FastAPI backend from the root directory:
+
 ```bash
 # From the project root
 uvicorn app:app --host 0.0.0.0 --port 8000

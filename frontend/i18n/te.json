@@ -40,5 +40,6 @@
     "view_diff": "Diff లో పోస్ట్ చూడండి",
     "source": "మూలం",
     "wikidata": "వికీడేటా Q-అంశం",
-    "toolhub": "టూల్‌హబ్"
+    "toolhub": "టూల్‌హబ్",
+    "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/"
 }

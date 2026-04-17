@@ -40,5 +40,6 @@
     "view_diff": "Diff-ನಲ್ಲಿ ಪೋสต์ ವีಕ್ಷಿಸಿ",
     "source": "ಮೂಲ",
     "wikidata": "ವಿಕಿಡೇಟಾ Q-ಐಟಂ",
-    "toolhub": "ಟೂಲ್‌ಹಬ್"
+    "toolhub": "ಟೂಲ್‌ಹಬ್",
+    "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/"
 }
