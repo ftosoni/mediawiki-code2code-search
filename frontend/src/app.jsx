@@ -164,8 +164,8 @@ const ResultItem = ({ res, i, t }) => {
 
     useEffect(() => {
         const fetchCode = async () => {
-            if (res.code) {
-                setCode(res.code);
+            if (res.highlighted_code || res.code) {
+                setCode(res.code || "");
                 setHighlightedCode(res.highlighted_code || "");
                 setCodeLoading(false);
                 return;
@@ -520,7 +520,9 @@ const App = () => {
                 <span style={{ opacity: 0.3 }}>|</span>
                 <span>{t('licence')} <a href="https://github.com/ftosoni/mediawiki-code2code-search/blob/main/LICENSE.md" target="_blank" style={{ color: 'inherit' }}>Apache 2.0</a></span>
                 <span style={{ opacity: 0.3 }}>|</span>
-                <span><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Code2Code_Search" target="_blank" style={{ color: 'inherit' }}>{t('view_mediawiki')}</a></span>
+                <span>
+                    {t('documentation')} (<a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Code2Code_Search" target="_blank" style={{ color: 'inherit' }}>MediaWiki</a> · <a href="/docs" target="_blank" style={{ color: 'inherit' }}>API</a>)
+                </span>
                 <span style={{ opacity: 0.3 }}>|</span>
                 <span><a href="https://www.wikidata.org/wiki/Q139251277" target="_blank" style={{ color: 'inherit' }}>{t('wikidata')}</a></span>
                 <span style={{ opacity: 0.3 }}>|</span>

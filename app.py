@@ -42,12 +42,14 @@ def patched_getuser():
 
 getpass.getuser = patched_getuser
 
-from fastapi import FastAPI
-from typing import Optional, Union, List
+from fastapi import FastAPI, Query, HTTPException, Request
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
+from typing import Optional, Union, List, Literal, Annotated
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 import torch
 from transformers import AutoModel, AutoTokenizer, AutoModelForSequenceClassification
 from sentence_transformers import SentenceTransformer
@@ -283,7 +285,53 @@ class SWHS3Cache:
         
         return None
 
-app = FastAPI(title="MediaWiki Code2Code Search", lifespan=lifespan)
+app = FastAPI(
+    title="MediaWiki Code2Code Search",
+    description="""
+    AI-powered semantic search for MediaWiki source code. 
+    Find functions, types, and templates across the entire MediaWiki ecosystem using neural retrieval.
+    
+    This API allows you to:
+    * Search code snippets using natural language or code examples.
+    * Retrieve specific code snippets by their Software Heritage ID (SWHID).
+    * Check the system status and index health.
+    """,
+    version="1.0.0",
+    contact={
+        "name": "Francesco Tosoni",
+        "url": "https://github.com/ftosoni/mediawiki-code2code-search",
+    },
+    license_info={
+        "name": "Apache 2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
+    },
+    lifespan=lifespan
+)
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    """
+    Custom error handler to provide more precise and readable validation messages.
+    """
+    errors = []
+    for error in exc.errors():
+        loc = " -> ".join([str(l) for l in error.get("loc", []) if l != "body"])
+        msg = error.get("msg")
+        inp = error.get("input")
+        errors.append({
+            "field": loc,
+            "message": msg,
+            "received_value": inp
+        })
+    
+    return JSONResponse(
+        status_code=422,
+        content={
+            "error": "Validation Error",
+            "detail": "One or more fields in your request are invalid.",
+            "invalid_fields": errors
+        },
+    )
 
 app.add_middleware(
     CORSMiddleware,
@@ -294,11 +342,72 @@ app.add_middleware(
 )
 
 class SearchRequest(BaseModel):
-    query: str = Field(..., max_length=2000)
-    top_k: int = Field(10, gt=0, le=50)
-    repo_group: Union[str, List[str]] = "all"
-    type_filter: str = "all" # all, function, type, template
-    language_filter: Union[str, List[str]] = "all"
+    query: str = Field(..., max_length=2000, description="The natural language or code query to search for.", examples=["def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a"])
+    top_k: int = Field(10, gt=0, le=50, description="The number of results to return (range: 1-50).", examples=[10])
+    repo_group: List[Literal['all', 'core', 'things', 'libraries', 'deployed', 'operations', 'puppet', 'pywikibot', 'devtools', 'analytics', 'wmcs', 'apps']] = Field(["all"], description="Filter by repository group(s).")
+    type_filter: Literal['all', 'function', 'type', 'template'] = Field("all", description="Filter by entry type.")
+    language_filter: List[Literal['all', 'Python', 'C++', 'C', 'PHP', 'JavaScript', 'TypeScript', 'Lua', 'Go', 'Java', 'Rust']] = Field(["all"], description="Filter by programming language(s).")
+
+    @field_validator('repo_group', 'language_filter', mode='before')
+    @classmethod
+    def ensure_list(cls, v):
+        if isinstance(v, str):
+            return [v]
+        return v
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "query": "def get_page_content(title):\n    # Fetch content from MediaWiki API\n    params = {'action': 'query', 'prop': 'revisions', 'titles': title}\n    return requests.get(API_URL, params=params).json()",
+                "top_k": 5,
+                "repo_group": "deployed",
+                "type_filter": "function",
+                "language_filter": ["Python", "JavaScript"]
+            }
+        }
+    }
+
+class SearchResult(BaseModel):
+    id: int = Field(..., examples=[123])
+    name: str = Field(..., examples=["validateEmail"])
+    type: str = Field(..., examples=["function"])
+    filepath: str = Field(..., examples=["includes/utils/Validator.php"])
+    repo_name: str = Field(..., examples=["mediawiki/core"])
+    repo_group: str = Field(..., examples=["core"])
+    swhid: str = Field(..., examples=["swh:1:cnt:00003a1a9720cf32009cbe0c3b47256ef1a020bd;origin=https:/github.com/Open-CSP/FlexForm;lines=82-97/"])
+    recall_score: float = Field(..., examples=[0.9854])
+    code: Optional[str] = Field(None, description="The raw code snippet.", examples=["function validateEmail($email) { ... }"])
+    highlighted_code: Optional[str] = Field(None, examples=["<span class='k'>function</span> ..."])
+
+class SearchResponse(BaseModel):
+    results: List[SearchResult]
+
+class CodeSnippetResponse(BaseModel):
+    code: str = Field(..., examples=["function validateEmail($email) { ... }"])
+    highlighted_code: str = Field(..., examples=["<span class='k'>function</span> <span class='nf'>validateEmail</span>..."])
+
+class HealthResponse(BaseModel):
+    status: str = Field(..., examples=["ok"])
+    index_size: int = Field(..., examples=[1103986])
+
+class ValidationErrorDetail(BaseModel):
+    field: str = Field(..., description="The name of the invalid field.", examples=["top_k"])
+    message: str = Field(..., description="A clear explanation of the error.", examples=["Input should be less than or equal to 50"])
+    received_value: Optional[Union[str, int, float, list, dict]] = Field(None, description="The value that was received and failed validation.", examples=[100])
+
+class ValidationErrorResponse(BaseModel):
+    error: str = Field("Validation Error", examples=["Validation Error"])
+    detail: str = Field(..., description="A summary of the validation failure.", examples=["One or more fields in your request are invalid."])
+    invalid_fields: List[ValidationErrorDetail] = Field(..., description="A list of specific field validation failures.")
+
+class CodeValidationErrorResponse(ValidationErrorResponse):
+    invalid_fields: List[ValidationErrorDetail] = Field(..., examples=[
+        {
+            "field": "query -> swhid",
+            "message": "Field required",
+            "received_value": None
+        }
+    ])
 
 # Mapping for language filtering based on file extensions
 LANGUAGE_EXTENSIONS = {
@@ -324,68 +433,96 @@ def get_highlighted_code(code: str, filepath: str) -> str:
     formatter = HtmlFormatter(nowrap=True)
     return highlight(code, lexer, formatter)
 
-@app.get("/code")
-async def get_code_snippet(swhid: str):
-    # 1. Extract content hash (legacy fallback if needed, but we prefer sha1)
+@app.get("/code", tags=["Retrieval"], summary="Get code snippet by SWHID", response_model=CodeSnippetResponse, responses={
+    200: {
+        "description": "Snippet Retrieved",
+        "links": {
+            "FindSimilarCode": {
+                "operationId": "search_code",
+                "requestBody": {
+                    "query": "$response.body#/code"
+                },
+                "description": "Use this code snippet as a query to find similar code across the MediaWiki ecosystem."
+            }
+        }
+    },
+    422: {
+        "model": CodeValidationErrorResponse,
+        "links": {
+            "Troubleshoot": {
+                "operationId": "health_check",
+                "description": "If validation fails unexpectedly, check the system status to ensure the index and database are healthy."
+            }
+        }
+    }
+}, operation_id="get_code_snippet")
+async def get_code_snippet(swhid: str = Query(..., description="The Software Heritage ID (SWHID) of the content, including line range.", examples=["swh:1:cnt:00003a1a9720cf32009cbe0c3b47256ef1a020bd;origin=https:/github.com/Open-CSP/FlexForm;lines=82-97/"])):
+    """
+    Retrieves a specific code snippet from the local metadata database.
+    The snippet is syntax-highlighted based on the file extension.
+    """
+    # 1. Extract content hash
     hash_match = re.search(r"swh:1:cnt:([0-9a-f]+)", swhid)
     if not hash_match:
-        return {"error": "Invalid SWHID format"}
+        raise HTTPException(status_code=400, detail="Invalid SWHID format")
     swhid_hash = hash_match.group(1)
 
-    # 2. Look up sha1 in metadata (SQLite)
-    sha1 = None
-    try:
-        with sqlite3.connect(METADATA_DB_PATH) as conn:
-            conn.row_factory = sqlite3.Row
-            cursor = conn.cursor()
-            # We match the prefix of swhid or the hash itself
-            cursor.execute("SELECT sha1 FROM functions WHERE swhid LIKE ?", (f"%{swhid_hash}%",))
-            row = cursor.fetchone()
-            if row:
-                sha1 = row["sha1"]
-    except Exception as e:
-        print(f"Database error in get_code_snippet: {e}")
-            
-    if not sha1:
-        return {"error": "SWHID not found in index metadata"}
-
-    # 3. Extract line range
-    line_match = re.search(r"lines=(\d+)-(\d+)", swhid)
-    if not line_match:
-        return {"error": "Line range missing in SWHID"}
-    start_line = int(line_match.group(1))
-    end_line = int(line_match.group(2))
-
-    # 4. Fetch full content from Bounded Cache using standard sha1
-    full_content = await SWHS3Cache.fetch_blob(sha1)
-    if not full_content:
-        return {"error": "Could not retrieve content from SWH Archive"}
-
-    # 5. Slice lines
-    lines = full_content.splitlines()
-    snippet = "\n".join(lines[start_line-1 : end_line])
-    
-    # 6. Highlight (Optional but requested for frontend)
-    # We need the filepath to choose the lexer
+    # 2. Look up code and filepath in metadata (SQLite)
+    code = None
     filepath = ""
     try:
         with sqlite3.connect(METADATA_DB_PATH) as conn:
             conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
-            cursor.execute("SELECT filepath FROM functions WHERE swhid LIKE ?", (f"%{swhid_hash}%",))
+            # We match the prefix of swhid or the hash itself
+            cursor.execute("SELECT code, filepath FROM functions WHERE swhid LIKE ?", (f"%{swhid_hash}%",))
             row = cursor.fetchone()
             if row:
+                code = row["code"]
                 filepath = row["filepath"]
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"Database error in get_code_snippet: {e}")
+        raise HTTPException(status_code=500, detail="Internal database error")
+            
+    if not code:
+        raise HTTPException(status_code=404, detail="Snippet not found in local database")
 
-    highlighted = get_highlighted_code(snippet, filepath)
-    return {"code": snippet, "highlighted_code": highlighted}
+    # 3. Highlight
+    highlighted = get_highlighted_code(code, filepath)
+    return {"code": code, "highlighted_code": highlighted}
 
-@app.post("/search")
+@app.post("/search", tags=["Search"], summary="Perform semantic search", response_model=SearchResponse, responses={
+    200: {
+        "description": "Successful Search",
+        "links": {
+            "GetCodeSnippet": {
+                "operationId": "get_code_snippet",
+                "parameters": {
+                    "swhid": "$response.body#/results/0/swhid"
+                },
+                "description": "The `swhid` from any result can be used to retrieve the full snippet via the `/code` endpoint."
+            }
+        }
+    },
+    422: {
+        "model": ValidationErrorResponse,
+        "links": {
+            "Troubleshoot": {
+                "operationId": "health_check",
+                "description": "If your search request is rejected, verify the system status and index health via this link."
+            }
+        }
+    }
+}, operation_id="search_code")
 async def search_code(req: SearchRequest):
+    """
+    Performs a semantic search using Jina Code Embeddings.
+    The search is performed in two phases:
+    1. **Recall**: Find candidate snippets using FAISS vector search.
+    2. **Filtering**: Apply metadata filters (repo group, type, language).
+    """
     if bi_model is None or index is None:
-        return {"error": "Server not fully initialised"}
+        raise HTTPException(status_code=503, detail="Server not fully initialised")
 
 
     # 1. RECALL PHASE (Bi-Encoder)
@@ -427,20 +564,16 @@ async def search_code(req: SearchRequest):
                         
                         # Application of filters
                         # Group Filter (Multi-select)
-                        group_match = (req.repo_group == "all" or 
-                                       ("all" in req.repo_group if isinstance(req.repo_group, list) else False) or
-                                       item.get("repo_group") in req.repo_group)
+                        group_match = ("all" in req.repo_group or item.get("repo_group") in req.repo_group)
                         
                         # Type Filter (Single-select)
                         type_match = (req.type_filter == "all" or item.get("type") == req.type_filter)
                         
                         # Language Filter (Multi-select, based on file extension)
-                        lang_match = True
-                        if req.language_filter != "all" and not (isinstance(req.language_filter, list) and "all" in req.language_filter):
-                            # req.language_filter is a list of language names
-                            langs = [req.language_filter] if isinstance(req.language_filter, str) else req.language_filter
+                        lang_match = "all" in req.language_filter
+                        if not lang_match:
                             all_allowed_exts = []
-                            for l in langs:
+                            for l in req.language_filter:
                                 all_allowed_exts.extend(LANGUAGE_EXTENSIONS.get(l, []))
                             
                             filepath = item.get("filepath", "")
@@ -453,7 +586,7 @@ async def search_code(req: SearchRequest):
                             candidates.append(item)
         except Exception as e:
             print(f"Database error in search_code: {e}")
-            return {"error": "Internal database error"}
+            raise HTTPException(status_code=500, detail="Internal database error")
     
     if not candidates:
         return {"results": [], "total": 0}
@@ -462,8 +595,21 @@ async def search_code(req: SearchRequest):
     return {"results": candidates[:req.top_k]}
 
 
-@app.get("/health")
+@app.get("/health", tags=["System"], summary="Health check", response_model=HealthResponse, responses={
+    200: {
+        "description": "System Healthy",
+        "links": {
+            "PerformSearch": {
+                "operationId": "search_code",
+                "description": "The system is healthy and index is loaded. You can now perform a semantic search."
+            }
+        }
+    }
+}, operation_id="health_check")
 def health():
+    """
+    Returns the current status of the service and the size of the loaded FAISS index.
+    """
     return {"status": "ok", "index_size": index.ntotal if index else 0}
 
 # Mount the static frontend directory last to avoid intercepting API calls

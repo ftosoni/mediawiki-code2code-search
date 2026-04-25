@@ -41,5 +41,7 @@
     "source": "ഉറവിടം",
     "wikidata": "വിക്കിഡാറ്റ Q-ഇനം",
     "toolhub": "ടൂൾഹബ്",
-    "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/"
+    "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/",
+    "docs": "API ഡോക്യുമെന്റേഷൻ",
+    "documentation": "ഡോക്യുമെന്റേഷൻ"
 }
