@@ -60,11 +60,9 @@ import json
 import httpx
 import functools
 import re
-import gzip
 import asyncio
 import shutil
 import time
-from pathlib import Path
 from dotenv import load_dotenv
 from pygments import highlight
 from pygments.lexers import get_lexer_for_filename, TextLexer
@@ -78,9 +76,7 @@ HF_TOKEN = os.getenv("HF_TOKEN")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FAISS_INDEX_PATH = os.path.join(BASE_DIR, "backend", "mediawiki.index")
 METADATA_DB_PATH = os.path.join(BASE_DIR, "backend", "functions.db")
-CACHE_DIR = os.path.join(BASE_DIR, "backend", "swh_cache")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
-CACHE_LIMIT_MB = 100
 
 # Debug from here
 print("="*50)
@@ -98,11 +94,7 @@ standardized_path = "/data/project/code2codesearch/models"
 print(f"Does standardized path exist? {os.path.exists(standardized_path)}")
 if os.path.exists(standardized_path):
     print(f"Contents of standardized path: {os.listdir(standardized_path)}")
-print("="*50)
 # end debug
-
-# Ensure Cache Directory exists
-os.makedirs(CACHE_DIR, exist_ok=True)
 
 # Diagnostic: Check model readability before loading
 print("--- DIAGNOSTIC: Checking model readability ---")
@@ -214,76 +206,6 @@ async def lifespan(app: FastAPI):
     # Cleanup
     if http_client:
         await http_client.aclose()
-
-class SWHS3Cache:
-    """Bounded Disk LRU Cache for Gzipped blobs from SWH S3"""
-    
-    @staticmethod
-    def get_path(content_hash: str):
-        return os.path.join(CACHE_DIR, f"{content_hash}.gz")
-
-    @staticmethod
-    def prune():
-        """Ensure cache stays under CACHE_LIMIT_MB by deleting oldest files"""
-        files = []
-        total_size = 0
-        for f in Path(CACHE_DIR).glob("*.gz"):
-            stat = f.stat()
-            files.append((stat.st_atime, stat.st_size, f))
-            total_size += stat.st_size
-        
-        limit_bytes = CACHE_LIMIT_MB * 1024 * 1024
-        if total_size <= limit_bytes:
-            return
-
-        # Sort by access time (oldest first)
-        files.sort()
-        for _, size, path in files:
-            if total_size <= limit_bytes:
-                break
-            try:
-                os.remove(path)
-                total_size -= size
-                print(f"Pruned cache item: {path.name}")
-            except Exception:
-                pass
-
-    @staticmethod
-    async def fetch_blob(sha1: str):
-        """Tiered Fetch Strategy: Local Disk Cache -> SWH S3"""
-        if not sha1:
-            return None
-            
-        cache_path = SWHS3Cache.get_path(sha1)
-        
-        # 1. Check Disk Cache
-        if os.path.exists(cache_path):
-            os.utime(cache_path, None)
-            try:
-                with gzip.open(cache_path, "rb") as f:
-                    return f.read().decode('utf-8', errors='replace')
-            except Exception as e:
-                print(f"Cache Read Error for {sha1}: {e}")
-                os.remove(cache_path)
-
-        # 2. Try S3 (Primary Remote) - Gzipped blob
-        s3_url = f"https://softwareheritage.s3.amazonaws.com/content/{sha1}"
-        try:
-            response = await http_client.get(s3_url)
-            if response.status_code == 200:
-                SWHS3Cache.prune()
-                # Store the gzipped blob locally
-                with open(cache_path, "wb") as f:
-                    f.write(response.content)
-                # Decompress for use
-                decompressed = gzip.decompress(response.content)
-                return decompressed.decode('utf-8', errors='replace')
-            else:
-                print(f"SWH S3 404 for {sha1}")
-        except Exception as e:
-            print(f"SWH S3 Error for {sha1}: {e}")
-        
-        return None
 
 app = FastAPI(
     title="MediaWiki Code2Code Search",

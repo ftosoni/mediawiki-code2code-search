@@ -17,29 +17,28 @@ def mock_db(tmp_path):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     
-    # Create the same schema as in production
+    # Create the same schema as in production (migrate_to_sqlite.py)
     cursor.execute("""
         CREATE TABLE functions (
             id INTEGER PRIMARY KEY,
+            original_id TEXT,
             swhid TEXT,
             sha1 TEXT,
             repo_name TEXT,
             repo_group TEXT,
             filepath TEXT,
-            language TEXT,
-            type TEXT,
             name TEXT,
-            signature TEXT,
-            code_content TEXT
+            type TEXT,
+            code TEXT
         )
     """)
     
-    # Add dummy data
+    # Add dummy data (matches schema: id, original_id, swhid, sha1, repo_name, repo_group, filepath, name, type, code)
     sample_data = [
-        (0, "swh:1:cnt:abc123lines=1-10", "abc123sha1", "mediawiki/core", "core", "test.py", "Python", "function", "hello", "def hello()", "def hello():\n    print('world')"),
-        (1, "swh:1:cnt:def456lines=1-5", "def456sha1", "mediawiki/extensions/VisualEditor", "extensions", "ve.js", "JavaScript", "function", "init", "function init()", "function init() {\n  return 1;\n}")
+        (0, "orig_0", "swh:1:cnt:abc123lines=1-10", "abc123sha1", "mediawiki/core", "core", "test.py", "hello", "function", "def hello():\n    print('world')"),
+        (1, "orig_1", "swh:1:cnt:def456lines=1-5", "def456sha1", "mediawiki/extensions/VisualEditor", "extensions", "ve.js", "init", "function", "function init() {\n  return 1;\n}")
     ]
-    cursor.executemany("INSERT INTO functions VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", sample_data)
+    cursor.executemany("INSERT INTO functions VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", sample_data)
     conn.commit()
     conn.close()
     return str(db_path)
@@ -59,15 +58,10 @@ def test_faiss_index(tmp_path):
 @pytest.fixture
 def client(mock_db, test_faiss_index, tmp_path):
     """FastAPI test client with mocked models and real test database/index"""
-    # Create an isolated cache dir for tests
-    test_cache_dir = tmp_path / "swh_cache"
-    test_cache_dir.mkdir()
-    
     # Mock the heavy models and paths before importing app
     with patch("app.SentenceTransformer") as mock_st, \
          patch("app.METADATA_DB_PATH", mock_db), \
-         patch("app.FAISS_INDEX_PATH", test_faiss_index), \
-         patch("app.CACHE_DIR", str(test_cache_dir)):
+         patch("app.FAISS_INDEX_PATH", test_faiss_index):
         
         # Configure mock SentenceTransformer
         mock_model = MagicMock()

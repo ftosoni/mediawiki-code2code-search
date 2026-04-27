@@ -47,21 +47,17 @@ def test_search_with_filters(client):
         assert res["filepath"].endswith(".js")
 
 def test_get_code_snippet(client):
-    """Test the /code endpoint with mocked S3 fetch"""
+    """Test the /code endpoint"""
     swhid = "swh:1:cnt:abc123lines=1-10"
     
-    # Mock SWHS3Cache.fetch_blob to return content
-    with patch("app.SWHS3Cache.fetch_blob") as mock_fetch:
-        mock_fetch.return_value = "def hello():\n    print('world')"
-        
-        response = client.get(f"/code?swhid={swhid}")
-        assert response.status_code == 200
-        data = response.json()
-        assert "code" in data
-        assert "def hello()" in data["code"]
+    response = client.get(f"/code?swhid={swhid}")
+    assert response.status_code == 200
+    data = response.json()
+    assert "code" in data
+    assert "def hello()" in data["code"]
 
 def test_invalid_swhid(client):
     """Test /code with invalid SWHID"""
     response = client.get("/code?swhid=invalid_id")
-    assert response.status_code == 200 # App returns 200 with error message
-    assert "error" in response.json()
+    assert response.status_code == 400
+    assert "detail" in response.json()
