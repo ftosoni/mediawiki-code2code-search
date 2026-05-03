@@ -524,6 +524,10 @@ const App = () => {
                     {t('documentation')} (<a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Code2Code_Search" target="_blank" style={{ color: 'inherit' }}>MediaWiki</a> · <a href="/docs" target="_blank" style={{ color: 'inherit' }}>API</a>)
                 </span>
                 <span style={{ opacity: 0.3 }}>|</span>
+                <span>
+                    <a href="https://commons.wikimedia.org/wiki/File:Mediawiki-code2codesearch-wmhackathon2026-slides.pdf" target="_blank" style={{ color: 'inherit' }}>{t('presentation')}</a>
+                </span>
+                <span style={{ opacity: 0.3 }}>|</span>
                 <span><a href="https://www.wikidata.org/wiki/Q139251277" target="_blank" style={{ color: 'inherit' }}>{t('wikidata')}</a></span>
                 <span style={{ opacity: 0.3 }}>|</span>
                 <span><a href="https://toolhub.wikimedia.org/tools/toolforge-code2codesearch" target="_blank" style={{ color: 'inherit' }}>{t('toolhub')}</a></span>
