@@ -1,7 +1,7 @@
 {
     "search_title": "Esplorazione del Codice SWH",
     "main_title": "MediaWiki Code2Code Search",
-    "subtitle": "Motore di Ricerca Neurale Semantica",
+    "subtitle": "Motore di ricerca neurale semantica",
     "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "AVVIA RICERCA",
     "btn_loading": "ATTRAVERSAMENTO...",
@@ -51,5 +51,7 @@
     "type_label": "Tipo di risultato",
     "matches_found": "Risultati trovati",
     "search_label": "Snippet di codice",
-    "loading_message": "Ricerca di corrispondenze di codice in corso... Attendere prego."
+    "loading_message": "Ricerca di corrispondenze di codice in corso... Attendere prego.",
+    "documentation_prefix": "Documentazione:",
+    "sloan_grant": "Supportato dalla <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> con il finanziamento <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a>"
 }

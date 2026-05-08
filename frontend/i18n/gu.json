@@ -7,7 +7,7 @@
     "btn_loading": "શોધી રહ્યું છે...",
     "recall_score": "સ્કોર",
     "no_results": "આ ક્વેરી માટે કોઈ પરિણામ મળ્યા નથી.",
-    "created_by": "દ્વારા બનાવવામાં આવ્યું:",
+    "created_by": "બનાવનાર:",
     "licence": "લાયસન્સ:",
     "show_more": "વધુ કોડ બતાવો",
     "show_less": "નાનું કરો",
@@ -50,5 +50,7 @@
     "type_label": "પરિણામ પ્રકાર",
     "matches_found": "મેચો મળી",
     "search_label": "કોડ સ્નિપેટ",
-    "loading_message": "કોડ મેચો શોધી રહ્યા છીએ... મહેરબાની કરીને રાહ જુઓ."
+    "loading_message": "કોડ મેચો શોધી રહ્યા છીએ... મહેરબાની કરીને રાહ જુઓ.",
+    "documentation_prefix": "દસ્તાવેજીકરણ:",
+    "sloan_grant": "અનુદાન <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> હેઠળ <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> દ્વારા સમર્થિત"
 }

@@ -7,7 +7,7 @@
     "btn_loading": "ଖୋଜୁଛି...",
     "recall_score": "ସ୍କୋର",
     "no_results": "ଏହି ପ୍ରଶ୍ନ ପାଇଁ କୌଣସି ଫଳାଫଳ ମିଳିଲା ନାହିଁ।",
-    "created_by": "ଦ୍ୱାରା ନିର୍ମିତ:",
+    "created_by": "ନିର୍ମିତ:",
     "licence": "ଲାଇସେନ୍ସ:",
     "show_more": "ଅଧିକ କୋଡ୍ ଦେଖନ୍ତୁ",
     "show_less": "ଛୋଟ କରନ୍ତୁ",
@@ -50,5 +50,7 @@
     "type_label": "ଫଳାଫଳ ପ୍ରକାର",
     "matches_found": "ମେଳ ମିଳିଲା",
     "search_label": "କୋଡ୍ ସ୍ନିପେଟ୍",
-    "loading_message": "କୋଡ୍ ମେଳ ଖୋଜା ଚାଲିଛି... ଦୟାକରି ଅପେକ୍ଷା କରନ୍ତୁ |"
+    "loading_message": "କୋଡ୍ ମେଳ ଖୋଜା ଚାଲିଛି... ଦୟାକରି ଅପେକ୍ଷା କରନ୍ତୁ |",
+    "documentation_prefix": "ଦସ୍ତାବେଜ:",
+    "sloan_grant": "ଅନୁଦାନ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> ଅଧୀନରେ <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ଦ୍ୱାରା ସମର୍ଥିତ"
 }

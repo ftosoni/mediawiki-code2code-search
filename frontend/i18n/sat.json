@@ -7,7 +7,7 @@
     "btn_loading": "ᱥᱮᱸᱫᱽᱨᱟᱭᱮᱫᱟ...",
     "recall_score": "ᱥᱠᱳᱨ",
     "no_results": "ᱱᱚᱣᱟ ᱠᱩᱠᱩᱞᱤ ᱞᱟᱹᱜᱤᱫ ᱪᱮᱫ ᱛᱮᱞᱟ ᱦᱚᱸ ᱵᱟᱹᱱᱩᱜᱼᱟ᱾",
-    "created_by": "ᱵᱮᱱᱟᱣᱤᱡ:",
+    "created_by": "ᱛᱮᱭᱟᱨ ᱟᱠᱟᱱᱟ:",
     "licence": "ᱞᱟᱭᱥᱮᱱᱥ:",
     "show_more": "ᱟᱨᱦᱚᱸ ᱠᱳᱰ ᱧᱮᱞ ᱢᱮ",
     "show_less": "ᱠᱟᱹᱴᱤᱡ ᱢᱮ",
@@ -50,5 +50,7 @@
     "type_label": "ᱨᱤᱡᱟᱞᱴ ᱨᱮᱱᱟᱜ ᱞᱮᱠᱷᱟ",
     "matches_found": "ᱢᱮᱪ ᱧᱟᱢ ᱟᱠᱟᱱᱟ",
     "search_label": "ᱠᱳᱰ ᱥᱱᱤᱯᱮᱴ",
-    "loading_message": "ᱠᱳᱰ ᱢᱮᱞ ᱯᱟᱱᱛᱮ ᱦᱩᱭᱩᱜ ᱠᱟᱱᱟ... ᱫᱚᱭᱟ ᱠᱟᱛᱮ ᱛᱟᱺᱜᱤ ᱢᱮ ᱾"
+    "loading_message": "ᱠᱳᱰ ᱢᱮᱞ ᱯᱟᱱᱛᱮ ᱦᱩᱭᱩᱜ ᱠᱟᱱᱟ... ᱫᱚᱭᱟ ᱠᱟᱛᱮ ᱛᱟᱺᱜᱤ ᱢᱮ ᱾",
+    "documentation_prefix": "ᱰᱚᱠᱩᱢᱮᱱᱴᱮᱥᱚᱱ:",
+    "sloan_grant": "ᱜᱽᱨᱟᱱᱴ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> ᱞᱟᱛᱟᱨ ᱨᱮ <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ᱦᱚᱛᱮᱛᱮ ᱜᱚᱲᱚ ᱟᱠᱟᱱᱟ"
 }

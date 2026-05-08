@@ -7,7 +7,7 @@
     "btn_loading": "खोजि रहल अछि...",
     "recall_score": "स्कोर",
     "no_results": "एहि क्वेरीक लेल कोनो परिणाम नहि भेटल।",
-    "created_by": "द्वारा निर्मित:",
+    "created_by": "बनाओल गेल:",
     "licence": "लाइसेंस:",
     "show_more": "आर कोड देखू",
     "show_less": "छोट करू",
@@ -50,5 +50,7 @@
     "type_label": "परिणाम प्रकार",
     "matches_found": "मैच भेटल",
     "search_label": "कोड स्निपेट",
-    "loading_message": "कोड मिलान खोजल जा रहल अछि... कृपया प्रतीक्षा करू।"
+    "loading_message": "कोड मिलान खोजल जा रहल अछि... कृपया प्रतीक्षा करू।",
+    "documentation_prefix": "ದस्तावेजीकरण:",
+    "sloan_grant": "अनुदान <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> के तहत <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> द्वारा समर्थित"
 }

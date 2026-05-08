@@ -32,7 +32,7 @@
     "sloan_grant_prefix": "यह अध्ययन ",
     "sloan_grant_mid": " द्वारा अनुदान #",
     "sloan_grant_suffix": " के साथ वित्तपोषित किया गया था (sloan.org)।",
-    "created_by": "द्वारा बनाया गया:",
+    "created_by": "निर्मित:",
     "licence": "लाइसेंस:",
     "issues": "समस्या की रिपोर्ट करें",
     "type_template": "टेम्पलेट",
@@ -50,5 +50,7 @@
     "type_label": "परिणाम का प्रकार",
     "matches_found": "परिणाम मिले",
     "search_label": "कोड स्निपेट",
-    "loading_message": "कोड के मिलान खोजे जा रहे हैं... कृपया प्रतीक्षा करें।"
+    "loading_message": "कोड के मिलान खोजे जा रहे हैं... कृपया प्रतीक्षा करें।",
+    "documentation_prefix": "दस्तावेज़ीकरण:",
+    "sloan_grant": "अनुदान <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> के तहत <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> द्वारा समर्थित"
 }

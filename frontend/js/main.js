@@ -204,7 +204,40 @@ function applyI18n() {
     if (loadingTextEl) loadingTextEl.textContent = i18nData.loading_message || 'Searching for code matches... Please wait.';
 
     // Footer
-    document.querySelector('.app-footer__row:first-child span:first-child').innerHTML = `${i18nData.created_by || 'Developed by:'}&nbsp;<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/User:Super_nabla" target="_blank">Super nabla 🪰</a>&nbsp;(<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/Indic_MediaWiki_Developers_User_Group" target="_blank">${i18nData.indic_ug || 'Indic MediaWiki Developers UG'}</a>)`;
+    const footerDev = document.getElementById('footer-dev');
+    if (footerDev) {
+        footerDev.innerHTML = `${i18nData.created_by || 'Developed by:'}&nbsp;<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/User:Super_nabla" target="_blank">Super nabla 🪰</a>&nbsp;(<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/Indic_MediaWiki_Developers_User_Group" target="_blank">${i18nData.indic_ug || 'Indic MediaWiki Developers UG'}</a>)`;
+    }
+
+    const footerLicence = document.getElementById('footer-licence');
+    if (footerLicence) {
+        footerLicence.innerHTML = `${i18nData.licence || 'Licence:'} <a href="https://github.com/ftosoni/mediawiki-code2code-search/blob/main/LICENSE.md" target="_blank">Apache-2.0</a>`;
+    }
+
+    const footerDocs = document.getElementById('footer-docs');
+    if (footerDocs) {
+        footerDocs.innerHTML = `${i18nData.documentation_prefix || 'Documentation:'}&nbsp;<a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Code2Code_Search" target="_blank">MediaWiki</a>&nbsp;·&nbsp;<a href="/docs" target="_blank">${i18nData.docs || 'API'}</a>`;
+    }
+
+    const footerPresentation = document.getElementById('footer-presentation');
+    if (footerPresentation) footerPresentation.textContent = i18nData.presentation || 'Presentation';
+
+    const footerWikidata = document.getElementById('footer-wikidata');
+    if (footerWikidata) footerWikidata.textContent = i18nData.wikidata || 'Wikidata Q-item';
+
+    const footerToolhub = document.getElementById('footer-toolhub');
+    if (footerToolhub) footerToolhub.textContent = i18nData.toolhub || 'Toolhub';
+
+    const footerSource = document.getElementById('footer-source');
+    if (footerSource) {
+        footerSource.innerHTML = `${i18nData.source || 'Source'}:&nbsp;<a href="https://github.com/ftosoni/mediawiki-code2code-search" target="_blank">GitHub</a>&nbsp;·&nbsp;<a href="https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search" target="_blank">SWH</a>`;
+    }
+
+    const footerIssues = document.getElementById('footer-issues');
+    if (footerIssues) footerIssues.textContent = i18nData.issues || 'Report an issue';
+
+    const footerGrant = document.getElementById('footer-grant');
+    if (footerGrant) footerGrant.innerHTML = i18nData.sloan_grant || 'Supported by the Alfred P. Sloan Foundation';
 
     // Re-render results if any
     if (lastSearchResults.length > 0) {

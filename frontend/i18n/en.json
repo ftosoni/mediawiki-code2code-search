@@ -56,5 +56,7 @@
     "type_label": "Result type",
     "matches_found": "Matches found",
     "search_label": "Code snippet",
-    "loading_message": "Searching for code matches... Please wait."
+    "loading_message": "Searching for code matches... Please wait.",
+    "documentation_prefix": "Documentation:",
+    "sloan_grant": "Supported by the <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> under grant <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a>"
 }

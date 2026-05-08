@@ -7,8 +7,8 @@
     "btn_loading": "সন্ধান চলি আছে...",
     "recall_score": "স্কোৰ (Score)",
     "no_results": "এই অনুসন্ধানৰ বাবে কোনো ফলাফল পোৱা নগ'ল।",
-    "created_by": "দ্বাৰা নিৰ্মিত:",
-    "licence": "লাইচেন্স:",
+    "created_by": "নিৰ্মাণ কৰিছে (Created by):",
+    "licence": "অনুজ্ঞাপত্ৰ (Licence):",
     "show_more": "অধিক ক’ড দেখুওৱক",
     "show_less": "সংক্ষিপ্ত কৰক",
     "type_all": "সকলো",
@@ -50,5 +50,7 @@
     "type_label": "ফলাফলৰ ধৰণ (Result type)",
     "matches_found": "ম্যাচ পোৱা গৈছে (Matches found)",
     "search_label": "কডৰ অংশ (Code snippet)",
-    "loading_message": "কডৰ মিল বিচাৰি থকা হৈছে... অনুগ্ৰহ কৰি অপেক্ষা কৰক। (Searching for code matches... Please wait.)"
+    "loading_message": "কডৰ মিল বিচাৰি থকা হৈছে... অনুগ্ৰহ কৰি অপেক্ষা কৰক। (Searching for code matches... Please wait.)",
+    "documentation_prefix": "নথিপত্ৰ (Documentation):",
+    "sloan_grant": "গ্ৰাণ্ট <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> ৰ অধীনত <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ৰ দ্বাৰা সমৰ্থিত"
 }

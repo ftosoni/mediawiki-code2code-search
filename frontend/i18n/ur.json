@@ -50,5 +50,7 @@
     "type_label": "نتائج کی قسم",
     "matches_found": "نتائج ملے",
     "search_label": "کوڈ اسنیپٹ",
-    "loading_message": "کوڈ کے مماثلت تلاش کی جا رہی ہے... براہ کرم انتظار کریں۔"
+    "loading_message": "کوڈ کے مماثلت تلاش کی جا رہی ہے... براہ کرم انتظار کریں۔",
+    "documentation_prefix": "دستاویزات:",
+    "sloan_grant": "گرانٹ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> کے تحت <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> کے تعاون سے"
 }

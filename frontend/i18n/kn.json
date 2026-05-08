@@ -7,7 +7,7 @@
     "btn_loading": "ಹುಡುಕಲಾಗುತ್ತಿದೆ...",
     "recall_score": "ಸ್ಕೋರ್",
     "no_results": "ಈ ಪ್ರಶ್ನೆಗೆ ಯಾವುದೇ ಫಲಿತಾಂಶಗಳು ಕಂಡುಬಂದಿಲ್ಲ.",
-    "created_by": "ಇವರಿಂದ ರಚಿಸಲಾಗಿದೆ:",
+    "created_by": "ರಚಿಸಿದವರು:",
     "licence": "ಪರವಾನಗಿ:",
     "show_more": "ಹೆಚ್ಚಿನ ಕೋಡ್ ನೋಡಿ",
     "show_less": "ಲಘುಗೊಳಿಸಿ",
@@ -50,5 +50,7 @@
     "type_label": "ಫಲಿತಾಂಶದ ಪ್ರಕಾರ",
     "matches_found": "ಪಂದ್ಯಗಳು ಕಂಡುಬಂದಿವೆ",
     "search_label": "ಕೋಡ್ ತುಣುಕು",
-    "loading_message": "ಕೋಡ್ ಹೊಂದಾಣಿಕೆಗಳಿಗಾಗಿ ಹುಡುಕಲಾಗುತ್ತಿದೆ... ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ."
+    "loading_message": "ಕೋಡ್ ಹೊಂದಾಣಿಕೆಗಳಿಗಾಗಿ ಹುಡುಕಲಾಗುತ್ತಿದೆ... ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ.",
+    "documentation_prefix": "ದಸ್ತಾವೇಜು:",
+    "sloan_grant": "ಅನುದಾನ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> ರ ಅಡಿಯಲ್ಲಿ <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ನಿಂದ ಬೆಂಬಲಿತವಾಗಿದೆ"
 }

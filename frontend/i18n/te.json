@@ -7,7 +7,7 @@
     "btn_loading": "శోధిస్తోంది...",
     "recall_score": "స్కోరు",
     "no_results": "ఈ శోధనకు ఫలితాలు లేవు.",
-    "created_by": "రూపొందించినవారు:",
+    "created_by": "సృష్టించినవారు:",
     "licence": "లైసెన్స్:",
     "show_more": "మరింత కోడ్ చూడండి",
     "show_less": "తగ్గించు",
@@ -50,5 +50,7 @@
     "type_label": "ఫలితం రకం",
     "matches_found": "సరిపోలికలు కనుగొనబడ్డాయి",
     "search_label": "కోడ్ స్నిప్పెట్",
-    "loading_message": "కోడ్ సరిపోలికల కోసం శోధిస్తోంది... దయచేసి వేచి ఉండండి."
+    "loading_message": "కోడ్ సరిపోలికల కోసం శోధిస్తోంది... దయచేసి వేచి ఉండండి.",
+    "documentation_prefix": "డాక్యుమెంటేషన్:",
+    "sloan_grant": "గ్రాంట్ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> కింద <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> మద్దతు ఇస్తుంది"
 }

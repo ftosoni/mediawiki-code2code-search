@@ -50,5 +50,7 @@
     "type_label": "ফলাফলের ধরন",
     "matches_found": "মিল পাওয়া গেছে",
     "search_label": "কোড স্নিপেট",
-    "loading_message": "কোড মিল অনুসন্ধান করা হচ্ছে... দয়া করে অপেক্ষা করুন।"
+    "loading_message": "কোড মিল অনুসন্ধান করা হচ্ছে... দয়া করে অপেক্ষা করুন।",
+    "documentation_prefix": "নথিপত্র:",
+    "sloan_grant": "অনুদান <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a>-এর অধীনে <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> দ্বারা সমর্থিত"
 }

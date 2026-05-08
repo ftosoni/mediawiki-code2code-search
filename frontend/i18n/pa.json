@@ -50,5 +50,7 @@
     "type_label": "ਨਤੀਜੇ ਦੀ ਕਿਸਮ",
     "matches_found": "ਮੇਲ ਮਿਲੇ",
     "search_label": "ਕੋਡ ਸਨਿੱਪਟ",
-    "loading_message": "ਕੋਡ ਮੇਲ ਲੱਭੇ ਜਾ ਰਹੇ ਹਨ... ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ।"
+    "loading_message": "ਕੋਡ ਮੇਲ ਲੱਭੇ ਜਾ ਰਹੇ ਹਨ... ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ।",
+    "documentation_prefix": "ଦସତାବେଜ:",
+    "sloan_grant": "ਗ੍ਰਾਂਟ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> ਦੇ ਤਹਿਤ <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ਦੁਆਰਾ ਸਮਰਥਿਤ"
 }

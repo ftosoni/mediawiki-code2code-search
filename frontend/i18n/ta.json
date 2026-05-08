@@ -50,5 +50,7 @@
     "type_label": "முடிவு வகை",
     "matches_found": "பொருத்தங்கள் கிடைத்துள்ளன",
     "search_label": "குறியீடு துணுக்கு",
-    "loading_message": "குறியீடு பொருத்தங்களைத் தேடுகிறது... தயவுசெய்து காத்திருங்கள்."
+    "loading_message": "குறியீடு பொருத்தங்களைத் தேடுகிறது... தயவுசெய்து காத்திருங்கள்.",
+    "documentation_prefix": "ஆவணமாக்கம்:",
+    "sloan_grant": "நிதியுதவி <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> இன் கீழ் <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ஆல் ஆதரிக்கப்படுகிறது"
 }

@@ -52,5 +52,7 @@
     "type_label": "Type de résultat",
     "matches_found": "Résultats trouvés",
     "search_label": "Extrait de code",
-    "loading_message": "Recherche de correspondances de code... Veuillez patienter."
+    "loading_message": "Recherche de correspondances de code... Veuillez patienter.",
+    "documentation_prefix": "Documentation :",
+    "sloan_grant": "Soutenu par la <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> au titre de la subvention <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a>"
 }

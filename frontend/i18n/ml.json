@@ -7,7 +7,7 @@
     "btn_loading": "തിരയുന്നു...",
     "recall_score": "സ്കോർ",
     "no_results": "ഈ ക്വറിക്ക് ഫലങ്ങളൊന്നും ലഭ്യമല്ല.",
-    "created_by": "നിർമ്മിച്ചത്:",
+    "created_by": "സൃഷ്ടിച്ചത്:",
     "licence": "ലൈസൻസ്:",
     "show_more": "കൂടുതൽ കോഡ് കാണുക",
     "show_less": "ചുരുക്കുക",
@@ -50,5 +50,7 @@
     "type_label": "ഫലത്തിന്റെ തരം",
     "matches_found": "പൊരുത്തങ്ങൾ കണ്ടെത്തി",
     "search_label": "കോഡ് സ്നിപ്പറ്റ്",
-    "loading_message": "കോഡ് പൊരുത്തങ്ങൾക്കായി തിരയുന്നു... ദയവായി കാത്തിരിക്കുക."
+    "loading_message": "കോഡ് പൊരുത്തങ്ങൾക്കായി തിരയുന്നു... ദയവായി കാത്തിരിക്കുക.",
+    "documentation_prefix": "ഡോക്യുമെന്റേഷൻ:",
+    "sloan_grant": "<a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ഗ്രാന്റ് <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> പ്രകാരം പിന്തുണയ്ക്കുന്നു"
 }
