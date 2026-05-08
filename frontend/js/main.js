@@ -204,7 +204,7 @@ function applyI18n() {
     if (loadingTextEl) loadingTextEl.textContent = i18nData.loading_message || 'Searching for code matches... Please wait.';
 
     // Footer
-    document.querySelector('.app-footer__row:first-child span:first-child').innerHTML = `${i18nData.created_by || 'Developed by:'}&nbsp;<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/User:Super_nabla" target="_blank">Super nabla 🪰</a>&nbsp;(${i18nData.indic_ug || 'Indic MediaWiki Developers UG'}) & <a href="https://acube.di.unipi.it/" target="_blank">Acube Lab</a>`;
+    document.querySelector('.app-footer__row:first-child span:first-child').innerHTML = `${i18nData.created_by || 'Developed by:'}&nbsp;<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/User:Super_nabla" target="_blank">Super nabla 🪰</a>&nbsp;(<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/Indic_MediaWiki_Developers_User_Group" target="_blank">${i18nData.indic_ug || 'Indic MediaWiki Developers UG'}</a>)`;
 
     // Re-render results if any
     if (lastSearchResults.length > 0) {
