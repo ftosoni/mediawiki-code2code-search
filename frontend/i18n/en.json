@@ -2,10 +2,10 @@
     "search_title": "SWH Code Exploration",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "Semantic Neural Retrieval Engine",
-    "placeholder": "# Write a code snippet and I'll find similar ones...",
+    "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "INITIATE SEARCH",
     "btn_loading": "TRAVERSING...",
-    "recall_score": "MATCHING SCORE",
+    "recall_score": "Score",
     "no_results": "The singularity returned no results for this query.",
     "show_more": "Show more code",
     "show_less": "Collapse View",
@@ -50,5 +50,10 @@
     "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/",
     "docs": "API Documentation",
     "documentation": "Documentation",
-    "presentation": "Presentation"
+    "presentation": "Presentation",
+    "group_label": "Repository groups",
+    "lang_label": "Programming languages",
+    "type_label": "Result type",
+    "matches_found": "Matches found",
+    "search_label": "Code snippet"
 }

@@ -2,10 +2,10 @@
     "search_title": "SWH ਕੋਡ ਖੋਜ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "ਸਿਮੈਂਟਿਕ ਨਿਊਰਲ ਰੀਟਰੀਵਲ ਇੰਜਨ",
-    "placeholder": "# ਇੱਕ ਕੋਡ ਸਨਿੱਪਟ ਲਿਖੋ ਅਤੇ ਮੈਂ ਸਮਾਨ ਲੱਭ ਦੇਵਾਂਗਾ...",
+    "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "ਖੋਜ ਸ਼ੁਰੂ ਕਰੋ",
     "btn_loading": "ਖੋਜ ਜਾਰੀ ਹੈ...",
-    "recall_score": "ਮੇਲ ਖਾਂਦਾ ਸਕੋਰ",
+    "recall_score": "ਸਕੋਰ",
     "no_results": "ਇਸ ਕੁਐਰੀ ਲਈ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।",
     "created_by": "ਦੁਆਰਾ ਬਣਾਇਆ ਗਿਆ:",
     "licence": "ਲਾਇਸੈਂਸ:",
@@ -44,5 +44,10 @@
     "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/",
     "docs": "API ଦସତାਵੇਜ਼",
     "documentation": "ଦਸତାବେଜ",
-    "presentation": "ਪੇਸ਼ਕਾਰੀ"
+    "presentation": "ਪੇਸ਼ਕਾਰੀ",
+    "group_label": "ਰਿਪੋਜ਼ਟਰੀ ਗਰੁੱਪ",
+    "lang_label": "ਪ੍ਰੋਗਰਾਮਿੰਗ ਭਾਸ਼ਾਵਾਂ",
+    "type_label": "ਨਤੀਜੇ ਦੀ ਕਿਸਮ",
+    "matches_found": "ਮੇਲ ਮਿਲੇ",
+    "search_label": "ਕੋਡ ਸਨਿੱਪਟ"
 }

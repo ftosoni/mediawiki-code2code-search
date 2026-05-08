@@ -2,10 +2,10 @@
     "search_title": "SWH കോഡ് പര്യവേക്ഷണം",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "സെമാന്റിക് ന്യൂറൽ റിട്രീവൽ എഞ്ചിൻ",
-    "placeholder": "# ഒരു കോഡ് സ്‌നിപ്പറ്റ് എഴുതുക, സമാനമായവ ഞാൻ കണ്ടെത്താം...",
+    "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "തിരച്ചിൽ തുടങ്ങുക",
     "btn_loading": "തിരയുന്നു...",
-    "recall_score": "മാച്ചിംഗ് സ്കോർ",
+    "recall_score": "സ്കോർ",
     "no_results": "ഈ ക്വറിക്ക് ഫലങ്ങളൊന്നും ലഭ്യമല്ല.",
     "created_by": "നിർമ്മിച്ചത്:",
     "licence": "ലൈസൻസ്:",
@@ -44,5 +44,10 @@
     "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/",
     "docs": "API ഡോക്യുമെന്റേഷൻ",
     "documentation": "ഡോക്യുമെന്റേഷൻ",
-    "presentation": "അവതരണം"
+    "presentation": "അവതരണം",
+    "group_label": "റിപ്പോസിറ്ററി ഗ്രൂപ്പുകൾ",
+    "lang_label": "പ്രോഗ്രാമിംഗ് ഭാഷകൾ",
+    "type_label": "ഫലത്തിന്റെ തരം",
+    "matches_found": "പൊരുത്തങ്ങൾ കണ്ടെത്തി",
+    "search_label": "കോഡ് സ്നിപ്പറ്റ്"
 }

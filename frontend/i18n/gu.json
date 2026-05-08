@@ -2,10 +2,10 @@
     "search_title": "SWH કોડ અન્વેષણ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "સિમેન્ટિક ન્યુરલ રીટ્રીવલ એન્જિન",
-    "placeholder": "# એક કોડ સ્નિપેટ લખો અને હું સમાન શોધી કાઢીશ...",
+    "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "શોધ શરૂ કરો",
     "btn_loading": "શોધી રહ્યું છે...",
-    "recall_score": "મેચિંગ સ્કોર",
+    "recall_score": "સ્કોર",
     "no_results": "આ ક્વેરી માટે કોઈ પરિણામ મળ્યા નથી.",
     "created_by": "દ્વારા બનાવવામાં આવ્યું:",
     "licence": "લાયસન્સ:",
@@ -44,5 +44,10 @@
     "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/",
     "docs": "API દસ્તાવેજીકરણ",
     "documentation": "દસ્તાવેજીકરણ",
-    "presentation": "રજૂઆત"
+    "presentation": "રજૂઆત",
+    "group_label": "રિપોઝિટરી જૂથો",
+    "lang_label": "પ્રોગ્રામિંગ ભાષાઓ",
+    "type_label": "પરિણામ પ્રકાર",
+    "matches_found": "મેચો મળી",
+    "search_label": "કોડ સ્નિપેટ"
 }

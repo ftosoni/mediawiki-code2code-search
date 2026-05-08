@@ -2,10 +2,10 @@
     "search_title": "Exploration du Code SWH",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "Moteur de Recherche Neurale Sémantique",
-    "placeholder": "# Écrivez un extrait de code et je trouverai des similaires...",
+    "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "LANCER LA RECHERCHE",
     "btn_loading": "TRAVERSÉE...",
-    "recall_score": "SCORE",
+    "recall_score": "Score",
     "no_results": "La singularité n'a retourné aucun résultat pour cette requête.",
     "show_more": "Afficher plus de code",
     "show_less": "Réduire la vue",
@@ -46,5 +46,10 @@
     "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/",
     "docs": "Documentation de l'API",
     "documentation": "Documentation",
-    "presentation": "Présentation"
+    "presentation": "Présentation",
+    "group_label": "Groupes de dépôts",
+    "lang_label": "Langages de programmation",
+    "type_label": "Type de résultat",
+    "matches_found": "Résultats trouvés",
+    "search_label": "Extrait de code"
 }

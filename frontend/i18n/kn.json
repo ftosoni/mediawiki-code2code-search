@@ -2,7 +2,7 @@
     "search_title": "SWH ಕೋಡ್ ಅನ್ವೇಷಣೆ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "ಸೆಮ್ಯಾಂಟಿಕ್ ನ್ಯೂರಲ್ ರಿಟ್ರೀವಲ್ ಎಂಜಿನ್",
-    "placeholder": "# ಕೋಡ್ ಸ್ನಿಪ್ಪೆಟ್ ಬರೆಯಿರಿ ಮತ್ತು ನಾನು ಹೋಲುವವುಗಳನ್ನು ಹುಡುಕುತ್ತೇನೆ...",
+    "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "ಹುಡುಕಾಟ ಪ್ರಾರಂಭಿಸಿ",
     "btn_loading": "ಹುಡುಕಲಾಗುತ್ತಿದೆ...",
     "recall_score": "ಸ್ಕೋರ್",
@@ -44,5 +44,10 @@
     "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/",
     "docs": "API ದಸ್ತಾವೇಜು",
     "documentation": "ದಸ್ತಾವೇಜು",
-    "presentation": "ಪ್ರಸ್ತುತಿ"
+    "presentation": "ಪ್ರಸ್ತುತಿ",
+    "group_label": "ರೆಪೊಸಿಟರಿ ಗುಂಪುಗಳು",
+    "lang_label": "ಪ್ರೋಗ್ರಾಮಿಂಗ್ ಭಾಷೆಗಳು",
+    "type_label": "ಫಲಿತಾಂಶದ ಪ್ರಕಾರ",
+    "matches_found": "ಪಂದ್ಯಗಳು ಕಂಡುಬಂದಿವೆ",
+    "search_label": "ಕೋಡ್ ತುಣುಕು"
 }

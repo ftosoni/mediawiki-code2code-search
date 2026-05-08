@@ -2,10 +2,10 @@
     "search_title": "SWH کوڈ کی تلاش",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "سیمنٹک نیورل ریٹریول انجن",
-    "placeholder": "# ایک کوڈ اسنیپٹ لکھیں اور میں ملتے جلتے تلاش کروں گا...",
+    "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "تلاش شروع کریں",
     "btn_loading": "تلاش جاری ہے...",
-    "recall_score": "میچنگ سکور",
+    "recall_score": "اسکور",
     "no_results": "اس سوال کے لئے کوئی نتیجہ نہیں ملا۔",
     "created_by": "تخلیق کار:",
     "licence": "لائسنس:",
@@ -44,5 +44,10 @@
     "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/",
     "docs": "API دستاویزات",
     "documentation": "دस्तावेज",
-    "presentation": "پیشکش"
+    "presentation": "پیشکش",
+    "group_label": "ریپوزٹری گروپس",
+    "lang_label": "پروગ્રامنگ زبانیں",
+    "type_label": "نتائج کی قسم",
+    "matches_found": "نتائج ملے",
+    "search_label": "کوڈ اسنیپٹ"
 }

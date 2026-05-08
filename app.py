@@ -267,10 +267,10 @@ class SearchRequest(BaseModel):
     query: str = Field(..., max_length=2000, description="The natural language or code query to search for.", examples=["def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a"])
     top_k: int = Field(10, gt=0, le=50, description="The number of results to return (range: 1-50).", examples=[10])
     repo_group: List[Literal['all', 'core', 'things', 'libraries', 'deployed', 'operations', 'puppet', 'pywikibot', 'devtools', 'analytics', 'wmcs', 'apps']] = Field(["all"], description="Filter by repository group(s).")
-    type_filter: Literal['all', 'function', 'type', 'template'] = Field("all", description="Filter by entry type.")
+    type_filter: List[Literal['all', 'function', 'type', 'template']] = Field(["all"], description="Filter by entry type(s).")
     language_filter: List[Literal['all', 'Python', 'C++', 'C', 'PHP', 'JavaScript', 'TypeScript', 'Lua', 'Go', 'Java', 'Rust']] = Field(["all"], description="Filter by programming language(s).")
 
-    @field_validator('repo_group', 'language_filter', mode='before')
+    @field_validator('repo_group', 'language_filter', 'type_filter', mode='before')
     @classmethod
     def ensure_list(cls, v):
         if isinstance(v, str):
@@ -488,8 +488,8 @@ async def search_code(req: SearchRequest):
                         # Group Filter (Multi-select)
                         group_match = ("all" in req.repo_group or item.get("repo_group") in req.repo_group)
                         
-                        # Type Filter (Single-select)
-                        type_match = (req.type_filter == "all" or item.get("type") == req.type_filter)
+                        # Type Filter (Multi-select)
+                        type_match = ("all" in req.type_filter or item.get("type") in req.type_filter)
                         
                         # Language Filter (Multi-select, based on file extension)
                         lang_match = "all" in req.language_filter

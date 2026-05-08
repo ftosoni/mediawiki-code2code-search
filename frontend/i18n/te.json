@@ -2,10 +2,10 @@
     "search_title": "SWH కోడ్ అన్వేషణ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "సిమాంటిక్ న్యూరల్ రిట్రీవల్ ఇంజిన్",
-    "placeholder": "# కోడ్ స్నిప్పెట్‌ను రాయండి, నేను సారూప్యమైనవి కనుగొంటాను...",
+    "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "శోధన ప్రారంభించండి",
     "btn_loading": "శోధిస్తోంది...",
-    "recall_score": "పోలిక స్కోరు",
+    "recall_score": "స్కోరు",
     "no_results": "ఈ శోధనకు ఫలితాలు లేవు.",
     "created_by": "రూపొందించినవారు:",
     "licence": "లైసెన్స్:",
@@ -44,5 +44,10 @@
     "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/",
     "docs": "API డాక్యుమెంటేషన్",
     "documentation": "డాక్యుమెంటేషన్",
-    "presentation": "ప్రదర్శన"
+    "presentation": "ప్రదర్శన",
+    "group_label": "రిపోజిటరీ సమూహాలు",
+    "lang_label": "ప్రోగ్రామింగ్ భాషలు",
+    "type_label": "ఫలితం రకం",
+    "matches_found": "సరిపోలికలు కనుగొనబడ్డాయి",
+    "search_label": "కోడ్ స్నిప్పెట్"
 }

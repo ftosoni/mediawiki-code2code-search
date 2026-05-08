@@ -2,10 +2,10 @@
     "search_title": "SWH ᱠᱳᱰ ᱥᱮᱸᱫᱽᱨᱟ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "ᱥᱤᱢᱟᱱᱴᱤᱠ ᱱᱤᱭᱩᱨᱟᱞ ᱨᱤᱴᱨᱤᱵᱷᱟᱞ ᱤᱧᱡᱤᱱ",
-    "placeholder": "# ᱢᱤᱫᱴᱟᱹᱝ ᱠᱳᱰ ᱥᱱᱤᱯᱮᱴ ᱚᱞ ᱢᱮ ᱟᱨ ᱤᱧ ᱮᱦᱳᱱ ᱧᱟᱢ ᱠᱟᱱᱟ...",
+    "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "ᱥᱮᱸᱫᱽᱨᱟ ᱮᱦᱚᱵᱽ ᱢᱮ",
     "btn_loading": "ᱥᱮᱸᱫᱽᱨᱟᱭᱮᱫᱟ...",
-    "recall_score": "ᱢᱮᱞ ᱠᱷᱟᱱᱟ ᱥᱠᱳᱨ",
+    "recall_score": "ᱥᱠᱳᱨ",
     "no_results": "ᱱᱚᱣᱟ ᱠᱩᱠᱩᱞᱤ ᱞᱟᱹᱜᱤᱫ ᱪᱮᱫ ᱛᱮᱞᱟ ᱦᱚᱸ ᱵᱟᱹᱱᱩᱜᱼᱟ᱾",
     "created_by": "ᱵᱮᱱᱟᱣᱤᱡ:",
     "licence": "ᱞᱟᱭᱥᱮᱱᱥ:",
@@ -44,5 +44,10 @@
     "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/",
     "docs": "API ᱰᱚᱠᱩᱢᱮᱱᱴᱮᱥᱚᱱ",
     "documentation": "ᱰᱚᱠᱩᱢᱮᱱᱴᱮᱥᱚᱱ",
-    "presentation": "ᱩᱫᱩᱜ"
+    "presentation": "ᱩᱫᱩᱜ",
+    "group_label": "ᱨᱮᱯᱳᱡᱤᱴᱚᱨᱤ ᱜᱩᱴ",
+    "lang_label": "ᱯᱨᱳᱜᱽᱨᱟᱢᱤᱝ ᱯᱟᱹᱨᱥᱤ",
+    "type_label": "ᱨᱤᱡᱟᱞᱴ ᱨᱮᱱᱟᱜ ᱞᱮᱠᱷᱟ",
+    "matches_found": "ᱢᱮᱪ ᱧᱟᱢ ᱟᱠᱟᱱᱟ",
+    "search_label": "ᱠᱳᱰ ᱥᱱᱤᱯᱮᱴ"
 }

@@ -2,10 +2,10 @@
     "search_title": "SWH କୋଡ୍ ଅନ୍ୱେଷଣ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "ସିମାଣ୍ଟିକ୍ ନ୍ୟୁରାଲ୍ ରିଟ୍ରିଭାଲ୍ ଇଞ୍ଜିନ୍",
-    "placeholder": "# ଏକ କୋଡ୍ ସ୍ନିପେଟ୍ ଲେଖନ୍ତୁ ଏବଂ ମୁଁ ସମାନ ଖୋଜି ଦେବି...",
+    "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "ଖୋଜିବା ଆରମ୍ଭ କରନ୍ତୁ",
     "btn_loading": "ଖୋଜୁଛି...",
-    "recall_score": "ମେଳକ ସ୍କୋର",
+    "recall_score": "ସ୍କୋର",
     "no_results": "ଏହି ପ୍ରଶ୍ନ ପାଇଁ କୌଣସି ଫଳାଫଳ ମିଳିଲା ନାହିଁ।",
     "created_by": "ଦ୍ୱାରା ନିର୍ମିତ:",
     "licence": "ଲାଇସେନ୍ସ:",
@@ -44,5 +44,10 @@
     "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/",
     "docs": "API ଦସ୍ତାବେଜ",
     "documentation": "ଦସ୍ତାବେଜ",
-    "presentation": "ଉପସ୍ଥାପନା"
+    "presentation": "ଉପସ୍ଥାପନା",
+    "group_label": "ରେପୋଜିଟୋରୀ ଗୋଷ୍ଠୀ",
+    "lang_label": "ପ୍ରୋଗ୍ରାମିଂ ଭାଷା",
+    "type_label": "ଫଳାଫଳ ପ୍ରକାର",
+    "matches_found": "ମେଳ ମିଳିଲା",
+    "search_label": "କୋଡ୍ ସ୍ନିପେଟ୍"
 }

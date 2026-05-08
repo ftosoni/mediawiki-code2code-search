@@ -2,10 +2,10 @@
     "search_title": "SWH कोड अन्वेषण",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "सिमेंटिक न्यूरल रिट्रीव्हल इंजिन",
-    "placeholder": "# एक कोड स्निपेट लिहा आणि मी समान शोधून देईन...",
+    "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "शोध सुरू करा",
     "btn_loading": "शोधत आहे...",
-    "recall_score": "मॅचिंग स्कोर",
+    "recall_score": "स्कोर",
     "no_results": "या क्वेरीसाठी कोणतेही निकाल मिळाले नाहीत।",
     "created_by": "यांनी बनवले:",
     "licence": "परवाना:",
@@ -44,5 +44,10 @@
     "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/",
     "docs": "API दस्तऐवजीकरण",
     "documentation": "दस्तऐवजीकरण",
-    "presentation": "सादरीकरण"
+    "presentation": "सादरीकरण",
+    "group_label": "रिपॉजिटरी गट",
+    "lang_label": "प्रोग्रामिंग भाषा",
+    "type_label": "निकाल प्रकार",
+    "matches_found": "जुळण्या आढळल्या",
+    "search_label": "कोड स्निपेट"
 }

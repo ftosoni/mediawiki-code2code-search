@@ -2,10 +2,10 @@
     "search_title": "Esplorazione del Codice SWH",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "Motore di Ricerca Neurale Semantica",
-    "placeholder": "# Scrivi uno snippet di codice e ne troverò di simili...",
+    "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "AVVIA RICERCA",
     "btn_loading": "ATTRAVERSAMENTO...",
-    "recall_score": "MATCHING SCORE",
+    "recall_score": "Punteggio",
     "no_results": "La singolarità non ha restituito risultati per questa query.",
     "show_more": "Mostra altro codice",
     "show_less": "Comprimi vista",
@@ -45,5 +45,10 @@
     "diff_url": "https://diff.wikimedia.org/it/2026/04/14/presentazione-di-mediawiki-code2code-search-ricerca-semantica-per-trovare-codice-per-somiglianza-profonda/",
     "docs": "Documentazione API",
     "documentation": "Documentazione",
-    "presentation": "Presentazione"
+    "presentation": "Presentazione",
+    "group_label": "Gruppi di repository",
+    "lang_label": "Linguaggi di programmazione",
+    "type_label": "Tipo di risultato",
+    "matches_found": "Risultati trovati",
+    "search_label": "Snippet di codice"
 }

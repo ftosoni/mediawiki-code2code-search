@@ -2,10 +2,10 @@
     "search_title": "SWH ক'ড অন্বেষণ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "চিমেন্টিক নিউৰেল ৰিট্ৰিভাইল ইঞ্জিন",
-    "placeholder": "# এটা কোড স্নিপেট লিখক আৰু মই অনুৰূপবোৰ বিচাৰি দিম...",
+    "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "সন্ধান আৰম্ভ কৰক",
     "btn_loading": "সন্ধান চলি আছে...",
-    "recall_score": "মেচিং স্কোৰ",
+    "recall_score": "স্কোৰ (Score)",
     "no_results": "এই অনুসন্ধানৰ বাবে কোনো ফলাফল পোৱা নগ'ল।",
     "created_by": "দ্বাৰা নিৰ্মিত:",
     "licence": "লাইচেন্স:",
@@ -44,5 +44,10 @@
     "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/",
     "docs": "API নথিপত্ৰ (Documentation)",
     "documentation": "নথিপত্ৰ (Documentation)",
-    "presentation": "উপস্থাপন (Presentation)"
+    "presentation": "উপস্থাপন (Presentation)",
+    "group_label": "ৰিচিটৰী গোটবোৰ (Repository groups)",
+    "lang_label": "প্ৰগ্ৰামিং ভাষা (Programming languages)",
+    "type_label": "ফলাফলৰ ধৰণ (Result type)",
+    "matches_found": "ম্যাচ পোৱা গৈছে (Matches found)",
+    "search_label": "কডৰ অংশ (Code snippet)"
 }

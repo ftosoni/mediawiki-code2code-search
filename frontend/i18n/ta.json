@@ -2,10 +2,10 @@
     "search_title": "SWH குறியீடு ஆய்வு",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "செமாண்டிக் நியூரல் மீட்டெடுப்பு இயந்திரம்",
-    "placeholder": "# ஒரு குறியீடு துணுக்கை எழுதுங்கள், நான் ஒத்தவற்றை கண்டுபிடிப்பேன்...",
+    "placeholder": "def gcd(a,b) :\n  if b==0 :\n    return a\n  return gcd(b,a%b)",
     "btn_search": "தேடலைத் தொடங்கு",
     "btn_loading": "தேடுகிறது...",
-    "recall_score": "பொருந்தும் மதிப்பெண்",
+    "recall_score": "மதிப்பெண்",
     "no_results": "இந்தத் தேடலுக்கு முடிவுகள் எதுவும் இல்லை.",
     "created_by": "உருவாக்கியவர்:",
     "licence": "உரிமம்:",
@@ -44,5 +44,10 @@
     "diff_url": "https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/",
     "docs": "API ஆவணமாக்கம்",
     "documentation": "ஆவணமாக்கம்",
-    "presentation": "விளக்கக்காட்சி"
+    "presentation": "விளக்கக்காட்சி",
+    "group_label": "களஞ்சியக் குழுக்கள்",
+    "lang_label": "நிரலாக்க மொழிகள்",
+    "type_label": "முடிவு வகை",
+    "matches_found": "பொருத்தங்கள் கிடைத்துள்ளன",
+    "search_label": "குறியீடு துணுக்கு"
 }
