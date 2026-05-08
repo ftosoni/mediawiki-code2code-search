@@ -51,5 +51,6 @@
     "lang_label": "Langages de programmation",
     "type_label": "Type de résultat",
     "matches_found": "Résultats trouvés",
-    "search_label": "Extrait de code"
+    "search_label": "Extrait de code",
+    "loading_message": "Recherche de correspondances de code... Veuillez patienter."
 }

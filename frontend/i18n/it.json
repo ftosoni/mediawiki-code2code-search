@@ -50,5 +50,6 @@
     "lang_label": "Linguaggi di programmazione",
     "type_label": "Tipo di risultato",
     "matches_found": "Risultati trovati",
-    "search_label": "Snippet di codice"
+    "search_label": "Snippet di codice",
+    "loading_message": "Ricerca di corrispondenze di codice in corso... Attendere prego."
 }

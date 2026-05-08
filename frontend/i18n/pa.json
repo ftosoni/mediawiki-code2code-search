@@ -49,5 +49,6 @@
     "lang_label": "ਪ੍ਰੋਗਰਾਮਿੰਗ ਭਾਸ਼ਾਵਾਂ",
     "type_label": "ਨਤੀਜੇ ਦੀ ਕਿਸਮ",
     "matches_found": "ਮੇਲ ਮਿਲੇ",
-    "search_label": "ਕੋਡ ਸਨਿੱਪਟ"
+    "search_label": "ਕੋਡ ਸਨਿੱਪਟ",
+    "loading_message": "ਕੋਡ ਮੇਲ ਲੱਭੇ ਜਾ ਰਹੇ ਹਨ... ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ।"
 }

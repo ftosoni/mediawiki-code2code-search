@@ -49,5 +49,6 @@
     "lang_label": "প্ৰগ্ৰামিং ভাষা (Programming languages)",
     "type_label": "ফলাফলৰ ধৰণ (Result type)",
     "matches_found": "ম্যাচ পোৱা গৈছে (Matches found)",
-    "search_label": "কডৰ অংশ (Code snippet)"
+    "search_label": "কডৰ অংশ (Code snippet)",
+    "loading_message": "কডৰ মিল বিচাৰি থকা হৈছে... অনুগ্ৰহ কৰি অপেক্ষা কৰক। (Searching for code matches... Please wait.)"
 }

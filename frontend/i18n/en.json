@@ -55,5 +55,6 @@
     "lang_label": "Programming languages",
     "type_label": "Result type",
     "matches_found": "Matches found",
-    "search_label": "Code snippet"
+    "search_label": "Code snippet",
+    "loading_message": "Searching for code matches... Please wait."
 }
