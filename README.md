@@ -20,7 +20,8 @@ As featured on [Wikimedia Diff](https://diff.wikimedia.org/2026/04/14/introducin
 - **🌳 Granular Structural Filtering**: High-precision extraction and filtering of **Functions**, **Types**, **Template Functions**, and **Template Types** across 10 languages.
 - **🏗️ Split-Build Architecture**: Optimized for asymmetric hardware—run heavy extraction on a laptop and neural vectorization on a GPU.
 - **🌍 Massive Localization Footprint**: Fully localized UI supporting **17 languages**.
-- **🌌 Octahedron Vortex UI**: A visually stunning frontend built with React and Three.js.
+- **🎨 Codex UI**: A clean, accessible frontend built with Wikimedia's **Codex Design System** for a native look and feel.
+- **🔍 Advanced Multi-select Filtering**: Granular control over results by repository group, programming language, and entry type.
 
 ## 🚀 Scaling & Pipeline
 
@@ -40,15 +41,11 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Frontend (Node.js)
+### Frontend (Static Assets)
 
-To compile the React application, you will need Node.js installed on your machine. **This step is mandatory** for local development as the compiled `app.js` is excluded from the repository.
+The frontend is built with vanilla JavaScript and the Codex Design System. It consists of static HTML, CSS, and JS files located in the `frontend/` directory. These files are served directly by the FastAPI backend.
 
-Install the dependencies and run the build:
-```bash
-npm install # This also runs 'npm run build' automatically via postinstall
-```
-This generates the pre-compiled `frontend/js/app.js` required by the application.
+There is no compilation step required for the frontend.
 
 ### Phase 1: Discovery & Mirroring (Local)
 First, discover the ecosystem and mirror it for processing:
@@ -101,7 +98,7 @@ cd backend
 python migrate_to_sqlite.py
 ```
 
-Once the index and database are ready, and the **frontend has been compiled** (see above), start the FastAPI backend from the root directory:
+Once the index and database are ready, start the FastAPI backend from the root directory:
 
 ```bash
 # From the project root
@@ -169,7 +166,7 @@ toolforge webservice logs -f
 - **Vector Engine**: [FAISS](https://github.com/facebookresearch/faiss) (IndexIVFPQ for memory efficiency)
 - **Segmentation**: [Tree-sitter](https://tree-sitter.github.io/tree-sitter/)
 - **Archive Access**: [Software Heritage](https://archive.softwareheritage.org/)
-- **Frontend**: React 18 / Three.js
+- **Frontend**: Vanilla JavaScript / [Codex Design System](https://doc.wikimedia.org/codex/main/)
 
 
 ## 📄 Licence
