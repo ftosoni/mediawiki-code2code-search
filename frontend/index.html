@@ -29,7 +29,7 @@
     <meta name="author" content="Francesco Tosoni">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <link rel="shortcut icon" href="assets/branding/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="assets/branding/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href="https://code2codesearch.toolforge.org/" />
     <link rel="preconnect" href="https://tools-static.wmflabs.org" crossorigin>
     <meta property="og:type" content="website">
@@ -102,13 +102,7 @@
     <!-- ── Header ─────────────────────────────────────────── -->
     <header class="app-header" role="banner">
         <a href="/" class="app-header__brand" aria-label="MediaWiki Code2Code Search — home">
-            <div class="app-header__brand-icon" aria-hidden="true">
-                <!-- code icon -->
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
-                </svg>
-            </div>
+            <img src="assets/branding/favicon.svg" alt="" class="app-header__brand-icon" style="background: transparent;" aria-hidden="true" />
             <span class="app-header__title">Code2Code Search</span>
         </a>
         <nav class="app-header__actions" aria-label="App actions">
@@ -273,41 +267,46 @@
     <footer class="app-footer" role="contentinfo">
         <div class="app-footer__inner">
             <div class="app-footer__row">
-                <span id="footer-dev">Developed by:&nbsp;<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/User:Super_nabla"
-                        target="_blank" rel="noopener noreferrer">Super nabla 🪰</a>
+                <span id="footer-dev">Developed by:&nbsp;<a
+                        href="https://meta.wikimedia.org/wiki/Special:MyLanguage/User:Super_nabla" target="_blank"
+                        rel="noopener noreferrer">Super nabla 🪰</a>
                     &nbsp;(<a
                         href="https://meta.wikimedia.org/wiki/Special:MyLanguage/Indic_MediaWiki_Developers_User_Group"
                         target="_blank" rel="noopener noreferrer">Indic MediaWiki Developers UG</a>)</span>
             </div>
             <div class="app-footer__row">
-                <span id="footer-licence">Licence: <a href="https://github.com/ftosoni/mediawiki-code2code-search/blob/main/LICENSE.md"
+                <span id="footer-licence">Licence: <a
+                        href="https://github.com/ftosoni/mediawiki-code2code-search/blob/main/LICENSE.md"
                         target="_blank" rel="noopener noreferrer">Apache-2.0</a></span>
                 <span class="cdx-footer__pipe">|</span>
-                <span id="footer-docs">Documentation:&nbsp;<a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Code2Code_Search"
-                        target="_blank" rel="noopener noreferrer">MediaWiki</a>&nbsp;·&nbsp;<a href="/docs"
-                        target="_blank" rel="noopener noreferrer">API</a></span>
+                <span id="footer-docs">Documentation:&nbsp;<a
+                        href="https://www.mediawiki.org/wiki/Special:MyLanguage/Code2Code_Search" target="_blank"
+                        rel="noopener noreferrer">MediaWiki</a>&nbsp;·&nbsp;<a href="/docs" target="_blank"
+                        rel="noopener noreferrer">API</a></span>
                 <span class="cdx-footer__pipe">|</span>
-                <span><a id="footer-presentation" href="https://commons.wikimedia.org/wiki/File:Mediawiki-code2codesearch-wmhackathon2026-slides.pdf"
+                <span><a id="footer-presentation"
+                        href="https://commons.wikimedia.org/wiki/File:Mediawiki-code2codesearch-wmhackathon2026-slides.pdf"
                         target="_blank" rel="noopener noreferrer">Presentation</a></span>
                 <span class="cdx-footer__pipe">|</span>
                 <span><a id="footer-wikidata" href="https://www.wikidata.org/wiki/Q139251277" target="_blank"
                         rel="noopener noreferrer">Wikidata Q-item</a></span>
                 <span class="cdx-footer__pipe">|</span>
-                <span><a id="footer-toolhub" href="https://toolhub.wikimedia.org/tools/toolforge-code2codesearch" target="_blank"
-                        rel="noopener noreferrer">Toolhub</a></span>
+                <span><a id="footer-toolhub" href="https://toolhub.wikimedia.org/tools/toolforge-code2codesearch"
+                        target="_blank" rel="noopener noreferrer">Toolhub</a></span>
                 <span class="cdx-footer__pipe">|</span>
-                <span id="footer-source">Source:&nbsp;<a href="https://github.com/ftosoni/mediawiki-code2code-search" target="_blank"
-                        rel="noopener noreferrer">GitHub</a>&nbsp;·&nbsp;<a
+                <span id="footer-source">Source:&nbsp;<a href="https://github.com/ftosoni/mediawiki-code2code-search"
+                        target="_blank" rel="noopener noreferrer">GitHub</a>&nbsp;·&nbsp;<a
                         href="https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search"
                         target="_blank" rel="noopener noreferrer">SWH</a></span>
                 <span class="cdx-footer__pipe">|</span>
-                <span><a id="footer-issues" href="https://github.com/ftosoni/mediawiki-code2code-search/issues" target="_blank"
-                        rel="noopener noreferrer">Report an issue</a></span>
+                <span><a id="footer-issues" href="https://github.com/ftosoni/mediawiki-code2code-search/issues"
+                        target="_blank" rel="noopener noreferrer">Report an issue</a></span>
             </div>
             <div class="app-footer__row app-footer__info">
                 <span>2026-05-08</span>
                 <span class="cdx-footer__pipe">|</span>
-                <span id="footer-grant">Supported by the <a href="https://sloan.org/" target="_blank">Alfred P. Sloan Foundation</a> under
+                <span id="footer-grant">Supported by the <a href="https://sloan.org/" target="_blank">Alfred P. Sloan
+                        Foundation</a> under
                     grant <a href="https://sloan.org/grant-detail/g-2025-25193" target="_blank">G-2025-25193</a></span>
             </div>
         </div>
