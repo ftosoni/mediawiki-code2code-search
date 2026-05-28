@@ -349,7 +349,7 @@ function createResultCard(item, index) {
         <div class="result-body">
             <div class="result-type-badge ${typeClass}">${typeLabel}</div>
             <div class="result-name">${item.name}</div>
-            <a href="https://archive.softwareheritage.org/browse/content/${item.swhid}/" target="_blank" class="swhid-link" title="View on Software Heritage">
+            <a href="https://archive.softwareheritage.org/${item.swhid}" target="_blank" class="swhid-link" title="View on Software Heritage">
                 SWHID: ${item.swhid}
             </a>
             

@@ -59,15 +59,34 @@ try:
 except ImportError:
     SWH_MODEL_AVAILABLE = False
 
-def get_swhid_content_hash(content: bytes) -> str:
-    """Calculate the Git-compatible SHA1 (used by SWH) locally."""
-    if SWH_MODEL_AVAILABLE:
-        res = compute_identifier(ObjectType.CONTENT, {"data": content})
-        return str(res)
-    else:
-        # Standard Git blob hash calculation: "blob <length>\0<content>"
-        header = f"blob {len(content)}\0".encode()
-        return hashlib.sha1(header + content).hexdigest()
+def get_swhid_content_hash(repo_path: str, relative_path: str) -> str:
+    """Calculate the Git-compatible SHA1 (used by SWH) locally via Git index."""
+    import subprocess
+    try:
+        result = subprocess.run(
+            ["git", "-C", repo_path, "ls-files", "-s", relative_path],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=True
+        )
+        stdout = result.stdout.strip()
+        if stdout:
+            return stdout.split()[1]
+    except Exception:
+        pass
+        
+    # Fallback for untracked files
+    import os
+    full_path = os.path.join(repo_path, relative_path)
+    result = subprocess.run(
+        ["git", "hash-object", full_path],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=True
+    )
+    return result.stdout.strip()
 
 def extract_entity_name(node, code_bytes: bytes) -> str:
     """Recursively find the most appropriate name for a code entity."""
@@ -374,7 +393,7 @@ def process_repository(repo_info, group_dir, valid_exts):
     repo_name = repo_info["name"]
     group = repo_info["group"]
     repo_path = os.path.join(group_dir, repo_name)
-    swh_origin = repo_info["url"].replace("https://", "https:/")
+    swh_origin = repo_info["url"]
     
     repo_entities = []
     if not os.path.isdir(repo_path):
@@ -394,8 +413,8 @@ def process_repository(repo_info, group_dir, valid_exts):
                     extracted = extract_code_entities(text_lf, ext)
                     
                     if extracted:
-                        swhid_hash = get_swhid_content_hash(text_lf)
                         relative_path = str(filepath.relative_to(repo_path)).replace("\\", "/")
+                        swhid_hash = get_swhid_content_hash(repo_path, relative_path)
                         
                         for ent in extracted:
                             if not ent["code"].strip(): continue

@@ -21,6 +21,7 @@ import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+import subprocess
 
 # Paths relative to this script
 PREPROC_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -29,7 +30,7 @@ UNRESOLVED_METADATA_PATH = os.path.join(PREPROC_DIR, "raw_metadata_unresolved.js
 # Output for Phase 4 (Indexing)
 FINAL_METADATA_PATH = os.path.join(PREPROC_DIR, "..", "backend", "raw_functions.json")
 # Local repo root
-LOCAL_REPOS_ROOT = "C:\\Users\\franc\\Documents\\GitHub\\code-search-engine\\preprocessing\\mediawiki_repos" # os.path.join(PREPROC_DIR, "mediawiki_repos")
+LOCAL_REPOS_ROOT = os.path.join(PREPROC_DIR, "mediawiki_repos")
 
 # Try to use swh.model for high-precision local hashing
 try:
@@ -39,28 +40,49 @@ try:
 except ImportError:
     SWH_MODEL_AVAILABLE = False
 
-def get_file_hashes(filepath: str):
+def get_file_hashes(repo_dir: str, rel_path: str):
     """Calculate both standard SHA1 and Git-compatible SHA1 (sha1_git) locally."""
     try:
-        with open(filepath, "rb") as f:
-            content = f.read().replace(b"\r\n", b"\n")
+        import os
+        import subprocess
+        full_path = os.path.join(repo_dir, rel_path)
         
-        if SWH_MODEL_AVAILABLE:
-            # Use official swh.model
-            hashes = MultiHash.from_data(content).digest()
-            return {
-                "sha1": hashes["sha1"].hex(),
-                "sha1_git": hashes["sha1_git"].hex()
-            }
-        else:
-            # Fallback to standard hashlib
-            sha1 = hashlib.sha1(content).hexdigest()
-            header = f"blob {len(content)}\0".encode()
-            sha1_git = hashlib.sha1(header + content).hexdigest()
-            return {
-                "sha1": sha1,
-                "sha1_git": sha1_git
-            }
+        # Standard SHA1
+        with open(full_path, "rb") as f:
+            content = f.read()
+        sha1 = hashlib.sha1(content).hexdigest()
+        
+        # Git blob hash (sha1_git) via Git index
+        sha1_git = None
+        try:
+            result = subprocess.run(
+                ["git", "-C", repo_dir, "ls-files", "-s", rel_path],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                check=True
+            )
+            stdout = result.stdout.strip()
+            if stdout:
+                sha1_git = stdout.split()[1]
+        except Exception:
+            pass
+            
+        if not sha1_git:
+            # Fallback for untracked files
+            result = subprocess.run(
+                ["git", "hash-object", full_path],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                check=True
+            )
+            sha1_git = result.stdout.strip()
+        
+        return {
+            "sha1": sha1,
+            "sha1_git": sha1_git
+        }
     except Exception:
         return None
 
@@ -81,7 +103,9 @@ def resolve_hashes():
         key = (ent["repo_group"], ent["repo_name"], ent["filepath"])
         if key not in unique_files:
             unique_files[key] = {
-                "full_path": os.path.join(LOCAL_REPOS_ROOT, ent["repo_group"], ent["repo_name"], ent["filepath"])
+                "full_path": os.path.join(LOCAL_REPOS_ROOT, ent["repo_group"], ent["repo_name"], ent["filepath"]),
+                "repo_dir": os.path.join(LOCAL_REPOS_ROOT, ent["repo_group"], ent["repo_name"]),
+                "rel_path": ent["filepath"]
             }
     
     total_files = len(unique_files)
@@ -94,7 +118,7 @@ def resolve_hashes():
     max_workers = os.cpu_count() * 2 if os.cpu_count() else 8
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         future_to_key = {
-            executor.submit(get_file_hashes, info["full_path"]): key 
+            executor.submit(get_file_hashes, info["repo_dir"], info["rel_path"]): key 
             for key, info in unique_files.items()
         }
         

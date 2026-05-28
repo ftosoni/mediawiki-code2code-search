@@ -132,13 +132,33 @@ def get_sha1_from_swh(sha1_git: str) -> str:
             pass
         return None
 
-def get_swhid_content_hash(content: bytes) -> str:
-    if SWH_MODEL_AVAILABLE:
-        res = compute_identifier(ObjectType.CONTENT, {"data": content})
-        return str(res)
-    else:
-        header = f"blob {len(content)}\0".encode()
-        return hashlib.sha1(header + content).hexdigest()
+def get_swhid_content_hash(repo_path: str, relative_path: str) -> str:
+    import subprocess
+    try:
+        result = subprocess.run(
+            ["git", "-C", repo_path, "ls-files", "-s", relative_path],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=True
+        )
+        stdout = result.stdout.strip()
+        if stdout:
+            return stdout.split()[1]
+    except Exception:
+        pass
+        
+    # Fallback for untracked files
+    import os
+    full_path = os.path.join(repo_path, relative_path)
+    result = subprocess.run(
+        ["git", "hash-object", full_path],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=True
+    )
+    return result.stdout.strip()
 
 def extract_entity_name(node, code_bytes: bytes) -> str:
     if node.type == "template_declaration":
@@ -273,7 +293,7 @@ def process_repository(repo_info, group_dir, valid_exts):
     repo_name = repo_info["name"]
     group = repo_info["group"]
     repo_path = os.path.join(group_dir, repo_name)
-    swh_origin = repo_info["url"].replace("https://", "https:/")
+    swh_origin = repo_info["url"]
     
     repo_entities = []
     
@@ -294,11 +314,10 @@ def process_repository(repo_info, group_dir, valid_exts):
                     extracted = extract_code_entities(text_lf, ext)
                     
                     if extracted:
-                        swhid_hash = get_swhid_content_hash(text_lf)
+                        relative_path = str(filepath.relative_to(repo_path)).replace("\\", "/")
+                        swhid_hash = get_swhid_content_hash(repo_path, relative_path)
                         # Call SWH API only once per file if entities extracted
                         sha1 = get_sha1_from_swh(swhid_hash)
-                        
-                        relative_path = str(filepath.relative_to(repo_path)).replace("\\", "/")
                         
                         for ent in extracted:
                             if not ent["code"].strip(): continue
