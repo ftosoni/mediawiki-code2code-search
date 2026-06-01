@@ -36,7 +36,7 @@ We use `pytest` for testing. To run the lightweight API and connectivity tests:
 ```bash
 pytest tests/test_api.py tests/test_hf_availability.py
 ```
-*Note: Large model tests in `tests/test_jina_components.py` are generally excluded from CI and standard local runs to save resources.*
+*Note: Large model tests are generally excluded from CI and standard local runs to save resources.*
 
 ### Linting
 We follow PEP 8 standards. You can check your code with `flake8`:

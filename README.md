@@ -1,14 +1,7 @@
 # MediaWiki Code2Code Search
 
-[![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/ftosoni/mediawiki-code2code-search/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search)
-[![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:fe86b58fb35118c474fce8f7a38b4bc541440653/)](https://archive.softwareheritage.org/swh:1:dir:fe86b58fb35118c474fce8f7a38b4bc541440653;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:0925f0ac8b48e9b46b741090d50781140d1e037b;anchor=swh:1:rev:fcfcb6a6bff6534ce0a7203d1553219b5947504a)
-[![Python](https://img.shields.io/badge/python-3.11-blue.svg?style=flat-square)](https://www.python.org/)
-[![CI](https://github.com/ftosoni/mediawiki-code2code-search/actions/workflows/python-ci.yml/badge.svg?branch=main&style=flat-square)](https://github.com/ftosoni/mediawiki-code2code-search/actions/workflows/python-ci.yml)
-[![Code Style: PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg?style=flat-square)](https://www.python.org/dev/peps/pep-0008/)
-[![License](https://img.shields.io/github/license/ftosoni/mediawiki-code2code-search?style=flat-square)](./LICENSE.md)
-
 A high-performance semantic code search engine designed for the MediaWiki ecosystem. 
-Built on the Jina 0.5b neural retrieval model, optimized for large-scale codebases like MediaWiki Core, Extensions, and WMF Operations.
+Built on the Qwen 0.6B neural retrieval model, optimized for large-scale codebases like MediaWiki Core, Extensions, and WMF Operations.
 Metadata is managed via indexed SQLite for sub-second responses and a low-memory footprint (Toolforge compatible).
 
 As featured on [Wikimedia Diff](https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/).
@@ -16,12 +9,45 @@ As featured on [Wikimedia Diff](https://diff.wikimedia.org/2026/04/14/introducin
 ## ✨ Key Features
 
 - **📂 Global MediaWiki Indexing**: Covers Core, Extensions, Skins, Libraries, Services, and more (2,400+ unique repos).
-- **🧠 Single-Stage Neural Retrieval**: Uses `jina-code-embeddings-0.5b` with FAISS `IndexIVFPQ` for lightning-fast results (approx. 0.3s).
+- **🧠 Single-Stage Neural Retrieval**: Uses `Qwen3-Embedding-0.6B` with FAISS `IndexIVFPQ` for lightning-fast results (approx. 0.3s).
 - **🌳 Granular Structural Filtering**: High-precision extraction and filtering of **Functions**, **Types**, **Template Functions**, and **Template Types** across 10 languages.
 - **🏗️ Split-Build Architecture**: Optimized for asymmetric hardware—run heavy extraction on a laptop and neural vectorization on a GPU.
 - **🌍 Massive Localization Footprint**: Fully localized UI supporting **17 languages**.
 - **🎨 Codex UI**: A clean, accessible frontend built with Wikimedia's **Codex Design System** for a native look and feel.
 - **🔍 Advanced Multi-select Filtering**: Granular control over results by repository group, programming language, and entry type.
+
+## 📂 Project Structure
+
+```
+mediawiki-code2code-search/
+├── frontend/                  # Codex-based Static Frontend
+│   ├── css/style.css          # Stylesheets using the Codex Design System
+│   ├── js/main.js             # Main frontend application logic
+│   └── i18n/                  # Localization JSONs supporting 17 languages
+├── backend/                   # FAISS Index, SQLite & Vector DB Management
+│   ├── generate_embeddings.py # Computes neural embeddings from raw snippets (saves embeddings.npy)
+│   ├── build_index.py         # Trains and builds the FAISS search index from saved embeddings
+│   ├── migrate_to_sqlite.py   # RAM optimization script (JSON metadata -> SQLite)
+│   ├── functions.db           # SQLite metadata store for fast lookups
+│   └── mediawiki.index        # Compiled FAISS vector index
+├── preprocessing/             # Global-Scale Indexing Pipeline (Phases 1-3)
+│   ├── list_repos.py          # Discovers and lists 2,400+ MediaWiki repositories
+│   ├── download_repos.py      # Handles shallow clones of target repositories
+│   ├── extract_entities.py    # Structural parsing & AST entity extraction
+│   ├── archive_to_swh.py      # Software Heritage archiving pipeline scripts
+│   └── resolve_swh_hashes.py  # Resolves local Git hashes to SWH SHA1 IDs
+├── tests/                     # Parser & API Verification Suite
+│   ├── test_api.py            # Backend API endpoint tests
+│   ├── test_*_parser.py       # Syntax extraction validations for 10+ languages
+│   └── example.*              # Target language snippets parsed during testing
+├── scripts/                   # Internal utilities & metadata migration helpers
+├── manuscript/                # Academic paper & System documentation (LaTeX)
+│   ├── main.tex               # Manuscript source file documenting architecture
+│   └── main.pdf               # Compiled system documentation/paper
+├── app.py                     # Root FastAPI web application entry point
+├── requirements.txt           # Python backend dependencies
+└── CITATION.cff               # CITATION file for academic/repository reference
+```
 
 ## 🚀 Scaling & Pipeline
 
@@ -88,7 +114,8 @@ Resolve Git-compatible hashes to standard SHA1. You can do this either locally (
 Move `raw_functions.json` to a GPU-equipped environment to compute neural vectors and build the FAISS index.
 ```bash
 cd backend
-python generate_index.py  # Auto-detects CUDA/GPU
+python generate_embeddings.py  # Computes and saves embeddings to embeddings.npy
+python build_index.py          # Trains and builds FAISS index from embeddings.npy
 ```
 
 ### Phase 5: Memory Optimization & Deployment (Local/Toolforge)
@@ -160,13 +187,50 @@ toolforge webservice logs -f
 
 ---
 
-## 🛠️ Technology Stack
+## 🛠️ Technology Stack & Project Status
 
-- **Neural Model**: [Jina Code Embeddings (0.5b)](https://huggingface.co/jinaai/jina-code-embeddings-0.5b)
-- **Vector Engine**: [FAISS](https://github.com/facebookresearch/faiss) (IndexIVFPQ for memory efficiency)
-- **Segmentation**: [Tree-sitter](https://tree-sitter.github.io/tree-sitter/)
-- **Archive Access**: [Software Heritage](https://archive.softwareheritage.org/)
-- **Frontend**: Vanilla JavaScript / [Codex Design System](https://doc.wikimedia.org/codex/main/)
+<p align="left">
+  <!-- Project Status & License -->
+  <a href="https://github.com/ftosoni/mediawiki-code2code-search/actions/workflows/python-ci.yml"><img src="https://github.com/ftosoni/mediawiki-code2code-search/actions/workflows/python-ci.yml/badge.svg?branch=main&style=flat-square" alt="CI Status"></a>
+  <a href="./LICENSE.md"><img src="https://img.shields.io/github/license/ftosoni/mediawiki-code2code-search?style=flat-square" alt="License"></a>
+  <a href="https://www.python.org/dev/peps/pep-0008/"><img src="https://img.shields.io/badge/code%20style-pep8-orange.svg?style=flat-square" alt="Code Style: PEP8"></a>
+  <a href="https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search"><img src="https://archive.softwareheritage.org/badge/origin/https://github.com/ftosoni/mediawiki-code2code-search/" alt="SWH Origin"></a>
+  <a href="https://archive.softwareheritage.org/swh:1:dir:fe86b58fb35118c474fce8f7a38b4bc541440653;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:0925f0ac8b48e9b46b741090d50781140d1e037b;anchor=swh:1:rev:fcfcb6a6bff6534ce0a7203d1553219b5947504a"><img src="https://archive.softwareheritage.org/badge/swh:1:dir:fe86b58fb35118c474fce8f7a38b4bc541440653/" alt="SWH Directory"></a>
+</p>
+
+<p align="left">
+  <!-- Frontend & Design -->
+  <a href="https://doc.wikimedia.org/codex/main/"><img src="https://img.shields.io/badge/Codex-Design_System-3366cc?logo=wikimedia-commons&logoColor=white" alt="Codex"></a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-ES6+-f7df1e?logo=javascript&logoColor=black" alt="JavaScript"></a>
+</p>
+
+<p align="left">
+  <!-- Backend & Core -->
+  <a href="https://fastapi.tiangolo.com/"><img src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white" alt="FastAPI"></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11+-3776ab?logo=python&logoColor=white" alt="Python 3.11+"></a>
+  <a href="https://www.uvicorn.org/"><img src="https://img.shields.io/badge/Uvicorn-222?logo=gunicorn&logoColor=white" alt="Uvicorn"></a>
+</p>
+
+<p align="left">
+  <!-- Vector Search & DB -->
+  <a href="https://github.com/facebookresearch/faiss"><img src="https://img.shields.io/badge/FAISS-Vector_Index-blueviolet" alt="FAISS"></a>
+  <img src="https://img.shields.io/badge/Vector_Indexes-1024d-blueviolet" alt="Vector indexes (1024d)">
+  <a href="https://www.sqlite.org/"><img src="https://img.shields.io/badge/SQLite-metadata_store-003b57?logo=sqlite&logoColor=white" alt="SQLite"></a>
+</p>
+
+<p align="left">
+  <!-- AI, Extraction & Archive -->
+  <a href="https://huggingface.co/Qwen/Qwen3-Embedding-0.6B"><img src="https://img.shields.io/badge/Qwen3_Embedding-0.6B-5374ff?logo=huggingface&logoColor=white" alt="Qwen3 Embedding 0.6B"></a>
+  <a href="https://tree-sitter.github.io/tree-sitter/"><img src="https://img.shields.io/badge/Tree--sitter-parsers-green" alt="Tree-sitter"></a>
+  <a href="https://archive.softwareheritage.org/"><img src="https://img.shields.io/badge/Software_Heritage-archive-002f56" alt="Software Heritage"></a>
+</p>
+
+<p align="left">
+  <!-- CI/CD & Deploy -->
+  <a href="https://wikitech.wikimedia.org/wiki/Portal:Toolforge"><img src="https://img.shields.io/badge/Toolforge-deploy-3366cc" alt="Toolforge"></a>
+  <a href="https://github.com/ftosoni/mediawiki-code2code-search/actions"><img src="https://img.shields.io/badge/GitHub_Actions-CI%2FCD-2088FF?logo=githubactions&logoColor=white" alt="GitHub Actions"></a>
+  <a href="https://docs.pytest.org/"><img src="https://img.shields.io/badge/pytest-tests-0A9EDC?logo=pytest&logoColor=white" alt="pytest"></a>
+</p>
 
 
 ## 📄 Licence

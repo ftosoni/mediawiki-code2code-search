@@ -43,5 +43,12 @@
     "search_label": "కోడ్ స్నిప్పెట్",
     "loading_message": "కోడ్ సరిపోలికల కోసం శోధిస్తోంది... దయచేసి వేచి ఉండండి.",
     "documentation_prefix": "డాక్యుమెంటేషన్:",
-    "sloan_grant": "గ్రాంట్ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> కింద <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> మద్దతు ఇస్తుంది"
+    "sloan_grant": "గ్రాంట్ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> కింద <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> మద్దతు ఇస్తుంది",
+    "powered_by_qwen": "ద్వారా నడపబడుతోంది <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a>",
+    "data_archived_by_swh": "డేటా ఆర్కైవ్ చేయబడింది <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">Software Heritage</a> ద్వారా",
+    "footer_section_credits": "క్రెడిట్స్ & ప్రాజెక్ట్",
+    "footer_section_resources": "వనరులు",
+    "footer_section_source": "మూలం & మద్దతు",
+    "footer_section_status": "లైసెన్స్ & స్థితి",
+    "footer_release_date": "ವಿಡುదల తేదీ:"
 }

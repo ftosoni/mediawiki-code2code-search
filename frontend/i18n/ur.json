@@ -43,5 +43,12 @@
     "search_label": "کوڈ اسنیپٹ",
     "loading_message": "کوڈ کے مماثلت تلاش کی جا رہی ہے... براہ کرم انتظار کریں۔",
     "documentation_prefix": "دستاویزات:",
-    "sloan_grant": "گرانٹ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> کے تحت <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> کے تعاون سے"
+    "sloan_grant": "گرانٹ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> کے تحت <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> کے تعاون سے",
+    "powered_by_qwen": "کے تعاون سے <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a>",
+    "data_archived_by_swh": "ڈیٹا محفوظ کیا گیا <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">Software Heritage</a> کے ذریعے",
+    "footer_section_credits": "کریڈٹ اور پروجیکٹ",
+    "footer_section_resources": "وسائل",
+    "footer_section_source": "ماخذ اور تعاون",
+    "footer_section_status": "لائسنس اور حیثیت",
+    "footer_release_date": "تاریخ اشاعت:"
 }

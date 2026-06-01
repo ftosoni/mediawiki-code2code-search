@@ -43,5 +43,12 @@
     "search_label": "কোড স্নিপেট",
     "loading_message": "কোড মিল অনুসন্ধান করা হচ্ছে... দয়া করে অপেক্ষা করুন।",
     "documentation_prefix": "নথিপত্র:",
-    "sloan_grant": "অনুদান <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a>-এর অধীনে <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> দ্বারা সমর্থিত"
+    "sloan_grant": "অনুদান <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a>-এর অধীনে <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> দ্বারা সমর্থিত",
+    "powered_by_qwen": "দ্বারা চালিত <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a>",
+    "data_archived_by_swh": "উপাত্ত সংরক্ষিত করেছে <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">Software Heritage</a>",
+    "footer_section_credits": "ক্রেডিট এবং প্রকল্প",
+    "footer_section_resources": "সম্পদ",
+    "footer_section_source": "উৎস এবং সমর্থন",
+    "footer_section_status": "লাইসেন্স এবং স্থিতি",
+    "footer_release_date": "প্রকাশের তারিখ:"
 }

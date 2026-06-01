@@ -45,5 +45,12 @@
     "search_label": "Extrait de code",
     "loading_message": "Recherche de correspondances de code... Veuillez patienter.",
     "documentation_prefix": "Documentation :",
-    "sloan_grant": "Soutenu par la <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> au titre de la subvention <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a>"
+    "sloan_grant": "Soutenu par la <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> au titre de la subvention <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a>",
+    "powered_by_qwen": "Propulsé par <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a>",
+    "data_archived_by_swh": "Données archivées par <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">Software Heritage</a>",
+    "footer_section_credits": "Crédits et Projet",
+    "footer_section_resources": "Ressources",
+    "footer_section_source": "Source et Support",
+    "footer_section_status": "Licence et Statut",
+    "footer_release_date": "Date de sortie :"
 }

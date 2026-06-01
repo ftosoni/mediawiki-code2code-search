@@ -43,5 +43,12 @@
     "search_label": "କୋଡ୍ ସ୍ନିପେଟ୍",
     "loading_message": "କୋଡ୍ ମେଳ ଖୋଜା ଚାଲିଛି... ଦୟାକରି ଅପେକ୍ଷା କରନ୍ତୁ |",
     "documentation_prefix": "ଦସ୍ତାବେଜ:",
-    "sloan_grant": "ଅନୁଦାନ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> ଅଧୀନରେ <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ଦ୍ୱାରା ସମର୍ଥିତ"
+    "sloan_grant": "ଅନୁଦାନ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> ଅଧୀନରେ <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ଦ୍ୱାରା ସମର୍ଥିତ",
+    "powered_by_qwen": "ଦ୍ୱାରା ଚାଳିତ <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a>",
+    "data_archived_by_swh": "ଡାଟା ସଂରକ୍ଷିତ ହୋଇଛି <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">Software Heritage</a> ଦ୍ୱାରା",
+    "footer_section_credits": "କ୍ରେଡିଟ୍ ଏବଂ ପ୍ରୋଜେକ୍ଟ",
+    "footer_section_resources": "ସମ୍ପଦ",
+    "footer_section_source": "ଉତ୍ସ ଏବଂ ସମର୍ଥନ",
+    "footer_section_status": "ଲାଇସେନ୍ସ ଏବଂ ସ୍ଥିତି",
+    "footer_release_date": "ରିଲିଜ୍ ତାରିଖ:"
 }

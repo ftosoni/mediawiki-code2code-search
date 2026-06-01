@@ -43,5 +43,12 @@
     "search_label": "कोड स्निपेट",
     "loading_message": "कोड मॅचेस शोधत आहे... कृपया प्रतीक्षा करा.",
     "documentation_prefix": "दस्तऐवजीकरण:",
-    "sloan_grant": "अनुदान <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> अंतर्गत <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> द्वारे समर्थित"
+    "sloan_grant": "अनुदान <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> अंतर्गत <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> द्वारे समर्थित",
+    "powered_by_qwen": "द्वारे संचालित <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a>",
+    "data_archived_by_swh": "डेटा संग्रहित केला आहे <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">Software Heritage</a> द्वारे",
+    "footer_section_credits": "श्रेय आणि प्रकल्प",
+    "footer_section_resources": "संसाधने",
+    "footer_section_source": "स्रोत आणि समर्थन",
+    "footer_section_status": "परवाना आणि स्थिती",
+    "footer_release_date": "प्रकाशन तारीख:"
 }

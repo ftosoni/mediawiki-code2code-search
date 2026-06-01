@@ -43,5 +43,12 @@
     "search_label": "कोड स्निपेट",
     "loading_message": "कोड के मिलान खोजे जा रहे हैं... कृपया प्रतीक्षा करें।",
     "documentation_prefix": "दस्तावेज़ीकरण:",
-    "sloan_grant": "अनुदान <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> के तहत <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> द्वारा समर्थित"
+    "sloan_grant": "अनुदान <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> के तहत <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> द्वारा समर्थित",
+    "powered_by_qwen": "द्वारा संचालित <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a>",
+    "data_archived_by_swh": "डेटा <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">Software Heritage</a> द्वारा संग्रहीत",
+    "footer_section_credits": "क्रेडिट और परियोजना",
+    "footer_section_resources": "संसाधन",
+    "footer_section_source": "स्रोत और समर्थन",
+    "footer_section_status": "लाइसेंस और स्थिति",
+    "footer_release_date": "रिलीज़ की तारीख:"
 }

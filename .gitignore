@@ -12,6 +12,9 @@ backend/functions.db
 backend/raw_functions.json
 backend/test_repo/
 backend/CoCo-trie/
+backend/*.npy
+backend/*.db
+
 
 # Preprocessing Data & Config
 preprocessing/mediawiki_repos/

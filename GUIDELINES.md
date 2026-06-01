@@ -12,7 +12,7 @@ The application is deployed on Wikimedia Toolforge, which has a strict **6 GiB R
 
 ### 2. CPU-Only Environment
 The production environment (Toolforge) is **CPU-only**.
-- **Recall vs. Rerank**: Highly accurate but heavy models (like Rerankers) should be used sparingly or optimized. The current architecture prioritizes the **recall model** (`jina-code-embeddings-0.5b`) which is fast on CPUs.
+- **Recall vs. Rerank**: Highly accurate but heavy models (like Rerankers) should be used sparingly or optimized. The current architecture prioritizes the **recall model** (`Qwen3-Embedding-0.6B`) which is fast on CPUs.
 - **Quantization**: If memory or speed becomes an issue, consider dynamic quantization for models.
 
 ### 3. Asymmetric Pipeline

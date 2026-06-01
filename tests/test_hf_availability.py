@@ -9,8 +9,7 @@ import pytest
 async def test_huggingface_model_reachable():
     """Verify that the model repository on Hugging Face is reachable"""
     model_ids = [
-        "jinaai/jina-code-embeddings-0.5b",
-        "jinaai/jina-reranker-v2-base-multilingual"
+        "Qwen/Qwen3-Embedding-0.6B"
     ]
     
     async with httpx.AsyncClient() as client:

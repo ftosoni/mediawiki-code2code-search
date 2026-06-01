@@ -43,5 +43,12 @@
     "search_label": "ᱠᱳᱰ ᱥᱱᱤᱯᱮᱴ",
     "loading_message": "ᱠᱳᱰ ᱢᱮᱞ ᱯᱟᱱᱛᱮ ᱦᱩᱭᱩᱜ ᱠᱟᱱᱟ... ᱫᱚᱭᱟ ᱠᱟᱛᱮ ᱛᱟᱺᱜᱤ ᱢᱮ ᱾",
     "documentation_prefix": "ᱰᱚᱠᱩᱢᱮᱱᱴᱮᱥᱚᱱ:",
-    "sloan_grant": "ᱜᱽᱨᱟᱱᱴ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> ᱞᱟᱛᱟᱨ ᱨᱮ <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ᱦᱚᱛᱮᱛᱮ ᱜᱚᱲᱚ ᱟᱠᱟᱱᱟ"
+    "sloan_grant": "ᱜᱽᱨᱟᱱᱴ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> ᱞᱟᱛᱟᱨ ᱨᱮ <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ᱦᱚᱛᱮᱛᱮ ᱜᱚᱲᱚ ᱟᱠᱟᱱᱟ",
+    "powered_by_qwen": "ᱦᱚᱛᱮᱛᱮ ᱪᱟᱞᱟᱣ ᱟᱠᱟᱱᱟ <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a>",
+    "data_archived_by_swh": "ᱰᱮᱴา ᱥᱟᱧᱪᱟᱣ ᱟᱠᱟᱱᱟ <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">Software Heritage</a> ᱦᱚᱛᱮᱛᱮ",
+    "footer_section_credits": "ᱠᱨᱮᱰᱤᱴ ᱟᱨ ᱯᱨᱚᱡᱮᱠᱴ",
+    "footer_section_resources": "ᱥᱟᱫᱷᱚᱱ",
+    "footer_section_source": "ᱥᱳᱨᱥ ᱟᱨ ᱜᱚᱲᱚ",
+    "footer_section_status": "ᱞᱟᱭᱥᱮᱱᱥ ᱟᱨ ᱦᱟᱞᱟᱛ",
+    "footer_release_date": "ᱨᱤᱞᱤᱡᱽ ᱢᱟᱹᱦིତ:"
 }

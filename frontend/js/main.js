@@ -239,6 +239,27 @@ function applyI18n() {
     const footerGrant = document.getElementById('footer-grant');
     if (footerGrant) footerGrant.innerHTML = i18nData.sloan_grant || 'Supported by the Alfred P. Sloan Foundation';
 
+    const footerQwen = document.getElementById('footer-qwen');
+    if (footerQwen) footerQwen.innerHTML = i18nData.powered_by_qwen || 'Powered by <a href="https://huggingface.co/Qwen/Qwen3-Embedding-0.6B" target="_blank">Qwen</a>';
+
+    const footerSwhArchive = document.getElementById('footer-swh-archive');
+    if (footerSwhArchive) footerSwhArchive.innerHTML = i18nData.data_archived_by_swh || 'Data archived by <a href="https://www.softwareheritage.org/" target="_blank">Software Heritage</a>';
+
+    const footerTitleCredits = document.getElementById('footer-title-credits');
+    if (footerTitleCredits) footerTitleCredits.textContent = i18nData.footer_section_credits || 'Credits & Project';
+
+    const footerTitleResources = document.getElementById('footer-title-resources');
+    if (footerTitleResources) footerTitleResources.textContent = i18nData.footer_section_resources || 'Resources';
+
+    const footerTitleSource = document.getElementById('footer-title-source');
+    if (footerTitleSource) footerTitleSource.textContent = i18nData.footer_section_source || 'Source & Support';
+
+    const footerTitleStatus = document.getElementById('footer-title-status');
+    if (footerTitleStatus) footerTitleStatus.textContent = i18nData.footer_section_status || 'Licence & Status';
+
+    const footerReleaseDateLabel = document.getElementById('footer-release-date-label');
+    if (footerReleaseDateLabel) footerReleaseDateLabel.textContent = i18nData.footer_release_date || 'Release date:';
+
     // Re-render results if any
     if (lastSearchResults.length > 0) {
         displayResults({ results: lastSearchResults });

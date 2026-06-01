@@ -43,5 +43,12 @@
     "search_label": "குறியீடு துணுக்கு",
     "loading_message": "குறியீடு பொருத்தங்களைத் தேடுகிறது... தயவுசெய்து காத்திருங்கள்.",
     "documentation_prefix": "ஆவணமாக்கம்:",
-    "sloan_grant": "நிதியுதவி <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> இன் கீழ் <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ஆல் ஆதரிக்கப்படுகிறது"
+    "sloan_grant": "நிதியுதவி <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> இன் கீழ் <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ஆல் ஆதரிக்கப்படுகிறது",
+    "powered_by_qwen": "மூலம் இயக்கப்படுகிறது <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a>",
+    "data_archived_by_swh": "தரவு காப்பகப்படுத்தப்பட்டது <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">Software Heritage</a> ஆல்",
+    "footer_section_credits": "வரவுகள் & திட்டம்",
+    "footer_section_resources": "வளங்கள்",
+    "footer_section_source": "மூலம் & ஆதரவு",
+    "footer_section_status": "உரிமம் & நிலை",
+    "footer_release_date": "வெளியீட்டு தேதி:"
 }

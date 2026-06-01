@@ -16,7 +16,6 @@
 
 import os
 import json
-import faiss
 import numpy as np
 import torch
 from sentence_transformers import SentenceTransformer
@@ -28,18 +27,15 @@ HF_TOKEN = os.getenv("HF_TOKEN")
 
 # Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FAISS_INDEX_PATH = os.path.join(BASE_DIR, "mediawiki.index")
-METADATA_PATH = os.path.join(BASE_DIR, "functions.json")
 RAW_METADATA_PATH = os.path.join(BASE_DIR, "raw_functions.json")
+EMBEDDINGS_NPY_PATH = os.path.join(BASE_DIR, "embeddings.npy")
 
-EMBEDDING_DIM = 896 # Jina 0.5B dim
-
-def generate_index():
+def generate_embeddings():
     """
-    Phase 5: Load intermediate metadata, compute embeddings (GPU preferred),
-    build FAISS index, and save final production metadata.
+    Phase 4a: Load raw metadata, compute embeddings (GPU preferred),
+    and save them as a raw NumPy array to embeddings.npy.
     """
-    print("\n== MediaWiki Code Search: Neural Vectorization & Indexing (GPU/Neural) ==")
+    print("\n== MediaWiki Code Search: Neural Vectorization & Embedding Generation (GPU) ==")
     
     if not os.path.exists(RAW_METADATA_PATH):
         print(f"Error: {RAW_METADATA_PATH} not found. Please run preprocessing/extract_entities.py first.")
@@ -58,14 +54,14 @@ def generate_index():
     
     # Try local path first to save bandwidth/time
     MODELS_DIR = os.path.join(os.path.dirname(BASE_DIR), "models")
-    bi_local_path = os.path.join(MODELS_DIR, "jina-embeddings")
+    bi_local_path = os.path.join(MODELS_DIR, "qwen-embeddings")
     
     if os.path.exists(bi_local_path):
         print(f"Loading local model from {bi_local_path}")
         model_path = bi_local_path
     else:
         print(f"Local model not found at {bi_local_path}. Using Hugging Face Hub.")
-        model_path = "jinaai/jina-code-embeddings-0.5b"
+        model_path = "Qwen/Qwen3-Embedding-0.6B"
 
     model = SentenceTransformer(
         model_path, 
@@ -76,7 +72,7 @@ def generate_index():
     model.max_seq_length = 512
 
     # 2. GENERATE EMBEDDINGS
-    print(f"Encoding {len(functions)} snippets with Jina...")
+    print(f"Encoding {len(functions)} snippets with Qwen...")
     code_snippets = [f["code_for_embedding"] for f in functions]
     
     embeddings = model.encode(
@@ -86,37 +82,10 @@ def generate_index():
         normalize_embeddings=True
     )
     
-    # 3. BUILD FAISS INDEX
-    print("Building FAISS IndexIVFPQ...")
-    # nlist: Number of clusters (centroids) for quantization
-    # A rule of thumb is 4 * sqrt(N), but for 2,484+ repos we can use a higher fixed value
-    nlist = min(100, len(functions)) 
-    quantizer = faiss.IndexFlatL2(EMBEDDING_DIM)
-    # 32: Number of sub-quantizers, 8: Number of bits per sub-vector
-    index = faiss.IndexIVFPQ(quantizer, EMBEDDING_DIM, nlist, 32, 8)
-    
-    print("Training quantizer...")
-    index.train(embeddings.astype('float32'))
-    print("Adding vectors to index...")
-    index.add(embeddings.astype('float32'))
-    
-    faiss.write_index(index, FAISS_INDEX_PATH)
-    print(f"Index saved to {FAISS_INDEX_PATH}")
-    
-    # 4. SAVE FINAL PRODUCTION METADATA (Stripped)
-    print("Saving production metadata (functions.json)...")
-    functions_meta_only = []
-    for f in functions:
-        meta = f.copy()
-        # Remove raw code to save RAM in production (handled by SWH on-demand)
-        meta.pop("code_for_embedding") 
-        functions_meta_only.append(meta)
-    
-    with open(METADATA_PATH, "w", encoding="utf-8") as f:
-        json.dump(functions_meta_only, f, indent=2)
-    
-    print(f"Production metadata saved to {METADATA_PATH}")
-    print("✅ Indexing complete.")
+    # 3. SAVE EMBEDDINGS AS NUMPY ARRAY
+    print(f"Saving raw embeddings to {EMBEDDINGS_NPY_PATH}...")
+    np.save(EMBEDDINGS_NPY_PATH, embeddings)
+    print("✅ Embeddings generation complete.")
 
 if __name__ == "__main__":
-    generate_index()
+    generate_embeddings()

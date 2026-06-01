@@ -17,14 +17,11 @@ def download_model(repo_id, folder_name):
         local_dir_use_symlinks=False, # Copy files for easy transfer
         ignore_patterns=["onnx/*", "*.onnx"] # Skip heavy ONNX weights
     )
-    print(f"✅ Successfully downloaded to {save_path}")
+    print(f"Successfully downloaded to {save_path}")
 
 if __name__ == "__main__":
-    # 1. Recall model (Bi-Encoder)
-    download_model("jinaai/jina-code-embeddings-0.5b", "jina-embeddings")
+    # Recall model (Bi-Encoder)
+    download_model("Qwen/Qwen3-Embedding-0.6B", "qwen-embeddings")
     
-    # 2. Reranker model (Cross-Encoder)
-    download_model("jinaai/jina-reranker-v2-base-multilingual", "jina-reranker")
-    
-    print("\n✅ All models successfully saved in the 'models/' directory.")
+    print("\nAll models successfully saved in the 'models/' directory.")
     print("You can now transfer this folder to your Toolforge project root.")

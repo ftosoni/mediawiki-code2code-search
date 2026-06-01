@@ -103,7 +103,7 @@ try:
         print(f"Current process UID: {os.getuid()}, GID: {os.getgid()}")
     if os.path.exists(MODELS_DIR):
         print(f"MODELS_DIR resides at: {MODELS_DIR}")
-        for sub in ['jina-embeddings', 'jina-reranker']:
+        for sub in ['qwen-embeddings']:
             sub_path = os.path.join(MODELS_DIR, sub)
             if os.path.exists(sub_path):
                 readable = os.access(sub_path, os.R_OK)
@@ -124,9 +124,6 @@ print("----------------------------------------------")
 
 # Initialise singletons
 bi_model = None
-# Jina Reranker v2 is disabled for CPU performance
-# rerank_model = None
-# rerank_tokenizer = None
 index = None
 # metadata list removed to save RAM. Use SQLite at METADATA_DB_PATH instead.
 http_client = None # Async client for SWH API/S3
@@ -140,9 +137,9 @@ async def lifespan(app: FastAPI):
     http_client = httpx.AsyncClient(timeout=10.0)
     
     try:
-        print("Initialising Jina Code Embeddings (Recall model)...")
-        bi_id = "jinaai/jina-code-embeddings-0.5b"
-        bi_local_path = os.path.join(MODELS_DIR, "jina-embeddings")
+        print("Initialising Qwen Code Embeddings (Recall model)...")
+        bi_id = "Qwen/Qwen3-Embedding-0.6B"
+        bi_local_path = os.path.join(MODELS_DIR, "qwen-embeddings")
         
         try:
             if os.path.exists(bi_local_path):
@@ -153,36 +150,6 @@ async def lifespan(app: FastAPI):
         except Exception as e:
             print(f"⚠️ Local Bi-Encoder failed ({e}). Falling back to Hugging Face Hub...")
             bi_model = SentenceTransformer(bi_id, trust_remote_code=True, device="cpu")
-        
-# Jina Reranker v2 is disabled to prioritize sub-second search on CPU
-        # print("Initialising Jina Reranker v2 (Rerank model)...")
-        # rerank_id = "jinaai/jina-reranker-v2-base-multilingual"
-        # rerank_local_path = os.path.join(MODELS_DIR, "jina-reranker")
-        
-        # try:
-        #     if os.path.exists(rerank_local_path):
-        #         print(f"Loading Reranker from local cache: {rerank_local_path}")
-        #         rerank_model = AutoModelForSequenceClassification.from_pretrained(
-        #             rerank_local_path, 
-        #             trust_remote_code=True,
-        #             torch_dtype="auto",
-        #             low_cpu_mem_usage=False
-        #         ).to("cpu")
-        #         rerank_tokenizer = AutoTokenizer.from_pretrained(rerank_local_path, trust_remote_code=True)
-        #     else:
-        #         raise FileNotFoundError(f"Local Reranker path missing: {rerank_local_path}")
-        # except Exception as e:
-        #     print(f"⚠️ Local Reranker failed ({e}). Falling back to Hugging Face Hub...")
-        #     rerank_model = AutoModelForSequenceClassification.from_pretrained(
-        #         rerank_id, 
-        #         trust_remote_code=True,
-        #         torch_dtype="auto",
-        #         low_cpu_mem_usage=False
-        #     ).to("cpu")
-        #     rerank_tokenizer = AutoTokenizer.from_pretrained(rerank_id, trust_remote_code=True)
-        
-        # if rerank_model:
-        #     rerank_model.eval()
 
         
         # NOTE: Dynamic quantization is skipped to prioritize the simplest and fastest startup.
@@ -268,7 +235,7 @@ class SearchRequest(BaseModel):
     top_k: int = Field(10, gt=0, le=50, description="The number of results to return (range: 1-50).", examples=[10])
     repo_group: List[Literal['all', 'core', 'things', 'libraries', 'deployed', 'operations', 'puppet', 'pywikibot', 'devtools', 'analytics', 'wmcs', 'apps']] = Field(["all"], description="Filter by repository group(s).")
     type_filter: List[Literal['all', 'function', 'type', 'template']] = Field(["all"], description="Filter by entry type(s).")
-    language_filter: List[Literal['all', 'Python', 'C++', 'C', 'PHP', 'JavaScript', 'TypeScript', 'Lua', 'Go', 'Java', 'Rust']] = Field(["all"], description="Filter by programming language(s).")
+    language_filter: List[Literal['all', 'Python', 'C++', 'C', 'PHP', 'JavaScript', 'TypeScript', 'Lua', 'Go', 'Java', 'Rust', 'Ruby', 'Perl']] = Field(["all"], description="Filter by programming language(s).")
 
     @field_validator('repo_group', 'language_filter', 'type_filter', mode='before')
     @classmethod
@@ -342,7 +309,9 @@ LANGUAGE_EXTENSIONS = {
     "Lua": [".lua"],
     "Go": [".go"],
     "Java": [".java"],
-    "Rust": [".rs"]
+    "Rust": [".rs"],
+    "Ruby": [".rb"],
+    "Perl": [".pl", ".pm"]
 }
 
 def get_highlighted_code(code: str, filepath: str) -> str:
@@ -438,7 +407,7 @@ async def get_code_snippet(swhid: str = Query(..., description="The Software Her
 }, operation_id="search_code")
 async def search_code(req: SearchRequest):
     """
-    Performs a semantic search using Jina Code Embeddings.
+    Performs a semantic search using Qwen Code Embeddings.
     The search is performed in two phases:
     1. **Recall**: Find candidate snippets using FAISS vector search.
     2. **Filtering**: Apply metadata filters (repo group, type, language).
@@ -448,7 +417,7 @@ async def search_code(req: SearchRequest):
 
 
     # 1. RECALL PHASE (Bi-Encoder)
-    instruction = "Find the most relevant code snippet given the following query:\n"
+    instruction = "Instruct: Given a source code query, retrieve relevant code snippets from MediaWiki.\nQuery: "
     xq = bi_model.encode([instruction + req.query], normalize_embeddings=True)
     query_vec = np.array(xq).astype('float32')
 

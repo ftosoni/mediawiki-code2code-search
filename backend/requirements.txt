@@ -34,6 +34,8 @@ tree-sitter-lua
 tree-sitter-go
 tree-sitter-java
 tree-sitter-rust
+tree-sitter-ruby
+tree-sitter-perl
 gitpython
 pydantic
 swh.model

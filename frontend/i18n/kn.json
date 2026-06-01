@@ -43,5 +43,12 @@
     "search_label": "ಕೋಡ್ ತುಣುಕು",
     "loading_message": "ಕೋಡ್ ಹೊಂದಾಣಿಕೆಗಳಿಗಾಗಿ ಹುಡುಕಲಾಗುತ್ತಿದೆ... ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ.",
     "documentation_prefix": "ದಸ್ತಾವೇಜು:",
-    "sloan_grant": "ಅನುದಾನ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> ರ ಅಡಿಯಲ್ಲಿ <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ನಿಂದ ಬೆಂಬಲಿತವಾಗಿದೆ"
+    "sloan_grant": "ಅನುದಾನ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> ರ ಅಡಿಯಲ್ಲಿ <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ನಿಂದ ಬೆಂಬಲಿತವಾಗಿದೆ",
+    "powered_by_qwen": "ಮೂಲಕ ಚಾಲಿತ <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a>",
+    "data_archived_by_swh": "ಮಾಹಿತಿ ಆರ್ಕೈವ್ ಮಾಡಲಾಗಿದೆ <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">Software Heritage</a> ಮೂಲಕ",
+    "footer_section_credits": "ಕ್ರೆಡಿಟ್ಸ್ ಮತ್ತು ಪ್ರಾಜೆಕ್ಟ್",
+    "footer_section_resources": "ಸಂಪನ್ಮೂಲಗಳು",
+    "footer_section_source": "ಮೂಲ ಮತ್ತು ಬೆಂಬಲ",
+    "footer_section_status": "ಪರವಾನಗಿ ಮತ್ತು ಸ್ಥಿತಿ",
+    "footer_release_date": "ಬಿಡುగಡೆ ದಿನಾಂಕ:"
 }

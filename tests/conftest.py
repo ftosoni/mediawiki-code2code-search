@@ -47,7 +47,7 @@ def mock_db(tmp_path):
 def test_faiss_index(tmp_path):
     """Create a small real FAISS index for testing"""
     index_path = tmp_path / "test_mediawiki.index"
-    d = 512  # Jina dimension
+    d = 1024  # Qwen dimension
     index = faiss.IndexFlatL2(d)
     # Add 2 dummy vectors corresponding to our dummy DB entries
     xb = np.zeros((2, d)).astype('float32')
@@ -65,7 +65,7 @@ def client(mock_db, test_faiss_index, tmp_path):
         
         # Configure mock SentenceTransformer
         mock_model = MagicMock()
-        mock_model.encode.return_value = np.zeros((1, 512), dtype='float32')
+        mock_model.encode.return_value = np.zeros((1, 1024), dtype='float32')
         mock_st.return_value = mock_model
         
         # Now we can import the app which will trigger the lifespan

@@ -30,6 +30,8 @@ import tree_sitter_lua
 import tree_sitter_go
 import tree_sitter_java
 import tree_sitter_rust
+import tree_sitter_ruby
+import tree_sitter_perl
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -45,6 +47,8 @@ LUA_LANGUAGE = tree_sitter.Language(tree_sitter_lua.language())
 GO_LANGUAGE = tree_sitter.Language(tree_sitter_go.language())
 JAVA_LANGUAGE = tree_sitter.Language(tree_sitter_java.language())
 RUST_LANGUAGE = tree_sitter.Language(tree_sitter_rust.language())
+RUBY_LANGUAGE = tree_sitter.Language(tree_sitter_ruby.language())
+PERL_LANGUAGE = tree_sitter.Language(tree_sitter_perl.language())
 
 # Paths relative to this script
 PREPROC_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -170,7 +174,9 @@ def extract_entity_name(node, code_bytes: bytes) -> str:
     name_node = node.child_by_field_name("name")
     if not name_node:
         def find_name(n):
-            if n.type in ["identifier", "field_identifier", "type_identifier", "name"]:
+            if n.type in ["identifier", "field_identifier", "type_identifier", "name", "bareword"]:
+                return n
+            if n.type == "package" and code_bytes[n.start_byte:n.end_byte] != b"package":
                 return n
             for child in n.children:
                 found = find_name(child)
@@ -221,6 +227,12 @@ def extract_code_entities(code_bytes: bytes, ext: str) -> list:
     elif ext == ".rs":
         lang = RUST_LANGUAGE
         query_scm = "(function_item) @function (struct_item) @type (enum_item) @type (trait_item) @type (type_item) @type"
+    elif ext == ".rb":
+        lang = RUBY_LANGUAGE
+        query_scm = "(method) @function (singleton_method) @function (class) @type (singleton_class) @type (module) @type"
+    elif ext in [".pl", ".pm"]:
+        lang = PERL_LANGUAGE
+        query_scm = "(subroutine_declaration_statement) @function (package_statement) @type"
     else:
         return []
 
@@ -353,7 +365,7 @@ def run_extraction():
         print(f"Error: {LOCAL_REPOS_ROOT} not found.")
         return
 
-    valid_exts = {".c", ".cpp", ".h", ".hpp", ".cc", ".cxx", ".py", ".php", ".inc", ".js", ".ts", ".tsx", ".mts", ".cts", ".lua", ".go", ".java", ".rs"}
+    valid_exts = {".c", ".cpp", ".h", ".hpp", ".cc", ".cxx", ".py", ".php", ".inc", ".js", ".ts", ".tsx", ".mts", ".cts", ".lua", ".go", ".java", ".rs", ".rb", ".pl", ".pm"}
 
     # Discovery
     discovery_list = []

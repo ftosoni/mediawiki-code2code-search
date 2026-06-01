@@ -54,5 +54,12 @@
     "search_label": "Code snippet",
     "loading_message": "Searching for code matches... Please wait.",
     "documentation_prefix": "Documentation:",
-    "sloan_grant": "Supported by the <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> under grant <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a>"
+    "sloan_grant": "Supported by the <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> under grant <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a>",
+    "powered_by_qwen": "Powered by <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a>",
+    "data_archived_by_swh": "Data archived by <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">Software Heritage</a>",
+    "footer_section_credits": "Credits & Project",
+    "footer_section_resources": "Resources",
+    "footer_section_source": "Source & Support",
+    "footer_section_status": "Licence & Status",
+    "footer_release_date": "Release date:"
 }

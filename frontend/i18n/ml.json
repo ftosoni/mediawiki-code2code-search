@@ -43,5 +43,12 @@
     "search_label": "കോഡ് സ്നിപ്പറ്റ്",
     "loading_message": "കോഡ് പൊരുത്തങ്ങൾക്കായി തിരയുന്നു... ദയവായി കാത്തിരിക്കുക.",
     "documentation_prefix": "ഡോക്യുമെന്റേഷൻ:",
-    "sloan_grant": "<a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ഗ്രാന്റ് <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> പ്രകാരം പിന്തുണയ്ക്കുന്നു"
+    "sloan_grant": "<a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ഗ്രാന്റ് <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> പ്രകാരം പിന്തുണയ്ക്കുന്നു",
+    "powered_by_qwen": "കരുത്തുപകരുന്നത് <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a>",
+    "data_archived_by_swh": "വിവരങ്ങൾ ആർക്കൈവ് ചെയ്തത് <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">Software Heritage</a>",
+    "footer_section_credits": "ക്രെഡിറ്റുകളും പ്രോജക്റ്റും",
+    "footer_section_resources": "വിഭവങ്ങൾ",
+    "footer_section_source": "ഉറവിടവും പിന്തുണയും",
+    "footer_section_status": "ലൈസൻസും നിലയും",
+    "footer_release_date": "റിലീസ് തീയതി:"
 }

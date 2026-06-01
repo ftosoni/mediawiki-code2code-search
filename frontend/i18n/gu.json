@@ -43,5 +43,12 @@
     "search_label": "કોડ સ્નિપેટ",
     "loading_message": "કોડ મેચો શોધી રહ્યા છીએ... મહેરબાની કરીને રાહ જુઓ.",
     "documentation_prefix": "દસ્તાવેજીકરણ:",
-    "sloan_grant": "અનુદાન <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> હેઠળ <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> દ્વારા સમર્થિત"
+    "sloan_grant": "અનુદાન <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> હેઠળ <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> દ્વારા સમર્થિત",
+    "powered_by_qwen": "દ્વારા સંચાલિત <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a>",
+    "data_archived_by_swh": "ડેટા આર્કાઇવ કરેલ <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">Software Heritage</a> દ્વારા",
+    "footer_section_credits": "ક્રેડิต્સ আৰু প্ৰকল্প",
+    "footer_section_resources": "સંસાધનો",
+    "footer_section_source": "સ્ત્રોત અને સમર્થન",
+    "footer_section_status": "લાયસન્સ અને સ્થિતિ",
+    "footer_release_date": "પ્રકાશન તારીખ:"
 }
