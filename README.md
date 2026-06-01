@@ -159,9 +159,9 @@ Log into Toolforge and set the necessary permissions:
 ```bash
 ssh supnabla@login.toolforge.org
 
-chmod -R a+r /data/project/code2codesearch/models/
-chmod a+x /data/project/code2codesearch/backend/functions.db
-chmod a+x /data/project/code2codesearch/backend/mediawiki.index
+chmod -R a+rX /data/project/code2codesearch/models/
+chmod a+r /data/project/code2codesearch/backend/functions.db
+chmod a+r /data/project/code2codesearch/backend/mediawiki.index
 ```
 
 ### 3. Deploy
