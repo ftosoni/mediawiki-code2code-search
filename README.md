@@ -148,9 +148,9 @@ Since the model weights and indexes are large, they should be uploaded from your
 
 ```bash
 # From the project root
-scp -r "./models" supnabla@login.toolforge.org:/data/project/code2codesearch/
-scp -r "./backend/mediawiki.index" supnabla@login.toolforge.org:/data/project/code2codesearch/backend/
-scp -r "./backend/functions.db" supnabla@login.toolforge.org:/data/project/code2codesearch/backend/
+scp -rp "./models" supnabla@login.toolforge.org:/data/project/code2codesearch/
+scp -rp "./backend/mediawiki.index" supnabla@login.toolforge.org:/data/project/code2codesearch/backend/
+scp -rp "./backend/functions.db" supnabla@login.toolforge.org:/data/project/code2codesearch/backend/
 ```
 
 ### 2. Configure Permissions
