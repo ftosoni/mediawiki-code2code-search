@@ -159,7 +159,7 @@ Log into Toolforge and set the necessary permissions:
 ```bash
 ssh supnabla@login.toolforge.org
 
-chmod -R a+r /data/project/code2codesearch/mediawiki-code2code-search/models/
+chmod -R a+r /data/project/code2codesearch/models/
 chmod a+x /data/project/code2codesearch/backend/functions.db
 chmod a+x /data/project/code2codesearch/backend/mediawiki.index
 ```
