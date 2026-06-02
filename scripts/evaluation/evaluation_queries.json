@@ -1,0 +1,198 @@
+[
+  {
+    "id": "A1",
+    "category": "A",
+    "title": "Greatest common divisor",
+    "language": "Python",
+    "code": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a"
+  },
+  {
+    "id": "A2",
+    "category": "A",
+    "title": "Binary search",
+    "language": "JavaScript",
+    "code": "function binarySearch(arr, target) {\n    let lo = 0, hi = arr.length - 1;\n    while (lo <= hi) {\n        const mid = (lo + hi) >> 1;\n        if (arr[mid] === target) return mid;\n        if (arr[mid] < target) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    return -1;\n}"
+  },
+  {
+    "id": "A3",
+    "category": "A",
+    "title": "String truncation with ellipsis",
+    "language": "PHP",
+    "code": "function truncateString(string $str, int $maxLen,\n                        string $ellipsis = '...'): string {\n    if (mb_strlen($str) <= $maxLen) {\n        return $str;\n    }\n    return mb_substr($str, 0, $maxLen - mb_strlen($ellipsis)) . $ellipsis;\n}"
+  },
+  {
+    "id": "A4",
+    "category": "A",
+    "title": "JSON encode with error forwarding",
+    "language": "Go",
+    "code": "func encodeJSON(v interface{}) ([]byte, error) {\n    data, err := json.Marshal(v)\n    if err != nil {\n        return nil, fmt.Errorf(\"json encode: %w\", err)\n    }\n    return data, nil\n}"
+  },
+  {
+    "id": "A5",
+    "category": "A",
+    "title": "Retry with exponential back-off",
+    "language": "Python",
+    "code": "def retry(func, max_attempts=3, base_delay=1.0):\n    for attempt in range(max_attempts):\n        try:\n            return func()\n        except Exception:\n            if attempt == max_attempts - 1:\n                raise\n            time.sleep(base_delay * (2 ** attempt))"
+  },
+  {
+    "id": "B1",
+    "category": "B",
+    "title": "Permission check: canUserEdit",
+    "language": "PHP",
+    "code": "public function canUserEdit(User $user, Title $title): bool {\n    return $user->isAllowed('edit')\n        && !$title->isProtected('edit');\n}"
+  },
+  {
+    "id": "B2",
+    "category": "B",
+    "title": "Debounce: query names it delayExecution",
+    "language": "JavaScript",
+    "code": "function delayExecution(fn, waitMs) {\n    let timer;\n    return function (...args) {\n        clearTimeout(timer);\n        timer = setTimeout(() => fn.apply(this, args), waitMs);\n    };\n}"
+  },
+  {
+    "id": "B3",
+    "category": "B",
+    "title": "Session invalidation: query says invalidateUserSession",
+    "language": "PHP",
+    "code": "public function invalidateUserSession(User $user): void {\n    $user->setToken();\n    $user->saveSettings();\n    SessionManager::singleton()->invalidateSessionsForUser($user);\n}"
+  },
+  {
+    "id": "B4",
+    "category": "B",
+    "title": "LRU eviction: query calls it evictOldest",
+    "language": "Python",
+    "code": "def evict_oldest(cache: dict, max_size: int) -> None:\n    while len(cache) > max_size:\n        oldest_key = next(iter(cache))\n        del cache[oldest_key]"
+  },
+  {
+    "id": "B5",
+    "category": "B",
+    "title": "Rate-limit gate: query says isRateLimited",
+    "language": "PHP",
+    "code": "public function isRateLimited(string $action, UserIdentity $user): bool {\n    $key = $this->makeKey($action, $user->getId());\n    $count = $this->cache->get($key) ?? 0;\n    return $count >= ($this->limits[$action] ?? PHP_INT_MAX);\n}"
+  },
+  {
+    "id": "B6",
+    "category": "B",
+    "title": "Error normaliser: query calls it toError",
+    "language": "TypeScript",
+    "code": "function toError(value: unknown): Error {\n    if (value instanceof Error) return value;\n    if (typeof value === 'string') return new Error(value);\n    return new Error(JSON.stringify(value));\n}"
+  },
+  {
+    "id": "B7",
+    "category": "B",
+    "title": "URL slug: query calls it make\\_slug",
+    "language": "Python",
+    "code": "def make_slug(title: str) -> str:\n    slug = title.lower().strip()\n    slug = re.sub(r'[^\\w\\s-]', '', slug)\n    slug = re.sub(r'[\\s_-]+', '-', slug)\n    return slug.strip('-')"
+  },
+  {
+    "id": "B8",
+    "category": "B",
+    "title": "CAPTCHA verify: different field names",
+    "language": "PHP",
+    "code": "public function verifyCaptcha(string $token,\n                              string $userAnswer): bool {\n    $expected = $this->store->get($token);\n    if ($expected === null) return false;\n    $this->store->delete($token);\n    return hash_equals($expected, strtolower(trim($userAnswer)));\n}"
+  },
+  {
+    "id": "B9",
+    "category": "B",
+    "title": "Worker pool: query calls it processWithPool",
+    "language": "Go",
+    "code": "func processWithPool(jobs []string, workers int,\n                     fn func(string) error) []error {\n    sem := make(chan struct{}, workers)\n    errs := make([]error, len(jobs))\n    var wg sync.WaitGroup\n    for i, job := range jobs {\n        wg.Add(1)\n        sem <- struct{}{}\n        go func(idx int, j string) {\n            defer func() { <-sem; wg.Done() }()\n            errs[idx] = fn(j)\n        }(i, job)\n    }\n    wg.Wait()\n    return errs\n}"
+  },
+  {
+    "id": "B10",
+    "category": "B",
+    "title": "Recursive category subtree: query calls it getDescendants",
+    "language": "PHP",
+    "code": "private function getDescendants(int $catId, int $depth = 0): array {\n    if ($depth > $this->maxDepth) return [];\n    $children = $this->db->selectFieldValues(\n        'categorylinks', 'cl_from',\n        ['cl_to' => $catId, 'cl_type' => 'subcat']\n    );\n    $result = $children;\n    foreach ($children as $child) {\n        $result = array_merge(\n            $result, $this->getDescendants($child, $depth + 1)\n        );\n    }\n    return $result;\n}"
+  },
+  {
+    "id": "B11",
+    "category": "B",
+    "title": "Paginated API fetch: query calls it fetch\\_all\\_pages",
+    "language": "Python",
+    "code": "def fetch_all_pages(endpoint, params, page_size=50):\n    results, offset = [], 0\n    while True:\n        params.update({'limit': page_size, 'offset': offset})\n        batch = requests.get(endpoint, params=params).json()\n        if not batch:\n            break\n        results.extend(batch)\n        offset += page_size\n    return results"
+  },
+  {
+    "id": "B12",
+    "category": "B",
+    "title": "HTTP retry on 5xx: query calls it doWithRetry",
+    "language": "Go",
+    "code": "func doWithRetry(client *http.Client, req *http.Request,\n                 maxRetries int) (*http.Response, error) {\n    var lastErr error\n    for i := 0; i < maxRetries; i++ {\n        resp, err := client.Do(req)\n        if err == nil && resp.StatusCode < 500 {\n            return resp, nil\n        }\n        lastErr = err\n        time.Sleep(time.Duration(i+1) * time.Second)\n    }\n    return nil, lastErr\n}"
+  },
+  {
+    "id": "C1",
+    "category": "C",
+    "title": "SHA-256 file hash",
+    "language": "PHP → Go / Python",
+    "code": "function computeFileHash(string $filepath): string {\n    return hash_file('sha256', $filepath);\n}"
+  },
+  {
+    "id": "C2",
+    "category": "C",
+    "title": "ISO-8601 date parsing",
+    "language": "Python → PHP / JavaScript",
+    "code": "def parse_iso_date(date_str: str) -> datetime:\n    return datetime.fromisoformat(\n        date_str.replace('Z', '+00:00')\n    )"
+  },
+  {
+    "id": "C3",
+    "category": "C",
+    "title": "Fan-out / parallel map",
+    "language": "Go → JavaScript Promise.all",
+    "code": "func fanOut(inputs []string,\n            process func(string) (string, error)) ([]string, error) {\n    results := make([]string, len(inputs))\n    var wg sync.WaitGroup\n    errCh := make(chan error, len(inputs))\n    for i, inp := range inputs {\n        wg.Add(1)\n        go func(idx int, s string) {\n            defer wg.Done()\n            r, err := process(s)\n            if err != nil { errCh <- err; return }\n            results[idx] = r\n        }(i, inp)\n    }\n    wg.Wait()\n    close(errCh)\n    if err := <-errCh; err != nil { return nil, err }\n    return results, nil\n}"
+  },
+  {
+    "id": "C4",
+    "category": "C",
+    "title": "Throttle / call-rate limiter",
+    "language": "TypeScript → PHP",
+    "code": "function throttle<T extends (...args: unknown[]) => void>(\n    fn: T, limitMs: number\n): T {\n    let lastCall = 0;\n    return function (...args) {\n        const now = Date.now();\n        if (now - lastCall >= limitMs) {\n            lastCall = now;\n            fn(...args);\n        }\n    } as T;\n}"
+  },
+  {
+    "id": "C5",
+    "category": "C",
+    "title": "Recursive table/dict serialiser",
+    "language": "Lua → Python / PHP",
+    "code": "-- Lua\nlocal function serialize(val, indent)\n    indent = indent or 0\n    if type(val) == \"table\" then\n        local parts = {}\n        for k, v in pairs(val) do\n            parts[#parts+1] = string.rep(\"  \", indent+1)\n                .. tostring(k) .. \" = \" .. serialize(v, indent+1)\n        end\n        return \"{\\n\" .. table.concat(parts, \",\\n\")\n            .. \"\\n\" .. string.rep(\"  \", indent) .. \"}\"\n    end\n    return tostring(val)\nend"
+  },
+  {
+    "id": "C6",
+    "category": "C",
+    "title": "Wikidata SPARQL query runner",
+    "language": "Python → PHP / JavaScript",
+    "code": "def run_sparql(query: str,\n               endpoint: str = 'https://query.wikidata.org/sparql'\n              ) -> list:\n    resp = requests.get(\n        endpoint,\n        params={'query': query, 'format': 'json'},\n        headers={'User-Agent': 'EvalBot/1.0'}\n    )\n    resp.raise_for_status()\n    return resp.json()['results']['bindings']"
+  },
+  {
+    "id": "D1",
+    "category": "D",
+    "title": "Wikitext internal link extractor",
+    "language": "PHP",
+    "code": "public function extractWikiLinks(string $wikitext): array {\n    $links = [];\n    if (preg_match_all(\n            '/\\[\\[([^|\\]]+)(?:\\|[^\\]]+)?\\]\\]/', $wikitext, $m)) {\n        foreach ($m[1] as $target) {\n            $links[] = Title::newFromText(trim($target));\n        }\n    }\n    return array_filter($links);\n}"
+  },
+  {
+    "id": "D2",
+    "category": "D",
+    "title": "Git-compatible SHA-1 / SWHID computation",
+    "language": "Python",
+    "code": "def compute_swhid(content: bytes) -> str:\n    sha1 = hashlib.new('sha1')\n    header = f\"blob {len(content)}\\0\".encode()\n    sha1.update(header + content)\n    return f\"swh:1:cnt:{sha1.hexdigest()}\""
+  },
+  {
+    "id": "D3",
+    "category": "D",
+    "title": "IRC message line parser",
+    "language": "Python",
+    "code": "def parse_irc_message(raw: str) -> dict:\n    prefix, command, params = None, None, []\n    if raw.startswith(':'):\n        prefix, raw = raw[1:].split(' ', 1)\n    parts = raw.split(' ', 1)\n    command = parts[0]\n    if len(parts) > 1:\n        ti = parts[1].find(' :')\n        if ti >= 0:\n            params = parts[1][:ti].split()\n            params.append(parts[1][ti+2:])\n        else:\n            params = parts[1].split()\n    return {'prefix': prefix, 'command': command, 'params': params}"
+  },
+  {
+    "id": "D4",
+    "category": "D",
+    "title": "MediaWiki hook dispatcher",
+    "language": "PHP",
+    "code": "public function run(string $hook, array $args = []): bool {\n    foreach ($this->getHandlers($hook) as $handler) {\n        $ret = $handler(...$args);\n        if ($ret === false) {\n            return false;\n        }\n    }\n    return true;\n}"
+  },
+  {
+    "id": "D5",
+    "category": "D",
+    "title": "Bloom filter membership check",
+    "language": "Go",
+    "code": "func (f *BloomFilter) Contains(item []byte) bool {\n    for _, h := range f.hashFunctions(item) {\n        idx := h % uint64(len(f.bits))\n        if f.bits[idx/8]&(1<<(idx%8)) == 0 {\n            return false\n        }\n    }\n    return true\n}"
+  }
+]

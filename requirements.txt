@@ -49,3 +49,5 @@ gunicorn
 pygments
 pytest
 pytest-asyncio
+rank-bm25
+

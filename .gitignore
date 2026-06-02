@@ -51,3 +51,7 @@ tmp
 node_modules/
 frontend/js/app.js
 
+# BM25 Baseline Index Cache
+backend/bm25_index.pkl
+
+
