@@ -50,5 +50,7 @@
     "footer_section_resources": "ସମ୍ପଦ",
     "footer_section_source": "ଉତ୍ସ ଏବଂ ସମର୍ଥନ",
     "footer_section_status": "ଲାଇସେନ୍ସ ଏବଂ ସ୍ଥିତି",
-    "footer_release_date": "ରିଲିଜ୍ ତାରିଖ:"
+    "footer_release_date": "ରିଲିଜ୍ ତାରିଖ:",
+    "example_queries_label": "ମୂଲ୍ୟାଙ୍କନ ପ୍ରଶ୍ନର ଏକ ଉଦାহରଣ ଚେଷ୍ଟာ କରନ୍ତু",
+    "example_queries_placeholder": "-- ମୂଲ୍ୟାଙ୍କନ ପ୍ରଶ୍ନ ଚୟନ କରନ୍ତୁ --"
 }

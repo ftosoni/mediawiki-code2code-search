@@ -50,5 +50,7 @@
     "footer_section_resources": "ਸੰਸਾਧਨ",
     "footer_section_source": "ਸਰੋਤ ਅਤੇ ਸਮਰਥਨ",
     "footer_section_status": "ਲਾਇਸੈਂਸ ਅਤੇ ਸਥਿਤੀ",
-    "footer_release_date": "ਜਾਰੀ ਕਰਨ ਦੀ ਮਿਤੀ:"
+    "footer_release_date": "ਜਾਰੀ ਕਰਨ ਦੀ ਮਿਤੀ:",
+    "example_queries_label": "ਮੁਲਾਂਕਣ ਪੁੱਛਗਿੱਛ ਦੀ ਉਦਾਹরਣ ਵੇਖੋ",
+    "example_queries_placeholder": "-- ਮੁਲਾਂਕਣ ਪੁੱਛਗਿੱਛ ਦੀ ਚੋਣ ਕਰੋ --"
 }

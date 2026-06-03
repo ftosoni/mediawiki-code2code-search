@@ -51,5 +51,7 @@
     "footer_section_resources": "Risorse",
     "footer_section_source": "Sorgente e Supporto",
     "footer_section_status": "Licenza e Stato",
-    "footer_release_date": "Data di rilascio:"
+    "footer_release_date": "Data di rilascio:",
+    "example_queries_label": "Prova una query di valutazione di esempio",
+    "example_queries_placeholder": "-- Seleziona una query di valutazione --"
 }

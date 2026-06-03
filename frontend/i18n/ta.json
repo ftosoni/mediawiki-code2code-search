@@ -50,5 +50,7 @@
     "footer_section_resources": "வளங்கள்",
     "footer_section_source": "மூலம் & ஆதரவு",
     "footer_section_status": "உரிமம் & நிலை",
-    "footer_release_date": "வெளியீட்டு தேதி:"
+    "footer_release_date": "வெளியீட்டு தேதி:",
+    "example_queries_label": "மதிப்பீட்டுக் குறியீடு உதாரணத்தை முயற்சிக்கவும்",
+    "example_queries_placeholder": "-- மதிப்பீட்டுக் குறியீட்டைத் தேர்ந்தெடுக்கவும் --"
 }

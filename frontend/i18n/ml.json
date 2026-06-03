@@ -50,5 +50,7 @@
     "footer_section_resources": "വിഭവങ്ങൾ",
     "footer_section_source": "ഉറവിടവും പിന്തുണയും",
     "footer_section_status": "ലൈസൻസും നിലയും",
-    "footer_release_date": "റിലീസ് തീയതി:"
+    "footer_release_date": "റിലീസ് തീയതി:",
+    "example_queries_label": "ഒരു മൂല്യനിർണ്ണയ അന്വേഷണ ഉദാഹരണം പരീക്ഷിക്കുക",
+    "example_queries_placeholder": "-- ഒരു മൂല്യനിർണ്ണയ അന്വേഷണം തിരഞ്ഞെടുക്കുക --"
 }

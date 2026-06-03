@@ -50,5 +50,7 @@
     "footer_section_resources": "संसाधने",
     "footer_section_source": "स्रोत आणि समर्थन",
     "footer_section_status": "परवाना आणि स्थिती",
-    "footer_release_date": "प्रकाशन तारीख:"
+    "footer_release_date": "प्रकाशन तारीख:",
+    "example_queries_label": "मूल्यांकन क्वेरीचे उदाहरण पहा",
+    "example_queries_placeholder": "-- मूल्यांकन क्वेरी निवडा --"
 }

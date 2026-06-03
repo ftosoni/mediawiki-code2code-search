@@ -11,6 +11,7 @@ import json
 DEFAULT_URL = "https://code2codesearch.toolforge.org/search"
 DEFAULT_RUNS = 7
 DEFAULT_PLOT_PATH = "latency_boxplot.png"
+DEFAULT_TIKZ_PATH = "latency_boxplot.tex"
 
 def parse_queries(tex_path):
     """Parse queries and their titles from evaluation_queries.tex."""
@@ -293,11 +294,119 @@ def generate_boxplot(results, plot_path):
     plt.close()
     print("Boxplot successfully saved.")
 
+def generate_tikz_boxplot(results, tikz_path):
+    """Generate a TikZ/pgfplots box-and-whisker plot for latencies."""
+    print(f"Generating TikZ boxplot at: {tikz_path}...")
+    
+    # Sort queries by median latency (ascending) for better visualization
+    sorted_items = sorted(results.items(), key=lambda x: x[1]["median"])
+    
+    # We only want the QID (like A1, B2) as the label on y-axis
+    labels = [item[0] for item in sorted_items]
+    
+    def get_percentile(data, percentile):
+        if not data:
+            return 0.0
+        sorted_data = sorted(data)
+        n = len(sorted_data)
+        p = percentile / 100.0
+        idx = p * (n - 1)
+        idx_floor = int(idx)
+        idx_ceil = min(n - 1, idx_floor + 1)
+        weight = idx - idx_floor
+        return sorted_data[idx_floor] * (1.0 - weight) + sorted_data[idx_ceil] * weight
+
+    plots_code = []
+    for idx, (qid, stats) in enumerate(sorted_items, 1):
+        latencies = stats["latencies"]
+        sorted_lat = sorted(latencies)
+        
+        # Calculate stats
+        q1 = get_percentile(sorted_lat, 25)
+        median = get_percentile(sorted_lat, 50)
+        q3 = get_percentile(sorted_lat, 75)
+        iqr = q3 - q1
+        
+        lower_fence = q1 - 1.5 * iqr
+        upper_fence = q3 + 1.5 * iqr
+        
+        lower_whisker = min([x for x in sorted_lat if x >= lower_fence], default=sorted_lat[0])
+        upper_whisker = max([x for x in sorted_lat if x <= upper_fence], default=sorted_lat[-1])
+        
+        outliers = [x for x in sorted_lat if x < lower_whisker or x > upper_whisker]
+        outliers_coord = " ".join(f"({val:.2f}, {idx})" for val in outliers)
+        
+        plots_code.append(f"""    \\addplot+ [
+        box plot width=0.6,
+        boxplot prepared={{
+            draw direction=x,
+            draw position={idx},
+            lower whisker={lower_whisker:.2f},
+            lower quartile={q1:.2f},
+            median={median:.2f},
+            upper quartile={q3:.2f},
+            upper whisker={upper_whisker:.2f}
+        }}
+    ] coordinates {{{outliers_coord}}};""")
+
+    # Generate standalone TikZ document
+    yticklabels_str = ",\n        ".join(labels)
+    yticks_str = ",".join(str(i) for i in range(1, len(labels) + 1))
+    plots_code_str = "\n".join(plots_code)
+    
+    tikz_content = f"""\\documentclass{{standalone}}
+\\usepackage{{tikz}}
+\\usepackage{{pgfplots}}
+\\pgfplotsset{{compat=1.18}}
+\\usepgfplotslibrary{{statistics}}
+
+% Custom styling to match branding
+\\definecolor{{brandblue}}{{HTML}}{{3366CC}}
+\\definecolor{{lightblue}}{{HTML}}{{EAF3FF}}
+\\definecolor{{darkblue}}{{HTML}}{{2A55A3}}
+\\definecolor{{grayborder}}{{HTML}}{{A2A9B1}}
+\\definecolor{{outlierred}}{{HTML}}{{B32424}}
+\\definecolor{{outlierbg}}{{HTML}}{{FEE7E6}}
+
+\\begin{{document}}
+\\begin{{tikzpicture}}
+\\begin{{axis}}[
+    title={{\\textbf{{API Latency Distribution per Evaluation Query}}}},
+    xlabel={{Latency (milliseconds)}},
+    ylabel={{Evaluation Queries}},
+    ytick={{{yticks_str}}},
+    yticklabels={{
+        {yticklabels_str}
+    }},
+    yticklabel style={{font=\\small}},
+    width=12cm,
+    height=16cm,
+    xmin=0,
+    grid=both,
+    grid style={{line width=.1pt, draw=gray!20}},
+    major grid style={{line width=.2pt, draw=gray!40}},
+    cycle list={{
+        {{draw=brandblue, fill=lightblue, mark=*, mark options={{fill=outlierbg, draw=outlierred, mark size=1.5pt}}}}\\\\
+    }}
+]
+{plots_code_str}
+\\end{{axis}}
+\\end{{tikzpicture}}
+\\end{{document}}
+"""
+    try:
+        with open(tikz_path, "w", encoding="utf-8") as f:
+            f.write(tikz_content)
+        print(f"TikZ boxplot successfully saved to {tikz_path}.")
+    except Exception as e:
+        print(f"Error saving TikZ boxplot: {e}")
+
 def main():
     parser = argparse.ArgumentParser(description="MediaWiki Code2Code Search Latency Benchmark")
     parser.add_argument("--url", default=DEFAULT_URL, help=f"Target API search endpoint (default: {DEFAULT_URL})")
     parser.add_argument("--runs", type=int, default=DEFAULT_RUNS, help=f"Number of repetitions per query (default: {DEFAULT_RUNS})")
     parser.add_argument("--plot", default=DEFAULT_PLOT_PATH, help=f"Output file path for the boxplot chart (default: {DEFAULT_PLOT_PATH})")
+    parser.add_argument("--tikz", default=DEFAULT_TIKZ_PATH, help=f"Output file path for the TikZ LaTeX chart (default: {DEFAULT_TIKZ_PATH})")
     parser.add_argument("--queries-json", default=None, help="Path to evaluation queries JSON file")
     parser.add_argument("--tex-path", default=None, help="Path to evaluation queries LaTeX file")
     parser.add_argument("--save-results", default=None, help="Path to save evaluation results JSON")
@@ -349,6 +458,7 @@ def main():
     # Print summary and save plot
     print_summary_table(results)
     generate_boxplot(results, args.plot)
+    generate_tikz_boxplot(results, args.tikz)
 
 if __name__ == "__main__":
     main()

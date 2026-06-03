@@ -61,5 +61,7 @@
     "footer_section_resources": "Resources",
     "footer_section_source": "Source & Support",
     "footer_section_status": "Licence & Status",
-    "footer_release_date": "Release date:"
+    "footer_release_date": "Release date:",
+    "example_queries_label": "Try an evaluation query example",
+    "example_queries_placeholder": "-- Select an evaluation query --"
 }

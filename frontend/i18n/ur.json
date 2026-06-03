@@ -50,5 +50,7 @@
     "footer_section_resources": "وسائل",
     "footer_section_source": "ماخذ اور تعاون",
     "footer_section_status": "لائسنس اور حیثیت",
-    "footer_release_date": "تاریخ اشاعت:"
+    "footer_release_date": "تاریخ اشاعت:",
+    "example_queries_label": "تشخیص سوال کی مثال آزمائیں",
+    "example_queries_placeholder": "-- تشخیص سوال منتخب کریں --"
 }

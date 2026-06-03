@@ -50,5 +50,7 @@
     "footer_section_resources": "ಸಂಪನ್ಮೂಲಗಳು",
     "footer_section_source": "ಮೂಲ ಮತ್ತು ಬೆಂಬಲ",
     "footer_section_status": "ಪರವಾನಗಿ ಮತ್ತು ಸ್ಥಿತಿ",
-    "footer_release_date": "ಬಿಡುగಡೆ ದಿನಾಂಕ:"
+    "footer_release_date": "ಬಿಡುగಡೆ ದಿನಾಂಕ:",
+    "example_queries_label": "ಮೌಲ್ಯಮಾಪನ ಪ್ರಶ್ನೆಯ ಉದಾಹರಣೆಯನ್ನು ప్రయత్ಿಸಿ",
+    "example_queries_placeholder": "-- ಮೌಲ್ಯಮಾపನ ಪ್ರಶ್ನೆಯನ್ನು ఆರಿಸಿ --"
 }

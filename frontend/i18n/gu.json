@@ -50,5 +50,7 @@
     "footer_section_resources": "સંસાધનો",
     "footer_section_source": "સ્ત્રોત અને સમર્થન",
     "footer_section_status": "લાયસન્સ અને સ્થિતિ",
-    "footer_release_date": "પ્રકાશન તારીખ:"
+    "footer_release_date": "પ્રકાશન તારીખ:",
+    "example_queries_label": "મૂલ્યાંકন ક્વેરી ઉદાહરણ અજમાવો",
+    "example_queries_placeholder": "-- મૂલ્યાંકન ક્વેરી પસંદ કરો --"
 }

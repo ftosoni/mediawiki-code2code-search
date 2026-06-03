@@ -50,5 +50,7 @@
     "footer_section_resources": "সম্পদ",
     "footer_section_source": "উৎস এবং সমর্থন",
     "footer_section_status": "লাইসেন্স এবং স্থিতি",
-    "footer_release_date": "প্রকাশের তারিখ:"
+    "footer_release_date": "প্রকাশের তারিখ:",
+    "example_queries_label": "মূল্যায়ন কোয়েরি উদাহরণ চেষ্টা করুন",
+    "example_queries_placeholder": "-- একটি মূল্যায়ন কোয়েরি নির্বাচন করুন --"
 }

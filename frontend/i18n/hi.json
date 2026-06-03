@@ -50,5 +50,7 @@
     "footer_section_resources": "संसाधन",
     "footer_section_source": "स्रोत और समर्थन",
     "footer_section_status": "लाइसेंस और स्थिति",
-    "footer_release_date": "रिलीज़ की तारीख:"
+    "footer_release_date": "रिलीज़ की तारीख:",
+    "example_queries_label": "मूल्यांकन क्वेरी उदाहरण आज़माएं",
+    "example_queries_placeholder": "-- मूल्यांकन क्वेरी चुनें --"
 }

@@ -50,5 +50,7 @@
     "footer_section_resources": "వనరులు",
     "footer_section_source": "మూలం & మద్దతు",
     "footer_section_status": "లైసెన్స్ & స్థితి",
-    "footer_release_date": "ವಿಡುదల తేదీ:"
+    "footer_release_date": "ವಿಡುదల తేదీ:",
+    "example_queries_label": "మూల్యాంకన క్వెరీ ఉదాహరణను ప్రయత్నించండి",
+    "example_queries_placeholder": "-- మూల్యాంకన క్వెరీని ఎంచుకోండి --"
 }

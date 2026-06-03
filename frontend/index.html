@@ -160,6 +160,49 @@
   return gcd(b,a%b)"></textarea>
                 </div>
 
+                <div class="cdx-field examples-field">
+                    <label class="cdx-label" for="example-queries">Try an evaluation query example</label>
+                    <select id="example-queries" class="cdx-select">
+                        <option value="" selected>-- Select an evaluation query --</option>
+                        <optgroup label="Category A: Basic Algorithmic Tasks">
+                            <option value="A1">A1 - Greatest common divisor (Python)</option>
+                            <option value="A2">A2 - Binary search (JavaScript)</option>
+                            <option value="A3">A3 - String truncation with ellipsis (PHP)</option>
+                            <option value="A4">A4 - JSON encode with error forwarding (Go)</option>
+                            <option value="A5">A5 - Retry with exponential back-off (Python)</option>
+                        </optgroup>
+                        <optgroup label="Category B: MediaWiki-like Tasks / Libraries">
+                            <option value="B1">B1 - Permission check: canUserEdit (PHP)</option>
+                            <option value="B2">B2 - Debounce: delayExecution (JavaScript)</option>
+                            <option value="B3">B3 - Session invalidation (PHP)</option>
+                            <option value="B4">B4 - LRU eviction: evictOldest (Python)</option>
+                            <option value="B5">B5 - Rate-limit gate: isRateLimited (PHP)</option>
+                            <option value="B6">B6 - Error normaliser: toError (TypeScript)</option>
+                            <option value="B7">B7 - URL slug: make_slug (Python)</option>
+                            <option value="B8">B8 - CAPTCHA verify (PHP)</option>
+                            <option value="B9">B9 - Worker pool: processWithPool (Go)</option>
+                            <option value="B10">B10 - Recursive category subtree: getDescendants (PHP)</option>
+                            <option value="B11">B11 - Paginated API fetch: fetch_all_pages (Python)</option>
+                            <option value="B12">B12 - HTTP retry on 5xx (Go)</option>
+                        </optgroup>
+                        <optgroup label="Category C: Cross-Language Porting Tasks">
+                            <option value="C1">C1 - SHA-256 file hash (PHP → Go / Python)</option>
+                            <option value="C2">C2 - ISO-8601 date parsing (Python → PHP / JavaScript)</option>
+                            <option value="C3">C3 - Fan-out / parallel map (Go → JS Promise.all)</option>
+                            <option value="C4">C4 - Throttle / call-rate limiter (TypeScript → PHP)</option>
+                            <option value="C5">C5 - Recursive table/dict serialiser (Lua → Python / PHP)</option>
+                            <option value="C6">C6 - Wikidata SPARQL query runner (Python → PHP / JS)</option>
+                        </optgroup>
+                        <optgroup label="Category D: MediaWiki Core / Extension Domain-Specific Tasks">
+                            <option value="D1">D1 - Wikitext internal link extractor (PHP)</option>
+                            <option value="D2">D2 - Git-compatible SHA-1 / SWHID computation (Python)</option>
+                            <option value="D3">D3 - IRC message line parser (Python)</option>
+                            <option value="D4">D4 - MediaWiki hook dispatcher (PHP)</option>
+                            <option value="D5">D5 - Bloom filter membership check (Go)</option>
+                        </optgroup>
+                    </select>
+                </div>
+
                 <div class="filters-container">
                     <div class="filter-group" id="filter-repos">
                         <h3 class="filter-label">Repository groups</h3>

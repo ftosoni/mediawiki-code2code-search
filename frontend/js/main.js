@@ -27,6 +27,37 @@ const CONFIG = {
     defaultLang: 'en'
 };
 
+const EVAL_QUERIES = {
+    A1: { code: "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a", lang: "Python" },
+    A2: { code: "function binarySearch(arr, target) {\n    let lo = 0, hi = arr.length - 1;\n    while (lo <= hi) {\n        const mid = (lo + hi) >> 1;\n        if (arr[mid] === target) return mid;\n        if (arr[mid] < target) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    return -1;\n}", lang: "JavaScript" },
+    A3: { code: "function truncateString(string $str, int $maxLen,\n                        string $ellipsis = '...'): string {\n    if (mb_strlen($str) <= $maxLen) {\n        return $str;\n    }\n    return mb_substr($str, 0, $maxLen - mb_strlen($ellipsis)) . $ellipsis;\n}", lang: "PHP" },
+    A4: { code: "func encodeJSON(v interface{}) ([]byte, error) {\n    data, err := json.Marshal(v)\n    if err != nil {\n        return nil, fmt.Errorf(\"json encode: %w\", err)\n    }\n    return data, nil\n}", lang: "Go" },
+    A5: { code: "def retry(func, max_attempts=3, base_delay=1.0):\n    for attempt in range(max_attempts):\n        try:\n            return func()\n        except Exception:\n            if attempt == max_attempts - 1:\n                raise\n            time.sleep(base_delay * (2 ** attempt))", lang: "Python" },
+    B1: { code: "public function canUserEdit(User $user, Title $title): bool {\n    return $user->isAllowed('edit')\n        && !$title->isProtected('edit');\n}", lang: "PHP" },
+    B2: { code: "function delayExecution(fn, waitMs) {\n    let timer;\n    return function (...args) {\n        clearTimeout(timer);\n        timer = setTimeout(() => fn.apply(this, args), waitMs);\n    };\n}", lang: "JavaScript" },
+    B3: { code: "public function invalidateUserSession(User $user): void {\n    $user->setToken();\n    $user->saveSettings();\n    SessionManager::singleton()->invalidateSessionsForUser($user);\n}", lang: "PHP" },
+    B4: { code: "def evict_oldest(cache: dict, max_size: int) -> None:\n    while len(cache) > max_size:\n        oldest_key = next(iter(cache))\n        del cache[oldest_key]", lang: "Python" },
+    B5: { code: "public function isRateLimited(string $action, UserIdentity $user): bool {\n    $key = $this->makeKey($action, $user->getId());\n    $count = $this->cache->get($key) ?? 0;\n    return $count >= ($this->limits[$action] ?? PHP_INT_MAX);\n}", lang: "PHP" },
+    B6: { code: "function toError(value: unknown): Error {\n    if (value instanceof Error) return value;\n    if (typeof value === 'string') return new Error(value);\n    return new Error(JSON.stringify(value));\n}", lang: "TypeScript" },
+    B7: { code: "def make_slug(title: str) -> str:\n    slug = title.lower().strip()\n    slug = re.sub(r'[^\\w\\s-]', '', slug)\n    slug = re.sub(r'[\\s_-]+', '-', slug)\n    return slug.strip('-')", lang: "Python" },
+    B8: { code: "public function verifyCaptcha(string $token,\n                              string $userAnswer): bool {\n    $expected = $this->store->get($token);\n    if ($expected === null) return false;\n    $this->store->delete($token);\n    return hash_equals($expected, strtolower(trim($userAnswer)));\n}", lang: "PHP" },
+    B9: { code: "func processWithPool(jobs []string, workers int,\n                     fn func(string) error) []error {\n    sem := make(chan struct{}, workers)\n    errs := make([]error, len(jobs))\n    var wg sync.WaitGroup\n    for i, job := range jobs {\n        wg.Add(1)\n        sem <- struct{}{}\n        go func(idx int, j string) {\n            defer func() { <-sem; wg.Done() }()\n            errs[idx] = fn(j)\n        }(i, job)\n    }\n    wg.Wait()\n    return errs\n}", lang: "Go" },
+    B10: { code: "private function getDescendants(int $catId, int $depth = 0): array {\n    if ($depth > $this->maxDepth) return [];\n    $children = $this->db->selectFieldValues(\n        'categorylinks', 'cl_from',\n        ['cl_to' => $catId, 'cl_type' => 'subcat']\n    );\n    $result = $children;\n    foreach ($children as $child) {\n        $result = array_merge(\n            $result, $this->getDescendants($child, $depth + 1)\n        );\n    }\n    return $result;\n}", lang: "PHP" },
+    B11: { code: "def fetch_all_pages(endpoint, params, page_size=50):\n    results, offset = [], 0\n    while True:\n        params.update({'limit': page_size, 'offset': offset})\n        batch = requests.get(endpoint, params=params).json()\n        if not batch:\n            break\n        results.extend(batch)\n        offset += page_size\n    return results", lang: "Python" },
+    B12: { code: "func doWithRetry(client *http.Client, req *http.Request,\n                 maxRetries int) (*http.Response, error) {\n    var lastErr error\n    for i := 0; i < maxRetries; i++ {\n        resp, err := client.Do(req)\n        if err == nil && resp.StatusCode < 500 {\n            return resp, nil\n        }\n        lastErr = err\n        time.Sleep(time.Duration(i+1) * time.Second)\n    }\n    return nil, lastErr\n}", lang: "Go" },
+    C1: { code: "function computeFileHash(string $filepath): string {\n    return hash_file('sha256', $filepath);\n}", lang: "PHP" },
+    C2: { code: "def parse_iso_date(date_str: str) -> datetime:\n    return datetime.fromisoformat(\n        date_str.replace('Z', '+00:00')\n    )", lang: "Python" },
+    C3: { code: "func fanOut(inputs []string,\n            process func(string) (string, error)) ([]string, error) {\n    results := make([]string, len(inputs))\n    var wg sync.WaitGroup\n    errCh := make(chan error, len(inputs))\n    for i, inp := range inputs {\n        wg.Add(1)\n        go func(idx int, s string) {\n            defer wg.Done()\n            r, err := process(s)\n            if err != nil { errCh <- err; return }\n            results[idx] = r\n        }(i, inp)\n    }\n    wg.Wait()\n    close(errCh)\n    if err := <-errCh; err != nil { return nil, err }\n    return results, nil\n}", lang: "Go" },
+    C4: { code: "function throttle<T extends (...args: unknown[]) => void>(\n    fn: T, limitMs: number\n): T {\n    let lastCall = 0;\n    return function (...args) {\n        const now = Date.now();\n        if (now - lastCall >= limitMs) {\n            lastCall = now;\n            fn(...args);\n        }\n    } as T;\n}", lang: "TypeScript" },
+    C5: { code: "-- Lua\nlocal function serialize(val, indent)\n    indent = indent or 0\n    if type(val) == \"table\" then\n        local parts = {}\n        for k, v in pairs(val) do\n            parts[#parts+1] = string.rep(\"  \", indent+1)\n                .. tostring(k) .. \" = \" .. serialize(v, indent+1)\n        end\n        return \"{\\n\" .. table.concat(parts, \",\\n\")\n            .. \"\\n\" .. string.rep(\"  \", indent) .. \"}\"\n    end\n    return tostring(val)\nend", lang: "Lua" },
+    C6: { code: "def run_sparql(query: str,\n               endpoint: str = 'https://query.wikidata.org/sparql'\n              ) -> list:\n    resp = requests.get(\n        endpoint,\n        params={'query': query, 'format': 'json'},\n        headers={'User-Agent': 'EvalBot/1.0'}\n    )\n    resp.raise_for_status()\n    return resp.json()['results']['bindings']", lang: "Python" },
+    D1: { code: "public function extractWikiLinks(string $wikitext): array {\n    $links = [];\n    if (preg_match_all(\n            '/\\[\\[([^|\\]]+)(?:\\|[^\\]]+)?\\]\\]/', $wikitext, $m)) {\n        foreach ($m[1] as $target) {\n            $links[] = Title::newFromText(trim($target));\n        }\n    }\n    return array_filter($links);\n}", lang: "PHP" },
+    D2: { code: "def compute_swhid(content: bytes) -> str:\n    sha1 = hashlib.new('sha1')\n    header = f\"blob {len(content)}\\0\".encode()\n    sha1.update(header + content)\n    return f\"swh:1:cnt:{sha1.hexdigest()}\"", lang: "Python" },
+    D3: { code: "def parse_irc_message(raw: str) -> dict:\n    prefix, command, params = None, None, []\n    if raw.startswith(':'):\n        prefix, raw = raw[1:].split(' ', 1)\n    parts = raw.split(' ', 1)\n    command = parts[0]\n    if len(parts) > 1:\n        ti = parts[1].find(' :')\n        if ti >= 0:\n            params = parts[1][:ti].split()\n            params.append(parts[1][ti+2:])\n        else:\n            params = parts[1].split()\n    return {'prefix': prefix, 'command': command, 'params': params}", lang: "Python" },
+    D4: { code: "public function run(string $hook, array $args = []): bool {\n    foreach ($this->getHandlers($hook) as $handler) {\n        $ret = $handler(...$args);\n        if ($ret === false) {\n            return false;\n        }\n    }\n    return true;\n}", lang: "PHP" },
+    D5: { code: "func (f *BloomFilter) Contains(item []byte) bool {\n    for _, h := range f.hashFunctions(item) {\n        idx := h % uint64(len(f.bits))\n        if f.bits[idx/8]&(1<<(idx%8)) == 0 {\n            return false\n        }\n    }\n    return true\n}", lang: "Go" }
+};
+
 let currentLang = localStorage.getItem('code2code_lang') || CONFIG.defaultLang;
 let i18nData = {};
 let activeFilters = {
@@ -65,6 +96,37 @@ function setupEventListeners() {
     document.getElementById('search-query').addEventListener('keydown', (e) => {
         if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
             performSearch();
+        }
+    });
+
+    // Examples selector
+    document.getElementById('example-queries').addEventListener('change', (e) => {
+        const qid = e.target.value;
+        if (qid && EVAL_QUERIES[qid]) {
+            const queryData = EVAL_QUERIES[qid];
+            document.getElementById('search-query').value = queryData.code;
+
+            // Update language filter chip to match query language
+            const lang = queryData.lang;
+            const langContainer = document.getElementById('filter-langs');
+            const chips = langContainer.querySelectorAll('.cdx-button');
+            chips.forEach(c => c.classList.remove('active'));
+
+            const supportedLangs = ['Python', 'C++', 'C', 'PHP', 'JavaScript', 'TypeScript', 'Lua', 'Go', 'Java', 'Rust', 'Ruby', 'Perl'];
+            if (supportedLangs.includes(lang)) {
+                const targetChip = langContainer.querySelector(`[data-value="${lang}"]`);
+                if (targetChip) {
+                    targetChip.classList.add('active');
+                    activeFilters.langs = [lang];
+                }
+            } else {
+                const allChip = langContainer.querySelector(`[data-value="all"]`);
+                if (allChip) {
+                    allChip.classList.add('active');
+                    activeFilters.langs = ['all'];
+                }
+            }
+            updateTemplateStatus();
         }
     });
 
@@ -170,6 +232,9 @@ function applyI18n() {
     document.querySelector('label[for="search-query"]').textContent = i18nData.search_label || 'Code snippet';
     document.getElementById('search-query').placeholder = i18nData.placeholder || 'def gcd(a,b) : ...';
     document.getElementById('btn-search').textContent = i18nData.btn_search || 'Search code';
+
+    document.querySelector('label[for="example-queries"]').textContent = i18nData.example_queries_label || 'Try an evaluation query example';
+    document.getElementById('example-queries').options[0].textContent = i18nData.example_queries_placeholder || '-- Select an evaluation query --';
 
     // Filters Labels
     document.querySelector('#filter-repos .filter-label').textContent = i18nData.group_label || 'Repository groups';
