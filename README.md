@@ -195,7 +195,7 @@ toolforge webservice logs -f
   <a href="./LICENSE.md"><img src="https://img.shields.io/github/license/ftosoni/mediawiki-code2code-search?style=flat-square" alt="License"></a>
   <a href="https://www.python.org/dev/peps/pep-0008/"><img src="https://img.shields.io/badge/code%20style-pep8-orange.svg?style=flat-square" alt="Code Style: PEP8"></a>
   <a href="https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search"><img src="https://archive.softwareheritage.org/badge/origin/https://github.com/ftosoni/mediawiki-code2code-search/" alt="SWH Origin"></a>
-  <a href="https://archive.softwareheritage.org/swh:1:dir:fe86b58fb35118c474fce8f7a38b4bc541440653;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:0925f0ac8b48e9b46b741090d50781140d1e037b;anchor=swh:1:rev:fcfcb6a6bff6534ce0a7203d1553219b5947504a"><img src="https://archive.softwareheritage.org/badge/swh:1:dir:fe86b58fb35118c474fce8f7a38b4bc541440653/" alt="SWH Directory"></a>
+  <a href="https://archive.softwareheritage.org/swh:1:dir:fe86b58fb35118c474fce8f7a38b4bc541440653;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:0925f0ac8b48e9b46b741090d50781140d1e037b;anchor=swh:1:rev:fcfcb6a6bff6534ce0a7203d1553219b5947504a"><img src="https://archive.softwareheritage.org/badge/swh:1:dir:c30104117db9bb6a8e488e698173fa2b302cbffc/" alt="SWH Directory"></a>
 </p>
 
 <p align="left">
