@@ -102,7 +102,8 @@
     <!-- ── Header ─────────────────────────────────────────── -->
     <header class="app-header" role="banner">
         <a href="/" class="app-header__brand" aria-label="MediaWiki Code2Code Search — home">
-            <img src="assets/branding/favicon.svg" alt="" class="app-header__brand-icon" style="background: transparent;" aria-hidden="true" />
+            <img src="assets/branding/favicon.svg" alt="" class="app-header__brand-icon"
+                style="background: transparent;" aria-hidden="true" />
             <span class="app-header__title">Code2Code Search</span>
         </a>
         <nav class="app-header__actions" aria-label="App actions">
@@ -311,65 +312,99 @@
     </main>
 
     <!-- ── Footer ─────────────────────────────────────────── -->
-    <footer class="app-footer" role="contentinfo" style="background-color: #ffffff; border-top: 1px solid #c8ccd1; padding: 40px 24px; margin-top: auto; font-family: 'Ubuntu', sans-serif;">
-        <div class="app-footer__inner" style="max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px 24px;">
-            
+    <footer class="app-footer" role="contentinfo"
+        style="background-color: #ffffff; border-top: 1px solid #c8ccd1; padding: 40px 24px; margin-top: auto; font-family: 'Ubuntu', sans-serif;">
+        <div class="app-footer__inner"
+            style="max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px 24px;">
+
             <!-- Column 1: Credits & Project -->
             <div class="footer-section" style="display: flex; flex-direction: column; gap: 12px;">
-                <h4 id="footer-title-credits" style="font-size: 0.75rem; font-weight: 700; color: #54595d; text-transform: uppercase; margin: 0; letter-spacing: 0.06em;">Credits & Project</h4>
+                <h4 id="footer-title-credits"
+                    style="font-size: 0.75rem; font-weight: 700; color: #54595d; text-transform: uppercase; margin: 0; letter-spacing: 0.06em;">
+                    Credits & Project</h4>
                 <div id="footer-dev" style="font-size: 0.8125rem; line-height: 1.5; color: #202122;">
-                    Developed by:&nbsp;<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/User:Super_nabla" target="_blank" rel="noopener noreferrer">Super nabla 🪰</a>
-                    &nbsp;(<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/Indic_MediaWiki_Developers_User_Group" target="_blank" rel="noopener noreferrer">Indic MediaWiki Developers UG</a>)
+                    Developed by:&nbsp;<a href="https://meta.wikimedia.org/wiki/Special:MyLanguage/User:Super_nabla"
+                        target="_blank" rel="noopener noreferrer">Super nabla 🪰</a>
+                    &nbsp;(<a
+                        href="https://meta.wikimedia.org/wiki/Special:MyLanguage/Indic_MediaWiki_Developers_User_Group"
+                        target="_blank" rel="noopener noreferrer">Indic MediaWiki Developers UG</a>)
                 </div>
                 <div id="footer-grant" style="font-size: 0.75rem; line-height: 1.5; color: #54595d;">
-                    Supported by the <a href="https://sloan.org/" target="_blank">Alfred P. Sloan Foundation</a> under grant <a href="https://sloan.org/grant-detail/g-2025-25193" target="_blank">G-2025-25193</a>
+                    Supported by the <a href="https://sloan.org/" target="_blank">Alfred P. Sloan Foundation</a> under
+                    grant <a href="https://sloan.org/grant-detail/g-2025-25193" target="_blank">G-2025-25193</a>
                 </div>
                 <div id="footer-qwen" style="font-size: 0.75rem; line-height: 1.5; color: #54595d;">
-                    Powered by <a href="https://huggingface.co/Qwen/Qwen3-Embedding-0.6B" target="_blank" rel="noopener noreferrer">Qwen</a>
+                    Powered by <a href="https://huggingface.co/Qwen/Qwen3-Embedding-0.6B" target="_blank"
+                        rel="noopener noreferrer">Qwen</a>
                 </div>
                 <div id="footer-swh-archive" style="font-size: 0.75rem; line-height: 1.5; color: #54595d;">
-                    Data archived by <a href="https://www.softwareheritage.org/" target="_blank" rel="noopener noreferrer">Software Heritage</a>
+                    Data archived by <a href="https://www.softwareheritage.org/" target="_blank"
+                        rel="noopener noreferrer">Software Heritage</a>
                 </div>
             </div>
 
             <!-- Column 2: Resources -->
             <div class="footer-section" style="display: flex; flex-direction: column; gap: 12px;">
-                <h4 id="footer-title-resources" style="font-size: 0.75rem; font-weight: 700; color: #54595d; text-transform: uppercase; margin: 0; letter-spacing: 0.06em;">Resources</h4>
+                <h4 id="footer-title-resources"
+                    style="font-size: 0.75rem; font-weight: 700; color: #54595d; text-transform: uppercase; margin: 0; letter-spacing: 0.06em;">
+                    Resources</h4>
                 <div id="footer-docs" style="font-size: 0.8125rem; color: #202122;">
-                    Documentation:&nbsp;<a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Code2Code_Search" target="_blank" rel="noopener noreferrer">MediaWiki</a>&nbsp;·&nbsp;<a href="/docs" target="_blank" rel="noopener noreferrer">API</a>
+                    Documentation:&nbsp;<a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Code2Code_Search"
+                        target="_blank" rel="noopener noreferrer">MediaWiki</a>&nbsp;·&nbsp;<a href="/docs"
+                        target="_blank" rel="noopener noreferrer">API</a>
                 </div>
                 <div>
-                    <a id="footer-presentation" href="https://commons.wikimedia.org/wiki/File:Mediawiki-code2codesearch-wmhackathon2026-slides.pdf" target="_blank" rel="noopener noreferrer" style="font-size: 0.8125rem; color: #3366cc; text-decoration: none;">Presentation</a>
+                    <a id="footer-presentation"
+                        href="https://commons.wikimedia.org/wiki/File:Mediawiki-code2codesearch-wmhackathon2026-slides.pdf"
+                        target="_blank" rel="noopener noreferrer"
+                        style="font-size: 0.8125rem; color: #3366cc; text-decoration: none;">Presentation</a>
                 </div>
                 <div>
-                    <a id="footer-wikidata" href="https://www.wikidata.org/wiki/Q139251277" target="_blank" rel="noopener noreferrer" style="font-size: 0.8125rem; color: #3366cc; text-decoration: none;">Wikidata Q-item</a>
+                    <a id="footer-wikidata" href="https://www.wikidata.org/wiki/Q139251277" target="_blank"
+                        rel="noopener noreferrer"
+                        style="font-size: 0.8125rem; color: #3366cc; text-decoration: none;">Wikidata Q-item</a>
                 </div>
                 <div>
-                    <a id="footer-toolhub" href="https://toolhub.wikimedia.org/tools/toolforge-code2codesearch" target="_blank" rel="noopener noreferrer" style="font-size: 0.8125rem; color: #3366cc; text-decoration: none;">Toolhub</a>
+                    <a id="footer-toolhub" href="https://toolhub.wikimedia.org/tools/toolforge-code2codesearch"
+                        target="_blank" rel="noopener noreferrer"
+                        style="font-size: 0.8125rem; color: #3366cc; text-decoration: none;">Toolhub</a>
                 </div>
             </div>
 
             <!-- Column 3: Source & Support -->
             <div class="footer-section" style="display: flex; flex-direction: column; gap: 12px;">
-                <h4 id="footer-title-source" style="font-size: 0.75rem; font-weight: 700; color: #54595d; text-transform: uppercase; margin: 0; letter-spacing: 0.06em;">Source & Support</h4>
+                <h4 id="footer-title-source"
+                    style="font-size: 0.75rem; font-weight: 700; color: #54595d; text-transform: uppercase; margin: 0; letter-spacing: 0.06em;">
+                    Source & Support</h4>
                 <div id="footer-source" style="font-size: 0.8125rem; color: #202122;">
-                    Source:&nbsp;<a href="https://github.com/ftosoni/mediawiki-code2code-search" target="_blank" rel="noopener noreferrer">GitHub</a>&nbsp;·&nbsp;<a href="https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search" target="_blank" rel="noopener noreferrer">SWH</a>
+                    Source:&nbsp;<a href="https://github.com/ftosoni/mediawiki-code2code-search" target="_blank"
+                        rel="noopener noreferrer">GitHub</a>&nbsp;·&nbsp;<a
+                        href="https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search"
+                        target="_blank" rel="noopener noreferrer">SWH</a>
                 </div>
                 <div>
-                    <a id="footer-issues" href="https://github.com/ftosoni/mediawiki-code2code-search/issues" target="_blank" rel="noopener noreferrer" style="font-size: 0.8125rem; color: #3366cc; text-decoration: none;">Report an issue</a>
+                    <a id="footer-issues" href="https://github.com/ftosoni/mediawiki-code2code-search/issues"
+                        target="_blank" rel="noopener noreferrer"
+                        style="font-size: 0.8125rem; color: #3366cc; text-decoration: none;">Report an issue</a>
                 </div>
             </div>
 
             <!-- Column 4: License & Release (High Visibility) -->
             <div class="footer-section" style="display: flex; flex-direction: column; gap: 12px;">
-                <h4 id="footer-title-status" style="font-size: 0.75rem; font-weight: 700; color: #54595d; text-transform: uppercase; margin: 0; letter-spacing: 0.06em;">Licence & Status</h4>
-                <div style="background-color: #f8f9fa; border: 1px solid #eaecf0; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+                <h4 id="footer-title-status"
+                    style="font-size: 0.75rem; font-weight: 700; color: #54595d; text-transform: uppercase; margin: 0; letter-spacing: 0.06em;">
+                    Licence & Status</h4>
+                <div
+                    style="background-color: #f8f9fa; border: 1px solid #eaecf0; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 8px;">
                     <div id="footer-licence" style="font-size: 0.8125rem; color: #202122;">
-                        Licence: <a href="https://github.com/ftosoni/mediawiki-code2code-search/blob/main/LICENSE.md" target="_blank" rel="noopener noreferrer" style="font-weight: 700; color: #3366cc;">Apache-2.0</a>
+                        Licence: <a href="https://github.com/ftosoni/mediawiki-code2code-search/blob/main/LICENSE.md"
+                            target="_blank" rel="noopener noreferrer"
+                            style="font-weight: 700; color: #3366cc;">Apache-2.0</a>
                     </div>
                     <div style="font-size: 0.8125rem; color: #202122; display: flex; align-items: center; gap: 4px;">
                         <span id="footer-release-date-label" style="font-weight: 500;">Release date:</span>
-                        <span style="font-family: monospace; font-size: 0.8125rem; background-color: #eaecf0; padding: 2px 6px; border-radius: 2px; color: #202122;">2026-05-08</span>
+                        <span
+                            style="font-family: monospace; font-size: 0.8125rem; background-color: #eaecf0; padding: 2px 6px; border-radius: 2px; color: #202122;">2026-05-21</span>
                     </div>
                 </div>
             </div>
