@@ -337,7 +337,6 @@ def generate_tikz_boxplot(results, tikz_path):
         outliers_coord = " ".join(f"({val:.2f}, {idx})" for val in outliers)
         
         plots_code.append(f"""    \\addplot+ [
-        box plot width=0.6,
         boxplot prepared={{
             draw direction=x,
             draw position={idx},
