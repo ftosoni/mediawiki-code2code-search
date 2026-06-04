@@ -9,7 +9,9 @@ venv/
 backend/mediawiki.index
 backend/functions.json
 backend/functions.db
+backend/snippets.db
 backend/raw_functions.json
+backend/raw_snippets.json
 backend/test_repo/
 backend/CoCo-trie/
 backend/*.npy

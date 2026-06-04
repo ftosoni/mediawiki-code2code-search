@@ -25,7 +25,7 @@ def main():
     project_root = os.path.dirname(os.path.dirname(script_dir))
 
     # Determine paths
-    db_path = args.db_path or os.path.join(project_root, "backend", "functions.db")
+    db_path = args.db_path or os.path.join(project_root, "backend", "snippets.db")
     index_path = args.index_path or os.path.join(project_root, "backend", "bm25_index.pkl")
 
     if not os.path.exists(db_path):
@@ -36,9 +36,9 @@ def main():
     t0 = time.time()
     conn = sqlite3.connect(db_path)
     # We select 'code' since that's the column containing the source code
-    rows = conn.execute("SELECT id, code FROM functions").fetchall()
+    rows = conn.execute("SELECT id, code FROM snippets").fetchall()
     conn.close()
-    print(f"Loaded {len(rows)} functions in {time.time() - t0:.2f}s")
+    print(f"Loaded {len(rows)} snippets in {time.time() - t0:.2f}s")
 
     print("Tokenizing corpus...")
     t0 = time.time()

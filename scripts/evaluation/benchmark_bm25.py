@@ -100,7 +100,7 @@ def main():
     project_root = os.path.dirname(os.path.dirname(script_dir))
 
     # Determine paths
-    db_path = args.db_path or os.path.join(project_root, "backend", "functions.db")
+    db_path = args.db_path or os.path.join(project_root, "backend", "snippets.db")
     tex_path = args.tex_path or os.path.join(project_root, "manuscript", "evaluation_queries.tex")
     queries_json_path = args.queries_json or os.path.join(script_dir, "evaluation_queries.json")
     save_results_path = args.save_results or os.path.join(script_dir, "bm25_results.json")
@@ -183,7 +183,7 @@ def main():
             score = float(scores[i])
             
             # Fetch metadata from SQLite
-            row = conn.execute("SELECT * FROM functions WHERE id = ?", (doc_id,)).fetchone()
+            row = conn.execute("SELECT * FROM snippets WHERE id = ?", (doc_id,)).fetchone()
             if row:
                 top10_results.append({
                     "rank": rank_idx,

@@ -26,7 +26,7 @@ PREPROC_DIR = os.path.dirname(os.path.abspath(__file__))
 # Input from Phase 3a
 UNRESOLVED_METADATA_PATH = os.path.join(PREPROC_DIR, "raw_metadata_unresolved.json")
 # Output for Phase 4 (Indexing)
-FINAL_METADATA_PATH = os.path.join(PREPROC_DIR, "..", "backend", "raw_functions.json")
+FINAL_METADATA_PATH = os.path.join(PREPROC_DIR, "..", "backend", "raw_snippets.json")
 # Cache for persistence
 SWH_SHA1_CACHE_PATH = os.path.join(PREPROC_DIR, "swh_sha1_cache.json")
 

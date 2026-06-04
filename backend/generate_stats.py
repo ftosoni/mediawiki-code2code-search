@@ -1,12 +1,16 @@
 import sqlite3
 import os
+import json
 from collections import Counter, defaultdict
+from urllib.parse import urlparse
 
 # Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, "functions.db")
+DB_PATH = os.path.join(BASE_DIR, "snippets.db")
 INDEX_PATH = os.path.join(BASE_DIR, "mediawiki.index")
 EMBEDDINGS_PATH = os.path.join(BASE_DIR, "embeddings.npy")
+REPOS_LIST_PATH = os.path.join(BASE_DIR, "..", "preprocessing", "repos_list.json")
+FAILED_CLONES_PATH = os.path.join(BASE_DIR, "..", "preprocessing", "failed_clones.json")
 
 EXTENSION_TO_LANGUAGE = {
     ".py": "Python",
@@ -51,13 +55,26 @@ def get_file_extension(filepath):
     _, ext = os.path.splitext(filepath)
     return ext.lower()
 
+def get_forge(url):
+    """Extract source forge domain from repository URL."""
+    try:
+        netloc = urlparse(url).netloc
+        if not netloc:
+            if "@" in url:
+                netloc = url.split("@")[-1].split(":")[0]
+            else:
+                netloc = url.split("/")[2]
+        return netloc
+    except Exception:
+        return "unknown"
+
 def generate_stats():
     # 1. File Size Statistics
     print("\n" + "="*50)
     print(" MEDIAWIKI SEARCH COMPONENT SIZES")
     print("="*50)
     print(f"{'Plain Embeddings (embeddings.npy)':<35}: {get_file_size_string(EMBEDDINGS_PATH):>12}")
-    print(f"{'Metadata Database (functions.db)':<35}: {get_file_size_string(DB_PATH):>12}")
+    print(f"{'Metadata Database (snippets.db)':<35}: {get_file_size_string(DB_PATH):>12}")
     print(f"{'FAISS Search Index (mediawiki.index)':<35}: {get_file_size_string(INDEX_PATH):>12}")
     print("="*50)
 
@@ -71,9 +88,13 @@ def generate_stats():
 
     print("\nAnalyzing database entries...")
     rows = []
+    db_repos = set()
     try:
-        cursor.execute("SELECT repo_group, filepath, type FROM functions")
+        cursor.execute("SELECT repo_group, filepath, type FROM snippets")
         rows = cursor.fetchall()
+        
+        cursor.execute("SELECT DISTINCT repo_group, repo_name FROM snippets")
+        db_repos = set(cursor.fetchall())
     except Exception as e:
         print(f"Error reading database: {e}")
     finally:
@@ -104,6 +125,50 @@ def generate_stats():
         lang_stats[lang] += 1
         lang_type_stats[lang][category] += 1
 
+    # Load metadata lists for source forge statistics
+    repos_list = []
+    failed_clones = []
+    
+    if os.path.exists(REPOS_LIST_PATH):
+        try:
+            with open(REPOS_LIST_PATH, "r", encoding="utf-8") as f:
+                repos_list = json.load(f)
+        except Exception as e:
+            print(f"Warning: Could not read {REPOS_LIST_PATH}: {e}")
+            
+    if os.path.exists(FAILED_CLONES_PATH):
+        try:
+            with open(FAILED_CLONES_PATH, "r", encoding="utf-8") as f:
+                failed_clones = json.load(f)
+        except Exception as e:
+            print(f"Warning: Could not read {FAILED_CLONES_PATH}: {e}")
+
+    # Process repositories by forge
+    repo_to_url = {}
+    total_by_forge = Counter()
+    for item in repos_list:
+        url = item.get("url", "")
+        group = item.get("group", "")
+        name = url.split('/')[-1].replace('.git', '')
+        repo_to_url[(name, group)] = url
+        forge = get_forge(url)
+        total_by_forge[forge] += 1
+        
+    indexed_by_forge = Counter()
+    for group, name in db_repos:
+        url = repo_to_url.get((name, group))
+        if url:
+            forge = get_forge(url)
+        else:
+            forge = "unknown"
+        indexed_by_forge[forge] += 1
+        
+    failed_by_forge = Counter()
+    for item in failed_clones:
+        url = item.get("url", "")
+        forge = get_forge(url)
+        failed_by_forge[forge] += 1
+
     # Output Results
     print("\n" + "="*50)
     print(" MEDIAWIKI CODE ENTITY STATISTICS")
@@ -133,6 +198,21 @@ def generate_stats():
     for group, count in repo_group_stats.most_common():
         percentage = (count / total_entities) * 100
         print(f"{group:<20}: {count:>8} ({percentage:.1f}%)")
+
+    print("\n--- Statistics by Source Forge ---")
+    all_forges = sorted(list(set(total_by_forge.keys()) | set(indexed_by_forge.keys()) | set(failed_by_forge.keys())))
+    sum_total = 0
+    sum_indexed = 0
+    sum_failed = 0
+    for forge in all_forges:
+        total = total_by_forge[forge]
+        indexed = indexed_by_forge[forge]
+        failed = failed_by_forge[forge]
+        print(f"{forge:<30}: {indexed:>5} indexed, {failed:>5} failed (total listed: {total})")
+        sum_total += total
+        sum_indexed += indexed
+        sum_failed += failed
+    print(f"{'Total':<30}: {sum_indexed:>5} indexed, {sum_failed:>5} failed (total listed: {sum_total})")
 
     print("\n" + "="*50)
     print(f" Total Code Snippets: {total_entities:>26}")

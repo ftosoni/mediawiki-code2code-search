@@ -13,13 +13,13 @@ from fastapi.testclient import TestClient
 @pytest.fixture
 def mock_db(tmp_path):
     """Create a temporary SQLite database for testing"""
-    db_path = tmp_path / "test_functions.db"
+    db_path = tmp_path / "test_snippets.db"
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     
     # Create the same schema as in production (migrate_to_sqlite.py)
     cursor.execute("""
-        CREATE TABLE functions (
+        CREATE TABLE snippets (
             id INTEGER PRIMARY KEY,
             original_id TEXT,
             swhid TEXT,
@@ -38,7 +38,7 @@ def mock_db(tmp_path):
         (0, "orig_0", "swh:1:cnt:abc123lines=1-10", "abc123sha1", "mediawiki/core", "core", "test.py", "hello", "function", "def hello():\n    print('world')"),
         (1, "orig_1", "swh:1:cnt:def456lines=1-5", "def456sha1", "mediawiki/extensions/VisualEditor", "extensions", "ve.js", "init", "function", "function init() {\n  return 1;\n}")
     ]
-    cursor.executemany("INSERT INTO functions VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", sample_data)
+    cursor.executemany("INSERT INTO snippets VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", sample_data)
     conn.commit()
     conn.close()
     return str(db_path)

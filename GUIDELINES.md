@@ -6,7 +6,7 @@ This document outlines the architectural constraints and development best practi
 
 ### 1. RAM Usage (6 GiB Limit)
 The application is deployed on Wikimedia Toolforge, which has a strict **6 GiB RAM limit** for webservices.
-- **SQLite for Metadata**: Avoid loading large JSON/list structures into memory. Use the indexed SQLite database (`backend/functions.db`) for all metadata lookups.
+- **SQLite for Metadata**: Avoid loading large JSON/list structures into memory. Use the indexed SQLite database (`backend/snippets.db`) for all metadata lookups.
 - **FAISS Indexing**: Use `IndexIVFPQ` or other compressed FAISS indexes to keep the memory footprint low.
 - **Lazy Loading**: Ensure models and indexes are loaded once during the server lifespan, not on every request.
 

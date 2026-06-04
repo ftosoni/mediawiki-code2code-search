@@ -27,7 +27,7 @@ HF_TOKEN = os.getenv("HF_TOKEN")
 
 # Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-RAW_METADATA_PATH = os.path.join(BASE_DIR, "raw_functions.json")
+RAW_METADATA_PATH = os.path.join(BASE_DIR, "raw_snippets.json")
 EMBEDDINGS_NPY_PATH = os.path.join(BASE_DIR, "embeddings.npy")
 
 def generate_embeddings():
@@ -45,7 +45,7 @@ def generate_embeddings():
         functions = json.load(f)
     
     if not functions:
-        print("No functions found in raw_functions.json. Aborting.")
+        print("No snippets found in raw_snippets.json. Aborting.")
         return
 
     # 1. INITIALIZE MODEL (GPU Detection)

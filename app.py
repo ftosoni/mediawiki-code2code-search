@@ -75,7 +75,7 @@ HF_TOKEN = os.getenv("HF_TOKEN")
 # Standardise Paths (Script Relative)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FAISS_INDEX_PATH = os.path.join(BASE_DIR, "backend", "mediawiki.index")
-METADATA_DB_PATH = os.path.join(BASE_DIR, "backend", "functions.db")
+METADATA_DB_PATH = os.path.join(BASE_DIR, "backend", "snippets.db")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 
 # Debug from here
@@ -366,7 +366,7 @@ async def get_code_snippet(swhid: str = Query(..., description="The Software Her
             conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
             # We match the prefix of swhid or the hash itself
-            cursor.execute("SELECT code, filepath FROM functions WHERE swhid LIKE ?", (f"%{swhid_hash}%",))
+            cursor.execute("SELECT code, filepath FROM snippets WHERE swhid LIKE ?", (f"%{swhid_hash}%",))
             row = cursor.fetchone()
             if row:
                 code = row["code"]
@@ -438,7 +438,7 @@ async def search_code(req: SearchRequest):
                 
                 # Retrieve all relevant metadata in one batch (including the code snippet)
                 placeholders = ",".join(["?"] * len(valid_indices))
-                query = f"SELECT * FROM functions WHERE id IN ({placeholders})"
+                query = f"SELECT * FROM snippets WHERE id IN ({placeholders})"
                 cursor.execute(query, valid_indices)
                 rows = cursor.fetchall()
                 

@@ -20,9 +20,9 @@ import os
 
 # Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# Use raw_functions.json which contains the code snippets
-JSON_PATH = os.path.join(BASE_DIR, "raw_functions.json")
-DB_PATH = os.path.join(BASE_DIR, "functions.db")
+# Use raw_snippets.json which contains the code snippets
+JSON_PATH = os.path.join(BASE_DIR, "raw_snippets.json")
+DB_PATH = os.path.join(BASE_DIR, "snippets.db")
 
 def migrate():
     if not os.path.exists(JSON_PATH):
@@ -43,7 +43,7 @@ def migrate():
     # We use an integer id that matches the position in the original list
     # so we can directly map FAISS results to rows.
     cursor.execute('''
-        CREATE TABLE functions (
+        CREATE TABLE snippets (
             id INTEGER PRIMARY KEY,
             original_id TEXT,
             swhid TEXT,
@@ -76,17 +76,17 @@ def migrate():
         ))
 
     cursor.executemany('''
-        INSERT INTO functions (id, original_id, swhid, sha1, repo_name, repo_group, filepath, name, type, code)
+        INSERT INTO snippets (id, original_id, swhid, sha1, repo_name, repo_group, filepath, name, type, code)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', entries)
 
     print("Creating indexes...")
-    cursor.execute('CREATE INDEX idx_swhid ON functions(swhid)')
-    cursor.execute('CREATE INDEX idx_sha1 ON functions(sha1)')
+    cursor.execute('CREATE INDEX idx_swhid ON snippets(swhid)')
+    cursor.execute('CREATE INDEX idx_sha1 ON snippets(sha1)')
     
     conn.commit()
     conn.close()
-    print("✅ Migration complete.")
+    print("Database migration complete.")
 
 if __name__ == "__main__":
     migrate()

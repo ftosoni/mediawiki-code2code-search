@@ -28,7 +28,7 @@ mediawiki-code2code-search/
 │   ├── generate_embeddings.py # Computes neural embeddings from raw snippets (saves embeddings.npy)
 │   ├── build_index.py         # Trains and builds the FAISS search index from saved embeddings
 │   ├── migrate_to_sqlite.py   # RAM optimization script (JSON metadata -> SQLite)
-│   ├── functions.db           # SQLite metadata store for fast lookups
+│   ├── snippets.db            # SQLite metadata store for fast lookups
 │   └── mediawiki.index        # Compiled FAISS vector index
 ├── preprocessing/             # Global-Scale Indexing Pipeline (Phases 1-3)
 │   ├── list_repos.py          # Discovers and lists 2,400+ MediaWiki repositories
@@ -111,7 +111,7 @@ Resolve Git-compatible hashes to standard SHA1. You can do this either locally (
     ```
 
 ### Phase 4: Indexing (Remote/GPU)
-Move `raw_functions.json` to a GPU-equipped environment to compute neural vectors and build the FAISS index.
+Move `raw_snippets.json` to a GPU-equipped environment to compute neural vectors and build the FAISS index.
 ```bash
 cd backend
 python generate_embeddings.py  # Computes and saves embeddings to embeddings.npy
@@ -150,7 +150,7 @@ Since the model weights and indexes are large, they should be uploaded from your
 # From the project root
 scp -rp "./models" supnabla@login.toolforge.org:/data/project/code2codesearch/
 scp -rp "./backend/mediawiki.index" supnabla@login.toolforge.org:/data/project/code2codesearch/backend/
-scp -rp "./backend/functions.db" supnabla@login.toolforge.org:/data/project/code2codesearch/backend/
+scp -rp "./backend/snippets.db" supnabla@login.toolforge.org:/data/project/code2codesearch/backend/
 ```
 
 ### 2. Configure Permissions
@@ -160,7 +160,7 @@ Log into Toolforge and set the necessary permissions:
 ssh supnabla@login.toolforge.org
 
 chmod -R a+rX /data/project/code2codesearch/models/
-chmod a+r /data/project/code2codesearch/backend/functions.db
+chmod a+r /data/project/code2codesearch/backend/snippets.db
 chmod a+r /data/project/code2codesearch/backend/mediawiki.index
 ```
 

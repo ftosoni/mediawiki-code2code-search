@@ -56,7 +56,7 @@ CONFIG_FILE = os.path.join(PREPROC_DIR, "config.json")
 REPOS_LIST_PATH = os.path.join(PREPROC_DIR, "repos_list.json")
 LOCAL_REPOS_ROOT = os.path.join(PREPROC_DIR, "mediawiki_repos")
 # Output to backend directory for keep it ready for vectorization
-RAW_METADATA_PATH = os.path.join(PREPROC_DIR, "..", "backend", "raw_functions.json")
+RAW_METADATA_PATH = os.path.join(PREPROC_DIR, "..", "backend", "raw_snippets.json")
 
 def load_config():
     if not os.path.exists(CONFIG_FILE):
