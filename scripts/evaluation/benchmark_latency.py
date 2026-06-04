@@ -410,6 +410,7 @@ def main():
     parser.add_argument("--queries-json", default=None, help="Path to evaluation queries JSON file")
     parser.add_argument("--tex-path", default=None, help="Path to evaluation queries LaTeX file")
     parser.add_argument("--save-results", default=None, help="Path to save evaluation results JSON (default: evaluation_results_<url>_<runs>runs.json)")
+    parser.add_argument("--query-id", default=None, help="Only run benchmark for this specific query ID (e.g., B8)")
     args = parser.parse_args()
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -455,6 +456,12 @@ def main():
     if not queries:
         print("Error: No queries loaded or extracted.")
         sys.exit(1)
+
+    if args.query_id:
+        queries = [q for q in queries if q["id"].lower() == args.query_id.lower()]
+        if not queries:
+            print(f"Error: Query ID '{args.query_id}' not found.")
+            sys.exit(1)
 
     # Run the benchmark
     results = run_benchmark(queries, args.url, args.runs, save_results_path)
