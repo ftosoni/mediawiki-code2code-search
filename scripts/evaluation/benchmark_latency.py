@@ -334,7 +334,7 @@ def generate_tikz_boxplot(results, tikz_path):
         upper_whisker = max([x for x in sorted_lat if x <= upper_fence], default=sorted_lat[-1])
         
         outliers = [x for x in sorted_lat if x < lower_whisker or x > upper_whisker]
-        outliers_coord = " ".join(f"({val:.2f}, {idx})" for val in outliers)
+        outliers_coord = " ".join(f"({idx}, {val:.2f})" for val in outliers)
         
         plots_code.append(f"""    \\addplot+ [
         boxplot prepared={{
