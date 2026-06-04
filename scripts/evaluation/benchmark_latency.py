@@ -371,6 +371,7 @@ def generate_tikz_boxplot(results, tikz_path):
 \\begin{{document}}
 \\begin{{tikzpicture}}
 \\begin{{axis}}[
+    boxplot/draw direction=x,
     title={{\\textbf{{API Latency Distribution per Evaluation Query}}}},
     xlabel={{Latency (milliseconds)}},
     ylabel={{Evaluation Queries}},
