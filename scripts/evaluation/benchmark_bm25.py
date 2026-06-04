@@ -89,6 +89,8 @@ def save_queries_to_json(queries, json_path):
 
 def main():
     parser = argparse.ArgumentParser(description="BM25 Search Baseline Evaluation")
+    parser.add_argument("--url", default="https://code2codesearch.toolforge.org/search", help="Target API search endpoint for filename alignment")
+    parser.add_argument("--runs", type=int, default=7, help="Number of repetitions for filename alignment")
     parser.add_argument("--queries-json", default=None, help="Path to evaluation queries JSON file")
     parser.add_argument("--tex-path", default=None, help="Path to evaluation queries LaTeX file")
     parser.add_argument("--save-results", default=None, help="Path to save BM25 evaluation results JSON")
@@ -99,11 +101,17 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(os.path.dirname(script_dir))
 
+    # Sanitize URL for filename
+    url_part = re.sub(r'^https?://', '', args.url)
+    url_part = re.sub(r'[^a-zA-Z0-9]', '_', url_part)
+    url_part = re.sub(r'_+', '_', url_part).strip('_')
+    suffix = f"{url_part}_{args.runs}runs"
+
     # Determine paths
     db_path = args.db_path or os.path.join(project_root, "backend", "snippets.db")
     tex_path = args.tex_path or os.path.join(project_root, "manuscript", "evaluation_queries.tex")
     queries_json_path = args.queries_json or os.path.join(script_dir, "evaluation_queries.json")
-    save_results_path = args.save_results or os.path.join(script_dir, "bm25_results.json")
+    save_results_path = args.save_results or os.path.join(script_dir, f"bm25_results_{suffix}.json")
     index_path = args.index_path or os.path.join(project_root, "backend", "bm25_index.pkl")
 
     # Load or parse queries

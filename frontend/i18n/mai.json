@@ -52,5 +52,6 @@
     "footer_section_status": "लाइसेंस आ स्थिति",
     "footer_release_date": "रिलीज़क तारीख:",
     "example_queries_label": "मूल्यांकन क्वेरी उदाहरण आज़माएं",
-    "example_queries_placeholder": "-- मूल्यांकन क्वेरी चुनु --"
+    "example_queries_placeholder": "-- मूल्यांकन क्वेरी चुनु --",
+    "diff_post": "विकिमीडिया डिफ़ पोस्ट"
 }

@@ -52,5 +52,6 @@
     "footer_section_status": "परवाना आणि स्थिती",
     "footer_release_date": "प्रकाशन तारीख:",
     "example_queries_label": "मूल्यांकन क्वेरीचे उदाहरण पहा",
-    "example_queries_placeholder": "-- मूल्यांकन क्वेरी निवडा --"
+    "example_queries_placeholder": "-- मूल्यांकन क्वेरी निवडा --",
+    "diff_post": "विकिमीडिया डिफ पोस्ट"
 }

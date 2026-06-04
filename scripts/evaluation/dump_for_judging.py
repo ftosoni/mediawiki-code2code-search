@@ -5,9 +5,9 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-with open(os.path.join(HERE, "evaluation_results.json"), encoding="utf-8") as f:
+with open(os.path.join(HERE, "evaluation_results_code2codesearch_toolforge_org_search_7runs.json"), encoding="utf-8") as f:
     neural = json.load(f)["queries"]
-with open(os.path.join(HERE, "bm25_results.json"), encoding="utf-8") as f:
+with open(os.path.join(HERE, "bm25_results_code2codesearch_toolforge_org_search_7runs.json"), encoding="utf-8") as f:
     bm25 = json.load(f)["queries"]
 
 neural_by_id = {q["id"]: q for q in neural}

@@ -54,8 +54,7 @@ const EVAL_QUERIES = {
     D1: { code: "public function extractWikiLinks(string $wikitext): array {\n    $links = [];\n    if (preg_match_all(\n            '/\\[\\[([^|\\]]+)(?:\\|[^\\]]+)?\\]\\]/', $wikitext, $m)) {\n        foreach ($m[1] as $target) {\n            $links[] = Title::newFromText(trim($target));\n        }\n    }\n    return array_filter($links);\n}", lang: "PHP" },
     D2: { code: "def compute_swhid(content: bytes) -> str:\n    sha1 = hashlib.new('sha1')\n    header = f\"blob {len(content)}\\0\".encode()\n    sha1.update(header + content)\n    return f\"swh:1:cnt:{sha1.hexdigest()}\"", lang: "Python" },
     D3: { code: "def parse_irc_message(raw: str) -> dict:\n    prefix, command, params = None, None, []\n    if raw.startswith(':'):\n        prefix, raw = raw[1:].split(' ', 1)\n    parts = raw.split(' ', 1)\n    command = parts[0]\n    if len(parts) > 1:\n        ti = parts[1].find(' :')\n        if ti >= 0:\n            params = parts[1][:ti].split()\n            params.append(parts[1][ti+2:])\n        else:\n            params = parts[1].split()\n    return {'prefix': prefix, 'command': command, 'params': params}", lang: "Python" },
-    D4: { code: "public function run(string $hook, array $args = []): bool {\n    foreach ($this->getHandlers($hook) as $handler) {\n        $ret = $handler(...$args);\n        if ($ret === false) {\n            return false;\n        }\n    }\n    return true;\n}", lang: "PHP" },
-    D5: { code: "func (f *BloomFilter) Contains(item []byte) bool {\n    for _, h := range f.hashFunctions(item) {\n        idx := h % uint64(len(f.bits))\n        if f.bits[idx/8]&(1<<(idx%8)) == 0 {\n            return false\n        }\n    }\n    return true\n}", lang: "Go" }
+    D4: { code: "public function run(string $hook, array $args = []): bool {\n    foreach ($this->getHandlers($hook) as $handler) {\n        $ret = $handler(...$args);\n        if ($ret === false) {\n            return false;\n        }\n    }\n    return true;\n}", lang: "PHP" }
 };
 
 let currentLang = localStorage.getItem('code2code_lang') || CONFIG.defaultLang;
@@ -106,26 +105,20 @@ function setupEventListeners() {
             const queryData = EVAL_QUERIES[qid];
             document.getElementById('search-query').value = queryData.code;
 
-            // Update language filter chip to match query language
-            const lang = queryData.lang;
-            const langContainer = document.getElementById('filter-langs');
-            const chips = langContainer.querySelectorAll('.cdx-button');
-            chips.forEach(c => c.classList.remove('active'));
-
-            const supportedLangs = ['Python', 'C++', 'C', 'PHP', 'JavaScript', 'TypeScript', 'Lua', 'Go', 'Java', 'Rust', 'Ruby', 'Perl'];
-            if (supportedLangs.includes(lang)) {
-                const targetChip = langContainer.querySelector(`[data-value="${lang}"]`);
-                if (targetChip) {
-                    targetChip.classList.add('active');
-                    activeFilters.langs = [lang];
+            // Reset filters to "All" to match the benchmarking settings
+            const containers = ['filter-repos', 'filter-langs', 'filter-types'];
+            containers.forEach(containerId => {
+                const container = document.getElementById(containerId);
+                if (container) {
+                    const chips = container.querySelectorAll('.cdx-button');
+                    chips.forEach(c => c.classList.remove('active'));
+                    const allChip = container.querySelector('[data-value="all"]');
+                    if (allChip) allChip.classList.add('active');
                 }
-            } else {
-                const allChip = langContainer.querySelector(`[data-value="all"]`);
-                if (allChip) {
-                    allChip.classList.add('active');
-                    activeFilters.langs = ['all'];
-                }
-            }
+            });
+            activeFilters.repos = ['all'];
+            activeFilters.langs = ['all'];
+            activeFilters.types = ['all'];
             updateTemplateStatus();
         }
     });
@@ -292,6 +285,9 @@ function applyI18n() {
 
     const footerToolhub = document.getElementById('footer-toolhub');
     if (footerToolhub) footerToolhub.textContent = i18nData.toolhub || 'Toolhub';
+
+    const footerDiff = document.getElementById('footer-diff');
+    if (footerDiff) footerDiff.textContent = i18nData.diff_post || 'Wikimedia Diff post';
 
     const footerSource = document.getElementById('footer-source');
     if (footerSource) {

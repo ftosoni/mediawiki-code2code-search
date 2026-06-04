@@ -1,7 +1,7 @@
 """
 Manual P@10 relevance judgments by a single judge (Claude Opus 4.8),
 adjudicated over the POOLED top-10 results of BM25 and Code2Code for each
-of the 28 benchmark queries.
+of the 27 benchmark queries.
 
 Graded relevance scale (per manuscript Table tab:relevance_scale):
     1.0  Relevant           - implements the same computational task / correct
@@ -227,15 +227,6 @@ COMMENTS["D4"] = ("BM25 WIN. BM25 r1 is the EXACT answer (HookContainer::run dis
     "class; getHandlers/isRegistered 0.5. C2C MISSED HookContainer::run entirely and returned "
     "8 near-duplicate HookRegistryTest::assertThatHookIsExcutable test helpers (graded 0 as tests) "
     "+ isRegistered/echo-callback (0.5). Embedding drifted to hook-adjacent test code.")
-
-# D5 Bloom filter membership check (Go) -- CORPUS-COVERAGE OUTLIER
-BM25["D5"] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-C2C["D5"]  = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
-COMMENTS["D5"] = ("Corpus-coverage outlier: NO Bloom filter exists in the corpus -> strict "
-    "P@10 = 0 for BOTH. Lexical-vs-semantic contrast is stark: BM25 matched 'bits' -> base64 "
-    "codecs and ASN.1 BitString ops (0.0). C2C recognised the membership-test intent of "
-    "Contains() and returned set/cache membership predicates (Has/Contains) -- the closest "
-    "functional analog (partial 0.5 each), though none is a Bloom filter.")
 
 
 def p10_lenient(scores):   # primary metric per manuscript: fraction with score >= 0.5

@@ -838,37 +838,6 @@
       "bm25_p10_strict": 0.2,
       "c2c_p10_strict": 0.0,
       "comment": "BM25 WIN. BM25 r1 is the EXACT answer (HookContainer::run dispatcher) + the class; getHandlers/isRegistered 0.5. C2C MISSED HookContainer::run entirely and returned 8 near-duplicate HookRegistryTest::assertThatHookIsExcutable test helpers (graded 0 as tests) + isRegistered/echo-callback (0.5). Embedding drifted to hook-adjacent test code."
-    },
-    "D5": {
-      "bm25_scores": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "c2c_scores": [
-        0.5,
-        0.5,
-        0.5,
-        0.5,
-        0.5,
-        0.5,
-        0.5,
-        0.5,
-        0.5,
-        0.5
-      ],
-      "bm25_p10": 0.0,
-      "c2c_p10": 1.0,
-      "bm25_p10_strict": 0.0,
-      "c2c_p10_strict": 0.0,
-      "comment": "Corpus-coverage outlier: NO Bloom filter exists in the corpus -> strict P@10 = 0 for BOTH. Lexical-vs-semantic contrast is stark: BM25 matched 'bits' -> base64 codecs and ASN.1 BitString ops (0.0). C2C recognised the membership-test intent of Contains() and returned set/cache membership predicates (Has/Contains) -- the closest functional analog (partial 0.5 each), though none is a Bloom filter."
     }
   }
 }

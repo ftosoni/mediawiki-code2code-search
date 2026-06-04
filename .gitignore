@@ -13,7 +13,6 @@ backend/snippets.db
 backend/raw_functions.json
 backend/raw_snippets.json
 backend/test_repo/
-backend/CoCo-trie/
 backend/*.npy
 backend/*.db
 

@@ -52,5 +52,6 @@
     "footer_section_status": "ᱞᱟᱭᱥᱮᱱᱥ ᱟᱨ ᱦᱟᱞᱟᱛ",
     "footer_release_date": "ᱨᱤᱞᱤᱡᱽ ᱢᱟᱹᱦིତ:",
     "example_queries_label": "ᱢᱩᱞᱟᱹᱭᱟᱹᱱ ᱠᱩᱠᱞᱤ ᱨᱮᱱᱟᱜ ᱩᱫᱟᱹᱦᱚᱨᱚᱱ ᱧᱮᱞ ᱢᱮ",
-    "example_queries_placeholder": "-- ᱢᱩᱞᱟᱹᱭᱟᱹᱱ ᱠᱩᱠᱞᱤ ᱵᱟᱪᱷᱟᱣ ᱢᱮ --"
+    "example_queries_placeholder": "-- ᱢᱩᱞᱟᱹᱭᱟᱹᱱ ᱠᱩᱠᱞᱤ ᱵᱟᱪᱷᱟᱣ ᱢᱮ --",
+    "diff_post": "ᱣᱤᱠᱤᱢᱤᱰᱤᱭา ᱰᱤᱯᱷ ᱯᱳᱥᱴ"
 }

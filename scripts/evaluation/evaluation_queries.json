@@ -187,12 +187,5 @@
     "title": "MediaWiki hook dispatcher",
     "language": "PHP",
     "code": "public function run(string $hook, array $args = []): bool {\n    foreach ($this->getHandlers($hook) as $handler) {\n        $ret = $handler(...$args);\n        if ($ret === false) {\n            return false;\n        }\n    }\n    return true;\n}"
-  },
-  {
-    "id": "D5",
-    "category": "D",
-    "title": "Bloom filter membership check",
-    "language": "Go",
-    "code": "func (f *BloomFilter) Contains(item []byte) bool {\n    for _, h := range f.hashFunctions(item) {\n        idx := h % uint64(len(f.bits))\n        if f.bits[idx/8]&(1<<(idx%8)) == 0 {\n            return false\n        }\n    }\n    return true\n}"
   }
 ]

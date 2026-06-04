@@ -52,5 +52,6 @@
     "footer_section_status": "ലൈസൻസും നിലയും",
     "footer_release_date": "റിലീസ് തീയതി:",
     "example_queries_label": "ഒരു മൂല്യനിർണ്ണയ അന്വേഷണ ഉദാഹരണം പരീക്ഷിക്കുക",
-    "example_queries_placeholder": "-- ഒരു മൂല്യനിർണ്ണയ അന്വേഷണം തിരഞ്ഞെടുക്കുക --"
+    "example_queries_placeholder": "-- ഒരു മൂല്യനിർണ്ണയ അന്വേഷണം തിരഞ്ഞെടുക്കുക --",
+    "diff_post": "വിക്കിമീഡിയ ഡിഫ് പോസ്റ്റ്"
 }

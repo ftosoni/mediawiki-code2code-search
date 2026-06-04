@@ -52,5 +52,6 @@
     "footer_section_status": "অনুজ্ঞাপত্ৰ আৰু স্থিতি",
     "footer_release_date": "প্ৰকাশৰ তাৰিখ:",
     "example_queries_label": "মূল্যায়ন কোয়েরি উদাহরণ চেষ্টা করুন (Try an evaluation query example)",
-    "example_queries_placeholder": "-- এটা মূল্যায়ন কোয়েরি বাছক --"
+    "example_queries_placeholder": "-- এটা মূল্যায়ন কোয়েরি বাছক --",
+    "diff_post": "ৱিকিমিডিয়া ডিফ পোষ্ট (Wikimedia Diff post)"
 }

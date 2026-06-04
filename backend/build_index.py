@@ -51,8 +51,8 @@ def build_index():
     # A rule of thumb is 4 * sqrt(N), but for 2,484+ repos we can use a higher fixed value
     nlist = min(100, num_vectors) 
     quantizer = faiss.IndexFlatL2(EMBEDDING_DIM)
-    # 32: Number of sub-quantizers, 8: Number of bits per sub-vector
-    index = faiss.IndexIVFPQ(quantizer, EMBEDDING_DIM, nlist, 32, 8)
+    # 128: Number of sub-quantizers (was 32), 8: Number of bits per sub-vector
+    index = faiss.IndexIVFPQ(quantizer, EMBEDDING_DIM, nlist, 128, 8)
     
     print("Training quantizer...")
     index.train(embeddings.astype('float32'))
@@ -61,7 +61,7 @@ def build_index():
     
     faiss.write_index(index, FAISS_INDEX_PATH)
     print(f"Index saved to {FAISS_INDEX_PATH}")
-    print("✅ Index building complete.")
+    print("[OK] Index building complete.")
 
 if __name__ == "__main__":
     build_index()

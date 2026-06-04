@@ -405,20 +405,28 @@ def main():
     parser = argparse.ArgumentParser(description="MediaWiki Code2Code Search Latency Benchmark")
     parser.add_argument("--url", default=DEFAULT_URL, help=f"Target API search endpoint (default: {DEFAULT_URL})")
     parser.add_argument("--runs", type=int, default=DEFAULT_RUNS, help=f"Number of repetitions per query (default: {DEFAULT_RUNS})")
-    parser.add_argument("--plot", default=DEFAULT_PLOT_PATH, help=f"Output file path for the boxplot chart (default: {DEFAULT_PLOT_PATH})")
-    parser.add_argument("--tikz", default=DEFAULT_TIKZ_PATH, help=f"Output file path for the TikZ LaTeX chart (default: {DEFAULT_TIKZ_PATH})")
+    parser.add_argument("--plot", default=None, help=f"Output file path for the boxplot chart (default: latency_boxplot_<url>_<runs>runs.png)")
+    parser.add_argument("--tikz", default=None, help=f"Output file path for the TikZ LaTeX chart (default: latency_boxplot_<url>_<runs>runs.tex)")
     parser.add_argument("--queries-json", default=None, help="Path to evaluation queries JSON file")
     parser.add_argument("--tex-path", default=None, help="Path to evaluation queries LaTeX file")
-    parser.add_argument("--save-results", default=None, help="Path to save evaluation results JSON")
+    parser.add_argument("--save-results", default=None, help="Path to save evaluation results JSON (default: evaluation_results_<url>_<runs>runs.json)")
     args = parser.parse_args()
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(os.path.dirname(script_dir))
 
+    # Sanitize URL for filename
+    url_part = re.sub(r'^https?://', '', args.url)
+    url_part = re.sub(r'[^a-zA-Z0-9]', '_', url_part)
+    url_part = re.sub(r'_+', '_', url_part).strip('_')
+    suffix = f"{url_part}_{args.runs}runs"
+
     # Determine paths
     tex_path = args.tex_path or os.path.join(project_root, "manuscript", "evaluation_queries.tex")
     queries_json_path = args.queries_json or os.path.join(script_dir, "evaluation_queries.json")
-    save_results_path = args.save_results or os.path.join(script_dir, "evaluation_results.json")
+    save_results_path = args.save_results or os.path.join(script_dir, f"evaluation_results_{suffix}.json")
+    plot_path = args.plot or os.path.join(script_dir, f"latency_boxplot_{suffix}.png")
+    tikz_path = args.tikz or os.path.join(script_dir, f"latency_boxplot_{suffix}.tex")
 
     # Load or parse queries
     queries = []
@@ -457,8 +465,8 @@ def main():
 
     # Print summary and save plot
     print_summary_table(results)
-    generate_boxplot(results, args.plot)
-    generate_tikz_boxplot(results, args.tikz)
+    generate_boxplot(results, plot_path)
+    generate_tikz_boxplot(results, tikz_path)
 
 if __name__ == "__main__":
     main()

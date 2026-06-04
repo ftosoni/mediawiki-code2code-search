@@ -52,5 +52,6 @@
     "footer_section_status": "உரிமம் & நிலை",
     "footer_release_date": "வெளியீட்டு தேதி:",
     "example_queries_label": "மதிப்பீட்டுக் குறியீடு உதாரணத்தை முயற்சிக்கவும்",
-    "example_queries_placeholder": "-- மதிப்பீட்டுக் குறியீட்டைத் தேர்ந்தெடுக்கவும் --"
+    "example_queries_placeholder": "-- மதிப்பீட்டுக் குறியீட்டைத் தேர்ந்தெடுக்கவும் --",
+    "diff_post": "விக்கிமீடியா டிஃப் இடுகை"
 }
