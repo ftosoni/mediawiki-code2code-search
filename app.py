@@ -28,6 +28,12 @@ os.environ.setdefault('TORCHDYNAMO_DISABLE', '1')
 os.environ.setdefault('TORCH_COMPILE_DISABLE', '1')
 os.environ.setdefault('TQDM_DISABLE', '1') # Disables progress bars that break logs
 os.environ.setdefault('TRANSFORMERS_VERBOSITY', 'error') # Reduces noise
+# Limit PyTorch CPU thread usage to avoid high memory overhead and CPU thrashing
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["MKL_NUM_THREADS"] = "1"
+os.environ["OPENBLAS_NUM_THREADS"] = "1"
+os.environ["VECLIB_MAXIMUM_THREADS"] = "1"
+os.environ["NUMEXPR_NUM_THREADS"] = "1"
 os.makedirs('/tmp/torch_cache', exist_ok=True)
 
 # Monkey patch getpass.getuser per Toolforge
@@ -51,6 +57,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, field_validator
 import torch
+torch.set_num_threads(1)
+torch.set_num_interop_threads(1)
 from transformers import AutoModel, AutoTokenizer, AutoModelForSequenceClassification
 from sentence_transformers import SentenceTransformer
 import faiss
@@ -471,9 +479,6 @@ async def search_code(req: SearchRequest):
                             lang_match = any(filepath.endswith(ext) for ext in all_allowed_exts)
                         
                         if group_match and type_match and lang_match:
-                            # Also produce highlighted snippet if code is present in the DB record
-                            if item.get("code"):
-                                item["highlighted_code"] = get_highlighted_code(item["code"], item.get("filepath", "code.txt"))
                             candidates.append(item)
         except Exception as e:
             print(f"Database error in search_code: {e}")
@@ -483,7 +488,12 @@ async def search_code(req: SearchRequest):
         return {"results": [], "total": 0}
 
     # Results from Recall + Metadata are already sorted by FAISS L2 distance
-    return {"results": candidates[:req.top_k]}
+    results = candidates[:req.top_k]
+    for item in results:
+        if item.get("code") and not item.get("highlighted_code"):
+            item["highlighted_code"] = get_highlighted_code(item["code"], item.get("filepath", "code.txt"))
+
+    return {"results": results}
 
 
 @app.get("/health", tags=["System"], summary="Health check", response_model=HealthResponse, responses={

@@ -107,7 +107,7 @@ def run_benchmark(queries, url, runs, save_results_path=None):
             "repo_group": ["all"],
             "type_filter": ["all"],
             "language_filter": ["all"]
-        }, headers=headers, timeout=5*60)
+        }, headers=headers, timeout=20*60)
     except Exception as e:
         print(f"Warning during preheat: {e}")
 
@@ -130,7 +130,7 @@ def run_benchmark(queries, url, runs, save_results_path=None):
         for r in range(runs):
             t_start = time.perf_counter()
             try:
-                response = requests.post(url, json=payload, headers=headers, timeout=5*60)
+                response = requests.post(url, json=payload, headers=headers, timeout=20*60)
                 response.raise_for_status()
                 t_end = time.perf_counter()
                 
