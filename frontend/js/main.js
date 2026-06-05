@@ -269,7 +269,7 @@ function applyI18n() {
 
     const footerLicence = document.getElementById('footer-licence');
     if (footerLicence) {
-        footerLicence.innerHTML = `${i18nData.licence || 'Licence:'} <a href="https://github.com/ftosoni/mediawiki-code2code-search/blob/main/LICENSE.md" target="_blank">Apache-2.0</a>`;
+        footerLicence.innerHTML = `${i18nData.licence || 'Licence:'} <a href="https://github.com/ftosoni/mediawiki-code2code-search/blob/main/LICENCE.txt" target="_blank">Apache-2.0</a>`;
     }
 
     const footerDocs = document.getElementById('footer-docs');

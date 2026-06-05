@@ -15,6 +15,12 @@ results with graded score >= 0.5.
 
 Each list below holds the 10 graded scores for ranks 1..10, in order.
 A short rationale per query is kept in COMMENTS for transparency.
+
+Code2Code results adjudicated here are the LOCAL run
+(evaluation_results_127_0_0_1_8000_search_7runs.json); 18 of the 27 C2C lists
+are byte-identical to the earlier Toolforge run, while 9 differ
+(A5, B3, B7, B10, B11, C3, C4, D1, D2) and were re-judged on the local snippets
+-- of those, A5 and C4 still score all-1.0. BM25 lists are unchanged.
 """
 
 import json
@@ -61,7 +67,10 @@ BM25["A5"] = [1, 1, 1, 0.5, 1, 1, 0.5, 0.5, 1, 1]
 C2C["A5"]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 COMMENTS["A5"] = ("BM25: r4 is the backoff-delay helper only (partial); r7 upload "
     "and r8 add-description embed a retry loop (partial); rest are retry wrappers. "
-    "C2C: all 10 are retry decorators/loops, several with true exponential backoff.")
+    "C2C (local): all 10 are genuine retry wrappers/loops -- retry_on_failure and "
+    "retry_function decorators, pip retry(wait, stop_after_delay), wmflib "
+    "retry(backoff_mode='exponential', true exp backoff), and jaraco retry_call "
+    "(r7-10 byte-identical copies); duplicate-heavy but all relevant.")
 
 # ===================== CATEGORY B — Name-obfuscated semantics =================
 # B1 Permission check canUserEdit (PHP)
@@ -80,10 +89,15 @@ COMMENTS["B2"] = ("Tie: body has setTimeout/clearTimeout/timer (debounce+throttl
 
 # B3 Session invalidation invalidateUserSession (PHP)
 BM25["B3"] = [1, 1, 1, 0.5, 0, 0, 1, 1, 1, 0.5]
-C2C["B3"]  = [1, 1, 1, 0.5, 0.5, 1, 1, 1, 0.5, 0.5]
-COMMENTS["B3"] = ("Near-tie: body uses exact method names (setToken, saveSettings, "
-    "invalidateSessionsForUser). BM25 r5/r6 are tests (0). C2C avoids test pollution; "
-    "interface/stub declarations graded 0.5.")
+C2C["B3"]  = [1, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 0, 0.5]
+COMMENTS["B3"] = ("Body uses exact method names (setToken, saveSettings, "
+    "invalidateSessionsForUser). BM25 r5/r6 are InvalidateUserSessions tests (0). "
+    "C2C (local): r1 SessionManager::invalidateSessionsForUser is the exact analog; "
+    "r4 invalidateForUser and r5/r6 CentralAuth provider impls are genuine (1); r2 "
+    "interface decl and r3 empty overridable stub graded 0.5; r7/r8 maintenance "
+    "classes (TerminateUserSession, InvalidateUserSessions) 0.5 (class-level); r9 "
+    "ProfileImage unset 0 (unrelated); r10 invalidateUsersRightsCache 0.5 (per-user "
+    "cache, different subsystem).")
 
 # B4 LRU eviction evict_oldest (Python) -- STRONG GAP
 BM25["B4"] = [0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0]
@@ -110,10 +124,13 @@ COMMENTS["B6"] = ("Strongest gap. BM25 matched Error/JSON.stringify/typeof/value
 
 # B7 URL slug make_slug (Python)
 BM25["B7"] = [0.5, 1, 1, 0.5, 0.5, 0.5, 0, 0, 0, 0]
-C2C["B7"]  = [0.5, 1, 0.5, 0.5, 0.5, 0.5, 0, 0.5, 0.5, 0.5]
-COMMENTS["B7"] = ("Weak gap: shared 'slug/title' tokens. BM25 finds 2 exact slugify; C2C "
-    "surfaces cross-language (Rust normalize_title, JS slugifyTitle) plus title-normalisation "
-    "family (graded 0.5); both pollute with title CRUD/tests.")
+C2C["B7"]  = [1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0]
+COMMENTS["B7"] = ("Weak gap: shared 'slug/title' tokens. BM25 finds 2 exact slugify; both "
+    "pollute with title CRUD/tests. C2C (local): r1 slugifyTitle (JS) is an exact "
+    "cross-language slug (1); r2-r9 are the title-normalisation family (buildTitle, "
+    "normalize, pageTitleForMW, makePrefix, to_url_format, normalize_title, "
+    "normalizedFilename, cleanName) -- space/underscore/lowercase/trim munging, not a "
+    "hyphen slug -- graded 0.5; r10 _fixSpecialName (special-page alias) 0.")
 
 # B8 CAPTCHA verify (PHP) -- STRONG GAP
 BM25["B8"] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5]
@@ -131,17 +148,24 @@ COMMENTS["B9"] = ("BM25 matched chan/errs/struct -> fsnotify channel constructor
 
 # B10 Recursive category subtree getDescendants (PHP)
 BM25["B10"] = [1, 1, 1, 1, 1, 0.5, 0.5, 0.5, 0.5, 0.5]
-C2C["B10"]  = [1, 1, 1, 1, 1, 1, 1, 0.5, 0.5, 0.5]
-COMMENTS["B10"] = ("Tie: body keeps structural tokens (depth, children, categorylinks, subcat). "
-    "Both find recursive subtree/subcat collectors; C2C adds cross-language (Java fetchSubCategories, "
-    "JS buildCategoryHierarchy). treeDepths/getChildren-of-other-domains graded 0.5.")
+C2C["B10"]  = [1, 0.5, 1, 1, 1, 1, 0.5, 0.5, 0.5, 0]
+COMMENTS["B10"] = ("Body keeps structural tokens (depth, children, categorylinks, subcat). "
+    "Both find recursive subtree/subcat collectors. C2C (local): r1 fetchSubCategories "
+    "(Java), r3 addSubCategories, r4 buildCategoryHierarchy (JS), r5 getSubCategoriesFromPath, "
+    "r6 populateChildren are genuine recursive category-subtree collectors (1); r2 "
+    "DetectCategoryRecursion class 0.5 (recursive subcat walk for cycle detection); r7/r9 "
+    "getChildren of doc sections/comments and r8 assignLevel (generic recursive tree walk) "
+    "0.5; r10 d3 node_descendants one-liner 0.")
 
 # B11 Paginated API fetch fetch_all_pages (Python)
 BM25["B11"] = [1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0, 1]
-C2C["B11"]  = [1, 1, 1, 0.5, 0.5, 1, 1, 0.5, 0.5, 1]
-COMMENTS["B11"] = ("Near-tie: shared offset/limit/page_size/requests tokens. BM25 r1 & r10 loop "
-    "all pages (1); single-page web routes graded 0.5. C2C has more true fetch-all loops "
-    "(_get_all_pages, query_with_continue, _paginated, getPhotos).")
+C2C["B11"]  = [1, 1, 1, 1, 0.5, 0, 0.5, 0.5, 0.5, 0.5]
+COMMENTS["B11"] = ("Shared offset/limit/page_size/requests tokens. BM25 r1 & r10 loop all "
+    "pages (1); single-page web routes graded 0.5. C2C (local): r1 _get_all_pages, r2 "
+    "query_with_continue, r3 _paginated, r4 _paginate_once (limit/offset loop) are true "
+    "fetch-all loops (1); r5 fetch_batch, r7/r8 PagePile query, r9 _fetch_chunk, r10 "
+    "SearchPageGenerator are single-page/partial (0.5); r6 _fetch_pending_pages (DB, no "
+    "pagination) 0.")
 
 # B12 HTTP retry on 5xx doWithRetry (Go) -- GAP
 BM25["B12"] = [0, 0, 0, 0.5, 1, 0.5, 0, 0, 1, 0]
@@ -168,16 +192,21 @@ COMMENTS["C2"] = ("C2C wins precision: r1/r2/r4 are the exact fromisoformat(+Z) 
 
 # C3 Fan-out / parallel map (Go -> JS Promise.all) -- HARD FOR BOTH
 BM25["C3"] = [0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-C2C["C3"]  = [0.5, 0, 0, 0.5, 0, 0.5, 0, 0.5, 0, 0]
+C2C["C3"]  = [0, 0, 0, 1, 0, 0, 0, 0, 1, 0.5]
 COMMENTS["C3"] = ("Hard for both; corpus lacks a clean fan-out-collect analog and NO JS "
-    "Promise.all surfaced. BM25 matched chan/errs/wg -> Go concurrency plumbing (single-channel "
-    "readers, server bootstraps). C2C finds parallel block/lane processors & distribute (0.5).")
+    "Promise.all surfaced. BM25 matched chan/errs/wg -> Go concurrency plumbing. C2C "
+    "(local): r4 conc.ForEachIdx and r9 conc.Map are genuine parallel maps over an input "
+    "slice (1); r10 Broadcaster.distribute is event fan-out to watchers (0.5); r1-3,5-8 are "
+    "SIMD-hash channel/lane servers, prometheus collectors, a log demux and a workqueue "
+    "wait -- concurrency plumbing, not fan-out-collect (0).")
 
 # C4 Throttle / call-rate limiter (TS -> PHP)
 BM25["C4"] = [1, 1, 1, 1, 0.5, 1, 1, 1, 1, 1]
 C2C["C4"]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 COMMENTS["C4"] = ("Tie at ceiling. 'throttle/lastCall/Date.now/setTimeout' highly discriminative; "
-    "corpus is full of JS/TS throttles. Both return throttle family (PHP target not needed). "
+    "corpus is full of JS/TS throttles. C2C (local): all 10 are genuine throttle "
+    "(leading-edge rate limiter) implementations -- r6/r7/r8 the same leaflet throttle and "
+    "r9/r10 the same Sortable _throttle (duplicate-heavy), but every hit is a true throttle. "
     "BM25 r5 is a throttle-internal helper (0.5).")
 
 # C5 Recursive table/dict serialiser (Lua -> Python/PHP) -- BM25 WIN
@@ -200,18 +229,24 @@ COMMENTS["C6"] = ("Tie by >=0.5 metric but C2C far higher precision: C2C returns
 # ===================== CATEGORY D — Domain-specific / niche ==================
 # D1 Wikitext internal link extractor (PHP)
 BM25["D1"] = [1, 1, 0, 1, 1, 0.5, 0.5, 1, 1, 0.5]
-C2C["D1"]  = [1, 1, 1, 1, 1, 0.5, 0.5, 1, 1, 0.5]
+C2C["D1"]  = [0.5, 1, 1, 1, 0.5, 0.5, 0, 0.5, 1, 1]
 COMMENTS["D1"] = ("Both strong: discriminative domain tokens (wikitext, preg_match_all, [[, "
-    "Title::newFromText). BM25 r3 is a test (0); link add/remove helpers 0.5. C2C adds "
-    "cross-language (Rust tree-sitter extract_links).")
+    "Title::newFromText). BM25 r3 is a test (0); link add/remove helpers 0.5. C2C (local): "
+    "r2 getFilesFromWikiText, r3 extract_links (Rust tree-sitter), r4 "
+    "WikitextLinksExtractor::getLinksToNamespace, r9 InternalLinksHelper::parse, r10 "
+    "getWeightedLinks are genuine [[...]] internal-link extractors (1); r1 the "
+    "WikitextLinksExtractor class 0.5 (container); r5 findLinks (external), r6 "
+    "getTemplateTitles ({{..}}), r8 getMentionedUsersFromWikitext 0.5; r7 getItemList "
+    "(list items, not links) 0.")
 
 # D2 Git-compatible SHA-1 / SWHID (Python) -- NICHE, both miss specifics
 BM25["D2"] = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
-C2C["D2"]  = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
-COMMENTS["D2"] = ("Tie (lenient) but NEITHER finds the git-blob-header/SWHID specifics (likely "
-    "unique to this tool's own preprocessing, not in corpus). BM25 returns generic sha1 "
-    "hexdigest (sha_utf8, sha1sum); C2C returns generic file/content hashers. All partial; "
-    "strict P@10 = 0 for both.")
+C2C["D2"]  = [0.5, 0, 0, 0.5, 0.5, 0.5, 0, 0, 0.5, 0.5]
+COMMENTS["D2"] = ("NEITHER finds the git-blob-header/SWHID specifics (likely unique to this "
+    "tool's own preprocessing, not in corpus). BM25 returns generic sha1 hexdigest (sha_utf8, "
+    "sha1sum). C2C (local): r1 sha256_of, r4 sha1sum, r5/r6 pip rehash, r9 calculate_sha256, "
+    "r10 _calculate_sha512 are generic content/file hashers (0.5); r2/r3/r7 are sha1 unit "
+    "tests (0) and r8 File.__hash__ returns hash(self.sha1) (0). Strict P@10 = 0 for both.")
 
 # D3 IRC message line parser (Python)
 BM25["D3"] = [0, 0.5, 0.5, 0.5, 0, 0.5, 0, 0.5, 0.5, 0]

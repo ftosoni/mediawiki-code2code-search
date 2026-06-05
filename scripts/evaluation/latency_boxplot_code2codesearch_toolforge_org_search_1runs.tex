@@ -1,0 +1,388 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% Custom styling to match branding
+\definecolor{brandblue}{HTML}{3366CC}
+\definecolor{lightblue}{HTML}{EAF3FF}
+\definecolor{darkblue}{HTML}{2A55A3}
+\definecolor{grayborder}{HTML}{A2A9B1}
+\definecolor{outlierred}{HTML}{B32424}
+\definecolor{outlierbg}{HTML}{FEE7E6}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+    title={\textbf{API Latency Distribution per Evaluation Query}},
+    xlabel={Latency (milliseconds)},
+    ylabel={Evaluation Queries},
+    ytick={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27},
+    yticklabels={
+        A1,
+        B3,
+        B6,
+        B4,
+        A4,
+        B7,
+        D4,
+        A3,
+        C4,
+        C6,
+        D1,
+        C2,
+        B12,
+        B9,
+        A2,
+        C1,
+        B10,
+        D2,
+        B1,
+        B2,
+        D3,
+        C3,
+        A5,
+        B8,
+        B11,
+        C5,
+        B5
+    },
+    yticklabel style={font=\small},
+    width=12cm,
+    height=16cm,
+    xmin=0,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!20},
+    major grid style={line width=.2pt, draw=gray!40},
+    cycle list={
+        {draw=brandblue, fill=lightblue, mark=*, mark options={fill=outlierbg, draw=outlierred, mark size=1.5pt}}\\
+    }
+]
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=1,
+            lower whisker=11065.67,
+            lower quartile=11065.67,
+            median=11065.67,
+            upper quartile=11065.67,
+            upper whisker=11065.67
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=2,
+            lower whisker=13574.76,
+            lower quartile=13574.76,
+            median=13574.76,
+            upper quartile=13574.76,
+            upper whisker=13574.76
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=3,
+            lower whisker=14113.80,
+            lower quartile=14113.80,
+            median=14113.80,
+            upper quartile=14113.80,
+            upper whisker=14113.80
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=4,
+            lower whisker=14413.09,
+            lower quartile=14413.09,
+            median=14413.09,
+            upper quartile=14413.09,
+            upper whisker=14413.09
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=5,
+            lower whisker=16505.86,
+            lower quartile=16505.86,
+            median=16505.86,
+            upper quartile=16505.86,
+            upper whisker=16505.86
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=6,
+            lower whisker=17055.16,
+            lower quartile=17055.16,
+            median=17055.16,
+            upper quartile=17055.16,
+            upper whisker=17055.16
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=7,
+            lower whisker=18258.59,
+            lower quartile=18258.59,
+            median=18258.59,
+            upper quartile=18258.59,
+            upper whisker=18258.59
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=8,
+            lower whisker=19741.03,
+            lower quartile=19741.03,
+            median=19741.03,
+            upper quartile=19741.03,
+            upper whisker=19741.03
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=9,
+            lower whisker=22398.39,
+            lower quartile=22398.39,
+            median=22398.39,
+            upper quartile=22398.39,
+            upper whisker=22398.39
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=10,
+            lower whisker=23771.24,
+            lower quartile=23771.24,
+            median=23771.24,
+            upper quartile=23771.24,
+            upper whisker=23771.24
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=11,
+            lower whisker=25684.04,
+            lower quartile=25684.04,
+            median=25684.04,
+            upper quartile=25684.04,
+            upper whisker=25684.04
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=12,
+            lower whisker=28300.19,
+            lower quartile=28300.19,
+            median=28300.19,
+            upper quartile=28300.19,
+            upper whisker=28300.19
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=13,
+            lower whisker=28762.16,
+            lower quartile=28762.16,
+            median=28762.16,
+            upper quartile=28762.16,
+            upper whisker=28762.16
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=14,
+            lower whisker=30806.91,
+            lower quartile=30806.91,
+            median=30806.91,
+            upper quartile=30806.91,
+            upper whisker=30806.91
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=15,
+            lower whisker=31333.44,
+            lower quartile=31333.44,
+            median=31333.44,
+            upper quartile=31333.44,
+            upper whisker=31333.44
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=16,
+            lower whisker=32028.88,
+            lower quartile=32028.88,
+            median=32028.88,
+            upper quartile=32028.88,
+            upper whisker=32028.88
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=17,
+            lower whisker=32451.85,
+            lower quartile=32451.85,
+            median=32451.85,
+            upper quartile=32451.85,
+            upper whisker=32451.85
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=18,
+            lower whisker=34231.28,
+            lower quartile=34231.28,
+            median=34231.28,
+            upper quartile=34231.28,
+            upper whisker=34231.28
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=19,
+            lower whisker=34547.29,
+            lower quartile=34547.29,
+            median=34547.29,
+            upper quartile=34547.29,
+            upper whisker=34547.29
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=20,
+            lower whisker=35334.46,
+            lower quartile=35334.46,
+            median=35334.46,
+            upper quartile=35334.46,
+            upper whisker=35334.46
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=21,
+            lower whisker=36317.91,
+            lower quartile=36317.91,
+            median=36317.91,
+            upper quartile=36317.91,
+            upper whisker=36317.91
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=22,
+            lower whisker=37368.52,
+            lower quartile=37368.52,
+            median=37368.52,
+            upper quartile=37368.52,
+            upper whisker=37368.52
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=23,
+            lower whisker=39391.89,
+            lower quartile=39391.89,
+            median=39391.89,
+            upper quartile=39391.89,
+            upper whisker=39391.89
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=24,
+            lower whisker=39617.39,
+            lower quartile=39617.39,
+            median=39617.39,
+            upper quartile=39617.39,
+            upper whisker=39617.39
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=25,
+            lower whisker=42522.77,
+            lower quartile=42522.77,
+            median=42522.77,
+            upper quartile=42522.77,
+            upper whisker=42522.77
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=26,
+            lower whisker=53858.61,
+            lower quartile=53858.61,
+            median=53858.61,
+            upper quartile=53858.61,
+            upper whisker=53858.61
+        }
+    ] coordinates {};
+    \addplot+ [
+        box plot width=0.6,
+        boxplot prepared={
+            draw direction=x,
+            draw position=27,
+            lower whisker=110794.38,
+            lower quartile=110794.38,
+            median=110794.38,
+            upper quartile=110794.38,
+            upper whisker=110794.38
+        }
+    ] coordinates {};
+\end{axis}
+\end{tikzpicture}
+\end{document}
