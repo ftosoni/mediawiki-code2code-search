@@ -45,6 +45,7 @@ mediawiki-code2code-search/
 │   ├── main.tex               # Manuscript source file documenting architecture
 │   └── main.pdf               # Compiled system documentation/paper
 ├── app.py                     # Root FastAPI web application entry point
+├── download_models.py         # Script to pre-download model weights locally
 ├── requirements.txt           # Python backend dependencies
 └── CITATION.cff               # CITATION file for academic/repository reference
 ```
@@ -56,7 +57,7 @@ The indexing pipeline is designed for a **mass-scale, distributed build**.
 ## 🛠️ Setup
 
 ### Backend (Python)
-Create and activate a virtual environment (optional but recommended), then install dependencies:
+Create and activate a virtual environment (optional but recommended), install dependencies, and pre-download the neural models:
 ```bash
 python -m venv venv
 # Windows:
@@ -65,6 +66,7 @@ python -m venv venv
 source venv/bin/activate
 
 pip install -r requirements.txt
+python download_models.py
 ```
 
 ### Frontend (Static Assets)
