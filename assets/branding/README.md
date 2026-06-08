@@ -25,19 +25,22 @@ To maintain brand integrity, use only these official colors.
 ## 3. Logo Assets
 Available in `assets/branding/`. Use the SVG format for all web and documentation purposes to ensure crisp scaling.
 
-### 3.1 Vertical Logo
+### 3.1 Vertical Logo (v1.0.0 - Unused)
 **File**: `logo-vertical.svg`  
+**Status**: Unused in v2.0.0 (legacy asset from version v1.0.0).  
 **Purpose**: Primary logo for splash screens, centered layouts, and about pages.  
 ![Vertical Logo](logo-vertical.svg)
 
-### 3.2 Horizontal Logo
+### 3.2 Horizontal Logo (v2.0.0 - Active)
 **File**: `logo-horizontal.svg`  
-**Purpose**: Secondary logo for navigation bars, headers, and footer layouts where vertical space is limited.  
+**Status**: Active (updated for version v2.0.0).  
+**Purpose**: Secondary logo for navigation bars, headers, and footer layouts. Used in OpenGraph metadata.  
 ![Horizontal Logo](logo-horizontal.svg)
 
-### 3.3 Minimalist Icon
+### 3.3 Minimalist Icon (v1.0.0 - Unused)
 **File**: `logo-minimal.svg`  
-**Purpose**: Square-format icon for avatars, social media previews, and mobile app icons.  
+**Status**: Unused in v2.0.0 (legacy asset from version v1.0.0).  
+**Purpose**: Square-format icon for avatars and legacy mobile app icons.  
 ![Minimalist Icon](logo-minimal.svg)
 
 ---
@@ -45,8 +48,8 @@ Available in `assets/branding/`. Use the SVG format for all web and documentatio
 ## 4. System Icons & SEO
 We use a dual-icon strategy to balance modern aesthetics with search engine compatibility.
 
-- **SVG Favicon (`logo-minimal.svg`)**: Linked in `index.html` for modern browser tabs. Provides high-resolution rendering.
-- **ICO Favicon (`favicon.ico`)**: Provided for legacy compatibility and optimal indexing by **Googlebot/Bingbot**.
+- **SVG Favicon (`favicon.svg`)**: Linked in `index.html` for modern browser tabs. Active in version v2.0.0.
+- **ICO Favicon (`favicon.ico`)**: Provided for legacy compatibility and optimal indexing by **Googlebot/Bingbot**. Active in version v2.0.0.
 
 ---
 
