@@ -4,7 +4,7 @@ A high-performance semantic code search engine designed for the MediaWiki ecosys
 Built on the Qwen 0.6B neural retrieval model, optimized for large-scale codebases like MediaWiki Core, Extensions, and WMF Operations.
 Metadata is managed via indexed SQLite for sub-second responses and a low-memory footprint (Toolforge compatible).
 
-As featured on [Wikimedia Diff](https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/).
+As featured on [Wikimedia Diff](https://diff.wikimedia.org/2026/04/14/introducing-mediawiki-code2code-search-semantic-search-to-find-code-by-under-the-surface-similarity/) (v1.0.0).
 
 ## ✨ Key Features
 
