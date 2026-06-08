@@ -2,58 +2,46 @@
 
 This document defines the visual identity and branding standards for the **MediaWiki Code2Code Search** project. It is intended for developers, maintainers, and contributors to ensure consistency across the application and its documentation.
 
----
-
-## 1. Concept: The Code Vortex
-The visual identity is centered around the "Code Vortex" concept. It represents the deep indexing and retrieval of code within the MediaWiki ecosystem.
-- **Symbolism**: The circular motion suggests scanning and search, while the brackets signify the code environment.
-- **Core Colors**: A high-contrast pairing of deep tech blue and vibrant energy orange.
-
----
-
-## 2. Color Palette
-To maintain brand integrity, use only these official colors.
-
-| Color | Name | Hex | Usage |
-| :--- | :--- | :--- | :--- |
-| ![#4B61D1](https://via.placeholder.com/15/4B61D1/000000?text=+) | **Savoy Blue** | `#4B61D1` | Primary identity, headers, buttons |
-| ![#FF7722](https://via.placeholder.com/15/FF7722/000000?text=+) | **Indian Saffron** | `#FF7722` | Accents, highlights, call-to-actions |
-| ![#1E1E1E](https://via.placeholder.com/15/1E1E1E/000000?text=+) | **Deep Coal** | `#1E1E1E` | Primary background (Dark Mode) |
-
----
-
-## 3. Logo Assets
+## 1. Logo Assets
 Available in `assets/branding/`. Use the SVG format for all web and documentation purposes to ensure crisp scaling.
 
-### 3.1 Vertical Logo (v1.0.0 - Unused)
+### 1.1 Vertical Logo (v1.0.0 - Unused)
 **File**: `logo-vertical.svg`  
-**Status**: Unused in v2.0.0 (legacy asset from version v1.0.0).  
-**Purpose**: Primary logo for splash screens, centered layouts, and about pages.  
+**Status**: Unused (belongs to version v1.0.0).  
+**Purpose**: Legacy primary logo for splash screens, centered layouts, and about pages.  
 ![Vertical Logo](logo-vertical.svg)
 
-### 3.2 Horizontal Logo (v2.0.0 - Active)
+### 1.2 Horizontal Logo (v1.0.0 - Unused)
 **File**: `logo-horizontal.svg`  
-**Status**: Active (updated for version v2.0.0).  
-**Purpose**: Secondary logo for navigation bars, headers, and footer layouts. Used in OpenGraph metadata.  
+**Status**: Unused (belongs to version v1.0.0).  
+**Purpose**: Legacy secondary logo for navigation bars and headers.  
 ![Horizontal Logo](logo-horizontal.svg)
 
-### 3.3 Minimalist Icon (v1.0.0 - Unused)
+### 1.3 Minimalist Icon (v1.0.0 - Unused)
 **File**: `logo-minimal.svg`  
-**Status**: Unused in v2.0.0 (legacy asset from version v1.0.0).  
-**Purpose**: Square-format icon for avatars and legacy mobile app icons.  
+**Status**: Unused (belongs to version v1.0.0).  
+**Purpose**: Legacy square-format icon for avatars and mobile app previews.  
 ![Minimalist Icon](logo-minimal.svg)
 
+### 1.4 SVG Favicon (v2.0.0 - Active Logo)
+**File**: `favicon.svg`  
+**Status**: Active (belongs to version v2.0.0).  
+**Purpose**: Current primary logo used in the application header and browser tab favicon.  
+![SVG Favicon](favicon.svg)
+
 ---
 
-## 4. System Icons & SEO
+## 2. System Icons & SEO
 We use a dual-icon strategy to balance modern aesthetics with search engine compatibility.
 
-- **SVG Favicon (`favicon.svg`)**: Linked in `index.html` for modern browser tabs. Active in version v2.0.0.
-- **ICO Favicon (`favicon.ico`)**: Provided for legacy compatibility and optimal indexing by **Googlebot/Bingbot**. Active in version v2.0.0.
+- **SVG Favicon (`favicon.svg`)**: Linked in `index.html` for modern browser tabs and header brand icon. Active in version v2.0.0.  
+  ![SVG Favicon](favicon.svg)
+- **ICO Favicon (`favicon.ico`)**: Provided for legacy compatibility and optimal indexing by **Googlebot/Bingbot**. Active in version v2.0.0.  
+  ![ICO Favicon](favicon.ico)
 
 ---
 
-## 5. Typography
+## 3. Typography
 The project uses geometric and modern typefaces to reflect its technical nature.
 
 | Component | Font Stack | Notes |
@@ -64,7 +52,6 @@ The project uses geometric and modern typefaces to reflect its technical nature.
 
 ---
 
-## 6. Usage Guidelines
+## 4. Usage Guidelines
 - **Padding**: Ensure a minimum clear space of 10% around the logo.
-- **Backgrounds**: Logos are optimized for dark backgrounds (`#1E1E1E`). For light backgrounds, ensure sufficient contrast for the Indian Saffron accents.
 - **Scaling**: Do not scale logos below 32px width for the horizontal variant or 64px for the vertical variant.
