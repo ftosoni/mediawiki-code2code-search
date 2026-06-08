@@ -29,7 +29,7 @@
     "group_wmcs": "ಕ್ಲೌಡ್ (WMCS)",
     "group_apps": "ಮೊಬೈಲ್ ಅಪ್ಲಿಕೇಶನ್ಗಳು",
     "indic_ug": "ಇಂಡಿಕ್ ಮೀಡಿಯಾವಿಕಿ ಡೆವಲಪರ್ಸ್ ಯೂಸರ್ ಗ್ರೂಪ್",
-    "issues": "ಸಮಸ್ಯೆಯನ್ನು వರದಿ ಮಾಡಿ",
+    "issues": "ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡಿ",
     "type_template": "ಟೆಂಪ್ಲೇಟ್‌ಗಳು",
     "source": "ಮೂಲ",
     "wikidata": "ವಿಕಿಡೇಟಾ Q-ಐಟಂ",
@@ -50,8 +50,8 @@
     "footer_section_resources": "ಸಂಪನ್ಮೂಲಗಳು",
     "footer_section_source": "ಮೂಲ ಮತ್ತು ಬೆಂಬಲ",
     "footer_section_status": "ಪರವಾನಗಿ ಮತ್ತು ಸ್ಥಿತಿ",
-    "footer_release_date": "ಬಿಡುగಡೆ ದಿನಾಂಕ:",
-    "example_queries_label": "ಮೌಲ್ಯಮಾಪನ ಪ್ರಶ್ನೆಯ ಉದಾಹರಣೆಯನ್ನು ప్రయత్ಿಸಿ",
-    "example_queries_placeholder": "-- ಮೌಲ್ಯಮಾపನ ಪ್ರಶ್ನೆಯನ್ನು ఆರಿಸಿ --",
-    "diff_post": "ವಿಕಿಮೀಡಿಯา ಡಿಫ್ ಪೋಸ್ಟ್"
+    "footer_release_date": "ಬಿಡುಗಡೆ ದಿನಾಂಕ:",
+    "example_queries_label": "ಮೌಲ್ಯಮಾಪನ ಪ್ರಶ್ನೆಯ ಉದಾಹರಣೆಯನ್ನು ಪ್ರಯತ್ನಿಸಿ",
+    "example_queries_placeholder": "-- ಮೌಲ್ಯಮಾಪನ ಪ್ರಶ್ನೆಯನ್ನು ಆರಿಸಿ --",
+    "diff_post": "ವಿಕಿಮೀಡಿಯಾ ಡಿಫ್ ಪೋಸ್ಟ್"
 }

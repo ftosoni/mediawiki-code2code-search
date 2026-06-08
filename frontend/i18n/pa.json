@@ -42,7 +42,7 @@
     "matches_found": "ਮੇਲ ਮਿਲੇ",
     "search_label": "ਕੋਡ ਸਨਿੱਪਟ",
     "loading_message": "ਕੋਡ ਮੇਲ ਲੱਭੇ ਜਾ ਰਹੇ ਹਨ... ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ।",
-    "documentation_prefix": "ଦସତାବେଜ:",
+    "documentation_prefix": "ਦਸਤਾਵੇਜ਼:",
     "sloan_grant": "ਗ੍ਰਾਂਟ <a href=\"https://sloan.org/grant-detail/g-2025-25193\" target=\"_blank\">G-2025-25193</a> ਦੇ ਤਹਿਤ <a href=\"https://sloan.org/\" target=\"_blank\">Alfred P. Sloan Foundation</a> ਦੁਆਰਾ ਸਮਰਥਿਤ",
     "powered_by_qwen": "ਦੁਆਰਾ ਸੰਚਾਲਿਤ <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a>",
     "data_archived_by_swh": "ਡਾਟਾ ਆਰਕਾਈਵ ਕੀਤਾ ਗਿਆ <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">Software Heritage</a> ਦੁਆਰਾ",
@@ -51,7 +51,7 @@
     "footer_section_source": "ਸਰੋਤ ਅਤੇ ਸਮਰਥਨ",
     "footer_section_status": "ਲਾਇਸੈਂਸ ਅਤੇ ਸਥਿਤੀ",
     "footer_release_date": "ਜਾਰੀ ਕਰਨ ਦੀ ਮਿਤੀ:",
-    "example_queries_label": "ਮੁਲਾਂਕਣ ਪੁੱਛਗਿੱਛ ਦੀ ਉਦਾਹরਣ ਵੇਖੋ",
+    "example_queries_label": "ਮੁਲਾਂਕਣ ਪੁੱਛਗਿੱਛ ਦੀ ਉਦਾਹਰਣ ਵੇਖੋ",
     "example_queries_placeholder": "-- ਮੁਲਾਂਕਣ ਪੁੱਛਗਿੱਛ ਦੀ ਚੋਣ ਕਰੋ --",
     "diff_post": "ਵਿਕੀਮੀਡੀਆ ਡਿਫ ਪੋਸਟ"
 }
