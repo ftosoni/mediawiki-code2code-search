@@ -8,7 +8,7 @@ As featured on [Wikimedia Diff](https://diff.wikimedia.org/2026/04/14/introducin
 
 ## ✨ Key Features
 
-- **📂 Global MediaWiki Indexing**: Covers Core, Extensions, Skins, Libraries, Services, and more (2,400+ unique repos).
+- **📂 Global MediaWiki Indexing**: Covers Core, Extensions, Skins, Libraries, Services, and more (2,500+ unique repos).
 - **🧠 Single-Stage Neural Retrieval**: Uses `Qwen3-Embedding-0.6B` with FAISS `IndexIVFPQ` for lightning-fast results (approx. 0.3s).
 - **🌳 Granular Structural Filtering**: High-precision extraction and filtering of **Functions**, **Types**, **Template Functions**, and **Template Types** across 10 languages.
 - **🏗️ Split-Build Architecture**: Optimized for asymmetric hardware—run heavy extraction on a laptop and neural vectorization on a GPU.
@@ -31,7 +31,7 @@ mediawiki-code2code-search/
 │   ├── snippets.db            # SQLite metadata store for fast lookups
 │   └── mediawiki.index        # Compiled FAISS vector index
 ├── preprocessing/             # Global-Scale Indexing Pipeline (Phases 1-3)
-│   ├── list_repos.py          # Discovers and lists 2,400+ MediaWiki repositories
+│   ├── list_repos.py          # Discovers and lists 2,500+ MediaWiki repositories
 │   ├── download_repos.py      # Handles shallow clones of target repositories
 │   ├── extract_entities.py    # Structural parsing & AST entity extraction
 │   ├── archive_to_swh.py      # Software Heritage archiving pipeline scripts
@@ -87,7 +87,7 @@ There is no compilation step required for the frontend.
 First, discover the ecosystem and mirror it for processing:
 ```bash
 cd preprocessing
-python list_repos.py      # Fetches 2,400+ repo URLs
+python list_repos.py      # Fetches 2,500+ repo URLs
 python download_repos.py  # Shallow clones (approx. 8GB disk space)
 ```
 
