@@ -56,6 +56,14 @@ The indexing pipeline is designed for a **mass-scale, distributed build**.
 
 ## 🛠️ Setup
 
+### 💾 Pre-computed Artefacts (Recommended)
+
+To run the search engine immediately without running the entire indexing pipeline (Phases 1-4) from scratch, you can download our pre-computed database and FAISS index from the **[Zenodo Dataset](https://doi.org/10.5281/zenodo.20586256)**:
+1. Download `snippets.db` and `mediawiki.index`.
+2. Place both files inside the `backend/` directory of the project.
+
+For the frozen software source code release of the engine, see **[GitHub Release v2.0.0](https://github.com/ftosoni/mediawiki-code2code-search/releases/tag/v2.0.0)**.
+
 ### Backend (Python)
 Create and activate a virtual environment (optional but recommended), install dependencies, and pre-download the neural models:
 ```bash
