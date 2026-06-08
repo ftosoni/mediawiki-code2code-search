@@ -55,4 +55,11 @@ frontend/js/app.js
 # BM25 Baseline Index Cache
 backend/bm25_index.pkl
 
-
+# LaTeX Build Artifacts
+*.aux
+*.log
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
