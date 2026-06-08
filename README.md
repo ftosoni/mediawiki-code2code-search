@@ -30,7 +30,7 @@ mediawiki-code2code-search/
 │   ├── migrate_to_sqlite.py   # RAM optimization script (JSON metadata -> SQLite)
 │   ├── snippets.db            # SQLite metadata store for fast lookups
 │   └── mediawiki.index        # Compiled FAISS vector index
-├── preprocessing/             # Global-Scale Indexing Pipeline (Phases 1-3)
+├── preprocessing/             # Global-Scale Indexing Pipeline (Phases 1-4)
 │   ├── list_repos.py          # Discovers and lists 2,500+ MediaWiki repositories
 │   ├── download_repos.py      # Handles shallow clones of target repositories
 │   ├── extract_entities.py    # Structural parsing & AST entity extraction
@@ -58,7 +58,7 @@ The indexing pipeline is designed for a **mass-scale, distributed build**.
 
 ### 💾 Pre-computed Artefacts (Recommended)
 
-To run the search engine immediately without running the entire indexing pipeline (Phases 1-4) from scratch, you can download our pre-computed database and FAISS index from the **[Zenodo Dataset](https://doi.org/10.5281/zenodo.20586256)**:
+To run the search engine immediately without running the entire indexing pipeline (Phases 1-6) from scratch, you can download our pre-computed database and FAISS index from the **[Zenodo Dataset](https://doi.org/10.5281/zenodo.20586256)**:
 1. Download `snippets.db` and `mediawiki.index`.
 2. Place both files inside the `backend/` directory of the project.
 
@@ -100,15 +100,13 @@ Ensure all repositories are archived in Software Heritage for on-demand retrieva
 python archive_individual_to_swh.py
 ```
 
-### Phase 3: Extraction (Local/CPU)
+### Phase 3: Structural Extraction (Local/CPU)
 Perform high-precision structural parsing on your local machine. This captures functions/types with qualified names (e.g., `Class::Method`) and handles complex language features.
-
-**Phase 3a: Structural Extraction**
 ```bash
 python extract_structural_entities.py
 ```
 
-**Phase 3b: Identity Resolution**
+### Phase 4: Identity Resolution
 Resolve Git-compatible hashes to standard SHA1. You can do this either locally (fast) or via the Software Heritage API (official):
 
 *   **Option A: Local Resolution (Recommended)**
@@ -120,7 +118,7 @@ Resolve Git-compatible hashes to standard SHA1. You can do this either locally (
     python resolve_swh_hashes.py
     ```
 
-### Phase 4: Indexing (Remote/GPU)
+### Phase 5: Indexing (Remote/GPU)
 Move `raw_snippets.json` to a GPU-equipped environment to compute neural vectors and build the FAISS index.
 ```bash
 cd backend
@@ -128,13 +126,14 @@ python generate_embeddings.py  # Computes and saves embeddings to embeddings.npy
 python build_index.py          # Trains and builds FAISS index from embeddings.npy
 ```
 
-### Phase 5: Memory Optimization & Deployment (Local/Toolforge)
+### Phase 6: Memory Optimization
 Before deploying, convert the production metadata to SQLite to stay within 6GiB RAM limits:
 ```bash
 cd backend
 python migrate_to_sqlite.py
 ```
 
+### Phase 7: Runtime / Running the Application
 Once the index and database are ready, start the FastAPI backend from the root directory:
 
 ```bash
