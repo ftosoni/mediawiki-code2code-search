@@ -18,6 +18,7 @@
     "type_function": "Label for result type filter: functions and methods only.",
     "type_type": "Label for result type filter: type declarations (classes, interfaces, structs) only.",
     "type_template": "Label for result type filter: template files only.",
+    "lang_all": "Label for the programming-language filter chip that removes any language restriction. Kept separate from {{msg-mediawiki|type_all}} and {{msg-mediawiki|group_all}} on purpose: languages that inflect for gender or number need a different form here (Italian \"Tutti i linguaggi\" vs \"Tutte le entità\").",
     "group_all": "Label for repository group filter: search across all indexed repositories.",
     "group_core": "Label for repository group filter: the MediaWiki core repository. \"MediaWiki\" is a product name.",
     "group_things": "Label for repository group filter: MediaWiki extensions and skins together.",

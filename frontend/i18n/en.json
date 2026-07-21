@@ -18,6 +18,7 @@
     "type_function": "Functions",
     "type_type": "Types",
     "type_template": "Templates",
+    "lang_all": "All Languages",
     "group_all": "Everything",
     "group_core": "MediaWiki Core",
     "group_things": "Extensions & Skins",

@@ -254,6 +254,9 @@ function applyI18n() {
     updateChipText('#filter-types', 'type', i18nData.type_type || 'Type');
     updateChipText('#filter-types', 'template', i18nData.type_template || 'Template');
 
+    // Languages (only the "all" chip is translatable; the others are language names)
+    updateChipText('#filter-langs', 'all', i18nData.lang_all || 'All Languages');
+
     // Summary
     const matchesFoundEl = document.getElementById('matches-found-label');
     if (matchesFoundEl) matchesFoundEl.textContent = i18nData.matches_found || 'Matches found';
