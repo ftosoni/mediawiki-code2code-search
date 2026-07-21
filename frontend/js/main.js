@@ -59,6 +59,7 @@ const EVAL_QUERIES = {
 
 let currentLang = localStorage.getItem('code2code_lang') || CONFIG.defaultLang;
 let i18nData = {};
+let i18nBase = null;
 let activeFilters = {
     repos: ['all'],
     langs: ['all'],
@@ -202,16 +203,38 @@ function updateTemplateStatus() {
 
 // --- I18n Logic ---
 
+// en.json is the base for every locale, so a key missing from a translation
+// falls back to English instead of leaking a raw id like "search".
+async function loadI18nBase() {
+    if (!i18nBase) {
+        const response = await fetch('i18n/en.json');
+        if (!response.ok) throw new Error(`i18n/en.json: ${response.status}`);
+        i18nBase = await response.json();
+    }
+    return i18nBase;
+}
+
 async function loadLanguage(lang) {
     try {
-        const response = await fetch(`i18n/${lang}.json`);
-        i18nData = await response.json();
+        const base = await loadI18nBase();
+        if (lang === 'en') {
+            i18nData = { ...base };
+        } else {
+            const response = await fetch(`i18n/${lang}.json`);
+            if (!response.ok) throw new Error(`i18n/${lang}.json: ${response.status}`);
+            i18nData = { ...base, ...await response.json() };
+        }
         applyI18n();
         currentLang = lang;
         localStorage.setItem('code2code_lang', lang);
         document.documentElement.lang = lang;
     } catch (error) {
         console.error('Failed to load language:', lang, error);
+        // A broken translation must not blank the UI: keep English if we have it.
+        if (i18nBase && i18nData !== i18nBase) {
+            i18nData = { ...i18nBase };
+            applyI18n();
+        }
     }
 }
 

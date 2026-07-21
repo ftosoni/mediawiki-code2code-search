@@ -32,6 +32,7 @@
     "group_analytics": "Label for repository group filter: analytics and data-engineering repositories.",
     "group_wmcs": "Label for repository group filter: Wikimedia Cloud Services repositories. \"WMCS\" is an abbreviation of \"Wikimedia Cloud Services\".",
     "group_apps": "Label for repository group filter: the Wikipedia mobile app repositories.",
+    "group_search": "Label for repository group filter: the translatewiki.net repository. The group id is \"search\" for historical reasons but it contains only that one repository, so the label names the repository instead. \"translatewiki.net\" is a website name and must not be translated.",
     "indic_ug": "Name of the Indic MediaWiki Developers User Group, shown in the footer as the group the tool author belongs to. \"UG\" is an abbreviation of \"User Group\". This is an organisation name; translate only if an established local form exists.",
     "created_by": "Label in the footer, followed by the name of the tool author. Includes a trailing colon.",
     "licence": "Label in the footer, followed by a link to the licence the tool is released under. Includes a trailing colon.\n{{Identical|Licence}}",
