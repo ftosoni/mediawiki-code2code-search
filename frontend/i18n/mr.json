@@ -1,4 +1,9 @@
 {
+    "@metadata": {
+        "authors": [
+            "Francesco Tosoni"
+        ]
+    },
     "search_title": "SWH कोड अन्वेषण",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "सिमेंटिक न्यूरल रिट्रीव्हल इंजिन",
@@ -16,8 +21,6 @@
     "type_type": "प्रकार (Types)",
     "group_all": "सर्व",
     "group_core": "मिडियाविकी कोअर",
-    "group_extensions": "एक्सटेंशन्स",
-    "group_skins": "स्किन्स",
     "group_things": "एक्सटेंशन्स आणि स्किन्स",
     "group_libraries": "लायब्ररीज",
     "group_deployed": "WMF डिप्लॉइड",

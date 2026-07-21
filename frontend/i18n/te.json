@@ -1,4 +1,9 @@
 {
+    "@metadata": {
+        "authors": [
+            "Francesco Tosoni"
+        ]
+    },
     "search_title": "SWH కోడ్ అన్వేషణ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "సిమాంటిక్ న్యూరల్ రిట్రీవల్ ఇంజిన్",
@@ -16,8 +21,6 @@
     "type_type": "రకాలు (Types)",
     "group_all": "అన్నీ",
     "group_core": "మీడియావికీ కోర్",
-    "group_extensions": "ఎక్స్‌టెన్షన్లు",
-    "group_skins": "స్కిన్లు",
     "group_things": "ఎక్స్‌టెన్షన్లు మరియు స్కిన్లు",
     "group_libraries": "లైబ్రరీలు",
     "group_deployed": "WMF మోహరించినవి",

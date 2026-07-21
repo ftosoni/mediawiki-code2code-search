@@ -1,4 +1,9 @@
 {
+    "@metadata": {
+        "authors": [
+            "Francesco Tosoni"
+        ]
+    },
     "search_title": "SWH ᱠᱳᱰ ᱥᱮᱸᱫᱽᱨᱟ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "ᱥᱤᱢᱟᱱᱴᱤᱠ ᱱᱤᱭᱩᱨᱟᱞ ᱨᱤᱴᱨᱤᱵᱷᱟᱞ ᱤᱧᱡᱤᱱ",
@@ -16,8 +21,6 @@
     "type_type": "ᱞᱮᱠᱟᱱ (Types)",
     "group_all": "ᱥᱟᱱᱟᱢ",
     "group_core": "MediaWiki Core",
-    "group_extensions": "Extensions",
-    "group_skins": "Skins",
     "group_things": "Extensions & Skins",
     "group_libraries": "Libraries",
     "group_deployed": "WMF Deployed",

@@ -1,4 +1,9 @@
 {
+    "@metadata": {
+        "authors": [
+            "Francesco Tosoni"
+        ]
+    },
     "search_title": "SWH ক'ড অন্বেষণ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "চিমেন্টিক নিউৰেল ৰিট্ৰিভাইল ইঞ্জিন",
@@ -16,8 +21,6 @@
     "type_type": "প্ৰকাৰ (Types)",
     "group_all": "সকলো",
     "group_core": "মিডিয়াউইকি কোৰ",
-    "group_extensions": "এক্সটেনচন",
-    "group_skins": "স্কিন",
     "group_things": "এক্সটেনচন আৰু স্কিন",
     "group_libraries": "লাইব্ৰেৰী",
     "group_deployed": "WMF দ্বাৰা মোতায়েন",

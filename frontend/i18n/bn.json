@@ -1,4 +1,9 @@
 {
+    "@metadata": {
+        "authors": [
+            "Francesco Tosoni"
+        ]
+    },
     "search_title": "SWH কোড অন্বেষণ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "সিমেন্টিক নিউরাল রিট্রিভাল ইঞ্জিন",
@@ -16,8 +21,6 @@
     "type_type": "ধরণ (Types)",
     "group_all": "সব",
     "group_core": "মিডিয়াউইকি কোর",
-    "group_extensions": "এক্সটেনশন",
-    "group_skins": "স্কিনস",
     "group_things": "এক্সটেনশন এবং স্কিনস",
     "group_libraries": "লাইব্রেরি",
     "group_deployed": "WMF মোতায়েন",

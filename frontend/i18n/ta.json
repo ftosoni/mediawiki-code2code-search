@@ -1,4 +1,9 @@
 {
+    "@metadata": {
+        "authors": [
+            "Francesco Tosoni"
+        ]
+    },
     "search_title": "SWH குறியீடு ஆய்வு",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "செமாண்டிக் நியூரல் மீட்டெடுப்பு இயந்திரம்",
@@ -16,8 +21,6 @@
     "type_type": "வகைகள் (Types)",
     "group_all": "அனைத்தும்",
     "group_core": "மீடியாவிக்கி கோர்",
-    "group_extensions": "நீட்டிப்புகள் (Extensions)",
-    "group_skins": "ஸ்கின்கள்",
     "group_things": "நீட்டிப்புகள் மற்றும் ஸ்கின்கள்",
     "group_libraries": "நூலகங்கள் (Libraries)",
     "group_deployed": "WMF வரிசைப்படுத்தப்பட்டது",

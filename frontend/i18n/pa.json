@@ -1,4 +1,9 @@
 {
+    "@metadata": {
+        "authors": [
+            "Francesco Tosoni"
+        ]
+    },
     "search_title": "SWH ਕੋਡ ਖੋਜ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "ਸਿਮੈਂਟਿਕ ਨਿਊਰਲ ਰੀਟਰੀਵਲ ਇੰਜਨ",
@@ -16,8 +21,6 @@
     "type_type": "ਕਿਸਮਾਂ (Types)",
     "group_all": "ਸਭ",
     "group_core": "ਮੀਡੀਆਵਿਕੀ ਕੋਰ",
-    "group_extensions": "ਐਕਸਟੈਂਸ਼ਨਾਂ",
-    "group_skins": "ਸਕਿਨਾਂ",
     "group_things": "ਐਕਸਟੈਂਸ਼ਨਾਂ ਅਤੇ ਸਕਿਨਾਂ",
     "group_libraries": "ਲਾਇਬ੍ਰੇਰੀਆਂ",
     "group_deployed": "WMF ਡਿਪਲਾਇਡ",

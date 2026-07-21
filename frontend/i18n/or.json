@@ -1,4 +1,9 @@
 {
+    "@metadata": {
+        "authors": [
+            "Francesco Tosoni"
+        ]
+    },
     "search_title": "SWH କୋଡ୍ ଅନ୍ୱେଷଣ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "ସିମାଣ୍ଟିକ୍ ନ୍ୟୁରାଲ୍ ରିଟ୍ରିଭାଲ୍ ଇଞ୍ଜିନ୍",
@@ -16,8 +21,6 @@
     "type_type": "ପ୍ରକାର (Types)",
     "group_all": "ସବୁ",
     "group_core": "ମିଡ଼ିଆଉଇକି କୋର୍",
-    "group_extensions": "ଏକ୍ସଟେନସନ",
-    "group_skins": "ସ୍କିନ୍",
     "group_things": "ଏକ୍ସଟେନସନ ଏବଂ ସ୍କିନ୍",
     "group_libraries": "ଲାଇବ୍ରେରୀ",
     "group_deployed": "WMF ନିୟୋଜିତ",

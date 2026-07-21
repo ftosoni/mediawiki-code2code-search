@@ -1,4 +1,9 @@
 {
+    "@metadata": {
+        "authors": [
+            "Francesco Tosoni"
+        ]
+    },
     "search_title": "Esplorazione del Codice SWH",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "Motore di ricerca neurale semantica",
@@ -15,8 +20,6 @@
     "type_template": "Template",
     "group_all": "Tutto",
     "group_core": "MediaWiki Core",
-    "group_extensions": "Estensioni",
-    "group_skins": "Skin",
     "group_things": "Estensioni e Skin",
     "group_bundled": "Bundle MW",
     "group_libraries": "Librerie",

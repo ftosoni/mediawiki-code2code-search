@@ -1,4 +1,9 @@
 {
+    "@metadata": {
+        "authors": [
+            "Francesco Tosoni"
+        ]
+    },
     "search_title": "SWH കോഡ് പര്യവേക്ഷണം",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "സെമാന്റിക് ന്യൂറൽ റിട്രീവൽ എഞ്ചിൻ",
@@ -16,8 +21,6 @@
     "type_type": "തരങ്ങൾ (Types)",
     "group_all": "എല്ലാം",
     "group_core": "മീഡിയവിക്കി കോർ",
-    "group_extensions": "എക്സ്റ്റൻഷനുകൾ",
-    "group_skins": "സ്കിന്നുകൾ",
     "group_things": "എക്സ്റ്റൻഷനുകളും സ്കിന്നുകളും",
     "group_libraries": "ലൈബ്രറികൾ",
     "group_deployed": "WMF വിന്യസിച്ചിട്ടുള്ളവ",

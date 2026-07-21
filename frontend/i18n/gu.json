@@ -1,4 +1,9 @@
 {
+    "@metadata": {
+        "authors": [
+            "Francesco Tosoni"
+        ]
+    },
     "search_title": "SWH કોડ અન્વેષણ",
     "main_title": "MediaWiki Code2Code Search",
     "subtitle": "સિમેન્ટિક ન્યુરલ રીટ્રીવલ એન્જિન",
@@ -16,8 +21,6 @@
     "type_type": "પ્રકાર (Types)",
     "group_all": "બધું",
     "group_core": "મીડિયા વિકિ કોર",
-    "group_extensions": "એક્સ્ટેન્શન્સ",
-    "group_skins": "સ્કિન્સ",
     "group_things": "એક્સ્ટેન્શન્સ અને સ્કિન્સ",
     "group_libraries": "લાઇબ્રેરીઝ",
     "group_deployed": "WMF ડિપ્લોયડ",
