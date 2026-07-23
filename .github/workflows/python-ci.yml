@@ -9,6 +9,12 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
+
+# translatewiki.org pushes i18n updates daily; queue deploys instead of racing them.
+concurrency:
+  group: toolforge-deploy
+  cancel-in-progress: false
 
 jobs:
   lint:
@@ -51,3 +57,27 @@ jobs:
         # These are lightweight and do not require heavy model downloads.
         # Also run mocked API tests and connectivity tests.
         pytest tests/test_*_parser.py tests/test_api.py tests/test_hf_availability.py
+
+  deploy:
+    name: Deploy to Toolforge
+    needs: [ lint, test ]
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rebuild image and restart webservice
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: login.toolforge.org
+          username: ${{ secrets.TOOLFORGE_USERNAME }}
+          key: ${{ secrets.TOOLFORGE_SSH_KEY }}
+          port: 22
+          # `toolforge build start` streams the build log and only returns once the
+          # build finishes, so the restart below always picks up the new image.
+          request_pty: true
+          script_stop: true
+          command_timeout: 30m
+          script: |
+            become code2codesearch toolforge build clean -y
+            become code2codesearch toolforge build start https://github.com/ftosoni/mediawiki-code2code-search
+            become code2codesearch toolforge webservice buildservice stop --mount=all || true
+            become code2codesearch toolforge webservice buildservice start --mount=all -m 6Gi

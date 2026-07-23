@@ -194,6 +194,20 @@ toolforge webservice buildservice start --mount=all -m 6Gi
 toolforge webservice logs -f
 ```
 
+### 4. Continuous Deployment
+Steps 1 and 2 are one-off. Step 3 is automated: every push to `main` — including the daily
+i18n sync from [translatewiki.org](https://translatewiki.org) — rebuilds the image and restarts the
+webservice, but only after the `lint` and `test` jobs pass (see [`.github/workflows/python-ci.yml`](.github/workflows/python-ci.yml)).
+
+Two repository secrets are required (*Settings → Secrets and variables → Actions*):
+
+| Secret | Value |
+| --- | --- |
+| `TOOLFORGE_USERNAME` | Your Wikimedia developer shell name, e.g. `supnabla` |
+| `TOOLFORGE_SSH_KEY` | The **private** key whose public half is in your [Wikitech SSH keys](https://wikitech.wikimedia.org/wiki/Special:Preferences#mw-prefsection-openstack) |
+
+The workflow can also be run by hand from the *Actions* tab (`Run workflow`).
+
 ---
 
 ## 🛠️ Technology Stack & Project Status

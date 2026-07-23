@@ -13,6 +13,26 @@ def test_health(client):
     assert data["status"] == "ok"
     assert "index_size" in data
 
+def test_locales(client):
+    """Test the /locales endpoint discovers locales from frontend/i18n"""
+    response = client.get("/locales")
+    assert response.status_code == 200
+    data = response.json()
+    codes = [locale["code"] for locale in data["locales"]]
+    assert data["default"] == "en"
+    assert "en" in codes
+    # qqq.json is message documentation for translatewiki, not a selectable locale.
+    assert "qqq" not in codes
+    assert codes == sorted(codes)
+
+def test_locale_autonyms(client):
+    """Autonyms must come from CLDR, not be the bare code echoed back"""
+    autonyms = {loc["code"]: loc["autonym"] for loc in client.get("/locales").json()["locales"]}
+    assert autonyms["en"] == "English"
+    # Locales Chromium's reduced Intl dataset gets wrong; this is why we resolve server-side.
+    assert autonyms.get("as") == "অসমীয়া"
+    assert autonyms.get("sat") == "ᱥᱟᱱᱛᱟᱲᱤ"
+
 def test_search(client):
     """Test the /search endpoint"""
     search_payload = {

@@ -47,6 +47,8 @@ huggingface_hub
 torch
 gunicorn
 pygments
+# Bundled CLDR data, so locale autonyms do not depend on the browser's Intl data.
+langcodes[data]
 pytest
 pytest-asyncio
 rank-bm25

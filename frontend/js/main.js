@@ -24,6 +24,7 @@
 const CONFIG = {
     apiSearch: '/search',
     apiCode: '/code',
+    apiLocales: '/locales',
     defaultLang: 'en'
 };
 
@@ -71,6 +72,7 @@ let lastSearchResults = [];
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Initial language setup
+    await populateLanguageSelector();
     await loadLanguage(currentLang);
     document.getElementById('lang-select').value = currentLang;
 
@@ -202,6 +204,53 @@ function updateTemplateStatus() {
 }
 
 // --- I18n Logic ---
+
+// /locales resolves autonyms server-side against full CLDR data. Intl.DisplayNames is
+// only a backstop: Chromium ships a reduced dataset that renders "as" as "Assamese"
+// and "sat" as "sat", so it must not be the primary source for this tool's languages.
+function localeLabel({ code, autonym }) {
+    let name = autonym;
+    if (!name) {
+        try {
+            const displayed = new Intl.DisplayNames([code], { type: 'language' }).of(code);
+            if (displayed && displayed.toLowerCase() !== code.toLowerCase()) {
+                name = displayed.charAt(0).toUpperCase() + displayed.slice(1);
+            }
+        } catch (error) {
+            // Unsupported locale code: fall through to the code itself.
+        }
+    }
+    return `${name || code} (${code.toUpperCase()})`;
+}
+
+// The locale list is discovered from frontend/i18n via /locales instead of being
+// hard-coded, because translatewiki.org syncs that directory daily.
+async function populateLanguageSelector() {
+    const select = document.getElementById('lang-select');
+    try {
+        const response = await fetch(CONFIG.apiLocales);
+        if (!response.ok) throw new Error(`${CONFIG.apiLocales}: ${response.status}`);
+        const { locales, default: fallback } = await response.json();
+        if (!Array.isArray(locales) || locales.length === 0) throw new Error('no locales returned');
+
+        select.replaceChildren(...locales.map(locale => {
+            const option = document.createElement('option');
+            option.value = locale.code;
+            option.textContent = localeLabel(locale);
+            return option;
+        }));
+
+        // A locale stored earlier may have been dropped upstream since.
+        const codes = locales.map(locale => locale.code);
+        if (!codes.includes(currentLang)) {
+            currentLang = codes.includes(fallback) ? fallback : codes[0];
+        }
+    } catch (error) {
+        // Keep the English option baked into index.html so the selector is never empty.
+        console.error('Failed to load locale list:', error);
+        currentLang = CONFIG.defaultLang;
+    }
+}
 
 // en.json is the base for every locale, so a key missing from a translation
 // falls back to English instead of leaking a raw id like "search".

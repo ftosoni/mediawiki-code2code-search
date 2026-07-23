@@ -109,24 +109,11 @@
         <nav class="app-header__actions" aria-label="App actions">
             <div class="lang-selector">
                 <span class="lang-selector__icon" aria-hidden="true">🌐</span>
+                <!-- Populated at runtime from /locales, which reads frontend/i18n/.
+                     That directory is synced daily from translatewiki.org, so the list
+                     must not be hard-coded here. English is the no-JS fallback. -->
                 <select id="lang-select" class="cdx-select" aria-label="Select language">
-                    <option value="as">অসমীয়া (AS)</option>
-                    <option value="bn">বাংলা (BN)</option>
                     <option value="en" selected>English (EN)</option>
-                    <option value="fr">Français (FR)</option>
-                    <option value="gu">ગુજરાતી (GU)</option>
-                    <option value="hi">हिन्दी (HI)</option>
-                    <option value="it">Italiano (IT)</option>
-                    <option value="kn">ಕನ್ನಡ (KN)</option>
-                    <option value="mai">मैथिली (MAI)</option>
-                    <option value="ml">മലയാളം (ML)</option>
-                    <option value="mr">मराठी (MR)</option>
-                    <option value="or">ଓଡ଼ିଆ (OR)</option>
-                    <option value="pa">ਪੰਜਾਬੀ (PA)</option>
-                    <option value="sat">ᱥᱟᱱᱛᱟᱲᱤ (SAT)</option>
-                    <option value="ta">தமிழ் (TA)</option>
-                    <option value="te">తెలుగు (TE)</option>
-                    <option value="ur">اردو (UR)</option>
                 </select>
             </div>
             <a href="https://github.com/ftosoni/mediawiki-code2code-search" class="cdx-button cdx-button--weight-quiet"

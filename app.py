@@ -67,6 +67,7 @@ import sqlite3
 import json
 import httpx
 import functools
+import langcodes
 import re
 import asyncio
 import shutil
@@ -85,6 +86,11 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FAISS_INDEX_PATH = os.path.join(BASE_DIR, "backend", "mediawiki.index")
 METADATA_DB_PATH = os.path.join(BASE_DIR, "backend", "snippets.db")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
+I18N_DIR = os.path.join(BASE_DIR, "frontend", "i18n")
+# Locale used as the fallback for messages a translation has not covered yet.
+DEFAULT_LOCALE = "en"
+# translatewiki.org ships qqq.json as message *documentation*, not a translation.
+NON_LOCALE_MESSAGE_FILES = {"qqq"}
 
 # Debug from here
 print("="*50)
@@ -286,6 +292,14 @@ class CodeSnippetResponse(BaseModel):
 class HealthResponse(BaseModel):
     status: str = Field(..., examples=["ok"])
     index_size: int = Field(..., examples=[1103986])
+
+class LocaleInfo(BaseModel):
+    code: str = Field(..., description="Locale code, i.e. the message file basename.", examples=["mai"])
+    autonym: Optional[str] = Field(None, description="Language name in that language, or null if CLDR has no entry.", examples=["मैथिली"])
+
+class LocalesResponse(BaseModel):
+    default: str = Field(..., description="Locale used as the fallback for untranslated messages.", examples=["en"])
+    locales: List[LocaleInfo] = Field(..., description="Locales available in frontend/i18n, sorted by code.")
 
 class ValidationErrorDetail(BaseModel):
     field: str = Field(..., description="The name of the invalid field.", examples=["top_k"])
@@ -512,6 +526,49 @@ def health():
     Returns the current status of the service and the size of the loaded FAISS index.
     """
     return {"status": "ok", "index_size": index.ntotal if index else 0}
+
+
+@functools.lru_cache(maxsize=None)
+def get_autonym(code):
+    """
+    Returns the language name in its own language, from the CLDR data bundled with
+    langcodes. Resolved here rather than in the browser because Chromium ships a
+    reduced Intl dataset that falls back to English names for several Indic locales.
+
+    Returns None for codes CLDR does not know (MediaWiki uses a few non-BCP-47 codes,
+    e.g. "simple"), leaving the caller to fall back to the bare code.
+    """
+    try:
+        autonym = langcodes.Language.get(code).autonym()
+    except Exception:
+        return None
+    if not autonym or autonym.lower() == code.lower():
+        return None
+    # CLDR lowercases autonyms in some locales ("français"); the selector title-cases.
+    return autonym[0].upper() + autonym[1:]
+
+
+@app.get("/locales", tags=["System"], summary="List available UI locales", response_model=LocalesResponse,
+         operation_id="list_locales")
+def locales():
+    """
+    Returns the UI locales the frontend can offer, discovered from the message files
+    in frontend/i18n. That directory is synced daily from translatewiki.org, so the
+    list must never be hard-coded: a language added upstream shows up on next restart.
+    """
+    if not os.path.isdir(I18N_DIR):
+        codes = [DEFAULT_LOCALE]
+    else:
+        codes = sorted(
+            os.path.splitext(name)[0]
+            for name in os.listdir(I18N_DIR)
+            if name.endswith(".json") and os.path.splitext(name)[0] not in NON_LOCALE_MESSAGE_FILES
+        )
+        # The default must always be selectable, even if its file went missing.
+        if DEFAULT_LOCALE not in codes:
+            codes.insert(0, DEFAULT_LOCALE)
+
+    return {"default": DEFAULT_LOCALE, "locales": [{"code": c, "autonym": get_autonym(c)} for c in codes]}
 
 # Mount the static frontend directory last to avoid intercepting API calls
 frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "frontend"))
