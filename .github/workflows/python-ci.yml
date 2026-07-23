@@ -74,9 +74,11 @@ jobs:
           # `toolforge build start` streams the build log and only returns once the
           # build finishes, so the restart below always picks up the new image.
           request_pty: true
-          script_stop: true
           command_timeout: 30m
+          # ssh-action dropped the `script_stop` input in v1.1.0; `set -e` replaces it.
+          # Without it a failed build would still fall through to the restart below.
           script: |
+            set -e
             become code2codesearch toolforge build clean -y
             become code2codesearch toolforge build start https://github.com/ftosoni/mediawiki-code2code-search
             become code2codesearch toolforge webservice buildservice stop --mount=all || true
