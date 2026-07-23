@@ -208,6 +208,12 @@ Two repository secrets are required (*Settings → Secrets and variables → Act
 
 The workflow can also be run by hand from the *Actions* tab (`Run workflow`).
 
+> [!NOTE]
+> `toolforge webservice buildservice start` returns as soon as the pod is scheduled, not once
+> gunicorn has loaded the models — which takes several minutes. The deploy job therefore polls
+> `/health` until it answers, so a green run means the new image is actually serving. Until that
+> poll succeeds the site may still be down or serving the previous image.
+
 ---
 
 ## 🛠️ Technology Stack & Project Status
