@@ -15,7 +15,7 @@
             "givenName": "Francesco"
         }
     ],
-    "codeRepository": "git+https://github.com/ftosoni/mediawiki-code2code-search.git",
+    "codeRepository": "https://github.com/ftosoni/mediawiki-code2code-search",
     "datePublished": "2026-06-08",
     "description": "MediaWiki Code2Code Search is a high-performance semantic search tool designed specifically for the MediaWiki open-source ecosystem, integrated with the Software Heritage archive. It utilises a single-stage neural retrieval architecture to help developers navigate complex codebases with high precision and minimal resource usage.",
     "keywords": [
@@ -36,6 +36,9 @@
     "softwareVersion": "v2.0.0",
     "version": "v2.0.0",
     "identifier": "swh:1:dir:c30104117db9bb6a8e488e698173fa2b302cbffc;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:5ae1f440a1e57d8d4955f35128a1cbe28ff18fe5;anchor=swh:1:rev:053ad4bc86a2476d4c474cd80788dacc88e0a774",
-    "codeRepository": "https://github.com/ftosoni/mediawiki-code2code-search",
-    "url": "https://code2codesearch.toolforge.org/"
+    "url": "https://code2codesearch.toolforge.org/",
+    "referencePublication": {
+        "type": "ScholarlyArticle",
+        "id": "https://doi.org/10.2139/ssrn.6905767"
+    }
 }

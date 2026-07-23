@@ -20,6 +20,9 @@ identifiers:
   - type: url
     value: 'https://code2codesearch.toolforge.org/'
     description: The Toolforge URL of the tool
+  - type: doi
+    value: 10.2139/ssrn.6905767
+    description: The DOI of the accompanying paper
 repository-code: 'https://github.com/ftosoni/mediawiki-code2code-search'
 url: 'https://code2codesearch.toolforge.org/'
 abstract: >-
