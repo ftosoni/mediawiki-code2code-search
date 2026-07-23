@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Volvox"
+		]
+	},
+	"show_more": "Méi Code weisen",
+	"type_function": "Funktiounen",
+	"type_type": "Typpen",
+	"type_template": "Schablounen",
+	"lang_all": "All Sproochen",
+	"group_all": "Alles",
+	"group_things": "Erweiderungen & Benotzeruewerflächen",
+	"group_pywikibot": "Pywikibot",
+	"group_apps": "Mobil Appen",
+	"group_search": "translatewiki.net",
+	"licence": "Lizenz:",
+	"wikidata": "Wikidata Q-Element",
+	"toolhub": "Toolhub",
+	"docs": "API",
+	"presentation": "Presentatioun",
+	"lang_label": "Programméiersproochen",
+	"documentation_prefix": "Dokumentatioun:",
+	"footer_section_resources": "Ressourcen",
+	"footer_section_status": "Lizenz & Status"
+}

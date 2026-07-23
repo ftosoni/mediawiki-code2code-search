@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nike"
+		]
+	},
+	"main_title": "MediaWiki Code2Code -haku",
+	"subtitle": "Semanttinen neuroverkkopohjainen hakukone",
+	"btn_search": "ALOITA HAKU",
+	"btn_loading": "KÄYDÄÄN KOODIA LÄPI…",
+	"recall_score": "Osuvuus",
+	"show_more": "Näytä lisää koodia",
+	"show_less": "Pienennä näkymä",
+	"type_all": "Kaikki kohteet",
+	"type_function": "Funktiot",
+	"type_type": "Tyypit",
+	"type_template": "Mallit",
+	"lang_all": "Kaikki kielet",
+	"group_all": "Kaikki",
+	"group_core": "MediaWikin ydin",
+	"group_things": "Laajennukset ja ulkoasut",
+	"group_bundled": "MediaWiki-lähdekoodipaketti",
+	"group_libraries": "Kirjastot",
+	"group_deployed": "WMF:n tuotannossa",
+	"group_operations": "Ylläpito / SRE",
+	"group_puppet": "Puppet",
+	"group_pywikibot": "Pywikibot",
+	"group_devtools": "Kehitystyökalut / CI",
+	"group_analytics": "Analytiikka",
+	"group_wmcs": "Pilvipalvelut (WMCS)",
+	"group_apps": "Mobiilisovellukset",
+	"group_search": "translatewiki.net",
+	"licence": "Lisenssi:",
+	"issues": "Ilmoita ongelmasta",
+	"source": "Lähde",
+	"wikidata": "Wikidata-kohde",
+	"toolhub": "Toolhub",
+	"diff_post": "Wikimedia Diff -postaus",
+	"docs": "API",
+	"presentation": "Esittely",
+	"lang_label": "Ohjelmointikielet",
+	"type_label": "Tuloksen tyyppi"
+}
