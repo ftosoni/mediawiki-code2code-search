@@ -36,6 +36,8 @@
 	"type_label": "پايلې ډول",
 	"matches_found": "ورته‌والي و موندل شول",
 	"documentation_prefix": "لاسوند",
+	"powered_by_qwen": "د <a href=\"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B\" target=\"_blank\">Qwen</a> له‌خوا پرمخ‌وړل شوی",
+	"data_archived_by_swh": "اومتوکي د <a href=\"https://www.softwareheritage.org/\" target=\"_blank\">پوستغالي ورېشون</a> له‌خوا خونديځ‌شوې",
 	"footer_section_credits": "امتيازونه او پروژې",
 	"footer_section_resources": "سرچينې",
 	"footer_section_source": "سرچينه او ملاتړ",
