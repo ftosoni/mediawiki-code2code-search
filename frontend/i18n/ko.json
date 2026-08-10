@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Suleiman the Magnificent Television",
+			"YeBoy371"
+		]
+	},
+	"search_title": "SWH 코드 탐색",
+	"main_title": "미디어위키 코드투코드 검색",
+	"subtitle": "의미 기반 신경망 검색 엔진",
+	"btn_search": "검색 시작",
+	"btn_loading": "횡단 중...",
+	"recall_score": "점수",
+	"no_results": "이 쿼리에 대해 특이점에서는 결과가 반환되지 않았습니다.",
+	"show_more": "코드 더 보기",
+	"show_less": "접기 보기",
+	"type_all": "모든 개체",
+	"type_function": "함수",
+	"type_type": "유형",
+	"type_template": "틀",
+	"lang_all": "모든 언어",
+	"group_all": "모두",
+	"group_core": "미디어위키 코어"
+}
