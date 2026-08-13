@@ -20,5 +20,10 @@
 	"type_template": "틀",
 	"lang_all": "모든 언어",
 	"group_all": "모두",
-	"group_core": "미디어위키 코어"
+	"group_core": "미디어위키 코어",
+	"group_things": "확장 기능 및 스킨",
+	"group_bundled": "MW 타르볼",
+	"group_libraries": "도서관",
+	"group_deployed": "WMF에서 배포",
+	"group_operations": "운영/SRE"
 }
