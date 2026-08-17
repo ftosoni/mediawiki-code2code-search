@@ -25,5 +25,7 @@
 	"group_bundled": "MW 타르볼",
 	"group_libraries": "도서관",
 	"group_deployed": "WMF에서 배포",
-	"group_operations": "운영/SRE"
+	"group_operations": "운영/SRE",
+	"group_puppet": "인형",
+	"group_pywikibot": "파이위키봇"
 }
