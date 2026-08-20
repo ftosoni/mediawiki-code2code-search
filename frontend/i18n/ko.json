@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Namoroka",
 			"Suleiman the Magnificent Television",
+			"Tensama0415",
 			"YeBoy371"
 		]
 	},
 	"search_title": "SWH 코드 탐색",
-	"main_title": "미디어위키 코드투코드 검색",
+	"main_title": "미디어위키 Code2Code 검색",
 	"subtitle": "의미 기반 신경망 검색 엔진",
 	"btn_search": "검색 시작",
 	"btn_loading": "횡단 중...",
@@ -26,6 +28,7 @@
 	"group_libraries": "도서관",
 	"group_deployed": "WMF에서 배포",
 	"group_operations": "운영/SRE",
-	"group_puppet": "인형",
-	"group_pywikibot": "파이위키봇"
+	"group_puppet": "Puppet",
+	"group_pywikibot": "파이위키봇",
+	"docs": "API"
 }
