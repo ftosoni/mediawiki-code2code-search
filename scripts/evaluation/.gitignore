@@ -1,0 +1,12 @@
+# API keys / secrets — never commit
+.env
+*.env
+keys.txt
+keys*.txt
+secrets*
+
+# Raw per-query judge API responses (regenerable; may be large)
+judging/raw_*/
+
+# Python bytecode cache
+__pycache__/

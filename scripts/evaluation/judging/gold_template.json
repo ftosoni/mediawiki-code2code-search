@@ -1,0 +1,206 @@
+{
+  "instructions": "Fill in each 'score' with 1.0 / 0.5 / 0.0 / null following the same rubric as the judges. Do not edit query_id/doc_id. Save as human_gold.json and pass to analyze_labels.py --human-gold.",
+  "seed": 20260824,
+  "labels": {
+    "A4:d007": {
+      "query_id": "A4",
+      "doc_id": "d007",
+      "score": null
+    },
+    "B8:d005": {
+      "query_id": "B8",
+      "doc_id": "d005",
+      "score": null
+    },
+    "B3:d013": {
+      "query_id": "B3",
+      "doc_id": "d013",
+      "score": null
+    },
+    "C3:d008": {
+      "query_id": "C3",
+      "doc_id": "d008",
+      "score": null
+    },
+    "D1:d004": {
+      "query_id": "D1",
+      "doc_id": "d004",
+      "score": null
+    },
+    "B8:d003": {
+      "query_id": "B8",
+      "doc_id": "d003",
+      "score": null
+    },
+    "B10:d015": {
+      "query_id": "B10",
+      "doc_id": "d015",
+      "score": null
+    },
+    "B5:d008": {
+      "query_id": "B5",
+      "doc_id": "d008",
+      "score": null
+    },
+    "C5:d002": {
+      "query_id": "C5",
+      "doc_id": "d002",
+      "score": null
+    },
+    "A3:d011": {
+      "query_id": "A3",
+      "doc_id": "d011",
+      "score": null
+    },
+    "C2:d004": {
+      "query_id": "C2",
+      "doc_id": "d004",
+      "score": null
+    },
+    "C5:d017": {
+      "query_id": "C5",
+      "doc_id": "d017",
+      "score": null
+    },
+    "B11:d009": {
+      "query_id": "B11",
+      "doc_id": "d009",
+      "score": null
+    },
+    "C4:d014": {
+      "query_id": "C4",
+      "doc_id": "d014",
+      "score": null
+    },
+    "D3:d019": {
+      "query_id": "D3",
+      "doc_id": "d019",
+      "score": null
+    },
+    "B4:d005": {
+      "query_id": "B4",
+      "doc_id": "d005",
+      "score": null
+    },
+    "D3:d009": {
+      "query_id": "D3",
+      "doc_id": "d009",
+      "score": null
+    },
+    "B4:d009": {
+      "query_id": "B4",
+      "doc_id": "d009",
+      "score": null
+    },
+    "C4:d001": {
+      "query_id": "C4",
+      "doc_id": "d001",
+      "score": null
+    },
+    "D1:d002": {
+      "query_id": "D1",
+      "doc_id": "d002",
+      "score": null
+    },
+    "B10:d003": {
+      "query_id": "B10",
+      "doc_id": "d003",
+      "score": null
+    },
+    "C2:d006": {
+      "query_id": "C2",
+      "doc_id": "d006",
+      "score": null
+    },
+    "D4:d001": {
+      "query_id": "D4",
+      "doc_id": "d001",
+      "score": null
+    },
+    "A3:d005": {
+      "query_id": "A3",
+      "doc_id": "d005",
+      "score": null
+    },
+    "D4:d003": {
+      "query_id": "D4",
+      "doc_id": "d003",
+      "score": null
+    },
+    "B2:d010": {
+      "query_id": "B2",
+      "doc_id": "d010",
+      "score": null
+    },
+    "A3:d015": {
+      "query_id": "A3",
+      "doc_id": "d015",
+      "score": null
+    },
+    "A3:d012": {
+      "query_id": "A3",
+      "doc_id": "d012",
+      "score": null
+    },
+    "A2:d003": {
+      "query_id": "A2",
+      "doc_id": "d003",
+      "score": null
+    },
+    "B11:d008": {
+      "query_id": "B11",
+      "doc_id": "d008",
+      "score": null
+    },
+    "A4:d009": {
+      "query_id": "A4",
+      "doc_id": "d009",
+      "score": null
+    },
+    "B4:d001": {
+      "query_id": "B4",
+      "doc_id": "d001",
+      "score": null
+    },
+    "C6:d009": {
+      "query_id": "C6",
+      "doc_id": "d009",
+      "score": null
+    },
+    "B12:d002": {
+      "query_id": "B12",
+      "doc_id": "d002",
+      "score": null
+    },
+    "B12:d013": {
+      "query_id": "B12",
+      "doc_id": "d013",
+      "score": null
+    },
+    "D4:d008": {
+      "query_id": "D4",
+      "doc_id": "d008",
+      "score": null
+    },
+    "B9:d008": {
+      "query_id": "B9",
+      "doc_id": "d008",
+      "score": null
+    },
+    "A5:d010": {
+      "query_id": "A5",
+      "doc_id": "d010",
+      "score": null
+    },
+    "B7:d003": {
+      "query_id": "B7",
+      "doc_id": "d003",
+      "score": null
+    },
+    "C1:d006": {
+      "query_id": "C1",
+      "doc_id": "d006",
+      "score": null
+    }
+  }
+}
