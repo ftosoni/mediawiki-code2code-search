@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Francesco Tosoni",
-			"Nike"
+			"Nike",
+			"Stjn"
 		]
 	},
 	"search_title": "Heading of the search hero section on the main page, above the code input box.",
@@ -13,13 +14,13 @@
 	"btn_loading": "Label replacing {{msg-wm|code2code-search-btn_search}} on the search button while a search is in progress.",
 	"recall_score": "Label for the semantic similarity score shown next to each search result. Value is a number between 0 and 1.\n{{Identical|Score}}",
 	"no_results": "Message shown in place of the result list when a search returns no matches.",
-	"show_more": "Label of the button that expands a truncated code snippet in a search result. See also {{msg-mediawiki|show_less}}.",
-	"show_less": "Label of the button that collapses an expanded code snippet back to its truncated form. See also {{msg-mediawiki|show_more}}.",
+	"show_more": "Label of the button that expands a truncated code snippet in a search result. See also {{msg-wm|Code2code-search-show_less}}.",
+	"show_less": "Label of the button that collapses an expanded code snippet back to its truncated form. See also {{msg-wm|Code2code-search-show_more}}.",
 	"type_all": "Label for result type filter: no type restriction, show every kind of code entity.\n{{Identical|All}}",
 	"type_function": "Label for result type filter: functions and methods only.",
 	"type_type": "Label for result type filter: type declarations (classes, interfaces, structs) only.",
 	"type_template": "Label for result type filter: template files only.",
-	"lang_all": "Label for the programming-language filter chip that removes any language restriction. Kept separate from {{msg-mediawiki|type_all}} and {{msg-mediawiki|group_all}} on purpose: languages that inflect for gender or number need a different form here (Italian \"Tutti i linguaggi\" vs \"Tutte le entità\").",
+	"lang_all": "Label for the programming-language filter chip that removes any language restriction. Kept separate from {{msg-wm|Code2code-search-type_all}} and {{msg-wm|Code2code-search-group_all}} on purpose: languages that inflect for gender or number need a different form here (Italian \"Tutti i linguaggi\" vs \"Tutte le entità\").",
 	"group_all": "Label for repository group filter: search across all indexed repositories.",
 	"group_core": "Label for repository group filter: the MediaWiki core repository. \"MediaWiki\" is a product name.",
 	"group_things": "Label for repository group filter: MediaWiki extensions and skins together.",
@@ -60,5 +61,5 @@
 	"footer_section_status": "Heading of the footer column listing the licence and release information.",
 	"footer_release_date": "Label in the footer, followed by the release date of the current version. Includes a trailing colon.",
 	"example_queries_label": "Label of the dropdown offering ready-made code snippets that the user can search for instead of typing their own.",
-	"example_queries_placeholder": "Default, non-selectable entry of the {{msg-mediawiki|example_queries_label}} dropdown, shown when no example has been picked. The surrounding dashes are decorative."
+	"example_queries_placeholder": "Default, non-selectable entry of the {{msg-wm|Code2code-search-example_queries_label}} dropdown, shown when no example has been picked. The surrounding dashes are decorative."
 }

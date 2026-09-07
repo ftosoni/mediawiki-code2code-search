@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Repakr"
+		]
+	},
+	"show_more": "Показати більше коду",
+	"type_function": "Функції",
+	"type_type": "Типи",
+	"type_template": "Шаблони",
+	"lang_all": "Всі мови",
+	"group_all": "Усе",
+	"group_things": "Розширення та теми",
+	"group_libraries": "Бібліотеки",
+	"group_pywikibot": "Pywikibot",
+	"group_analytics": "Аналітика",
+	"group_apps": "Мобільні застосунки",
+	"group_search": "translatewiki.net",
+	"issues": "Повідомити про проблему",
+	"wikidata": "Q-елемент Вікіданих",
+	"toolhub": "Toolhub",
+	"docs": "API",
+	"lang_label": "Мови програмування",
+	"documentation_prefix": "Документація:"
+}
