@@ -366,6 +366,15 @@
                         target="_blank" rel="noopener noreferrer"
                         style="font-size: 0.8125rem; color: #3366cc; text-decoration: none;">DOI</a>
                 </div>
+                <!-- Fixed-English on purpose (no translatewiki round-trip). The i18n key
+                     "footer_translate" is reserved in main.js with an English fallback but is NOT in
+                     en.json/qqq.json, so nothing is exposed for translation yet. To localise later, add
+                     "footer_translate" to en.json (+ qqq.json); no JS/HTML change needed. -->
+                <div>
+                    <a id="footer-translate" href="https://translatewiki.net/wiki/Translating:MediaWiki_Code2Code_Search"
+                        target="_blank" rel="noopener noreferrer"
+                        style="font-size: 0.8125rem; color: #3366cc; text-decoration: none;">🌐 Translate this project!</a>
+                </div>
             </div>
 
             <!-- Column 3: Source & Support -->

@@ -364,6 +364,12 @@ function applyI18n() {
     const footerDiff = document.getElementById('footer-diff');
     if (footerDiff) footerDiff.textContent = i18nData.diff_post || 'Wikimedia Diff post';
 
+    // Reserved i18n key: 'footer_translate' is intentionally NOT in en.json/qqq.json, so this always
+    // falls back to fixed English (no translatewiki round-trip). To localise later, just add
+    // "footer_translate" to en.json (+ qqq.json) -- no code change here.
+    const footerTranslate = document.getElementById('footer-translate');
+    if (footerTranslate) footerTranslate.textContent = i18nData.footer_translate || '🌐 Translate this project!';
+
     const footerSource = document.getElementById('footer-source');
     if (footerSource) {
         footerSource.innerHTML = `${i18nData.source || 'Source'}:&nbsp;<a href="https://github.com/ftosoni/mediawiki-code2code-search" target="_blank">GitHub</a>&nbsp;·&nbsp;<a href="https://archive.softwareheritage.org/browse/origin/directory/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search" target="_blank">SWH</a>`;

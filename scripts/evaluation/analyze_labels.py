@@ -11,13 +11,14 @@ What it computes
   variance -- high-variance docs are the ambiguous cases for the error analysis.
 * P@10 lenient (median score >= 0.5) and strict (== 1.0), per system per judge.
 * nDCG@10 (rank-aware) per system per judge.
-* Bootstrap 95% CIs over queries, for each system and for the paired C2C-BM25
+* Normal-approximation 95% CIs over queries, for each system and for the paired C2C-BM25
   delta -- reported per judge, plus the jury (across-judge) mean.
 * Cohen's kappa of each judge against the human gold labels (if provided).
 * Krippendorff's alpha across judges over the full pooled label set.
 
-Nothing here reveals system identity to any model; the qualitative second pass
-(which does) is run separately, only after these numbers are frozen.
+Nothing here reveals system identity to any model. The qualitative error analysis
+is done by reading failure modes straight off these frozen labels (re-joined to
+the provenance), not by a generative pass -- see CLAUDE.md step 6.
 
 Label file format (one per judge x repeat), e.g. judge_outputs/<judge>__rep1.json::
 
@@ -44,7 +45,6 @@ import glob
 import json
 import math
 import os
-import random
 import sys
 from collections import defaultdict
 
@@ -52,8 +52,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CATEGORIES = [0.0, 0.5, 1.0]      # the graded relevance classes (null excluded)
 LENIENT = 0.5
 STRICT = 1.0
-BOOTSTRAP_N = 10000
-BOOTSTRAP_SEED = 20260824
+Z_95 = 1.96                        # normal-approximation multiplier for a 95% CI
 
 
 # --------------------------------------------------------------------------- #
@@ -200,23 +199,22 @@ def metric_value(name, labels, prov_q, system):
 
 
 # --------------------------------------------------------------------------- #
-# Bootstrap CIs over queries
+# Confidence intervals over queries (normal approximation)
 # --------------------------------------------------------------------------- #
-def bootstrap_ci(per_query_values, n=BOOTSTRAP_N, seed=BOOTSTRAP_SEED, alpha=0.05):
-    """Percentile bootstrap over the per-query values (resample queries)."""
+def mean_ci(per_query_values, z=Z_95):
+    """95% CI for the mean of the per-query values under a normal approximation:
+    mean +/- z * (sample SD / sqrt(n)). No resampling -- for a mean this matches
+    a bootstrap CI but is computed directly from the spread of the n queries."""
     vals = [v for v in per_query_values if v is not None]
-    if not vals:
-        return {"mean": None, "lo": None, "hi": None, "n": 0}
-    rng = random.Random(seed)
     k = len(vals)
-    means = []
-    for _ in range(n):
-        sample = [vals[rng.randrange(k)] for _ in range(k)]
-        means.append(sum(sample) / k)
-    means.sort()
-    lo = means[int((alpha / 2) * n)]
-    hi = means[int((1 - alpha / 2) * n)]
-    return {"mean": sum(vals) / k, "lo": lo, "hi": hi, "n": k}
+    if k == 0:
+        return {"mean": None, "lo": None, "hi": None, "n": 0}
+    mean = sum(vals) / k
+    if k < 2:
+        return {"mean": mean, "lo": mean, "hi": mean, "n": k}
+    var = sum((v - mean) ** 2 for v in vals) / (k - 1)   # sample variance (ddof=1)
+    se = (var ** 0.5) / (k ** 0.5)
+    return {"mean": mean, "lo": mean - z * se, "hi": mean + z * se, "n": k}
 
 
 # --------------------------------------------------------------------------- #
@@ -319,13 +317,13 @@ def analyze(prov, judges, systems, human_gold=None):
 
         agg = {}
         for s in systems:
-            agg[s] = {m: bootstrap_ci(per_system[s][m]) for m in METRICS}
+            agg[s] = {m: mean_ci(per_system[s][m]) for m in METRICS}
         # paired delta c2c - bm25 (only meaningful with exactly these two systems)
         deltas = {}
         if "c2c" in systems and "bm25" in systems:
             for m in METRICS:
                 paired = [c - b for c, b in zip(per_system["c2c"][m], per_system["bm25"][m])]
-                deltas[m] = bootstrap_ci(paired)
+                deltas[m] = mean_ci(paired)
 
         judge_summaries[judge] = {
             "n_repeats": n_repeats,
@@ -340,12 +338,23 @@ def analyze(prov, judges, systems, human_gold=None):
         for s in systems:
             jury[s] = {}
             for m in METRICS:
-                # average the per-query metric across judges, then bootstrap over queries
+                # average the per-query metric across judges, then take its CI over queries
                 per_q_avg = []
                 for qid in query_ids:
                     vals = [judge_summaries[j]["per_query"][qid][s][m] for j in judges]
                     per_q_avg.append(sum(vals) / len(vals))
-                jury[s][m] = bootstrap_ci(per_q_avg)
+                jury[s][m] = mean_ci(per_q_avg)
+        # paired jury delta: per query, average c2c-bm25 across judges, then
+        # CI over queries -- the jury-level analogue of the per-judge delta.
+        if "c2c" in systems and "bm25" in systems:
+            jury["delta_c2c_minus_bm25"] = {}
+            for m in METRICS:
+                paired = []
+                for qid in query_ids:
+                    c = sum(judge_summaries[j]["per_query"][qid]["c2c"][m] for j in judges) / len(judges)
+                    b = sum(judge_summaries[j]["per_query"][qid]["bm25"][m] for j in judges) / len(judges)
+                    paired.append(c - b)
+                jury["delta_c2c_minus_bm25"][m] = mean_ci(paired)
 
     # ------- agreement -------
     agreement = {"cohen_kappa_vs_human": {}, "krippendorff_alpha_across_judges": None}
@@ -408,9 +417,15 @@ def print_report(report):
     if report["jury_mean"]:
         print("\nJury mean (across judges), per metric, mean [95% CI]:")
         for sys in systems:
+            if sys not in report["jury_mean"]:
+                continue
             print(f"  {sys}:")
             for m in METRICS:
                 print(f"    {m:<10} {_fmt_ci(report['jury_mean'][sys][m])}")
+        if "delta_c2c_minus_bm25" in report["jury_mean"]:
+            print("  delta (c2c - bm25), mean [95% CI]:")
+            for m, ci in report["jury_mean"]["delta_c2c_minus_bm25"].items():
+                print(f"    {m:<10} {_fmt_ci(ci)}")
 
     ag = report["agreement"]
     print("\nAgreement:")

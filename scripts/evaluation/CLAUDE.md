@@ -18,7 +18,7 @@ presentation-bias risk and an arithmetic-in-the-model risk).
 | `judge_prompt_template.md` | The clean judge prompt. No "two systems", "semantic", "BM25", filenames, or ranks anywhere. `blind_pool.py` fills in `{QUERY_CODE}`, `{CANDIDATES}`, `{QUERY_ID}`. |
 | `run_judge_api.py` | Send the blinded prompts to a judge model's API (Gemini, or any OpenAI-compatible endpoint: Kimi/OpenRouter/DeepSeek/GPT). Reads the API key from a git-ignored `.env`, retries on 429/5xx, resumes. Writes raw per-query responses. |
 | `assemble_judge_output.py` | Parse raw judge responses (tolerates ```fences```, preamble, bare-number scores, wrong/echoed `query_id`), validate against the answer key, write the canonical `judge_outputs/<judge>__rep<k>.json`. |
-| `analyze_labels.py` | Re-join the judge's `doc_id` labels to the hidden provenance; compute P@10 (lenient/strict), nDCG@10, bootstrap CIs, per-doc variance, Cohen's κ, Krippendorff's α. |
+| `analyze_labels.py` | Re-join the judge's `doc_id` labels to the hidden provenance; compute P@10 (lenient/strict), nDCG@10, 95% CIs (mean ± 1.96·SE over queries), per-doc variance, Cohen's κ, Krippendorff's α. |
 | `.env` (git-ignored) | API keys as `NAME="value"` lines (e.g. `GOOGLE_API_KEY`, `OPENROUTER_API_KEY`). Ignored via `.gitignore`; never committed, never passed on the command line. |
 | `judging/pool_provenance.json` | The answer key: `doc_id → hash`, `hash → {bm25 rank, c2c rank}`, pooled doc text, seed, and prompt hash. **Never shown to a judge.** |
 | `judging/judge_inputs/prompt_<QID>.md` | The blinded prompt actually sent to each judge, per query. |
@@ -131,8 +131,8 @@ Reports, **per judge** and as the jury mean:
 * **P@10 lenient** — fraction of the top-10 with median score `>= 0.5`.
 * **P@10 strict** — fraction with median score `== 1.0`.
 * **nDCG@10** — rank-aware.
-* **Bootstrap 95% CIs over queries** (not just point estimates), for each system
-  and for the paired `c2c − bm25` delta.
+* **95% CIs over queries** (normal approximation: mean ± 1.96·SE; not just point
+  estimates), for each system and for the paired `c2c − bm25` delta.
 * **Cohen's κ** of each judge against the human gold labels.
 * **Krippendorff's α** across judges over the full pooled set.
 
@@ -157,7 +157,7 @@ conflate them).**
   systems is the informative part; do not sell the absolute height as coverage.
 
 `analyze_labels.py` also reports **P@1/P@3/P@5** and **MRR** (top-rank precision,
-where a search engine matters most). Read the bootstrap CIs, not just the point
+where a search engine matters most). Read the CIs, not just the point
 estimates: at n=27 queries, **nDCG@10 is the only delta significant across all
 judges**; P@5/P@10 are significant on the stricter-vs-lenient majority; and
 **P@1/P@3/MRR have large point estimates but wide CIs** (a 0/1-per-query metric
@@ -181,26 +181,18 @@ Re-grade a subset with the pool ordered by C2C rank instead of shuffled. If the
 blinded and unblinded numbers diverge materially, part of what you are measuring
 is presentation, not retrieval.
 
-### 6. Qualitative second pass (only after labels are frozen)
+### 6. Qualitative error analysis (grounded in the frozen labels)
 
-Here — and only here — you may reveal the systems, because nothing the model
-says can change the numbers. Per query, feed the finalized labels plus both
-ranked lists:
-
-```markdown
-Below are graded relevance labels for query {QUERY_ID}, already finalized, together
-with the ranked lists produced by two retrieval systems: a lexical BM25 baseline and a
-dense semantic retriever.
-
-Labels: {LABELS}
-BM25 ranking: {BM25_RANKS}
-Semantic ranking: {C2C_RANKS}
-
-Describe what each system retrieved and where each one failed, citing specific ranks
-and function names. Report only failure modes actually visible in this data — if a
-system has no notable failure here, say so rather than inventing one. Two to four
-sentences.
-```
+For the paper's failure-mode narrative, do **not** ask a model to *describe* what
+happened — that reintroduces a generation step that can hallucinate. Instead read
+the failure modes straight off the frozen data: re-join each judge's `doc_id`
+labels to `pool_provenance.json` to recover, per query and per system, the actual
+function retrieved at each rank and the score all three judges gave it. Every
+per-query claim in the write-up ("BM25 returns `parseFile` at rank 1, scored 0.0
+by all judges; C2C returns `safeFileHash`, 1.0") is then a fact checkable in the
+labels, not a model's retelling. (An earlier version of this step fed both ranked
+lists back to an LLM for a prose summary; it was removed because label-grounded
+extraction is strictly more defensible and needs no un-blinding of a model.)
 
 ## Few-shot anchors (optional)
 
