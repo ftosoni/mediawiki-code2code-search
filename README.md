@@ -54,6 +54,72 @@ mediawiki-code2code-search/
 
 The indexing pipeline is designed for a **mass-scale, distributed build**. 
 
+## 📊 Evaluation
+
+We benchmark the semantic retriever against a **BM25 lexical baseline** on a **27-query** suite
+(canonical algorithms, name-obfuscated semantics, cross-language, and domain-specific tasks) under a
+**blinded LLM-as-a-judge** protocol: both systems' top-10 are pooled, deduplicated by content hash,
+shuffled, and graded (1.0 relevant / 0.5 partial / 0.0 irrelevant) by **three independent judges from
+different model families** — Claude Opus 4.8, Gemini 3.8 Flash, and Kimi K2. Judges never see system
+identity, rank, or filenames; all metrics are computed in Python. Inter-judge reliability is
+**Krippendorff's α = 0.74**.
+
+**Headline (jury-mean nDCG@10): `0.81` for Code2Code vs `0.63` for BM25** — a paired improvement of
+**+0.18 (95% CI [0.05, 0.32])** that excludes zero under *every* judge. Across the 27 queries,
+Code2Code wins **15**, ties **7**, and trails BM25 on **5** (tie band |Δ| < 0.05).
+
+| Category | Queries | Code2Code nDCG@10 | BM25 nDCG@10 |
+|---|---|:---:|:---:|
+| **A** — Canonical algorithms | 5 | 0.90 | 0.82 |
+| **B** — Name-obfuscated semantics | 12 | 0.83 | 0.53 |
+| **C** — Cross-language | 6 | 0.81 | 0.62 |
+| **D** — Domain-specific / niche | 4 | 0.64 | 0.69 |
+| **All** | 27 | **0.81** | **0.63** |
+
+The gain concentrates where lexical matching is weakest (name-obfuscation and cross-language); BM25
+stays competitive on niche domain patterns whose queries share discriminative tokens with the target.
+
+<details>
+<summary><b>Per-query results (jury-mean nDCG@10, all 27 queries)</b></summary>
+
+| Q | Title | Lang | C2C | BM25 | Δ | Verdict |
+|---|---|---|:---:|:---:|:---:|---|
+| A1 | Greatest common divisor | Python | 1.00 | 0.89 | +0.11 | 🟢 C2C |
+| A2 | Binary search | JavaScript | 0.99 | 0.98 | +0.01 | ⚪ tie |
+| A3 | String truncation with ellipsis | PHP | 0.92 | 0.68 | +0.24 | 🟢 C2C |
+| A4 | JSON encode with error forwarding | Go | 0.65 | 0.64 | +0.01 | ⚪ tie |
+| A5 | Retry with exponential back-off | Python | 0.95 | 0.92 | +0.02 | ⚪ tie |
+| B1 | Permission check: canUserEdit | PHP | 0.90 | 0.68 | +0.22 | 🟢 C2C |
+| B2 | Debounce: query names it delayExecution | JavaScript | 0.61 | 0.84 | -0.23 | 🔴 BM25 |
+| B3 | Session invalidation: invalidateUserSession | PHP | 0.98 | 0.96 | +0.03 | ⚪ tie |
+| B4 | LRU eviction: query calls it evictOldest | Python | 0.98 | 0.00 | +0.98 | 🟢 C2C |
+| B5 | Rate-limit gate: query says isRateLimited | PHP | 0.94 | 0.29 | +0.65 | 🟢 C2C |
+| B6 | Error normaliser: query calls it toError | TypeScript | 0.71 | 0.00 | +0.71 | 🟢 C2C |
+| B7 | URL slug: query calls it make_slug | Python | 0.93 | 0.75 | +0.18 | 🟢 C2C |
+| B8 | CAPTCHA verify: different field names | PHP | 0.91 | 0.19 | +0.72 | 🟢 C2C |
+| B9 | Worker pool: query calls it processWithPool | Go | 0.54 | 0.61 | -0.07 | 🔴 BM25 |
+| B10 | Recursive category subtree: getDescendants | PHP | 0.99 | 0.85 | +0.14 | 🟢 C2C |
+| B11 | Paginated API fetch: fetch_all_pages | Python | 0.97 | 0.76 | +0.21 | 🟢 C2C |
+| B12 | HTTP retry on 5xx: query calls it doWithRetry | Go | 0.51 | 0.46 | +0.05 | ⚪ tie |
+| C1 | SHA-256 file hash | PHP → Go / Python | 1.00 | 0.00 | +1.00 | 🟢 C2C |
+| C2 | ISO-8601 date parsing | Python → PHP / JS | 1.00 | 0.99 | +0.01 | ⚪ tie |
+| C3 | Fan-out / parallel map | Go → JS Promise.all | 0.52 | 0.43 | +0.08 | 🟢 C2C |
+| C4 | Throttle / call-rate limiter | TypeScript → PHP | 0.99 | 0.94 | +0.05 | ⚪ tie |
+| C5 | Recursive table/dict serialiser | Lua → Python / PHP | 0.42 | 0.89 | -0.47 | 🔴 BM25 |
+| C6 | Wikidata SPARQL query runner | Python → PHP / JS | 0.97 | 0.44 | +0.53 | 🟢 C2C |
+| D1 | Wikitext internal link extractor | PHP | 0.91 | 0.83 | +0.08 | 🟢 C2C |
+| D2 | Git-compatible SHA-1 / SWHID computation | Python | 0.46 | 0.66 | -0.20 | 🔴 BM25 |
+| D3 | IRC message line parser | Python | 0.53 | 0.35 | +0.18 | 🟢 C2C |
+| D4 | MediaWiki hook dispatcher | PHP | 0.66 | 0.92 | -0.27 | 🔴 BM25 |
+
+</details>
+
+**Reproducibility.** The frozen benchmark, blinded prompts, per-judge relevance labels, and the
+analysis code that computes every number above live in [`scripts/evaluation/`](scripts/evaluation/)
+(methodology in [`scripts/evaluation/CLAUDE.md`](scripts/evaluation/CLAUDE.md)); regenerate the report
+with `python scripts/evaluation/analyze_labels.py`. The underlying corpus and indexes are on
+**[Zenodo](https://doi.org/10.5281/zenodo.20586256)** and **[Hugging Face](https://huggingface.co/datasets/ftosoni/mediawiki-code2code-search)**.
+
 ## 🛠️ Setup
 
 ### 💾 Pre-computed Artefacts (Recommended)
