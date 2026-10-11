@@ -128,7 +128,7 @@ To run the search engine immediately without running the entire indexing pipelin
 1. Download `snippets.db` and `mediawiki.index`.
 2. Place both files inside the `backend/` directory of the project.
 
-For the frozen software source code release of the engine, see **[GitHub Release v2.0.0](https://github.com/ftosoni/mediawiki-code2code-search/releases/tag/v2.0.0)**.
+For the frozen software source code release of the engine, see **[GitHub Release v2.1.0](https://github.com/ftosoni/mediawiki-code2code-search/releases/tag/v2.1.0)**.
 
 ### Backend (Python)
 Create and activate a virtual environment (optional but recommended), install dependencies, and pre-download the neural models:
@@ -290,7 +290,7 @@ The workflow can also be run by hand from the *Actions* tab (`Run workflow`).
   <a href="./LICENCE.txt"><img src="https://img.shields.io/badge/license-Apache_2.0-blue?style=flat-square" alt="License"></a>
   <a href="https://www.python.org/dev/peps/pep-0008/"><img src="https://img.shields.io/badge/code%20style-pep8-orange.svg?style=flat-square" alt="Code Style: PEP8"></a>
   <a href="https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/ftosoni/mediawiki-code2code-search"><img src="https://archive.softwareheritage.org/badge/origin/https://github.com/ftosoni/mediawiki-code2code-search/" alt="SWH Origin"></a>
-  <a href="https://archive.softwareheritage.org/swh:1:dir:fe86b58fb35118c474fce8f7a38b4bc541440653;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:0925f0ac8b48e9b46b741090d50781140d1e037b;anchor=swh:1:rev:fcfcb6a6bff6534ce0a7203d1553219b5947504a"><img src="https://archive.softwareheritage.org/badge/swh:1:dir:c30104117db9bb6a8e488e698173fa2b302cbffc/" alt="SWH Directory"></a>
+  <a href="https://archive.softwareheritage.org/swh:1:dir:fe86b58fb35118c474fce8f7a38b4bc541440653;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:0925f0ac8b48e9b46b741090d50781140d1e037b;anchor=swh:1:rev:fcfcb6a6bff6534ce0a7203d1553219b5947504a"><img src="https://archive.softwareheritage.org/badge/swh:1:dir:72ccbc079217abf81f30fd5672ad67fd7712531b/" alt="SWH Directory"></a>
 </p>
 
 <p align="left">
