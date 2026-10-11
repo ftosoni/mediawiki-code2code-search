@@ -15,7 +15,7 @@ authors:
     orcid: 'https://orcid.org/0000-0001-8457-3866'
 identifiers:
   - type: swh
-    value: 'swh:1:dir:72ccbc079217abf81f30fd5672ad67fd7712531b;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:642b97ed2d63839c8eca36a7fbfa1d15f6b4a7c3;anchor=swh:1:rev:ad6dafa41604a6097ab81f4c1892c673f58c1b5d'
+    value: 'swh:1:dir:ab5d977c84536650f31a7f022940a44e546ef804;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:39bdb2d283a8178d200bd365747c8c663aff6a20;anchor=swh:1:rev:406f8e7531a351b83459e08573d78849063a4178'
     description: The SWHID of the v2.1.0 release
   - type: url
     value: 'https://code2codesearch.toolforge.org/'
@@ -37,6 +37,6 @@ keywords:
   - Tree-sitter
   - Software Heritage
 license: Apache-2.0
-commit: ad6dafa41604a6097ab81f4c1892c673f58c1b5d
+commit: 406f8e7531a351b83459e08573d78849063a4178
 version: v2.1.0
 date-released: '2026-10-11'
