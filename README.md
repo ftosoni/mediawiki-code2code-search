@@ -330,3 +330,26 @@ The workflow can also be run by hand from the *Actions* tab (`Run workflow`).
 
 ## 📄 Licence
 [Apache 2.0 License](./LICENCE.txt). Created for advanced code-to-code retrieval within the Wikimedia developer ecosystem.
+
+## 📚 Citation
+
+If you use MediaWiki Code2Code Search in your research, please cite the accompanying paper:
+
+> Francesco Tosoni. *MediaWiki Code2Code Search: Neural retrieval for the semantic discovery of open-source software entities.* SoftwareX, 36, 103127 (2026). [doi:10.1016/j.softx.2026.103127](https://doi.org/10.1016/j.softx.2026.103127)
+
+```bibtex
+@article{TOSONI2026103127,
+  title    = {MediaWiki Code2Code Search: Neural retrieval for the semantic discovery of open-source software entities},
+  journal  = {SoftwareX},
+  volume   = {36},
+  pages    = {103127},
+  year     = {2026},
+  issn     = {2352-7110},
+  doi      = {10.1016/j.softx.2026.103127},
+  url      = {https://www.sciencedirect.com/science/article/pii/S2352711026006187},
+  author   = {Francesco Tosoni},
+  keywords = {Neural information retrieval, Semantic code search, MediaWiki, Software Heritage, Vector embeddings, Large language models}
+}
+```
+
+Machine-readable citation metadata is also available in [`CITATION.cff`](CITATION.cff) and [`codemeta.json`](codemeta.json).
