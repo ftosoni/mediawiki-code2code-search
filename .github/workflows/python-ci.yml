@@ -76,18 +76,41 @@ jobs:
           request_pty: true
           command_timeout: 30m
           # ssh-action dropped the `script_stop` input in v1.1.0; `set -e` replaces it.
-          # Without it a failed build would still fall through to the restart below.
           script: |
             set -e
-            become code2codesearch toolforge build clean -y
-            become code2codesearch toolforge build start https://github.com/ftosoni/mediawiki-code2code-search
-            become code2codesearch toolforge webservice buildservice stop --mount=all || true
-            become code2codesearch toolforge webservice buildservice start --mount=all -m 6Gi
+            T="become code2codesearch toolforge"
+            # `build clean` wipes ALL images, including the one the running pod uses. That is
+            # acceptable only because the pod keeps the already-pulled image in memory: as long
+            # as we never stop/start the webservice without a fresh, successful build, the site
+            # stays up on the old version. Cleaning every run keeps Harbor usage bounded.
+            $T build clean -y
+            # `build start` can exit 0 even when the build fails (e.g. gitlab.wikimedia.org
+            # returning 500 while fetching a buildpack), so check the status explicitly and
+            # retry transient failures. If the status line cannot be parsed we fail safe:
+            # the webservice is left untouched.
+            ok=0
+            for try in 1 2 3; do
+              $T build start https://github.com/ftosoni/mediawiki-code2code-search || true
+              if $T build show | grep -Eiq '^[[:space:]]*status:[[:space:]]*(ok|succeeded)'; then
+                ok=1
+                break
+              fi
+              echo "Build failed (attempt ${try}/3), retrying in $((try * 60))s..." >&2
+              sleep $((try * 60))
+            done
+            if [ "$ok" != 1 ]; then
+              echo "Build failed 3 times: webservice NOT restarted, still serving the previous version." >&2
+              echo "Do not restart it manually until a build succeeds: its image has been cleaned." >&2
+              exit 1
+            fi
+            $T webservice buildservice stop --mount=all || true
+            $T webservice buildservice start --mount=all -m 6Gi
             # `buildservice start` returns once the pod is scheduled, not once gunicorn has
             # loaded the models, which takes minutes. Without this wait the job goes green
             # while the site is still serving nothing, or the previous image.
             for attempt in $(seq 1 60); do
-              if curl -fsS https://code2codesearch.toolforge.org/health | grep -q '"status":"ok"'; then
+              if curl -fsS -A "code2codesearch-ci (https://github.com/ftosoni/mediawiki-code2code-search)" \
+                  https://code2codesearch.toolforge.org/health | grep -q '"status":"ok"'; then
                 echo "Webservice healthy after ${attempt} attempt(s)."
                 exit 0
               fi
