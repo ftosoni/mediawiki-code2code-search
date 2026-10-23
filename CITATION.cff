@@ -16,7 +16,7 @@ authors:
 identifiers:
   - type: swh
     value: 'swh:1:dir:ab5d977c84536650f31a7f022940a44e546ef804;origin=https://github.com/ftosoni/mediawiki-code2code-search;visit=swh:1:snp:39bdb2d283a8178d200bd365747c8c663aff6a20;anchor=swh:1:rev:406f8e7531a351b83459e08573d78849063a4178'
-    description: The SWHID of the v2.1.0 release
+    description: The SWHID of the v2.1.1 release
   - type: url
     value: 'https://code2codesearch.toolforge.org/'
     description: The Toolforge URL of the tool
@@ -38,5 +38,5 @@ keywords:
   - Software Heritage
 license: Apache-2.0
 commit: 406f8e7531a351b83459e08573d78849063a4178
-version: v2.1.0
-date-released: '2026-10-11'
+version: v2.1.1
+date-released: '2026-10-23'

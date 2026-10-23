@@ -62,9 +62,9 @@ def update_release(swhid, commit):
         # Update badge SWHID - match from dir: until the final badge URL slash
         content = re.sub(r"(archive\.softwareheritage\.org/badge/swh:1:dir:).*?(/)", fr"\g<1>{dir_hash}\g<2>", content)
         # Update link SWHID - replaces the WHOLE SWHID part in the archive link
-        # The link looks like: .../swh:1:dir:OLD_SWHID)
-        # We match until the closing parenthesis of the markdown link
-        content = re.sub(r"(archive\.softwareheritage\.org/swh:1:dir:).*?(\))", fr"\g<1>{swhid.replace('swh:1:dir:', '')}\g<2>", content)
+        # The link is either markdown (.../swh:1:dir:OLD_SWHID) or an HTML href=".../swh:1:dir:OLD_SWHID"
+        # We match until the closing parenthesis or quote
+        content = re.sub(r"(archive\.softwareheritage\.org/swh:1:dir:)[^)\"]*([)\"])", fr"\g<1>{swhid.replace('swh:1:dir:', '')}\g<2>", content)
         
         with open(readme_path, "w", encoding="utf-8") as f:
             f.write(content)

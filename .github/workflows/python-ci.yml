@@ -108,13 +108,31 @@ jobs:
             # `buildservice start` returns once the pod is scheduled, not once gunicorn has
             # loaded the models, which takes minutes. Without this wait the job goes green
             # while the site is still serving nothing, or the previous image.
+            UA="code2codesearch-ci (https://github.com/ftosoni/mediawiki-code2code-search)"
+            healthy=0
             for attempt in $(seq 1 60); do
-              if curl -fsS -A "code2codesearch-ci (https://github.com/ftosoni/mediawiki-code2code-search)" \
-                  https://code2codesearch.toolforge.org/health | grep -q '"status":"ok"'; then
+              if curl -fsS -A "$UA" https://code2codesearch.toolforge.org/health | grep -q '"status":"ok"'; then
                 echo "Webservice healthy after ${attempt} attempt(s)."
-                exit 0
+                healthy=1
+                break
               fi
               sleep 10
             done
-            echo "Webservice did not answer /health within 10 minutes." >&2
-            exit 1
+            if [ "$healthy" != 1 ]; then
+              echo "Webservice did not answer /health within 10 minutes." >&2
+              exit 1
+            fi
+            # /health only proves the index is loaded, not that retrieval is sane: in Oct 2026
+            # unpinned torch/transformers loaded the model in bfloat16 and the gcd query silently
+            # returned unrelated code. Any index of the MediaWiki ecosystem contains gcd helpers
+            # (e.g. FormatMetadata::gcd in core), so require at least one in the top 10.
+            resp=$(curl -fsS --max-time 300 -A "$UA" -H 'Content-Type: application/json' \
+                -d '{"query":"def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a","top_k":10}' \
+                https://code2codesearch.toolforge.org/search) || resp=""
+            if printf '%s' "$resp" | grep -qi '"name":"[^"]*gcd'; then
+              echo "Smoke test passed: the gcd query returns gcd implementations."
+            else
+              echo "Smoke test FAILED: no gcd implementation in the top 10 for the gcd query. Top results:" >&2
+              printf '%s' "$resp" | grep -o '"name":"[^"]*"' | head -3 >&2 || true
+              exit 1
+            fi

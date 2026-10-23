@@ -128,7 +128,7 @@ To run the search engine immediately without running the entire indexing pipelin
 1. Download `snippets.db` and `mediawiki.index`.
 2. Place both files inside the `backend/` directory of the project.
 
-For the frozen software source code release of the engine, see **[GitHub Release v2.1.0](https://github.com/ftosoni/mediawiki-code2code-search/releases/tag/v2.1.0)**.
+For the frozen software source code release of the engine, see **[GitHub Release v2.1.1](https://github.com/ftosoni/mediawiki-code2code-search/releases/tag/v2.1.1)**.
 
 ### Backend (Python)
 Create and activate a virtual environment (optional but recommended), install dependencies, and pre-download the neural models:
@@ -234,10 +234,18 @@ Log into Toolforge and set the necessary permissions:
 ```bash
 ssh supnabla@login.toolforge.org
 
-chmod -R a+rX /data/project/code2codesearch/models/
-chmod a+r /data/project/code2codesearch/backend/snippets.db
-chmod a+r /data/project/code2codesearch/backend/mediawiki.index
+# Set explicit modes: readable by everyone, writable only by you and the tool group.
+find /data/project/code2codesearch/models/ -type d -exec chmod 775 {} +
+find /data/project/code2codesearch/models/ -type f -exec chmod 664 {} +
+chmod 664 /data/project/code2codesearch/backend/snippets.db
+chmod 664 /data/project/code2codesearch/backend/mediawiki.index
 ```
+
+> [!WARNING]
+> `scp -p` preserves the source file modes, and files copied from Windows arrive as `0666`
+> (writable by every Toolforge user). Additive commands such as `chmod a+r` do not remove that
+> write bit, so always set explicit modes as above. Verify with
+> `find /data/project/code2codesearch/{models,backend} -perm -o+w -not -type l`, which must print nothing.
 
 ### 3. Deploy
 Now you are ready to deploy the webservice:
