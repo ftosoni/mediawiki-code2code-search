@@ -14,15 +14,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# The embedding stack is pinned: the FAISS index searches a single IVF cluster (nprobe=1),
+# so even tiny numerical drift from a newer torch/transformers can move a query into a
+# neighbouring cluster and return unrelated results. Upgrade these only together with a
+# benchmark re-run (scripts/evaluation/). These versions reproduce the June 2026 evaluation.
 python-dotenv
 fastapi
 uvicorn
-faiss-cpu
-transformers>=4.51.0
-sentence-transformers
-einops
+faiss-cpu==1.13.2
+transformers==5.9.0
+sentence-transformers==5.3.0
+einops==0.8.2
 bitsandbytes
-accelerate
+accelerate==1.13.0
 tree-sitter
 tree-sitter-c
 tree-sitter-cpp
@@ -39,12 +43,14 @@ tree-sitter-perl
 gitpython
 pydantic
 swh.model
-numpy
+numpy==2.4.4
 httpx
 sentencepiece
-huggingface_hub
+huggingface_hub==1.17.0
+safetensors==0.7.0
+tokenizers==0.22.2
 --extra-index-url https://download.pytorch.org/whl/cpu
-torch
+torch==2.11.0
 gunicorn
 pygments
 # Bundled CLDR data, so locale autonyms do not depend on the browser's Intl data.
